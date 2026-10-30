@@ -99,3 +99,32 @@ T=0.859651s, M=153538560 bytes, S=500, D=1,
 K=10.679361, machine points=51.427263. All check/build/correctness/
 timeout/sandbox gates passed. This is one official public-seed run, not final
 holdout scoring. Exact evidence is in `validation/board-fourth.json`.
+
+
+## Refinement from 6cb3509: validated candidate
+
+Sparse postings retain four uint16 block-local IDs inline, with exact dynamic
+heap-list/bitmap promotion. Blocks beyond 65,536 documents use uint32 IDs.
+Query lookup stores compact hash/ID slots and still checks exact token bytes.
+Inline query plans respect the published 8-term phrase and 6-term boolean bounds.
+Occurrence offsets are block-relative uint32 only after a span check; larger
+blocks instantiate uint64 offsets. Strict boolean left folds are unchanged.
+
+The paired compact-posting trial improved 1.147780s to 0.857186s locally. A later
+batch compared 0.756912s for compact postings against 0.749726s with relative
+occurrences/inline plans, at approximately 336 versus 322.7 MiB process RSS.
+See `b-compact-paired.json` and `b-occurrences-paired.json`; batches must not be
+combined into a precise speedup. The supplied Rust document-filter idea was
+implemented with exact uncapped scanning but measured slower and was not selected.
+
+Local correctness gates passed in both release and ASan/UBSan: 69 differential
+cases, all four public full hashes, six added boundary/reproduction datasets,
+and all four independently referenced full-seed-20261031 outputs. Three direct
+C/D state/concurrency/boundary programs and the forced uint64 B offset build
+also passed. Reports: `validation/refined-{release,sanitized}*.json`.
+Actual production sources were compiled. Offline image rebuilds and every
+full-hash read-only/no-network/unprivileged sandbox check passed, all under the
+2 GB image cap. `validation/sandbox-refined.txt` and `image-sizes-refined.json`
+record the image tests. No x86-64-v3 or native flag was promoted after local trials.
+
+Official score/placement is recorded separately after the implementation push.

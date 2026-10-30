@@ -89,3 +89,31 @@ T=1.004267s, M=285605888 bytes, S=319, D=1,
 K=7.911904, machine points=44.914050. All check/build/correctness/
 timeout/sandbox gates passed. This is one official public-seed run, not final
 holdout scoring. Exact evidence is in `validation/board-fourth.json`.
+
+
+## Refinement from 6cb3509: validated candidate
+
+Parallel two-pass CSR uses atomic degree/cursor updates and disjoint edge slots.
+Node width is derived from n; compact edge words use an exact sorted overflow
+entry for every weight at or beyond the inline sentinel. Bidirectional radix
+Dijkstra expands the smaller frontier, preserving the frontier-minimum stopping
+proof. Exact uint64 labels live in per-worker generation-tagged sparse hash
+tables; wrap clears every tag. BFS ordering and its identity remap are removed.
+
+Alternating full-hash-checked local runs: checkpoint 1.944286s versus the sparse
+hash/compact-edge candidate 1.032172s trimmed mean; about 270.5 versus 152.9 MiB
+RSS. See `d-hash-paired.json`. Mapped input is included in local RSS, so this is
+not an official memory saving. D's high-weight reverse-frontier explosion was
+also tested and addressed without narrowing weights or distances.
+
+Local correctness gates passed in both release and ASan/UBSan: 69 differential
+cases, all four public full hashes, six added boundary/reproduction datasets,
+and all four independently referenced full-seed-20261031 outputs. Three direct
+C/D state/concurrency/boundary programs and the forced uint64 B offset build
+also passed. Reports: `validation/refined-{release,sanitized}*.json`.
+Actual production sources were compiled. Offline image rebuilds and every
+full-hash read-only/no-network/unprivileged sandbox check passed, all under the
+2 GB image cap. `validation/sandbox-refined.txt` and `image-sizes-refined.json`
+record the image tests. No x86-64-v3 or native flag was promoted after local trials.
+
+Official score/placement is recorded separately after the implementation push.

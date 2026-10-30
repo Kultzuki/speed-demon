@@ -6,6 +6,8 @@
 #include <mutex>
 #include <immintrin.h>
 #include <bit>
+#include <atomic>
+#include <memory>
 
 struct Field {
     std::string_view value;
@@ -42,60 +44,58 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
 }
 
 
-// Compact names use arena offsets, so arena growth cannot invalidate keys.
-// At most 240 country codes plus _UNMATCHED need four membership words.
-struct NameTable {
-    struct Slot { size_t hash = 0; uint32_t id = UINT32_MAX, length = 0; };
-    std::vector<Slot> slots = std::vector<Slot>(1 << 10);
-    std::vector<uint32_t> offsets;
-    std::vector<std::array<uint64_t, 4>> membership;
-    std::vector<char> arena;
-    NameTable() { offsets.reserve(512); membership.reserve(512); arena.reserve(4096); }
-    uint32_t intern(std::string_view name, size_t hash) {
-        if (offsets.size() * 2 >= slots.size()) {
-            std::vector<Slot> grown(slots.size() * 2);
-            for (const auto& slot : slots) if (slot.id != UINT32_MAX) {
-                size_t at = slot.hash & (grown.size() - 1);
-                while (grown[at].id != UINT32_MAX) at = (at + 1) & (grown.size() - 1);
-                grown[at] = slot;
-            }
-            slots.swap(grown);
-        }
-        size_t at = hash & (slots.size() - 1);
-        while (slots[at].id != UINT32_MAX) {
-            const auto& slot = slots[at];
-            if (slot.hash == hash && slot.length == name.size() &&
-                name == std::string_view(arena.data() + offsets[slot.id], slot.length)) break;
-            at = (at + 1) & (slots.size() - 1);
-        }
-        auto& slot = slots[at];
-        if (slot.id == UINT32_MAX) {
-            slot = {hash, static_cast<uint32_t>(offsets.size()), static_cast<uint32_t>(name.size())};
-            offsets.push_back(arena.size());
-            arena.insert(arena.end(), name.begin(), name.end());
-            membership.push_back({});
-        }
-        return slot.id;
-    }
-    bool add(std::string_view name, uint16_t country, size_t hash) {
-        uint32_t id = intern(name, hash);
-        uint64_t& bits = membership[id][country / 64];
-        uint64_t bit = uint64_t(1) << (country % 64);
-        bool fresh = !(bits & bit); bits |= bit; return fresh;
-    }
 
-};
-
-// All names and membership words have one owner. Shards bound contention;
-// each mutex also protects arena/table growth and the exact membership test.
+// Nodes never move. Release publication makes immutable names/links visible;
+// an atomic membership update elects exactly one distinct-count increment.
 struct SharedNames {
-    struct alignas(64) Shard { std::mutex mutex; NameTable names; };
-    std::array<Shard, 256> shards;
-    bool add(std::string_view name, uint16_t country) {
-        size_t hash = std::hash<std::string_view>()(name);
-        auto& shard = shards[(hash >> 32) & 255];
-        std::lock_guard<std::mutex> lock(shard.mutex);
-        return shard.names.add(name, country, hash);
+    struct Node {
+        Node* next;
+        size_t hash;
+        std::string_view name;
+        std::atomic<uint64_t> membership[4]{};
+    };
+    struct alignas(64) Shard {
+        std::mutex mutex;
+        std::array<std::atomic<Node*>,512> heads{};
+        std::vector<std::unique_ptr<char[]>> arenas;
+        size_t used=8192;
+        Node* insert(std::string_view name,size_t hash,Node* next) {
+            size_t bytes=sizeof(Node)+name.size();
+            size_t at=(used+alignof(Node)-1)&~(alignof(Node)-1);
+            if (arenas.empty() || at+bytes>8192) {
+                arenas.push_back(std::make_unique<char[]>(std::max<size_t>(8192,bytes)));
+                at=0;
+            }
+            char* data=arenas.back().get()+at;
+            auto* node=new(data) Node{next,hash,std::string_view(data+sizeof(Node),name.size())};
+            memcpy(data+sizeof(Node),name.data(),name.size());
+            used=at+bytes;
+            return node;
+        }
+    };
+    std::array<Shard,256> shards;
+    bool add(std::string_view name,uint16_t country) {
+        size_t hash=std::hash<std::string_view>()(name);
+        auto& shard=shards[(hash>>32)&255];
+        auto& head=shard.heads[hash&511];
+        auto find=[&](Node* node) {
+            while (node && (node->hash!=hash || node->name!=name)) node=node->next;
+            return node;
+        };
+        Node* node=find(head.load(std::memory_order_acquire));
+        if (!node) {
+            std::lock_guard<std::mutex> lock(shard.mutex);
+            auto first=head.load(std::memory_order_relaxed);
+            node=find(first);
+            if (!node) {
+                node=shard.insert(name,hash,first);
+                head.store(node,std::memory_order_release);
+            }
+        }
+        uint64_t bit=uint64_t(1)<<(country%64);
+        auto& word=node->membership[country/64];
+        if (word.load(std::memory_order_relaxed)&bit) return false;
+        return !(word.fetch_or(bit,std::memory_order_relaxed)&bit);
     }
 };
 
@@ -152,36 +152,41 @@ struct Partial {
     }
 };
 
-// A doubled quote toggles twice, so parity also handles escaped CSV quotes.
-// Only newlines outside quotes are eligible partition boundaries.
+
 __attribute__((target("avx2,popcnt")))
-std::vector<const char*> boundaries(const char* begin, const char* end, unsigned workers) {
-    std::vector<const char*> result(workers + 1, end);
-    result[0] = begin;
-    unsigned next = 1;
-    const char* p = begin;
-    bool quoted = false;
-    while (end - p >= 32 && next < workers) {
-        auto bytes = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(p));
-        uint32_t q = _mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes, _mm256_set1_epi8('"')));
-        const char* target = begin + (end - begin) * next / workers;
-        if (p + 32 < target) quoted ^= std::popcount(q) & 1;
-        else {
-            q ^= q << 1; q ^= q << 2; q ^= q << 4; q ^= q << 8; q ^= q << 16;
-            q ^= quoted ? UINT32_MAX : 0;
-            uint32_t lf = _mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes, _mm256_set1_epi8('\n'))) & ~q;
-            while (lf && next < workers) {
-                const char* after = p + std::countr_zero(lf) + 1;
-                if (after >= begin + (end - begin) * next / workers) result[next++] = after;
-                lf &= lf - 1;
-            }
-            quoted = q >> 31;
-        }
-        p += 32;
+bool quote_parity(const char* p,const char* end) {
+    unsigned parity=0;
+    while (end-p>=32) {
+        auto bytes=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(p));
+        parity^=std::popcount(uint32_t(_mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes,_mm256_set1_epi8('"')))))&1;
+        p+=32;
     }
-    while (p < end && next < workers) {
-        quoted ^= *p == '"';
-        if (*p++ == '\n' && !quoted && p >= begin + (end - begin) * next / workers) result[next++] = p;
+    while (p<end) parity^=*p++=='"';
+    return parity;
+}
+
+// First determine the quote parity of disjoint byte ranges in parallel.
+// Prefix parities then give the exact CSV state at every proposed cut.
+std::vector<const char*> boundaries(const char* begin,const char* end,unsigned workers) {
+    std::vector<const char*> result(workers+1,end);
+    result[0]=begin;
+    if (workers==1) return result;
+    std::vector<unsigned char> parity(workers);
+    std::vector<std::thread> threads;
+    for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
+        parity[i]=quote_parity(begin+(end-begin)*i/workers,begin+(end-begin)*(i+1)/workers);
+    });
+    for (auto& t:threads) t.join();
+    bool quoted=false;
+    for (unsigned i=1;i<workers;++i) {
+        quoted^=parity[i-1];
+        bool inside=quoted;
+        const char* p=begin+(end-begin)*i/workers;
+        while (p<end) {
+            inside^=*p=='"';
+            if (*p++=='\n' && !inside) break;
+        }
+        result[i]=p;
     }
     return result;
 }
@@ -209,7 +214,7 @@ int main(int argc, char** argv) {
         }
         p = records.data;
         while (p < records.end() && *p++ != '\n') {}
-        unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        unsigned workers = std::min(12u, std::max(1u, std::thread::hardware_concurrency()));
         if (records.size < 2 * 1024 * 1024) workers = 1;
         auto cuts = boundaries(p, records.end(), workers);
         SharedNames names;

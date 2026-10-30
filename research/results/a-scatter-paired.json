@@ -1,0 +1,52 @@
+{
+  "track": "a",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "checkpoint": {
+      "source": "track-a/main.cpp",
+      "sha256": "be5a33770e79141c67fb9cb571ec20305045395e93e7a39e684fc9d9b5d28475",
+      "walls_s": [
+        0.18638229799944384,
+        0.18259283100087487,
+        0.16941900399979204,
+        0.1627612210013467,
+        0.16097447700121847
+      ],
+      "rss_bytes": [
+        285081600,
+        284950528,
+        285081600,
+        284819456,
+        285081600
+      ],
+      "trimmed_mean_s": 0.17159101866733786
+    },
+    "scatter": {
+      "source": "research/prototypes/a-scatter.cpp",
+      "sha256": "82bde71e5aac8a2c8d7b6cc842878defad59f0fc8f2a9c074d0d3294d385aba0",
+      "walls_s": [
+        0.17641067600015958,
+        0.193238277999626,
+        0.17807654100033687,
+        0.1807495299999573,
+        0.17114065299938375
+      ],
+      "rss_bytes": [
+        268697600,
+        268697600,
+        268697600,
+        268828672,
+        268697600
+      ],
+      "trimmed_mean_s": 0.17841224900015126
+    }
+  }
+}

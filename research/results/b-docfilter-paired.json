@@ -1,0 +1,71 @@
+{
+  "track": "b",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "small": {
+      "source": "research/prototypes/b-small-posting.cpp",
+      "sha256": "9d7c48f9d9bc531b7dade8a46051985699d24dc565b5813be497ed06b6094fcf",
+      "walls_s": [
+        0.8719987540007423,
+        1.0063077830000111,
+        0.8745621639991441,
+        0.7993867659988609,
+        0.8419694570002321
+      ],
+      "rss_bytes": [
+        352358400,
+        352485376,
+        352358400,
+        352354304,
+        352485376
+      ],
+      "trimmed_mean_s": 0.8628434583333728
+    },
+    "inline": {
+      "source": "research/prototypes/b-inline-query.cpp",
+      "sha256": "741cfe5f45804ec5521ea98d66edbed070d582e0fe99ca7e353e8f936ea77317",
+      "walls_s": [
+        0.9478288190002786,
+        0.9328753240006336,
+        0.8575705210005253,
+        0.7466284620004444,
+        0.8403037319985742
+      ],
+      "rss_bytes": [
+        337928192,
+        338182144,
+        338239488,
+        338358272,
+        338235392
+      ],
+      "trimmed_mean_s": 0.8769165256665777
+    },
+    "docfilter": {
+      "source": "research/prototypes/b-docfilter.cpp",
+      "sha256": "8e7e1e1fe2a012f2a305db05edeb35be2e3a9f549d937b115aae1cfa3ea7f914",
+      "walls_s": [
+        1.157032369001172,
+        1.014443736999965,
+        1.0790160900014598,
+        0.9043393039992225,
+        1.0623417320002773
+      ],
+      "rss_bytes": [
+        334659584,
+        334794752,
+        334659584,
+        334790656,
+        334659584
+      ],
+      "trimmed_mean_s": 1.0519338530005673
+    }
+  }
+}

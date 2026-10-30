@@ -1,0 +1,22 @@
+{
+  "a": [
+    "PHASE parse 0.159818\nPHASE merge 0.014822\nPHASE select-format 0.015383\nPHASE output-cleanup 0.011590\n",
+    "PHASE parse 0.079461\nPHASE merge 0.020981\nPHASE select-format 0.017025\nPHASE output-cleanup 0.020265\n",
+    "PHASE parse 0.068275\nPHASE merge 0.013246\nPHASE select-format 0.012837\nPHASE output-cleanup 0.018686\n"
+  ],
+  "b": [
+    "PHASE queries-sample-plan 0.073678\nPHASE index 0.924118\nALLOC terms=75747 boolean=53444 anchors=17858 sparse=63020932 bits=11513296 offsets=11084224 docs=5542112 metadata=20534976 lookup=8388608\nPHASE evaluate 0.135372\nPHASE output-cleanup 0.009797\n",
+    "PHASE queries-sample-plan 0.071554\nPHASE index 0.930065\nALLOC terms=75747 boolean=53444 anchors=17858 sparse=63020932 bits=11513296 offsets=11084224 docs=5542112 metadata=20534976 lookup=8388608\nPHASE evaluate 0.135651\nPHASE output-cleanup 0.010527\n",
+    "PHASE queries-sample-plan 0.070990\nPHASE index 0.923393\nALLOC terms=75747 boolean=53444 anchors=17858 sparse=63020932 bits=11513296 offsets=11084224 docs=5542112 metadata=20534976 lookup=8388608\nPHASE evaluate 0.128089\nPHASE output-cleanup 0.009040\n"
+  ],
+  "c": [
+    "PHASE lookup 0.009275\nPHASE boundaries 0.260651\nPHASE parse-names 0.190768\nPHASE output-cleanup 0.000414\n",
+    "PHASE lookup 0.005854\nPHASE boundaries 0.026714\nPHASE parse-names 0.119545\nPHASE output-cleanup 0.001098\n",
+    "PHASE lookup 0.005840\nPHASE boundaries 0.027187\nPHASE parse-names 0.132279\nPHASE output-cleanup 0.000479\n"
+  ],
+  "d": [
+    "PHASE parse-csr 0.836219\nPHASE reorder 0.462766\nPHASE search 0.639772\nPHASE output-cleanup 0.000287\n",
+    "PHASE parse-csr 1.145577\nPHASE reorder 0.487099\nPHASE search 0.686691\nPHASE output-cleanup 0.000289\n",
+    "PHASE parse-csr 1.095841\nPHASE reorder 0.503048\nPHASE search 0.719517\nPHASE output-cleanup 0.000324\n"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "track": "d",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "reordered": {
+      "source": "research/prototypes/d-balanced-sparse-parallel.cpp",
+      "sha256": "76458afb864af6d02718aaed1ef54f7dfe83799f50b5903fd7b36d657f391358",
+      "walls_s": [
+        0.9259108200003539,
+        0.8645999719992687,
+        0.8846331849999842,
+        1.0303991599994333,
+        0.8695764580006653
+      ],
+      "rss_bytes": [
+        209047552,
+        209063936,
+        208973824,
+        208539648,
+        209731584
+      ],
+      "trimmed_mean_s": 0.8933734876670011
+    },
+    "identity": {
+      "source": "research/prototypes/d-balanced-sparse-parallel-identity.cpp",
+      "sha256": "04fca3076b6995054262334bb173a8b796197170933261963405c77620d4e8a9",
+      "walls_s": [
+        1.080370583000331,
+        0.9646045520003099,
+        0.9156065150000359,
+        1.0105799180000758,
+        0.9193958750001912
+      ],
+      "rss_bytes": [
+        202600448,
+        202215424,
+        201424896,
+        201826304,
+        202342400
+      ],
+      "trimmed_mean_s": 0.9648601150001923
+    },
+    "compact": {
+      "source": "research/prototypes/d-compact-identity.cpp",
+      "sha256": "fb2b4657be65a4f5fb9873b4bbd77349203baca766ce5f6516d471421c3fdd2b",
+      "walls_s": [
+        1.028212885999892,
+        0.8397818180001195,
+        0.900135424999462,
+        0.8661407150011655,
+        0.8690255729998171
+      ],
+      "rss_bytes": [
+        162467840,
+        161685504,
+        161947648,
+        161964032,
+        162254848
+      ],
+      "trimmed_mean_s": 0.8784339043334816
+    },
+    "private": {
+      "source": "research/prototypes/d-private-build.cpp",
+      "sha256": "5c968d07d59c5730efd1645df6c7ab878d218408382ea101b05809208be504a4",
+      "walls_s": [
+        1.1231813480007986,
+        1.0873624380001274,
+        1.160439782001049,
+        1.157819953001308,
+        1.1043550289996347
+      ],
+      "rss_bytes": [
+        270008320,
+        270008320,
+        270008320,
+        270008320,
+        269877248
+      ],
+      "trimmed_mean_s": 1.1284521100005804
+    }
+  }
+}

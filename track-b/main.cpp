@@ -17,33 +17,46 @@ struct Term {
     uint64_t sampled = 0;
     uint32_t boolean = NONE, anchor = NONE;
 };
+
+template<class T,size_t N> struct InlineList {
+    std::array<T,N> values{};
+    uint8_t count=0;
+    void push_back(T value) {values[count++]=value;}
+    size_t size() const {return count;}
+    T& operator[](size_t i) {return values[i];}
+    const T& operator[](size_t i) const {return values[i];}
+    const T* begin() const {return values.data();}
+    const T* end() const {return values.data()+count;}
+};
+
 struct Query {
     bool phrase;
     uint32_t anchor = 0;
-    std::vector<uint32_t> terms;
-    std::vector<char> operators;
+    InlineList<uint32_t,8> terms;
+    InlineList<char,5> operators;
 };
 
 struct Lookup {
-    struct Slot { size_t hash = 0; std::string_view word; uint32_t id = NONE; };
+    struct Slot { uint32_t hash = 0, id = NONE; };
+    const std::vector<Term>& terms;
     std::vector<Slot> slots;
     size_t mask;
-    explicit Lookup(const std::unordered_map<std::string_view, uint32_t>& dictionary) {
+    explicit Lookup(const std::unordered_map<std::string_view, uint32_t>& dictionary, const std::vector<Term>& words) : terms(words) {
         size_t capacity = 1;
         while (capacity < dictionary.size() * 2) capacity *= 2;
         slots.resize(capacity); mask = capacity - 1;
         for (auto [word, id] : dictionary) {
-            size_t hash = std::hash<std::string_view>()(word), at = hash & mask;
+            uint32_t hash = std::hash<std::string_view>()(word); size_t at = hash & mask;
             while (slots[at].id != NONE) at = (at + 1) & mask;
-            slots[at] = {hash, word, id};
+            slots[at] = {hash, id};
         }
     }
     uint32_t find(std::string_view word) const {
-        size_t hash = std::hash<std::string_view>()(word), at = hash & mask;
+        uint32_t hash = std::hash<std::string_view>()(word); size_t at = hash & mask;
         for (;;) {
             const auto& slot = slots[at];
             if (slot.id == NONE) return NONE;
-            if (slot.hash == hash && slot.word == word) return slot.id;
+            if (slot.hash == hash && terms[slot.id].word == word) return slot.id;
             at = (at + 1) & mask;
         }
     }
@@ -56,10 +69,9 @@ uint32_t read_token(const char*& p, const char* end, const Lookup& lookup) {
     unsigned length = 0;
     if (end - p >= 32) {
         auto bytes = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(p));
-        auto upper = _mm256_and_si256(_mm256_cmpgt_epi8(bytes, _mm256_set1_epi8('A' - 1)), _mm256_cmpgt_epi8(_mm256_set1_epi8('Z' + 1), bytes));
-        auto lower = _mm256_or_si256(bytes, _mm256_and_si256(upper, _mm256_set1_epi8(32)));
+        auto lower = _mm256_or_si256(bytes, _mm256_set1_epi8(32));
         auto letters = _mm256_and_si256(_mm256_cmpgt_epi8(lower, _mm256_set1_epi8('a' - 1)), _mm256_cmpgt_epi8(_mm256_set1_epi8('z' + 1), lower));
-        auto digits = _mm256_and_si256(_mm256_cmpgt_epi8(lower, _mm256_set1_epi8('0' - 1)), _mm256_cmpgt_epi8(_mm256_set1_epi8('9' + 1), lower));
+        auto digits = _mm256_and_si256(_mm256_cmpgt_epi8(bytes, _mm256_set1_epi8('0' - 1)), _mm256_cmpgt_epi8(_mm256_set1_epi8('9' + 1), bytes));
         uint32_t mask = _mm256_movemask_epi8(_mm256_or_si256(letters, digits));
         length = std::countr_zero(~mask);
         _mm256_storeu_si256(reinterpret_cast<__m256i*>(word), lower);
@@ -72,38 +84,61 @@ uint32_t read_token(const char*& p, const char* end, const Lookup& lookup) {
     return length <= sizeof(word) ? lookup.find(std::string_view(word, length)) : NONE;
 }
 
-struct Occurrences {
-    std::vector<uint64_t> offsets;
-    std::vector<uint32_t> documents;
+template<class Doc,class Offset> struct Occurrences {
+    std::vector<Offset> offsets;
+    std::vector<Doc> documents;
 };
 // Promote a frequent list during construction, avoiding two complete indexes.
-struct Posting {
-    std::vector<uint32_t> documents;
-    std::vector<uint64_t> bits;
-    void add(uint32_t doc, uint32_t base, uint32_t count) {
-        if (!bits.empty()) { bits[(doc - base) / 64] |= uint64_t(1) << ((doc - base) % 64); return; }
-        if (!documents.empty() && documents.back() == doc) return;
-        documents.push_back(doc);
-        if (documents.size() >= std::max(1u, (count + 31) / 32)) {
-            bits.resize((size_t(count) + 63) / 64);
-            for (uint32_t id : documents) bits[(id - base) / 64] |= uint64_t(1) << ((id - base) % 64);
-            std::vector<uint32_t>().swap(documents);
-        }
+
+// Four local uint16 IDs fit in the descriptor itself. The same storage becomes
+// a heap list or bitmap only when needed; no duplicate capacity is retained.
+template<class Doc> struct Posting {
+    static constexpr unsigned INLINE=8/sizeof(Doc);
+    union Storage { Doc small[INLINE]{}; Doc* documents; uint64_t* bits; } storage;
+    uint32_t count=0, capacity=0;
+    Posting()=default;
+    Posting(const Posting&)=delete;
+    Posting(Posting&& other) noexcept :storage(other.storage),count(other.count),capacity(other.capacity) {
+        other.count=other.capacity=0;
     }
-    uint64_t word(size_t index, size_t& cursor, uint32_t base) const {
-        if (!bits.empty()) return bits[index];
-        uint64_t result = 0;
-        uint64_t end = uint64_t(base) + (index + 1) * 64;
-        while (cursor < documents.size() && documents[cursor] < end) {
-            result |= uint64_t(1) << ((documents[cursor++] - base) % 64);
+    ~Posting() {
+        if (dense()) delete[] storage.bits;
+        else if (capacity) delete[] storage.documents;
+    }
+    bool dense() const {return capacity==UINT32_MAX;}
+    const Doc* data() const {return capacity?storage.documents:storage.small;}
+    void add(uint32_t doc,uint32_t base,uint32_t total) {
+        if (dense()) {storage.bits[(doc-base)/64]|=uint64_t(1)<<((doc-base)%64);return;}
+        if (count && data()[count-1]==doc) return;
+        if (uint64_t(count)+1>=std::max<uint64_t>(1,(uint64_t(total)+8*sizeof(Doc)-1)/(8*sizeof(Doc)))) {
+            auto* bits=new uint64_t[(size_t(total)+63)/64]{};
+            for (uint32_t i=0;i<count;++i) {uint32_t id=data()[i];bits[(id-base)/64]|=uint64_t(1)<<((id-base)%64);}
+            bits[(doc-base)/64]|=uint64_t(1)<<((doc-base)%64);
+            if (capacity) delete[] storage.documents;
+            storage.bits=bits; capacity=UINT32_MAX; return;
         }
+        if (count==(capacity?capacity:INLINE)) {
+            uint32_t grown=(capacity?capacity:INLINE)*2;
+            auto* values=new Doc[grown];
+            std::copy_n(data(),count,values);
+            if (capacity) delete[] storage.documents;
+            storage.documents=values; capacity=grown;
+        }
+        if (capacity) storage.documents[count++]=doc;
+        else storage.small[count++]=doc;
+    }
+    uint64_t word(size_t index,size_t& cursor,uint32_t base) const {
+        if (dense()) return storage.bits[index];
+        uint64_t result=0, end=uint64_t(base)+(index+1)*64;
+        while (cursor<count && data()[cursor]<end) result|=uint64_t(1)<<((data()[cursor++]-base)%64);
         return result;
     }
 };
-struct Block {
+template<class Doc,class Offset> struct Block {
+    const char* begin=nullptr;
     uint32_t base = 0, count = 0;
-    std::vector<Posting> postings;
-    std::vector<Occurrences> occurrences;
+    std::vector<Posting<Doc>> postings;
+    std::vector<Occurrences<Doc,Offset>> occurrences;
 };
 struct Answer {
     uint64_t count = 0, sum = 0;
@@ -139,9 +174,7 @@ bool matches(const char* at, const char* begin, const char* end, const Query& q,
     return true;
 }
 
-int main(int argc, char** argv) {
-    try {
-        Paths paths(argc, argv);
+template<class Doc,class Offset> void solve(const Paths& paths) {
         MappedFile query_file(paths.data + "/queries.txt"), corpus(paths.data + "/docs.txt");
         std::unordered_map<std::string_view, uint32_t> dictionary;
         dictionary.reserve(131072);
@@ -171,7 +204,7 @@ int main(int argc, char** argv) {
             }
             queries.push_back(std::move(q));
         }
-        Lookup lookup(dictionary);
+        Lookup lookup(dictionary, terms);
         dictionary.clear(); dictionary.rehash(0);
         // Sampling affects only anchor choice; every chosen anchor is indexed
         // in a complete exact pass. A poor estimate costs time, never matches.
@@ -211,10 +244,24 @@ int main(int argc, char** argv) {
             while (last > corpus.data && last[-1] != '\n') --last;
             document_count = integer(last) + 1;
         }
-        std::vector<Block> blocks(workers);
+
+        // Local document IDs are narrow only when every real block fits.
+        if constexpr (sizeof(Doc)==2) {
+            for (unsigned i=0;i<workers;++i) {
+                const char* a=cuts[i]; const char* b=cuts[i+1];
+                uint32_t first=a==corpus.end()?document_count:integer(a);
+                uint32_t stop=b==corpus.end()?document_count:integer(b);
+                if (uint64_t(stop)-first>65536) return solve<uint32_t,Offset>(paths);
+            }
+        }
+
+        if constexpr (sizeof(Offset)==4) {
+            for (unsigned i=0;i<workers;++i) if (uint64_t(cuts[i+1]-cuts[i])>UINT32_MAX) return solve<Doc,uint64_t>(paths);
+        }
+        std::vector<Block<Doc,Offset>> blocks(workers);
         std::vector<std::thread> threads;
         for (unsigned worker = 0; worker < workers; ++worker) threads.emplace_back([&, worker] {
-            auto& block = blocks[worker];
+            auto& block = blocks[worker];block.begin=cuts[worker];
             block.postings.resize(boolean_count); block.occurrences.resize(anchor_count);
             const char* current = cuts[worker];
             const char* header = current;
@@ -232,12 +279,12 @@ int main(int argc, char** argv) {
                     const auto& term = terms[id];
                     if (term.boolean != NONE) {
                         auto& list = block.postings[term.boolean];
-                        list.add(doc, block.base, block.count);
+                        list.add(doc-block.base, 0, block.count);
                     }
                     if (term.anchor != NONE) {
                         auto& occurrences = block.occurrences[term.anchor];
-                        occurrences.offsets.push_back(start - corpus.data);
-                        occurrences.documents.push_back(doc);
+                        occurrences.offsets.push_back(start-block.begin);
+                        occurrences.documents.push_back(doc-block.base);
                     }
                 }
                 ++current;
@@ -248,7 +295,7 @@ int main(int argc, char** argv) {
         std::vector<Answer> answers(queries.size());
         std::atomic<size_t> next{0};
         for (unsigned worker = 0; worker < workers; ++worker) threads.emplace_back([&] {
-            std::vector<uint32_t> result, scratch;
+            std::vector<Doc> result, scratch;
             for (;;) {
                 size_t batch = next.fetch_add(16, std::memory_order_relaxed);
                 if (batch >= queries.size()) break;
@@ -259,13 +306,13 @@ int main(int argc, char** argv) {
                     for (const auto& block : blocks) {
                         if (!q.phrase) {
                             bool dense = false;
-                            for (uint32_t id : q.terms) dense |= !block.postings[terms[id].boolean].bits.empty();
+                            for (uint32_t id : q.terms) dense |= block.postings[terms[id].boolean].dense();
                             if (dense) {
                                 std::array<size_t, 6> cursors{};
                                 for (size_t w = 0; w < (size_t(block.count) + 63) / 64; ++w) {
-                                    uint64_t bits = block.postings[terms[q.terms[0]].boolean].word(w, cursors[0], block.base);
+                                    uint64_t bits = block.postings[terms[q.terms[0]].boolean].word(w, cursors[0], 0);
                                     for (size_t i = 1; i < q.terms.size(); ++i) {
-                                        uint64_t other = block.postings[terms[q.terms[i]].boolean].word(w, cursors[i], block.base);
+                                        uint64_t other = block.postings[terms[q.terms[i]].boolean].word(w, cursors[i], 0);
                                         if (q.operators[i - 1] == 'A') bits &= other;
                                         else if (q.operators[i - 1] == 'O') bits |= other;
                                         else bits &= ~other;
@@ -276,24 +323,25 @@ int main(int argc, char** argv) {
                                 }
                                 continue;
                             }
-                            result = block.postings[terms[q.terms[0]].boolean].documents;
+                            const auto& first=block.postings[terms[q.terms[0]].boolean];
+                            result.assign(first.data(),first.data()+first.count);
                             for (size_t i = 1; i < q.terms.size(); ++i) {
-                                const auto& other = block.postings[terms[q.terms[i]].boolean].documents;
+                                const auto& other = block.postings[terms[q.terms[i]].boolean];
                                 scratch.clear();
                                 auto dest = std::back_inserter(scratch);
-                                if (q.operators[i - 1] == 'A') std::set_intersection(result.begin(), result.end(), other.begin(), other.end(), dest);
-                                else if (q.operators[i - 1] == 'O') std::set_union(result.begin(), result.end(), other.begin(), other.end(), dest);
-                                else std::set_difference(result.begin(), result.end(), other.begin(), other.end(), dest);
+                                if (q.operators[i - 1] == 'A') std::set_intersection(result.begin(), result.end(), other.data(), other.data()+other.count, dest);
+                                else if (q.operators[i - 1] == 'O') std::set_union(result.begin(), result.end(), other.data(), other.data()+other.count, dest);
+                                else std::set_difference(result.begin(), result.end(), other.data(), other.data()+other.count, dest);
                                 result.swap(scratch);
                             }
-                            for (uint32_t doc : result) answer.add(doc);
+                            for (uint32_t doc : result) answer.add(block.base+doc);
                         } else {
                             const auto& occurrences = block.occurrences[terms[q.terms[q.anchor]].anchor];
                             uint32_t previous = NONE;
                             for (size_t i = 0; i < occurrences.offsets.size(); ++i) {
-                                uint32_t doc = occurrences.documents[i];
+                                uint32_t doc = block.base+occurrences.documents[i];
                                 if (doc == previous) continue;
-                                if (matches(corpus.data + occurrences.offsets[i], corpus.data, corpus.end(), q, terms)) {
+                                if (matches(block.begin+occurrences.offsets[i], corpus.data, corpus.end(), q, terms)) {
                                     answer.add(doc); previous = doc;
                                 }
                             }
@@ -310,5 +358,9 @@ int main(int argc, char** argv) {
             output += '\n';
         }
         write_output(paths.out + "/results.txt", output);
-    } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
+}
+
+int main(int argc,char** argv) {
+    try { Paths paths(argc,argv); solve<uint16_t,uint32_t>(paths); }
+    catch (const std::exception& e) {fprintf(stderr,"%s\n",e.what());return 1;}
 }

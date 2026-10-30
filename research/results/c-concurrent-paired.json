@@ -1,0 +1,71 @@
+{
+  "track": "c",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "checkpoint": {
+      "source": "track-c/main.cpp",
+      "sha256": "da835a73c8d2c9b5018fa6e3d33a8db26c5013393da20d0bc8a118e372136a2d",
+      "walls_s": [
+        0.18635262899988447,
+        0.15153239900064364,
+        0.15742709500045748,
+        0.15135611699952278,
+        0.1549710919989593
+      ],
+      "rss_bytes": [
+        217972736,
+        217710592,
+        217972736,
+        217972736,
+        217710592
+      ],
+      "trimmed_mean_s": 0.15464352866668682
+    },
+    "concurrent": {
+      "source": "research/prototypes/c-concurrent.cpp",
+      "sha256": "cb6e48526fb9a98118c54de0d4af4ace9635433e46ccc389d8d89b7200595c26",
+      "walls_s": [
+        0.1363424479986861,
+        0.13619323700004315,
+        0.1318907670010958,
+        0.13716671300062444,
+        0.1309610580010485
+      ],
+      "rss_bytes": [
+        224788480,
+        224788480,
+        224657408,
+        224788480,
+        224657408
+      ],
+      "trimmed_mean_s": 0.13480881733327502
+    },
+    "cuts": {
+      "source": "research/prototypes/c-concurrent-cuts.cpp",
+      "sha256": "50828efa99e10dbac880b99a696d32ac020b3a27ea13aaa0be0446c6c5f293c8",
+      "walls_s": [
+        0.15061084300032235,
+        0.0983882780001295,
+        0.1033739529993909,
+        0.11252339600105188,
+        0.10398907299895654
+      ],
+      "rss_bytes": [
+        224526336,
+        224657408,
+        224788480,
+        224526336,
+        224395264
+      ],
+      "trimmed_mean_s": 0.10662880733313311
+    }
+  }
+}

@@ -71,3 +71,30 @@ T=0.096460s, M=48439296 bytes, S=250, D=1,
 K=19.851814, machine points=64.890010. All check/build/correctness/
 timeout/sandbox gates passed. This is one official public-seed run, not final
 holdout scoring. Exact evidence is in `validation/board-fourth.json`.
+
+
+## Refinement from 6cb3509: validated candidate
+
+Twelve workers parse once into exact seven-byte latency/group records in
+bounded pages, then count/prefix/scatter into one contiguous latency array.
+An exact open-addressed endpoint map replaces per-row unordered-map lookup.
+Nearest-rank selection and ordered per-hour formatting remain parallel.
+The 1,842-endpoint, 72-hour and 3.1M-row specification proves the group and
+cursor widths; latency retains its entire uint32 range.
+
+Alternating full-hash-checked local runs: checkpoint 0.140581s versus selected
+twelve-worker pages 0.105338s trimmed mean (`a-twelve-paired.json`). Local RSS
+increased from approximately 271.9 to 281.5 MiB; only official cgroup memory can
+settle the coefficient tradeoff.
+
+Local correctness gates passed in both release and ASan/UBSan: 69 differential
+cases, all four public full hashes, six added boundary/reproduction datasets,
+and all four independently referenced full-seed-20261031 outputs. Three direct
+C/D state/concurrency/boundary programs and the forced uint64 B offset build
+also passed. Reports: `validation/refined-{release,sanitized}*.json`.
+Actual production sources were compiled. Offline image rebuilds and every
+full-hash read-only/no-network/unprivileged sandbox check passed, all under the
+2 GB image cap. `validation/sandbox-refined.txt` and `image-sizes-refined.json`
+record the image tests. No x86-64-v3 or native flag was promoted after local trials.
+
+Official score/placement is recorded separately after the implementation push.

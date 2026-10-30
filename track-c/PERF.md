@@ -89,3 +89,30 @@ T=0.162170s, M=15011840 bytes, S=385, D=1,
 K=14.784387, machine points=58.490166. All check/build/correctness/
 timeout/sandbox gates passed. This is one official public-seed run, not final
 holdout scoring. Exact evidence is in `validation/board-fourth.json`.
+
+
+## Refinement from 6cb3509: validated candidate
+
+The exact decoded-name catalog now uses immutable stable nodes, acquire/release
+publication, insertion locks only on misses, and atomic country-membership words
+to elect exactly one distinct-count increment. Smaller arenas reduce slack.
+Twelve parser workers use independently computed quote parities and a prefix
+scan to find safe CSV boundaries. Escaped bytes, significant spaces, BOMs,
+embedded LF and full integer-cent aggregates remain exact.
+
+Alternating full-hash-checked local runs: checkpoint 0.210809s versus the selected
+decoded-name twelve-worker candidate 0.101670s trimmed mean. RSS was approximately
+207.8 versus 205.9 MiB. See `c-twelve-paired.json`. Borrowed mapped-name keys and
+encoded-key variants were measured separately and did not beat this choice.
+
+Local correctness gates passed in both release and ASan/UBSan: 69 differential
+cases, all four public full hashes, six added boundary/reproduction datasets,
+and all four independently referenced full-seed-20261031 outputs. Three direct
+C/D state/concurrency/boundary programs and the forced uint64 B offset build
+also passed. Reports: `validation/refined-{release,sanitized}*.json`.
+Actual production sources were compiled. Offline image rebuilds and every
+full-hash read-only/no-network/unprivileged sandbox check passed, all under the
+2 GB image cap. `validation/sandbox-refined.txt` and `image-sizes-refined.json`
+record the image tests. No x86-64-v3 or native flag was promoted after local trials.
+
+Official score/placement is recorded separately after the implementation push.
