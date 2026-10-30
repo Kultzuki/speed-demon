@@ -124,3 +124,12 @@ Official score/placement is recorded separately after the implementation push.
 Commit `b30392c91f458577a4678b3d9bec4c892a3a964c`, run `run-486af353674a`: T=0.513979s, M=95133696 bytes, S=384, D=1, K=13.401036, points=56.356919. All official gates passed.
 
 This improves the previous best coefficient and is retained. Exact board/team data is in `validation/leaderboard-refinement-b30392c.json`.
+
+
+## Final official measurement at 154e195
+
+Run `run-a050a88e5612`: T=0.423428s, M=88023040 bytes, S=384, D=1, K=14.995774, points=58.798444. All official gates passed.
+
+Runtime source is unchanged from b30392c; this rerun improved its recorded best, without another B/D kernel change.
+
+Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.

@@ -252,4 +252,3 @@ PASS  the output matches the expected sha256
 #12 naming to docker.io/speeddemon-check/track-d:latest done
 #12 unpacking to docker.io/speeddemon-check/track-d:latest 0.0s done
 #12 DONE 0.1s
-

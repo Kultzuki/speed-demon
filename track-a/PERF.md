@@ -105,3 +105,12 @@ Official score/placement is recorded separately after the implementation push.
 Commit `b30392c91f458577a4678b3d9bec4c892a3a964c`, run `run-b1aaf19253a1`: T=0.085539s, M=75784192 bytes, S=319, D=1, K=18.583948, points=63.456899. All official gates passed.
 
 The candidate is rejected: faster runtime did not offset higher official memory and source cost. Its K=18.583948 is below the prior 19.851814. Production is restored byte-for-byte to the stronger `0c89c6e` A source; the packed-record and allocator/parser experiments remain in research.
+
+
+## Final official measurement at 154e195
+
+Run `run-5129f4051865`: T=0.095759s, M=48582656 bytes, S=250, D=1, K=19.912571, points=64.956367. All official gates passed.
+
+Runtime source is the stronger restored 0c89c6e implementation; the small improvement over its previous score is run variability, not a new A optimization.
+
+Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.

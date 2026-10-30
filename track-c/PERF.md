@@ -140,3 +140,12 @@ The final four-track release and ASan/UBSan gates each pass 83 dataset compariso
 the three direct C/D programs, and the forced uint64 B full-hash check. This
 includes the long record, optional EOF, 64 boundary alignments and both full seeds.
 Final production provenance is in `validation/final-*-build.json`.
+
+
+## Final official measurement at 154e195
+
+Run `run-67e8b2d17fe8`: T=0.078535s, M=15527936 bytes, S=348, D=1, K=21.424131, points=66.545161. All official gates passed.
+
+The boundary refinement improves coefficient over b30392c (17.387919 to 21.424131) and is retained.
+
+Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.

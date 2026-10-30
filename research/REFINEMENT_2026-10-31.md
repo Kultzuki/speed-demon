@@ -107,3 +107,8 @@ The second supplied set and its reproduced faults are recorded separately in
 an alternating local trial and is going through the final gate. A's additional
 parser and allocator controls do not establish enough gain to override its
 official rejection and remain unpromoted.
+
+
+## Final official outcome
+
+154e195 passed every gate on all tracks. Best-three aggregate is **63.343397**, up from 58.007574, with captured rank **19**. A/C/D count. The C shortcut improves K=17.387919 to 21.424131 and is retained. A is the restored source; B/D sources are unchanged from b30392c, so their rerun differences are not attributed to new code. The leader is **73.812408** in this snapshot. There is still a substantial gap to first place. Exact per-track records are in `validation/leaderboard-refinement-final.json` and every PERF log.

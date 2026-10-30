@@ -6,12 +6,15 @@
     "c": "c-contract-cuts.cpp",
     "d": "d-hash.cpp (unused reorder/remap removed)"
   },
-  "status": "final release and ASan/UBSan gates passed",
+  "status": "all final release, sanitizer, offline sandbox and official gates passed",
   "production_source_sha256": {
     "a": "ed43d67ff1d50efd111338474ed9ab258f458b6b5a4bfcccb46185d5b77fdb15",
     "b": "cada6a7d453064417d9c0f0febf67287bd4e2df424e58eed1d215973e57a9225",
     "c": "9958d2892889f96508e2c723e5bff72893a9c95f151ff5f88ccc708b6d3adc7c",
     "d": "ee4db99587c8796175869e591a34e9e59c3f7f078d85b59906f14a847acb2962"
   },
-  "rejected_official_a": "b30392c: K=18.583948 < 19.851814; memory outweighed time gain"
+  "rejected_official_a": "b30392c: K=18.583948 < 19.851814; memory outweighed time gain",
+  "official_commit": "154e19527a538163c3ae37dbbd1c3b2a82149c6c",
+  "official_aggregate": 63.34339651180047,
+  "official_snapshot": "validation/leaderboard-refinement-final.json"
 }
