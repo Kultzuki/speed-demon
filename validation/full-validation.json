@@ -25,5 +25,7 @@
       "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
       "local_seconds": 4.739429
     }
-  ]
+  ],
+  "implementation_commit": "b5cbc289c3d1dc78c44c91e5d4a4a341cb2b37ed",
+  "note": "Initial direct-process public full checks. Later implementations also pass the supplied Docker sandbox checker and their board run hashes."
 }

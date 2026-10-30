@@ -1,6 +1,5 @@
 #include "common.hpp"
 #include <array>
-#include <deque>
 #include <limits>
 #include <unordered_map>
 
@@ -38,6 +37,46 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
     }
 }
 
+
+// Compact names use arena offsets, so arena growth cannot invalidate keys.
+// At most 240 country codes plus _UNMATCHED need four membership words.
+struct NameTable {
+    struct Slot { size_t hash = 0; uint32_t id = UINT32_MAX, length = 0; };
+    std::vector<Slot> slots = std::vector<Slot>(1 << 18);
+    std::vector<uint32_t> offsets;
+    std::vector<std::array<uint64_t, 4>> membership;
+    std::vector<char> arena;
+    NameTable() { offsets.reserve(131072); membership.reserve(131072); arena.reserve(4 * 1024 * 1024); }
+    bool add(std::string_view name, uint16_t country) {
+        if (offsets.size() * 2 >= slots.size()) {
+            std::vector<Slot> grown(slots.size() * 2);
+            for (const auto& slot : slots) if (slot.id != UINT32_MAX) {
+                size_t at = slot.hash & (grown.size() - 1);
+                while (grown[at].id != UINT32_MAX) at = (at + 1) & (grown.size() - 1);
+                grown[at] = slot;
+            }
+            slots.swap(grown);
+        }
+        size_t hash = std::hash<std::string_view>()(name), at = hash & (slots.size() - 1);
+        while (slots[at].id != UINT32_MAX) {
+            const auto& slot = slots[at];
+            if (slot.hash == hash && slot.length == name.size() &&
+                name == std::string_view(arena.data() + offsets[slot.id], slot.length)) break;
+            at = (at + 1) & (slots.size() - 1);
+        }
+        auto& slot = slots[at];
+        if (slot.id == UINT32_MAX) {
+            slot = {hash, static_cast<uint32_t>(offsets.size()), static_cast<uint32_t>(name.size())};
+            offsets.push_back(arena.size());
+            arena.insert(arena.end(), name.begin(), name.end());
+            membership.push_back({});
+        }
+        uint64_t& bits = membership[slot.id][country / 64];
+        uint64_t bit = uint64_t(1) << (country % 64);
+        bool fresh = !(bits & bit); bits |= bit; return fresh;
+    }
+};
+
 struct Country {
     std::string key;
     uint64_t count = 0, id_sum = 0, distinct = 0, name_bytes = 0, note_bytes = 0;
@@ -73,14 +112,8 @@ int main(int argc, char** argv) {
             lookup[region] = it->second;
             p += 4;
         }
-        // Exact names are interned once; one bit per country records membership.
-        // Equality always checks the complete name, so hash collisions are safe.
-        std::unordered_map<std::string_view, uint32_t> names;
-        names.reserve(131072);
-        std::deque<std::string> owned_names;
-        size_t words = (countries.size() + 63) / 64;
-        std::vector<uint64_t> seen;
-        seen.reserve(131072 * words);
+        // Exact names are interned once; full byte equality resolves collisions.
+        NameTable names;
         std::string scratch;
         p = records.data;
         while (p < records.end() && *p++ != '\n') {}
@@ -104,21 +137,8 @@ int main(int argc, char** argv) {
             if (p < records.end() && *p == '\n') ++p;
             if (negative) amount = -amount;
             uint16_t country = region < lookup.size() ? lookup[region] : 0;
-            auto it = names.find(name.value);
-            uint32_t name_id;
-            if (it == names.end()) {
-                name_id = names.size();
-                if (name.value.data() == scratch.data()) {
-                    owned_names.emplace_back(name.value);
-                    name.value = owned_names.back();
-                }
-                names.emplace(name.value, name_id);
-                seen.resize(seen.size() + words, 0);
-            } else name_id = it->second;
             auto& group = countries[country];
-            uint64_t& bits = seen[size_t(name_id) * words + country / 64];
-            uint64_t bit = uint64_t(1) << (country % 64);
-            if (!(bits & bit)) { ++group.distinct; bits |= bit; }
+            group.distinct += names.add(name.value, country);
             ++group.count;
             group.id_sum += id;
             group.sum += amount;

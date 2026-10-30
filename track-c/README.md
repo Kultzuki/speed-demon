@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Scan CSV quote boundaries with memchr. Unescape names only when doubled quotes occur; preserve all significant bytes and trailing spaces. Notes need an exact decoded byte count, not a stored decoded string. Join region IDs through a direct lookup table; missing and out-of-range IDs map to _UNMATCHED. Intern exact names globally and record country membership in bitsets, so distinct counting never relies on a hash alone. Parse and aggregate amounts as signed 64-bit integer cents.
+Scan CSV quote boundaries with memchr. Unescape names only when doubled quotes occur; preserve all significant bytes and trailing spaces. Notes need an exact decoded byte count, not a stored decoded string. Join region IDs through a direct lookup table; missing and out-of-range IDs map to _UNMATCHED. Intern exact names globally in a compact byte arena and record country membership in bitsets. A contiguous hash table stores IDs and lengths, and compares full arena bytes after matching hashes, so distinct counting never relies on a hash alone. Arena offsets remain valid when storage grows; the table also grows dynamically. Parse and aggregate amounts as signed 64-bit integer cents.
 
 ## Build and dependencies
 

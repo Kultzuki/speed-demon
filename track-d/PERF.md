@@ -38,3 +38,9 @@ A monotone 65-bucket radix heap replaces the comparison-based binary heap in bot
 Five local full-seed-1 runs: 3.17631, 2.90869, 2.97161, 2.70332, 2.81567 seconds. The middle-three mean is 2.89866 seconds. Every output hash matched. These are Linux-filesystem WSL2 process timings, not board measurements. The previous local middle-three mean was 4.6207 seconds.
 
 AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases, including sample seeds 2 and 17. Sanitizer timings are not performance evidence. A new official board run is needed to price the speed gain against extra source and peak memory.
+
+## Second official board run
+
+Commit `9aad3f4`, run `run-b2872dcee270`: T=1.245620s, M=355.66MB, S=276, D=1, K=6.948507, machine points=42.094576. All gates passed.
+
+Radix heaps improved board wall time from 1.609181s to 1.245620s. Memory increased slightly, and source grew from 249 to 276 lines; K improved from 6.233915 to 6.948507.

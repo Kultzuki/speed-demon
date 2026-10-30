@@ -1,0 +1,24 @@
+{
+  "environment": "Local WSL2 Linux container, inputs copied to Linux filesystem, startup included; RSS is not cgroup memory; not official scores",
+  "results": [
+    {
+      "track": "c",
+      "walls_s": [
+        1.0810727200000656,
+        0.7437319020000359,
+        0.7511352220001299,
+        0.6765828019999844,
+        0.6580006270000922
+      ],
+      "trimmed_mean_s": 0.7238166420000501,
+      "rss_bytes": [
+        215613440,
+        215744512,
+        215875584,
+        215875584,
+        215875584
+      ],
+      "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536"
+    }
+  ]
+}

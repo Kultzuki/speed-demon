@@ -30,3 +30,9 @@ run on public seed 1, not a five-run holdout result. Full board evidence is in
 ## Experiments and correctness
 
 Full-scale checking found a partition-selection bug: a later nth_element could move a previously selected percentile. Starting each later partition after the selected rank fixes it. A dedicated test covers group sizes 1, 2, 3, 99, 100, 101, 128, 129, 257 and 1001, including duplicate and extreme uint32 latencies. This correction was made before the first push.
+
+## Second official board run
+
+Commit `9aad3f4`, run `run-ef4d0b0f0b4c`: T=0.410932s, M=46.62MB, S=180, D=1, K=10.181704, machine points=50.391023. All gates passed.
+
+The implementation was unchanged from the first board run; timing differences are not attributed to an optimization.

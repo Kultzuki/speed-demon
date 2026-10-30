@@ -38,3 +38,9 @@ A contiguous exact dictionary replaces node-based probes. Six workers parse comp
 Five local full-seed-1 runs: 2.59227, 2.56169, 2.62141, 2.55414, 2.58628 seconds. The middle-three mean is 2.58008 seconds. Every output hash matched. These are Linux-filesystem WSL2 process timings, not board measurements. The previous local middle-three mean was 11.2331 seconds.
 
 AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases, including sample seeds 2 and 17. Sanitizer timings are not performance evidence. A new official board run is needed to price the speed gain against extra source and peak memory.
+
+## Second official board run
+
+Commit `9aad3f4`, run `run-3c8605ffbbe8`: T=2.301115s, M=642.91MB, S=355, D=1, K=5.160148, machine points=35.633107. All gates passed.
+
+Parallel parsing and the flat dictionary improved board wall time from 5.822991s to 2.301115s; peak memory increased from 411.35MB to 642.91MB and formatted source grew from 259 to 355 lines. K still improved from 3.718642 to 5.160148. The coefficient prices the additional memory and code rather than treating this as a wall-time-only win.

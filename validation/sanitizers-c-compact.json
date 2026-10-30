@@ -1,0 +1,60 @@
+{
+  "instrumentation": "AddressSanitizer and UndefinedBehaviorSanitizer, compact name table",
+  "results": [
+    {
+      "track": "c",
+      "case": "worked-example",
+      "sha256": "72ed9e59bff2dad354a9fb4cbc2d4b102477f634230b47e86035864c88d27444",
+      "local_seconds": 0.066292
+    },
+    {
+      "track": "c",
+      "case": "tiny-seed1",
+      "sha256": "e4e43bc39920e9d446c3fcd700fdd35b3959e9495c6aaa738491df38a1aed733",
+      "local_seconds": 0.066286
+    },
+    {
+      "track": "c",
+      "case": "tiny-seed2",
+      "sha256": "33751caa2d533502b540bad1ad914bce49118ca9732c89c37892541c91b6713a",
+      "local_seconds": 0.066249
+    },
+    {
+      "track": "c",
+      "case": "tiny-seed17",
+      "sha256": "b7aa5e77e1db9b030a44fb8c845d067c54171f791b11e1f2ade6d3c5ecdb6019",
+      "local_seconds": 0.066236
+    },
+    {
+      "track": "c",
+      "case": "sample-seed2",
+      "sha256": "f389938275df1b495a38c4375fe741795df180e64617e01e2cf77a95a56982a3",
+      "local_seconds": 0.618538
+    },
+    {
+      "track": "c",
+      "case": "sample-seed17",
+      "sha256": "15a5add0a5224b0de3e58a12cc3b9ef1613e305182bca830547f4f890c43be67",
+      "local_seconds": 0.618289
+    },
+    {
+      "track": "c",
+      "case": "final-no-newline",
+      "sha256": "e25d578f0f157a790bd6844ed73152ee6f237a8eeb195a23ab398b1d0e1bffd1",
+      "local_seconds": 0.066334
+    },
+    {
+      "track": "c",
+      "case": "full-seed1",
+      "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536",
+      "local_seconds": 4.831201
+    },
+    {
+      "track": "c",
+      "case": "name-table-growth",
+      "sha256": "c15f9a3edf198aa79c73a43766c08c798323aaf2a24c8b881fbe9f21cf9e4c3a",
+      "local_seconds": 0.3184,
+      "timing_precision": "from console, rounded to 4 decimals"
+    }
+  ]
+}

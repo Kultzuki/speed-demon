@@ -30,3 +30,17 @@ run on public seed 1, not a five-run holdout result. Full board evidence is in
 ## Experiments and correctness
 
 Differential cases include mid-file BOMs, LF inside quoted notes, escaped name/note quotes, empty names, distinct names differing only by spaces, negative sub-unit amounts, unmatched regions and a final record without a newline.
+
+## Second official board run
+
+Commit `9aad3f4`, run `run-8211fa1a15fa`: T=0.814066s, M=13.92MB, S=260, D=1, K=7.105620, machine points=42.580100. All gates passed.
+
+The implementation was unchanged from the first board run; timing differences are not attributed to an optimization.
+
+## Compact exact-name storage: local experiment
+
+Replace node-based string-view dictionary entries and input-file pointers with a flat exact hash table and compact owned-name arena. Membership bitsets remain exact. Hash collisions compare full bytes. Both table and arena can grow.
+
+Five local full runs: 1.08107, 0.74373, 0.75114, 0.67658, 0.65800s; trimmed mean 0.72382s, versus 1.8086s in the first local baseline. Every full output hash matched. These are local WSL2 numbers, not board results.
+
+AddressSanitizer and UndefinedBehaviorSanitizer passed worked-example, tiny seeds 1/2/17, sample seeds 2/17, final-no-newline and full public data. A separate 135,000-name case forces hash-table and arena growth and repeats earlier names afterward; it also matches the reference under sanitizers.

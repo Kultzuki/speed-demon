@@ -126,6 +126,23 @@ def adversarial():
         b'3,,,9999999,0.00\n4,"","",1,99999.99\r\n'
         b'5,"same","",2,-999.99\n6,"same ","",2,-0.99')
     check("c", "final-no-newline", data)
+    # Force both the exact-name table and its compact string arena to grow.
+    data = ROOT / "data/c/name-table-growth"
+    data.mkdir(parents=True, exist_ok=True)
+    (data / "regions.csv").write_bytes(b"region_id,country\n1,AAA\n")
+    def name_for(value):
+        letters = []
+        for _ in range(5):
+            letters.append(chr(ord("a") + value % 26))
+            value //= 26
+        return "Long name " + "a" * 40 + "".join(letters)
+    with (data / "records.csv").open("w", newline="\n") as output:
+        output.write("id,name,note,region_id,amount\n")
+        for i in range(135000):
+            output.write(f'{i+1},"{name_for(i)}","",1,0.01\n')
+        for i in range(10):
+            output.write(f'{135001+i},"{name_for(i)}","",1,-0.01\n')
+    check("c", "name-table-growth", data)
     data = ROOT / "data/a/empty"
     data.mkdir(parents=True, exist_ok=True)
     (data / "requests.log").write_bytes(b"")
