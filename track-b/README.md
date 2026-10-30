@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read all queries first and index only their terms. Corpus tokenization lowercases ASCII A-Z only; all other non-alphanumeric bytes are separators. Sorted document postings support strictly left-to-right Boolean set operations. For phrases, select the least frequent occurrence list as the anchor and compare exact adjacent token IDs. A boundary bit on every document's final token forbids cross-document matches. Full string equality resolves dictionary hash collisions; results are exact.
+Read all queries first and index only their terms. A contiguous read-only dictionary serves six parser workers, each responsible for complete document lines. Concatenating blocks in corpus order preserves sorted postings; local occurrence offsets are translated into one global token array. Corpus tokenization lowercases ASCII A-Z only; all other non-alphanumeric bytes are separators. Sorted document postings support strictly left-to-right Boolean set operations. For phrases, select the least frequent occurrence list as the anchor and compare exact adjacent token IDs. A boundary bit on every document's final token forbids cross-document matches. Full string equality resolves dictionary hash collisions; results are exact.
 
 ## Build and dependencies
 
@@ -22,4 +22,4 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-The corpus lookup loop and common-term Boolean operations are the first profiling candidates. Evaluate a compact query dictionary and adaptive dense bitsets against the current sorted postings.
+The corpus lookup loop and common-term Boolean operations are the first profiling candidates. Evaluate adaptive dense bitsets against sorted postings and measure smaller posting representations.

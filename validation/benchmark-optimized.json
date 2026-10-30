@@ -1,0 +1,43 @@
+{
+  "environment": "Local WSL2 Linux container, inputs copied to Linux filesystem, startup included; RSS is not cgroup memory; not official scores",
+  "results": [
+    {
+      "track": "b",
+      "walls_s": [
+        2.592268865000051,
+        2.561694743999851,
+        2.621405549999963,
+        2.554139802000009,
+        2.586280246999877
+      ],
+      "trimmed_mean_s": 2.5800812853332595,
+      "rss_bytes": [
+        893485056,
+        893820928,
+        893739008,
+        893825024,
+        893362176
+      ],
+      "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927"
+    },
+    {
+      "track": "d",
+      "walls_s": [
+        3.176314163000143,
+        2.9086924860000636,
+        2.9716129370001454,
+        2.703320794999854,
+        2.8156695580000815
+      ],
+      "trimmed_mean_s": 2.898658327000097,
+      "rss_bytes": [
+        353091584,
+        353615872,
+        352956416,
+        353484800,
+        352833536
+      ],
+      "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e"
+    }
+  ]
+}

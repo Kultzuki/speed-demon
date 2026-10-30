@@ -17,11 +17,24 @@ official timing. It is not comparable to the scoring-box reference.
 
 ## Board evidence
 
-No scored C++ board run has been recorded yet. The first implementation is
-ready for its initial run; its measured run ID, time, memory, source size,
-dependency weight and K will be recorded after the board publishes them.
-No speedup is claimed from local timings alone.
+Initial C++ board measurement at commit `b5cbc28`.
+
+| Run ID | T (s) | M (MB) | Formatted source lines | D | K | Machine points |
+|---|---:|---:|---:|---:|---:|---:|
+| `run-6094fca5ee88` | 1.609181 | 348.48 | 249 | 1 | 6.233915 | 39.738043 |
+
+All correctness, timeout and sandbox gates passed. This is a single public-board
+run on public seed 1, not a five-run holdout result. Full board evidence is in
+`validation/board-baseline.json` at the repository root.
 
 ## Experiments and correctness
 
 Differential checks include all pairs on 20 random directed multigraphs with zero weights and uint32-max weights, plus the official injected cases. Query parallelism preserves only output order, not execution order.
+
+## Second implementation: local experiment
+
+A monotone 65-bucket radix heap replaces the comparison-based binary heap in both search directions.
+
+Five local full-seed-1 runs: 3.17631, 2.90869, 2.97161, 2.70332, 2.81567 seconds. The middle-three mean is 2.89866 seconds. Every output hash matched. These are Linux-filesystem WSL2 process timings, not board measurements. The previous local middle-three mean was 4.6207 seconds.
+
+AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases, including sample seeds 2 and 17. Sanitizer timings are not performance evidence. A new official board run is needed to price the speed gain against extra source and peak memory.

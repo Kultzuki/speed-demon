@@ -18,6 +18,7 @@ OFFICIAL = ROOT / ".competition/official"
 MODULE = {"a": "a_ingest", "b": "b_index", "c": "c_join", "d": "d_traverse"}
 OUTPUT = {"a": "summary.txt", "b": "results.txt", "c": "aggregates.txt", "d": "distances.txt"}
 REPORT = []
+BINARY_DIR = ROOT / "build"
 
 
 def load(name, path):
@@ -43,7 +44,7 @@ def check(track, label, data, expected=None):
                         "--data", str(data), "--out", str(reference)], check=True)
         expected = digest(reference / OUTPUT[track])
     started = time.perf_counter()
-    subprocess.run([str(ROOT / f"build/track-{track}"), "--data", str(data),
+    subprocess.run([str(BINARY_DIR / f"track-{track}"), "--data", str(data),
                     "--out", str(target)], check=True, timeout=120)
     elapsed = time.perf_counter() - started
     actual = digest(target / OUTPUT[track])
@@ -143,10 +144,13 @@ def adversarial():
 
 
 def main():
+    global BINARY_DIR
     parser = argparse.ArgumentParser()
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--quick", action="store_true")
+    parser.add_argument("--binary-dir", type=Path, default=ROOT / "build")
     args = parser.parse_args()
+    BINARY_DIR = args.binary_dir.resolve()
     if args.full:
         manifest = json.loads((ROOT / ".competition/SHA256SUMS.json").read_text(encoding="utf-8-sig"))
         for track, spec in manifest["tracks"].items():

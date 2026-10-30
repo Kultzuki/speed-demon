@@ -16,8 +16,8 @@ Deadline: 2026-11-02 15:00 UTC / 20:30 IST.
 - Team set to CodeScythe in all four track manifests.
 - All four tracks now have C++20 implementations. All four full public output
   hashes pass, and 57 additional differential cases pass (worked examples,
-  tiny seeds 1/2/17, sample seeds 2/17, and adversarial cases). No C++ board
-  score has been claimed yet.
+  tiny seeds 1/2/17, sample seeds 2/17, and adversarial cases). All four correctness, timeout and sandbox gates also passed the first official
+  C++ board run at commit b5cbc28; see validation/board-baseline.json.
 - Windows laptop: 16 GB RAM reported by the entrant; 16 logical processors.
 - Native C++ compiler verified: C:/msys64/ucrt64/bin/g++.exe, GCC 16.2.0.
 - Rust compiler also available, version 1.95.0.
@@ -26,15 +26,15 @@ Deadline: 2026-11-02 15:00 UTC / 20:30 IST.
 - C: now has approximately 32.0 GB free. This is sufficient to begin; monitor
   space after pulling compiler images and generating additional datasets.
 - Submission repository: https://github.com/Kultzuki/speed-demon (public, MIT,
-  speed-demon branch verified). Local origin is connected and fetched; no local
-  changes have been pushed. Upstream points to the organizers' starter.
+  speed-demon branch verified). Local origin is connected. The first four-track
+  C++ implementation has been committed and pushed as b5cbc28. Upstream points to the organizers' starter.
 - Participant registration and updated team form are reported complete. The
   public board independently confirms all four tracks are registered and the
   app successfully watches this repository. Solo entrant: Prashant Krishan Bharti.
 
 ## Resource plan
 
-Use one track build or benchmark at a time. Start with a 6 GB WSL/Docker memory
+Use one track build or benchmark at a time. Start with approximately 6-7 GB of WSL/Docker memory
 budget on the 16 GB host; this is a local planning estimate, not a validated
 requirement. Monitor host memory and raise toward 8 GB only if necessary and
 Windows has headroom. Official scoring allows 8 GB per run and 12 hardware

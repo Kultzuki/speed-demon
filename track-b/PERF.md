@@ -17,11 +17,24 @@ official timing. It is not comparable to the scoring-box reference.
 
 ## Board evidence
 
-No scored C++ board run has been recorded yet. The first implementation is
-ready for its initial run; its measured run ID, time, memory, source size,
-dependency weight and K will be recorded after the board publishes them.
-No speedup is claimed from local timings alone.
+Initial C++ board measurement at commit `b5cbc28`.
+
+| Run ID | T (s) | M (MB) | Formatted source lines | D | K | Machine points |
+|---|---:|---:|---:|---:|---:|---:|
+| `run-d2ad96a22ae8` | 5.822991 | 411.35 | 259 | 1 | 3.718642 | 28.519218 |
+
+All correctness, timeout and sandbox gates passed. This is a single public-board
+run on public seed 1, not a five-run holdout result. Full board evidence is in
+`validation/board-baseline.json` at the repository root.
 
 ## Experiments and correctness
 
 Differential cases include ASCII case conversion, UTF-8 separators, repeated phrase terms, sentence punctuation, absent terms, empty documents and mixed left-associative Boolean operators.
+
+## Second implementation: local experiment
+
+A contiguous exact dictionary replaces node-based probes. Six workers parse complete document-line blocks and merge ordered postings and translated token positions.
+
+Five local full-seed-1 runs: 2.59227, 2.56169, 2.62141, 2.55414, 2.58628 seconds. The middle-three mean is 2.58008 seconds. Every output hash matched. These are Linux-filesystem WSL2 process timings, not board measurements. The previous local middle-three mean was 11.2331 seconds.
+
+AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases, including sample seeds 2 and 17. Sanitizer timings are not performance evidence. A new official board run is needed to price the speed gain against extra source and peak memory.

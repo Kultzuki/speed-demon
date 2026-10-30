@@ -17,10 +17,15 @@ official timing. It is not comparable to the scoring-box reference.
 
 ## Board evidence
 
-No scored C++ board run has been recorded yet. The first implementation is
-ready for its initial run; its measured run ID, time, memory, source size,
-dependency weight and K will be recorded after the board publishes them.
-No speedup is claimed from local timings alone.
+Initial C++ board measurement at commit `b5cbc28`.
+
+| Run ID | T (s) | M (MB) | Formatted source lines | D | K | Machine points |
+|---|---:|---:|---:|---:|---:|---:|
+| `run-9c31cead2b72` | 0.409238 | 46.58 | 180 | 1 | 10.204190 | 50.438927 |
+
+All correctness, timeout and sandbox gates passed. This is a single public-board
+run on public seed 1, not a five-run holdout result. Full board evidence is in
+`validation/board-baseline.json` at the repository root.
 
 ## Experiments and correctness
 

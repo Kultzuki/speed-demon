@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read graph bytes into forward and reverse compressed sparse row arrays with two parsing passes. Each query runs bidirectional Dijkstra on the directed graph, with 64-bit distances, zero weights and parallel edges preserved. Stop when the frontier lower bound reaches the best complete path. Generation stamps avoid clearing every node per query. Six workers own independent search storage; results are written in input order after joining.
+Read graph bytes into forward and reverse compressed sparse row arrays with two parsing passes. Each query runs bidirectional Dijkstra on the directed graph, with 64-bit distances, zero weights and parallel edges preserved. Monotone integer keys use a radix heap with 65 buckets instead of a comparison-based binary heap. Stop when the frontier lower bound reaches the best complete path. Generation stamps avoid clearing every node per query. Six workers own independent search storage; results are written in input order after joining.
 
 ## Build and dependencies
 
@@ -22,4 +22,4 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Measure radix heaps, worker count, sparse search state and graph construction separately. More workers trade lower wall time for greater memory, so compare the combined coefficient rather than time alone.
+Measure worker count, sparse search state and graph construction separately. More workers trade lower wall time for greater memory, so compare the combined coefficient rather than time alone.

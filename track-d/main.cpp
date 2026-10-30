@@ -1,7 +1,8 @@
 #include "common.hpp"
 #include <atomic>
+#include <array>
+#include <bit>
 #include <numeric>
-#include <queue>
 #include <thread>
 
 struct Edge { uint32_t node, weight; };
@@ -38,25 +39,44 @@ struct Graph {
     }
 };
 
-struct Search {
+// Non-negative edges make extracted distances monotone. A radix heap groups
+// keys by the highest bit differing from the last extracted distance.
+struct RadixHeap {
     using Item = std::pair<uint64_t, uint32_t>;
+    std::array<std::vector<Item>, 65> buckets;
+    uint64_t last = 0;
+    size_t size = 0;
+    void clear() { for (auto& b : buckets) b.clear(); last = 0; size = 0; }
+    bool empty() const { return size == 0; }
+    void push(uint64_t key, uint32_t node) {
+        buckets[std::bit_width(key ^ last)].emplace_back(key, node); ++size;
+    }
+    const Item& top() {
+        if (buckets[0].empty()) {
+            unsigned i = 1;
+            while (buckets[i].empty()) ++i;
+            last = UINT64_MAX;
+            for (auto [key, node] : buckets[i]) last = std::min(last, key);
+            for (auto item : buckets[i]) buckets[std::bit_width(item.first ^ last)].push_back(item);
+            buckets[i].clear();
+        }
+        return buckets[0].back();
+    }
+    Item pop() { Item item = top(); buckets[0].pop_back(); --size; return item; }
+};
+
+struct Search {
     std::vector<uint64_t> distance[2];
     std::vector<uint32_t> stamp[2];
-    std::vector<Item> heap[2];
+    RadixHeap heap[2];
     static constexpr uint64_t INF = UINT64_MAX / 2;
     explicit Search(uint32_t n) {
         for (int d = 0; d < 2; ++d) {
             distance[d].resize(n); stamp[d].resize(n);
-            heap[d].reserve(4096);
         }
     }
     void push(int dir, uint64_t d, uint32_t v) {
-        heap[dir].emplace_back(d, v);
-        std::push_heap(heap[dir].begin(), heap[dir].end(), std::greater<Item>());
-    }
-    Item pop(int dir) {
-        std::pop_heap(heap[dir].begin(), heap[dir].end(), std::greater<Item>());
-        Item item = heap[dir].back(); heap[dir].pop_back(); return item;
+        heap[dir].push(d, v);
     }
     int64_t run(const Graph& graph, uint32_t s, uint32_t t, uint32_t epoch) {
         if (s == t) return 0;
@@ -68,12 +88,12 @@ struct Search {
         uint64_t best = INF;
         for (;;) {
             for (int d = 0; d < 2; ++d)
-                while (!heap[d].empty() && heap[d].front().first != distance[d][heap[d].front().second]) pop(d);
+                while (!heap[d].empty() && heap[d].top().first != distance[d][heap[d].top().second]) heap[d].pop();
             if (heap[0].empty() || heap[1].empty()) break;
             // Every unfinished s-t path costs at least the two frontier minima.
-            if (heap[0].front().first + heap[1].front().first >= best) break;
-            int dir = heap[0].front().first <= heap[1].front().first ? 0 : 1;
-            auto [du, u] = pop(dir);
+            if (heap[0].top().first + heap[1].top().first >= best) break;
+            int dir = heap[0].top().first <= heap[1].top().first ? 0 : 1;
+            auto [du, u] = heap[dir].pop();
             if (stamp[1 - dir][u] == epoch) best = std::min(best, du + distance[1 - dir][u]);
             for (uint32_t i = graph.offset[dir][u]; i < graph.offset[dir][u + 1]; ++i) {
                 auto [v, w] = graph.edges[dir][i];

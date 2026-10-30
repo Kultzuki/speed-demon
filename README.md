@@ -31,13 +31,13 @@ are ignored by Git and do not enter any track image.
 `tools/validate.py` compares compiled `build/track-*` binaries against the frozen
 references using worked examples, three tiny seeds, two unseen sample seeds,
 random directed multigraphs, random mixed Boolean/phrase queries, CSV edge cases
-and percentile rank boundaries. `--full` checks the published full-size hashes.
+and percentile rank boundaries. The 57-case suite also passes under AddressSanitizer and UndefinedBehaviorSanitizer; reports are in validation/. `--full` checks the published full-size hashes.
 Run it on Linux with Python 3.13 and the compiled binaries. `tools/prepare.py`
 refreshes the four identical helper headers, Dockerfiles and track manifests.
 
 ## Evidence and limits
 
-All four full public output hashes have passed locally. This is correctness
+All four full public output hashes have passed locally and all four tracks passed their first official board runs at commit b5cbc28. This is correctness
 coverage for those inputs, not proof for every hidden seed. Local measurements
 are made on an AMD Windows laptop through WSL2 and are not official scores.
 Each track's PERF.md separates published reference numbers, local evidence and

@@ -1,5 +1,6 @@
 #include "common.hpp"
 #include <unordered_map>
+#include <thread>
 
 struct Term {
     std::vector<uint32_t> documents, positions;
@@ -9,6 +10,33 @@ struct Query {
     bool phrase;
     std::vector<uint32_t> terms;
     std::vector<char> operators;
+};
+
+// A contiguous read-only table avoids a node allocation and pointer chase for
+// every dictionary probe. Full bytes are still compared after matching hashes.
+struct Lookup {
+    struct Slot { size_t hash = 0; std::string_view word; uint32_t id = 0x7fffffff; };
+    std::vector<Slot> slots;
+    size_t mask;
+    explicit Lookup(const std::unordered_map<std::string_view, uint32_t>& dictionary) {
+        size_t capacity = 1;
+        while (capacity < dictionary.size() * 2) capacity *= 2;
+        slots.resize(capacity); mask = capacity - 1;
+        for (auto [word, id] : dictionary) {
+            size_t hash = std::hash<std::string_view>()(word), at = hash & mask;
+            while (slots[at].id != 0x7fffffff) at = (at + 1) & mask;
+            slots[at] = {hash, word, id};
+        }
+    }
+    uint32_t find(std::string_view word) const {
+        size_t hash = std::hash<std::string_view>()(word), at = hash & mask;
+        for (;;) {
+            const auto& slot = slots[at];
+            if (slot.id == 0x7fffffff) return 0x7fffffff;
+            if (slot.hash == hash && slot.word == word) return slot.id;
+            at = (at + 1) & mask;
+        }
+    }
 };
 
 inline unsigned normalized(unsigned char ch) {
@@ -58,34 +86,79 @@ int main(int argc, char** argv) {
             }
             queries.push_back(std::move(q));
         }
+        Lookup lookup(dictionary);
+        struct Block {
+            std::vector<Term> terms;
+            std::vector<uint32_t> tokens, starts;
+        };
         std::vector<uint32_t> tokens, document_starts;
-        // Reserve from input size, not a fixed answer or a particular seed.
         {
             MappedFile corpus(paths.data + "/docs.txt");
-            tokens.reserve(corpus.size / 6);
-            document_starts.reserve(corpus.size / 512);
-            p = corpus.data;
-            char word[33];
-            while (p < corpus.end()) {
-                uint32_t doc = integer(p); ++p;
-                document_starts.push_back(tokens.size());
-                while (*p != '\n') {
-                    if (!token_byte(normalized(*p))) { ++p; continue; }
-                    unsigned length = 0;
-                    do { word[length++] = char(normalized(*p++)); }
-                    while (token_byte(normalized(*p)));
-                    auto it = dictionary.find(std::string_view(word, length));
-                    uint32_t id = it == dictionary.end() ? 0x7fffffff : it->second;
-                    if (it != dictionary.end()) {
-                        auto& term = terms[id];
-                        if (term.documents.empty() || term.documents.back() != doc) term.documents.push_back(doc);
-                        if (term.phrase) term.positions.push_back(tokens.size());
+            unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+            if (corpus.size < 2 * 1024 * 1024) workers = 1;
+            std::vector<const char*> boundaries(workers + 1);
+            boundaries[0] = corpus.data;
+            boundaries[workers] = corpus.end();
+            for (unsigned i = 1; i < workers; ++i) {
+                const char* at = corpus.data + corpus.size * i / workers;
+                while (at < corpus.end() && at[-1] != '\n') ++at;
+                boundaries[i] = at;
+            }
+            std::vector<Block> blocks(workers);
+            std::vector<std::thread> threads;
+            for (unsigned worker = 0; worker < workers; ++worker) threads.emplace_back([&, worker] {
+                auto& block = blocks[worker];
+                block.terms.resize(terms.size());
+                block.tokens.reserve((boundaries[worker + 1] - boundaries[worker]) / 6);
+                const char* current = boundaries[worker];
+                char word[33];
+                while (current < boundaries[worker + 1]) {
+                    uint32_t doc = integer(current); ++current;
+                    block.starts.push_back(block.tokens.size());
+                    while (*current != '\n') {
+                        if (!token_byte(normalized(*current))) { ++current; continue; }
+                        unsigned length = 0;
+                        do { word[length++] = char(normalized(*current++)); }
+                        while (token_byte(normalized(*current)));
+                        uint32_t id = lookup.find(std::string_view(word, length));
+                        if (id != 0x7fffffff) {
+                            auto& term = block.terms[id];
+                            if (term.documents.empty() || term.documents.back() != doc) term.documents.push_back(doc);
+                            if (terms[id].phrase) term.positions.push_back(block.tokens.size());
+                        }
+                        block.tokens.push_back(id);
                     }
-                    tokens.push_back(id);
+                    if (block.tokens.size() > block.starts.back()) block.tokens.back() |= 0x80000000u;
+                    ++current;
                 }
-                // A boundary bit forbids phrase matches across two documents.
-                if (tokens.size() > document_starts.back()) tokens.back() |= 0x80000000u;
-                ++p;
+            });
+            for (auto& thread : threads) thread.join();
+            size_t token_count = 0, document_count = 0;
+            for (const auto& block : blocks) { token_count += block.tokens.size(); document_count += block.starts.size(); }
+            tokens.reserve(token_count);
+            document_starts.reserve(document_count + 1);
+            std::vector<uint32_t> bases;
+            for (auto& block : blocks) {
+                uint32_t base = tokens.size();
+                bases.push_back(base);
+                for (auto start : block.starts) document_starts.push_back(base + start);
+                tokens.insert(tokens.end(), block.tokens.begin(), block.tokens.end());
+                std::vector<uint32_t>().swap(block.tokens);
+            }
+            // Blocks follow corpus order, so concatenating their lists preserves
+            // sorted unique document IDs and sorted global occurrence positions.
+            for (size_t id = 0; id < terms.size(); ++id) {
+                size_t docs = 0, positions = 0;
+                for (auto& block : blocks) { docs += block.terms[id].documents.size(); positions += block.terms[id].positions.size(); }
+                terms[id].documents.reserve(docs);
+                terms[id].positions.reserve(positions);
+                for (unsigned worker = 0; worker < workers; ++worker) {
+                    auto& local = blocks[worker].terms[id];
+                    terms[id].documents.insert(terms[id].documents.end(), local.documents.begin(), local.documents.end());
+                    for (auto position : local.positions) terms[id].positions.push_back(bases[worker] + position);
+                    std::vector<uint32_t>().swap(local.documents);
+                    std::vector<uint32_t>().swap(local.positions);
+                }
             }
         }
         document_starts.push_back(tokens.size());
