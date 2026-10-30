@@ -1,2 +1,6 @@
 .out/
 data/
+.competition/
+build/
+*.exe
+__pycache__/
