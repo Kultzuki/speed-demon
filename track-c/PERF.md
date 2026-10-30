@@ -116,3 +116,27 @@ full-hash read-only/no-network/unprivileged sandbox check passed, all under the
 record the image tests. No x86-64-v3 or native flag was promoted after local trials.
 
 Official score/placement is recorded separately after the implementation push.
+
+
+## Official b30392c measurement and promotion decision
+
+Commit `b30392c91f458577a4678b3d9bec4c892a3a964c`, run `run-ba8f36933151`: T=0.117573s, M=15142912 bytes, S=377, D=1, K=17.387919, points=62.012380. All official gates passed.
+
+This improves the previous best coefficient and is retained. Exact board/team data is in `validation/leaderboard-refinement-b30392c.json`.
+A further isolated record-boundary shortcut from the second supplied set is being validated separately; it is not included in this score.
+
+
+## Final refinement: record-boundary discovery
+
+The second supplied set suggested a useful contract-specific cut rule. Section
+2.2 guarantees names have no LF and note bytes cannot contain digits or a BOM.
+Therefore LF followed by a digit/BOM starts a record. Searching locally from
+each desired cut removes the whole-file quote-parity pass. Exact decoded-name
+equality and dynamically growing arenas remain unchanged.
+
+An alternating five-run full-hash batch improved 0.085193s to 0.073064s locally
+(`research/results/c-contract-cuts-paired.json`). This is not an official time.
+The final four-track release and ASan/UBSan gates each pass 83 dataset comparisons,
+the three direct C/D programs, and the forced uint64 B full-hash check. This
+includes the long record, optional EOF, 64 boundary alignments and both full seeds.
+Final production provenance is in `validation/final-*-build.json`.

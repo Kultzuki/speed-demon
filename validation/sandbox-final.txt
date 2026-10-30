@@ -1,0 +1,255 @@
+
+TRACK a
+ok    every FROM is allowlisted
+build docker build --network=none -t speeddemon-check/track-a track-a
+ok    image is 119 MB
+ok    summary.txt sha256 495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3
+time  1.16 s, including container start-up; the board's number will differ
+PASS  the output matches the expected sha256
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 411B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#2 ...
+
+#3 [auth] library/gcc:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [auth] library/debian:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#5 ...
+
+#2 [internal] load metadata for docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#2 DONE 1.9s
+
+#5 [internal] load metadata for docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#5 DONE 2.3s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [stage-1 1/2] FROM docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#7 resolve docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad 0.0s done
+#7 DONE 0.0s
+
+#8 [build 1/4] FROM docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#8 resolve docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 6.12kB done
+#9 DONE 0.0s
+
+#10 [build 2/4] WORKDIR /src
+#10 CACHED
+
+#11 [build 3/4] COPY main.cpp common.hpp ./
+#11 DONE 0.0s
+
+#12 [build 4/4] RUN g++ -std=c++20 -O3 -DNDEBUG -pthread -static -s main.cpp -o /solution
+#12 DONE 2.7s
+
+#13 [stage-1 2/2] COPY --from=build /solution /app/solution
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:5cf3fdd36f5ec31ee531e9b4d2230bb54fc143ac4bca65f4b7d268aef2f13898 done
+#14 exporting config sha256:c7185e3d5bd6a6b0f456ff21b09a17f3b9b15da9afdfb3ebfa7656e49eae9305 done
+#14 exporting attestation manifest sha256:57884082424de672c4feff47d1933b667b9f5c520a86fa748fe19e2304413da8 0.0s done
+#14 exporting manifest list sha256:5bef0bf727615ccd0f21acaab6fcdfb07eb97e54116814b5e48ad53eae236562 0.0s done
+#14 naming to docker.io/speeddemon-check/track-a:latest done
+#14 unpacking to docker.io/speeddemon-check/track-a:latest 0.0s done
+#14 DONE 0.1s
+
+
+TRACK b
+ok    every FROM is allowlisted
+build docker build --network=none -t speeddemon-check/track-b track-b
+ok    image is 119 MB
+ok    results.txt sha256 f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927
+time  2.50 s, including container start-up; the board's number will differ
+PASS  the output matches the expected sha256
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 411B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#5 resolve docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad 0.0s done
+#5 DONE 0.0s
+
+#6 [build 1/4] FROM docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#6 resolve docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 61B done
+#7 DONE 0.0s
+
+#8 [build 2/4] WORKDIR /src
+#8 CACHED
+
+#9 [build 3/4] COPY main.cpp common.hpp ./
+#9 CACHED
+
+#10 [build 4/4] RUN g++ -std=c++20 -O3 -DNDEBUG -pthread -static -s main.cpp -o /solution
+#10 CACHED
+
+#11 [stage-1 2/2] COPY --from=build /solution /app/solution
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:fbfd854d847e7addabacd7e1ee9ae19d8be459df4b059cfd6f2edea6b40263bd done
+#12 exporting config sha256:e59e1b08d9371ddaa40766f951be07ee1ef930fb9f55c6df3115128107e39133 done
+#12 exporting attestation manifest sha256:ff21017929d6f0f595cd7f4c9f562b0efd1147a0eac8b20d7580601ac3093f16 0.0s done
+#12 exporting manifest list sha256:88d7c1031b75532fe28c702b5a7ab50aff1d2db25f56ae706b1782dd20bb5458 0.0s done
+#12 naming to docker.io/speeddemon-check/track-b:latest done
+#12 unpacking to docker.io/speeddemon-check/track-b:latest done
+#12 DONE 0.1s
+
+
+TRACK c
+ok    every FROM is allowlisted
+build docker build --network=none -t speeddemon-check/track-c track-c
+ok    image is 119 MB
+ok    aggregates.txt sha256 d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536
+time  1.19 s, including container start-up; the board's number will differ
+PASS  the output matches the expected sha256
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 411B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#5 resolve docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad 0.0s done
+#5 DONE 0.0s
+
+#6 [build 1/4] FROM docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#6 resolve docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 9.06kB done
+#7 DONE 0.0s
+
+#8 [build 2/4] WORKDIR /src
+#8 CACHED
+
+#9 [build 3/4] COPY main.cpp common.hpp ./
+#9 DONE 0.0s
+
+#10 [build 4/4] RUN g++ -std=c++20 -O3 -DNDEBUG -pthread -static -s main.cpp -o /solution
+#10 DONE 4.3s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#5 CACHED
+
+#11 [stage-1 2/2] COPY --from=build /solution /app/solution
+#11 DONE 0.0s
+
+#12 exporting to image
+#12 exporting layers 0.1s done
+#12 exporting manifest sha256:f21acd8a0b20de889862ba565b3dc1c14d4ed0d72834df71d2a966accae7dea9 0.0s done
+#12 exporting config sha256:1a777e8a18d62ea4c5278d69b65462d6a13740c68ea5037711778c4d36200dad 0.0s done
+#12 exporting attestation manifest sha256:72f162c49060cdc35c47438951463a429cf81209a7db3775b855918d90c59ce8 0.0s done
+#12 exporting manifest list sha256:d3e25501ba5645e8254ca585823bb321a74e5ea2c7b4b4c3375ad07998862f69 0.0s done
+#12 naming to docker.io/speeddemon-check/track-c:latest done
+#12 unpacking to docker.io/speeddemon-check/track-c:latest 0.0s done
+#12 DONE 0.3s
+
+
+TRACK d
+ok    every FROM is allowlisted
+build docker build --network=none -t speeddemon-check/track-d track-d
+ok    image is 119 MB
+ok    distances.txt sha256 a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e
+time  1.98 s, including container start-up; the board's number will differ
+PASS  the output matches the expected sha256
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 411B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/2] FROM docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad
+#6 resolve docker.io/library/debian:13-slim@sha256:62bd423aeee912639ca8ee681c2b762cb3e25137e0a92b20be455898a9f034ad 0.0s done
+#6 DONE 0.0s
+
+#7 [build 1/4] FROM docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95
+#7 resolve docker.io/library/gcc:16@sha256:43978d7710a803d1c3d32f4117c1528ec7285a4ce2c0a51e982ec1a6e3d87d95 0.0s done
+#7 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 60B done
+#5 DONE 0.0s
+
+#8 [build 3/4] COPY main.cpp common.hpp ./
+#8 CACHED
+
+#9 [build 4/4] RUN g++ -std=c++20 -O3 -DNDEBUG -pthread -static -s main.cpp -o /solution
+#9 CACHED
+
+#10 [build 2/4] WORKDIR /src
+#10 CACHED
+
+#11 [stage-1 2/2] COPY --from=build /solution /app/solution
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:43fd0ed1238e212c74123dd3ab6162c06fe2c55a091cd8b5c7abe8e8a8087d3c done
+#12 exporting config sha256:fe2c9a25df51057a0383e725de49ff1eb93ba44e0f7d3e913157e3a3beec10fc done
+#12 exporting attestation manifest sha256:87a6918863a8c1e8d5f3d00cfc71cbfd94201bfc5f8cc708217669059c72189b 0.0s done
+#12 exporting manifest list sha256:ba235ff9a59113327bbb4d729788a9d4e3795f90c57bae63f204000346411ee6 0.0s done
+#12 naming to docker.io/speeddemon-check/track-d:latest
+#12 naming to docker.io/speeddemon-check/track-d:latest done
+#12 unpacking to docker.io/speeddemon-check/track-d:latest 0.0s done
+#12 DONE 0.1s
+

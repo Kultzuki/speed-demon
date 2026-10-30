@@ -1,0 +1,54 @@
+{
+  "a": {
+    "source_sha256": "ed43d67ff1d50efd111338474ed9ab258f458b6b5a4bfcccb46185d5b77fdb15",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "c4a3090c71f61709fc7f26eb1d96e9f2ffd07678cce9e154b4b03b1057f1e5ab",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ]
+  },
+  "b": {
+    "source_sha256": "cada6a7d453064417d9c0f0febf67287bd4e2df424e58eed1d215973e57a9225",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "a289a7a193413b0d4b1576b8868dca8e2092ea9fc983c8440d02fc9518dc7d9d",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ]
+  },
+  "c": {
+    "source_sha256": "9958d2892889f96508e2c723e5bff72893a9c95f151ff5f88ccc708b6d3adc7c",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "20d5c0749ef164ca9e27f70e9c0c38f74b99a9a5cddeed3fb181c34298e0b2be",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ]
+  },
+  "d": {
+    "source_sha256": "ee4db99587c8796175869e591a34e9e59c3f7f078d85b59906f14a847acb2962",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "e0442b0d733f361e65db66fe584fef156e43b06f945989959d2fb3de9f05d581",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ]
+  }
+}

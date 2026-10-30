@@ -128,3 +128,10 @@ full-hash read-only/no-network/unprivileged sandbox check passed, all under the
 record the image tests. No x86-64-v3 or native flag was promoted after local trials.
 
 Official score/placement is recorded separately after the implementation push.
+
+
+## Official b30392c measurement and promotion decision
+
+Commit `b30392c91f458577a4678b3d9bec4c892a3a964c`, run `run-a58493d74b1a`: T=0.734635s, M=87310336 bytes, S=570, D=1, K=12.681341, points=55.158259. All official gates passed.
+
+This improves the previous best coefficient and is retained. Exact board/team data is in `validation/leaderboard-refinement-b30392c.json`.

@@ -1,0 +1,95 @@
+{
+  "track": "a",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "measured": {
+      "source": "track-a/main.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "ed43d67ff1d50efd111338474ed9ab258f458b6b5a4bfcccb46185d5b77fdb15",
+      "walls_s": [
+        0.14162642399969627,
+        0.14378625999961514,
+        0.15026648999992176,
+        0.14174939199983783,
+        0.12414820000049076
+      ],
+      "rss_bytes": [
+        284950528,
+        285081600,
+        285212672,
+        285081600,
+        285081600
+      ],
+      "trimmed_mean_s": 0.14238735866638308
+    },
+    "pages": {
+      "source": "research/prototypes/a-pages12.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "5898d52a27f3c569793ecb957feb11c1e9a19d9ae1a93b1ddd16162359a51a4b",
+      "walls_s": [
+        0.10049535699909029,
+        0.09877214199877926,
+        0.11659234000035212,
+        0.10038825199990242,
+        0.09913336400131811
+      ],
+      "rss_bytes": [
+        294912000,
+        294912000,
+        295174144,
+        294813696,
+        294535168
+      ],
+      "trimmed_mean_s": 0.10000565766677028
+    },
+    "arena": {
+      "source": "research/prototypes/a-one-arena.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "437a800fee2f15cf33a0cca1afc28e594551f63b894b18b964e3c5a0b9766375",
+      "walls_s": [
+        0.09800825999991503,
+        0.09432058299898927,
+        0.10344271499889146,
+        0.09974979199978407,
+        0.09761925200109545
+      ],
+      "rss_bytes": [
+        294912000,
+        295174144,
+        295043072,
+        295043072,
+        295043072
+      ],
+      "trimmed_mean_s": 0.09845910133359818
+    }
+  }
+}

@@ -15,8 +15,9 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--sanitized',action='store_true')
     parser.add_argument('--extra-only',action='store_true')
+    parser.add_argument('--final',action='store_true')
     args=parser.parse_args()
-    name='refined-sanitized' if args.sanitized else 'refined-release'
+    name=('final' if args.final else 'refined')+('-sanitized' if args.sanitized else '-release')
     output=ROOT/'build'/name
     output.mkdir(parents=True,exist_ok=True)
     provenance={}

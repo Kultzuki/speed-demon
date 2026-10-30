@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-selected={'a':'a-pages12.cpp','b':'b-inline-query.cpp','c':'c-small12.cpp','d':'d-hash.cpp'}
+selected={'a':'a-parallel-output.cpp','b':'b-inline-query.cpp','c':'c-contract-cuts.cpp','d':'d-hash.cpp'}
 for track,name in selected.items():
     source=(ROOT/'research/prototypes'/name).read_text()
     if track=='d':

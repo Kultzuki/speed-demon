@@ -85,3 +85,25 @@ had CRLF and was corrected to the required LF bytes before the extension gate.
 Official results are recorded separately after the implementation push; local
 timings do not establish its score or placement. Offline images and the supplied
 read-only, no-network, unprivileged sandbox must pass before that push.
+
+
+## Official b30392c outcome
+
+All gates passed. A: 63.456899 points, K=18.583948, T=0.085539s,
+M=75,784,192, S=319; B: 55.158259, K=12.681341, T=0.734635s,
+M=87,310,336, S=570; C: 62.012380, K=17.387919, T=0.117573s,
+M=15,142,912, S=377; D: 56.356919, K=13.401036, T=0.513979s,
+M=95,133,696, S=384. Run IDs are in each track's PERF log.
+
+B/C/D improve and are retained. A's memory/source cost loses coefficient despite
+being faster; its runtime source is restored to the stronger measured 0c89c6e
+version. The board retains that older A best. Aggregate becomes 60.981929 from
+58.007574, using A/C/D. The captured rank remains 22 as other teams improved too;
+ALL STAR is 73.212358 in that snapshot. These are public best-three machine points,
+not final hidden-seed/judging results.
+
+The second supplied set and its reproduced faults are recorded separately in
+`SUPPLIED_SECOND_REVIEW.md`. Its contract-backed C boundary shortcut is faster in
+an alternating local trial and is going through the final gate. A's additional
+parser and allocator controls do not establish enough gain to override its
+official rejection and remain unpromoted.

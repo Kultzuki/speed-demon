@@ -1,16 +1,17 @@
 {
   "checkpoint": "6cb35093ef9de4babf07b6ed58347e40da6fa76d",
   "sources": {
-    "a": "a-pages12.cpp",
+    "a": "a-parallel-output.cpp (measured 0c89c6e source restored)",
     "b": "b-inline-query.cpp",
-    "c": "c-small12.cpp",
-    "d": "d-hash.cpp"
+    "c": "c-contract-cuts.cpp",
+    "d": "d-hash.cpp (unused reorder/remap removed)"
   },
-  "status": "release, ASan/UBSan, both full seeds and offline sandbox passed",
+  "status": "final release and ASan/UBSan gates passed",
   "production_source_sha256": {
-    "a": "5898d52a27f3c569793ecb957feb11c1e9a19d9ae1a93b1ddd16162359a51a4b",
+    "a": "ed43d67ff1d50efd111338474ed9ab258f458b6b5a4bfcccb46185d5b77fdb15",
     "b": "cada6a7d453064417d9c0f0febf67287bd4e2df424e58eed1d215973e57a9225",
-    "c": "d5a064df4849e3889ff647d369e36bc7e684b3807e658e16dcee21b52e0ea603",
+    "c": "9958d2892889f96508e2c723e5bff72893a9c95f151ff5f88ccc708b6d3adc7c",
     "d": "ee4db99587c8796175869e591a34e9e59c3f7f078d85b59906f14a847acb2962"
-  }
+  },
+  "rejected_official_a": "b30392c: K=18.583948 < 19.851814; memory outweighed time gain"
 }

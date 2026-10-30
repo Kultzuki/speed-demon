@@ -1,0 +1,12 @@
+{
+  "a_guard_page": {
+    "returncode": -11,
+    "expected": 0,
+    "stderr": ""
+  },
+  "c_suffix_arena": {
+    "returncode": 1,
+    "stderr": "=================================================================\n==23636==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x78f2522ff800 at pc 0x7cf255100cc4 bp 0x78f252225bc0 sp 0x78f252225380\nWRITE of size 5982 at 0x78f2522ff800 thread T12\nAddressSanitizer:DEADLYSIGNAL\nAddressSanitizer: nested bug in the same thread, aborting.\n",
+    "reference_sha256": "51fe16b014cf292280fb4d700cad323e15ca8a46f3ae79db1b1192cb909b6177"
+  }
+}

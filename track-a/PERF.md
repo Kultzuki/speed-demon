@@ -98,3 +98,10 @@ full-hash read-only/no-network/unprivileged sandbox check passed, all under the
 record the image tests. No x86-64-v3 or native flag was promoted after local trials.
 
 Official score/placement is recorded separately after the implementation push.
+
+
+## Official b30392c measurement and promotion decision
+
+Commit `b30392c91f458577a4678b3d9bec4c892a3a964c`, run `run-b1aaf19253a1`: T=0.085539s, M=75784192 bytes, S=319, D=1, K=18.583948, points=63.456899. All official gates passed.
+
+The candidate is rejected: faster runtime did not offset higher official memory and source cost. Its K=18.583948 is below the prior 19.851814. Production is restored byte-for-byte to the stronger `0c89c6e` A source; the packed-record and allocator/parser experiments remain in research.

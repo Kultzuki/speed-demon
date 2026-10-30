@@ -153,39 +153,16 @@ struct Partial {
 };
 
 
-__attribute__((target("avx2,popcnt")))
-bool quote_parity(const char* p,const char* end) {
-    unsigned parity=0;
-    while (end-p>=32) {
-        auto bytes=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(p));
-        parity^=std::popcount(uint32_t(_mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes,_mm256_set1_epi8('"')))))&1;
-        p+=32;
-    }
-    while (p<end) parity^=*p++=='"';
-    return parity;
-}
 
-// First determine the quote parity of disjoint byte ranges in parallel.
-// Prefix parities then give the exact CSV state at every proposed cut.
+// Section 2.2: names contain no LF; a note contains only lowercase words,
+// spaces, commas, quotes and LF. Thus a digit/BOM after LF begins a record.
 std::vector<const char*> boundaries(const char* begin,const char* end,unsigned workers) {
     std::vector<const char*> result(workers+1,end);
     result[0]=begin;
-    if (workers==1) return result;
-    std::vector<unsigned char> parity(workers);
-    std::vector<std::thread> threads;
-    for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
-        parity[i]=quote_parity(begin+(end-begin)*i/workers,begin+(end-begin)*(i+1)/workers);
-    });
-    for (auto& t:threads) t.join();
-    bool quoted=false;
     for (unsigned i=1;i<workers;++i) {
-        quoted^=parity[i-1];
-        bool inside=quoted;
         const char* p=begin+(end-begin)*i/workers;
-        while (p<end) {
-            inside^=*p=='"';
-            if (*p++=='\n' && !inside) break;
-        }
+        while (p<end && !(p>begin && p[-1]=='\n' &&
+               ((unsigned(*p-'0')<10) || static_cast<unsigned char>(*p)==0xef))) ++p;
         result[i]=p;
     }
     return result;
