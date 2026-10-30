@@ -36,3 +36,9 @@ Full-scale checking found a partition-selection bug: a later nth_element could m
 Commit `9aad3f4`, run `run-ef4d0b0f0b4c`: T=0.410932s, M=46.62MB, S=180, D=1, K=10.181704, machine points=50.391023. All gates passed.
 
 The implementation was unchanged from the first board run; timing differences are not attributed to an optimization.
+
+## Third official board run
+
+Commit `5dc9c4f`, run `run-f33eb781a96d`: T=0.412071s, M=46.60MB, S=180, D=1, K=10.168337, machine points=50.362498. All gates passed.
+
+Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.

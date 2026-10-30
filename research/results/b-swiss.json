@@ -1,0 +1,28 @@
+{
+  "name": "b-swiss",
+  "track": "b",
+  "source": "research/prototypes/b-swiss.cpp",
+  "source_sha256": "87c738e78295d8c6c66b2e6d22c4a81ba4e702862a446810e9db0b87e868dfa5",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    2.101753626000118,
+    2.1705942620001224,
+    2.2244389799998316
+  ],
+  "rss_bytes": [
+    887873536,
+    887803904,
+    887930880
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+  "trimmed_mean_s": 2.1705942620001224
+}

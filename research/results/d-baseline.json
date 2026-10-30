@@ -1,0 +1,28 @@
+{
+  "name": "d-baseline",
+  "track": "d",
+  "source": "research/prototypes/d-baseline.cpp",
+  "source_sha256": "52fd7ac2948bbb5d32907998a453111ba1558e2d0dea03c2cb9b70f103c4fe92",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    2.7178933820000566,
+    2.6170822740000403,
+    2.5681630059998497
+  ],
+  "rss_bytes": [
+    353906688,
+    353263616,
+    353607680
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+  "trimmed_mean_s": 2.6170822740000403
+}

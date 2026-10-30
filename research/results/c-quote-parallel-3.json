@@ -1,0 +1,28 @@
+{
+  "name": "c-quote-parallel-3",
+  "track": "c",
+  "source": "research/prototypes/c-parallel.cpp",
+  "source_sha256": "fc04a5f544c035daea245e94357e3f1f309215f38315f2d3b9f108b5111de947",
+  "workers": 3,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    0.3040734410001278,
+    0.3165441189999001,
+    0.32269248200009315
+  ],
+  "rss_bytes": [
+    233439232,
+    233570304,
+    233439232
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536",
+  "trimmed_mean_s": 0.3165441189999001
+}

@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 import time
+import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,8 +19,15 @@ def main():
     previous = None
     while True:
         request = urllib.request.Request(URL, headers={"User-Agent": "CodeScythe-board-status/1.0"})
-        with urllib.request.urlopen(request, timeout=25) as response:
-            board = json.load(response)
+        try:
+            with urllib.request.urlopen(request, timeout=25) as response:
+                board = json.load(response)
+        except (json.JSONDecodeError, urllib.error.URLError, TimeoutError) as error:
+            print(f"Board feed temporarily unreadable: {type(error).__name__}", flush=True)
+            if args.wait == 0 or time.monotonic() >= deadline:
+                return 3
+            time.sleep(min(20, max(0, deadline - time.monotonic())))
+            continue
         team = next((t for t in board["teams"] if t.get("team", "").lower() == "codescythe"), None)
         if team is None:
             print("CodeScythe is not in the current public feed", flush=True)

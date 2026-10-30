@@ -1,0 +1,28 @@
+{
+  "name": "a-parallel-3",
+  "track": "a",
+  "source": "research/prototypes/a-parallel.cpp",
+  "source_sha256": "6657b75bf4f3657fb93a812d78dfd85822d5b598550902fc01866d13d4084de7",
+  "workers": 3,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    0.19534688799967626,
+    0.23736652300021888,
+    0.2234056799998143
+  ],
+  "rss_bytes": [
+    274223104,
+    274219008,
+    274092032
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+  "trimmed_mean_s": 0.2234056799998143
+}

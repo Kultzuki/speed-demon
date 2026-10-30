@@ -44,3 +44,9 @@ AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases
 Commit `9aad3f4`, run `run-3c8605ffbbe8`: T=2.301115s, M=642.91MB, S=355, D=1, K=5.160148, machine points=35.633107. All gates passed.
 
 Parallel parsing and the flat dictionary improved board wall time from 5.822991s to 2.301115s; peak memory increased from 411.35MB to 642.91MB and formatted source grew from 259 to 355 lines. K still improved from 3.718642 to 5.160148. The coefficient prices the additional memory and code rather than treating this as a wall-time-only win.
+
+## Third official board run
+
+Commit `5dc9c4f`, run `run-72a424b92d56`: T=2.192134s, M=643.08MB, S=355, D=1, K=5.286576, machine points=36.158726. All gates passed.
+
+Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.

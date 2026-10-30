@@ -1,0 +1,28 @@
+{
+  "name": "c-baseline",
+  "track": "c",
+  "source": "track-c/main.cpp",
+  "source_sha256": "015cbdac67ab458043559e471a2a398e0a7218934fde7010bc93febecd01f732",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    0.5840072379996855,
+    0.5117449560002569,
+    0.5161795909998546
+  ],
+  "rss_bytes": [
+    215875584,
+    215875584,
+    215744512
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536",
+  "trimmed_mean_s": 0.5161795909998546
+}

@@ -1,0 +1,28 @@
+{
+  "name": "d-packed-onepass",
+  "track": "d",
+  "source": "research/prototypes/d-packed-onepass.cpp",
+  "source_sha256": "9034eec01e4d25b6092ea665b4fe006c27bbd8adc2a61f6cfd0debc622b4139d",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    3.3650489730002846,
+    3.2808809699999983,
+    3.299093429000095
+  ],
+  "rss_bytes": [
+    269590528,
+    269979648,
+    269647872
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+  "trimmed_mean_s": 3.299093429000095
+}

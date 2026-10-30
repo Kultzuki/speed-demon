@@ -44,3 +44,9 @@ AddressSanitizer and UndefinedBehaviorSanitizer passed all 57 differential cases
 Commit `9aad3f4`, run `run-b2872dcee270`: T=1.245620s, M=355.66MB, S=276, D=1, K=6.948507, machine points=42.094576. All gates passed.
 
 Radix heaps improved board wall time from 1.609181s to 1.245620s. Memory increased slightly, and source grew from 249 to 276 lines; K improved from 6.233915 to 6.948507.
+
+## Third official board run
+
+Commit `5dc9c4f`, run `run-d5d71e806018`: T=1.189051s, M=355.59MB, S=276, D=1, K=7.112136, machine points=42.600004. All gates passed.
+
+Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.

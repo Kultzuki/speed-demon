@@ -44,3 +44,9 @@ Replace node-based string-view dictionary entries and input-file pointers with a
 Five local full runs: 1.08107, 0.74373, 0.75114, 0.67658, 0.65800s; trimmed mean 0.72382s, versus 1.8086s in the first local baseline. Every full output hash matched. These are local WSL2 numbers, not board results.
 
 AddressSanitizer and UndefinedBehaviorSanitizer passed worked-example, tiny seeds 1/2/17, sample seeds 2/17, final-no-newline and full public data. A separate 135,000-name case forces hash-table and arena growth and repeats earlier names afterward; it also matches the reference under sanitizers.
+
+## Third official board run
+
+Commit `5dc9c4f`, run `run-815e467328ed`: T=0.452601s, M=13.14MB, S=288, D=1, K=9.493120, machine points=48.870449. All gates passed.
+
+Compact exact-name interning improved T from the initial 0.659149s to 0.452601s, reduced M from 13.82MB to 13.14MB and raised K from 7.908269 to 9.493120 despite S growing from 260 to 288 lines.

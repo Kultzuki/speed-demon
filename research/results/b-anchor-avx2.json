@@ -1,0 +1,28 @@
+{
+  "name": "b-anchor-avx2",
+  "track": "b",
+  "source": "research/prototypes/b-anchor-avx2.cpp",
+  "source_sha256": "7f02afa1bbfc419f7cf4e60c8ab74333b8613d88d02b6d50859569daa401e701",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    1.90248835400007,
+    1.90166841700011,
+    1.9778343369998765
+  ],
+  "rss_bytes": [
+    656625664,
+    656646144,
+    656683008
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+  "trimmed_mean_s": 1.90248835400007
+}
