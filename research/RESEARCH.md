@@ -75,3 +75,18 @@ New experiments remain candidates until measured. Keep failed trials and their
 data; do not replace a correct measured implementation based on an external
 paper's or blog's headline alone. Source size and dependency costs are part of
 the decision. Record official run IDs in each PERF.md.
+
+## Continuation after df84b71
+
+All three supplied reports were evaluated in `EXTERNAL_REVIEW.md`. New measured
+implementations add parallel A selection/formatting, remove B's global token
+array and posting merges, use adaptive B bitmaps, and share C's exact name table
+across locked shards. D's packed-state/BFS candidate was validated and retained.
+The additional B streaming-phrase experiment passed correctness but was not
+promoted; it gave no memory saving and its timing comparison was confounded by
+local drift. Five-run raw samples and failures remain under results/.
+
+Selected implementations passed the 69-case release and ASan/UBSan suites,
+specialized boundary/wrap checks, all public full hashes, offline sandbox checks,
+and independent reference comparisons on fresh full seed 20261031. Official
+scores, when available, are recorded separately in the per-track PERF logs.

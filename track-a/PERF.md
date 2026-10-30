@@ -42,3 +42,24 @@ The implementation was unchanged from the first board run; timing differences ar
 Commit `5dc9c4f`, run `run-f33eb781a96d`: T=0.412071s, M=46.60MB, S=180, D=1, K=10.168337, machine points=50.362498. All gates passed.
 
 Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.
+## Continuation from df84b71: parallel parsing and output
+
+Six newline-aligned workers parse independent endpoint/hour groups, followed by
+an exact merge. Independent hours then perform percentile selection and
+formatting in parallel. Ordered buffered writes preserve the exact output.
+
+Five serialized Linux-local public-seed runs: serial baseline trimmed mean
+0.34563s, parallel selection/output 0.14527s. Peak process RSS was approximately
+260.6 versus 271.9 MiB. These are AMD/WSL2 measurements, not official T or M.
+Raw samples, flags and compiled-source hashes are in
+`research/results/a-baseline-confirm.json` and `a-parallel-output-6.json`.
+
+The four-track release and ASan/UBSan suites each passed 69 cases and all four
+full public hashes. The added A fixture exceeds the parallel threshold and
+mixes month-boundary hours, prefix endpoints, duplicates, 499/500 and uint32
+latency extremes. Offline image and official sandbox/hash checks passed.
+
+The promoted version also matches its independently generated full-seed-20261031
+reference output; input and binary hashes are in
+validation/fresh-full-seed20261031.json. This is a local correctness check, not
+a hidden-seed or official timing result.

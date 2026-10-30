@@ -1,0 +1,26 @@
+[
+  {
+    "track": "a",
+    "id": "sha256:332ff9ddfe4c79cbded73e785656861aee8b0b533db01bc2c16d3fbe8b99ec6c",
+    "bytes": 118943240,
+    "architecture": "amd64"
+  },
+  {
+    "track": "b",
+    "id": "sha256:df6481bb3402b162516f03e3ac3cf5b758ebdcb3b47605d9ec8f0214b84a8efd",
+    "bytes": 118944394,
+    "architecture": "amd64"
+  },
+  {
+    "track": "c",
+    "id": "sha256:6017eea6f7ac34875fac3f6151e2a9a8fbd2037c7407a6237892e6eaf1d833cc",
+    "bytes": 118955636,
+    "architecture": "amd64"
+  },
+  {
+    "track": "d",
+    "id": "sha256:f0a346377186d95d2e896ddf30e1394ab054f8bc0e8579bb5090a0b006fe15e9",
+    "bytes": 118918870,
+    "architecture": "amd64"
+  }
+]

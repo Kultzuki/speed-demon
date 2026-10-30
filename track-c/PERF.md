@@ -50,3 +50,34 @@ AddressSanitizer and UndefinedBehaviorSanitizer passed worked-example, tiny seed
 Commit `5dc9c4f`, run `run-815e467328ed`: T=0.452601s, M=13.14MB, S=288, D=1, K=9.493120, machine points=48.870449. All gates passed.
 
 Compact exact-name interning improved T from the initial 0.659149s to 0.452601s, reduced M from 13.82MB to 13.14MB and raised K from 7.908269 to 9.493120 despite S growing from 260 to 288 lines.
+## Continuation from df84b71: shared exact-name shards
+
+The quote-safe private-table prototype was validated, then compared with one
+shared catalog partitioned into 256 shards. Each shard's mutex covers table/arena
+growth and the exact name/country membership test. Only the first insertion of
+a name/country pair increments a worker's distinct count; all country aggregates
+merge after the threads join. This avoids replicated names and the expensive
+name-by-name merge. Hashes still require full-byte equality.
+
+Five serialized Linux-local full public runs:
+
+| Variant | Trimmed mean (s) | Approximate peak process RSS (MiB) |
+|---|---:|---:|
+| Private name catalogs, three workers | 0.31095 | 222.8 |
+| Private name catalogs, six workers | 0.27024 | 247.8 |
+| Shared sharded catalog, six workers | 0.22919 | 207.8 |
+
+The checkpoint's serial compact-table trial was 0.51618s / 205.9 MiB in an
+earlier local batch. These are AMD/WSL2 measurements; mapped-input RSS is not the
+official memory axis. See the `c-parallel-*-confirm` and `c-shared-6` result JSONs.
+
+Release and ASan/UBSan passed the expanded 69-case four-track suite and public
+full hashes. A separate boundary test covers 64 byte alignments and 1-12 workers,
+including doubled quotes, embedded LF, mixed terminators, BOM and final no-LF.
+The 135,000-name growth test and 52,000-record concurrent hostile fixture pass.
+Offline image and official sandbox/hash checks passed.
+
+The promoted version also matches its independently generated full-seed-20261031
+reference output; input and binary hashes are in
+validation/fresh-full-seed20261031.json. This is a local correctness check, not
+a hidden-seed or official timing result.

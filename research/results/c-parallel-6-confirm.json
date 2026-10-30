@@ -1,0 +1,32 @@
+{
+  "name": "c-parallel-6-confirm",
+  "track": "c",
+  "source": "research/prototypes/c-parallel.cpp",
+  "source_sha256": "dfcd7bcdb449e6dc83859286312034ba96698c820beb5fee60594cd711c6bc1a",
+  "workers": 6,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    0.262788277999789,
+    0.2759051000002728,
+    0.2720373109996217,
+    0.32389369100019394,
+    0.2566961230004381
+  ],
+  "rss_bytes": [
+    259784704,
+    259784704,
+    259784704,
+    259784704,
+    259653632
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536",
+  "trimmed_mean_s": 0.2702435629998945
+}

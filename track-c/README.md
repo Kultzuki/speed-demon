@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Scan CSV quote boundaries with memchr. Unescape names only when doubled quotes occur; preserve all significant bytes and trailing spaces. Notes need an exact decoded byte count, not a stored decoded string. Join region IDs through a direct lookup table; missing and out-of-range IDs map to _UNMATCHED. Intern exact names globally in a compact byte arena and record country membership in bitsets. A contiguous hash table stores IDs and lengths, and compares full arena bytes after matching hashes, so distinct counting never relies on a hash alone. Arena offsets remain valid when storage grows; the table also grows dynamically. Parse and aggregate amounts as signed 64-bit integer cents.
+AVX2 quote parity finds record-safe chunk boundaries, including doubled quotes and embedded newlines. Six workers scan fields with memchr and aggregate exact integer cents and decoded byte lengths. A read-only direct region lookup resolves the join. One shared name catalog is divided into 256 mutex-protected shards; each owns a growing exact hash table, byte arena and country-membership words. This avoids copying the entire catalog per worker. Full byte equality resolves collisions and offsets survive arena growth. The lock covers both interning and membership insertion, so each distinct name/country pair increments exactly one worker's count. Country totals are merged after joining the threads.
 
 ## Build and dependencies
 
@@ -22,4 +22,4 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Benchmark name dictionary layout and chunk parsing. Any parallel split must find record boundaries outside quotes. Preserve the exact name and byte-count checks.
+Measure shard count, parser phases and lock contention on the official CPU. Preserve exact quoted-field, name-growth and cross-worker membership tests.

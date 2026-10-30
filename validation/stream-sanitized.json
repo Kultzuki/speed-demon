@@ -1,0 +1,147 @@
+{
+  "environment": "Local correctness validation; not official timing",
+  "flags": [
+    "-std=c++20",
+    "-pthread",
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer"
+  ],
+  "source_sha256": "0b32bfaa5932e064b7e49be809ec4ad49d623beeff03f1d0f96492b2747c41f4",
+  "binary_sha256": "4d9868140b4409bd9facdbed85a469f24bf44cdaead845ed359b89dbf70ec897",
+  "results": [
+    {
+      "track": "b",
+      "case": "worked-example",
+      "sha256": "9c296c063de983fd734d9e6ab985866967731d6478d33b7e1b8723391b6e325b",
+      "local_seconds": 0.066199
+    },
+    {
+      "track": "b",
+      "case": "tiny-seed1",
+      "sha256": "dcdad7cedfc07eb66ecced1861cc91d9017e004c56cbe4f38e9413b62b17ff70",
+      "local_seconds": 0.116566
+    },
+    {
+      "track": "b",
+      "case": "tiny-seed2",
+      "sha256": "fc3ca378ec12c492b4ee1fb4f0b489784b0b94650550bddec688702a078a6490",
+      "local_seconds": 0.11652
+    },
+    {
+      "track": "b",
+      "case": "tiny-seed17",
+      "sha256": "e67d694cae7b8a126e3931c7dbc74cdf91d655fcf0eafb31da3fc02546166079",
+      "local_seconds": 0.116508
+    },
+    {
+      "track": "b",
+      "case": "fuzz0",
+      "sha256": "86c72f5452b3ab76cead56e4afbfb0c56b603bad5f4a31c95910f48fb60a168b",
+      "local_seconds": 0.066299
+    },
+    {
+      "track": "b",
+      "case": "fuzz1",
+      "sha256": "87149b96867f2b868e802d273fd01bad57c77223fc91ccd16ce71af7139860c4",
+      "local_seconds": 0.066285
+    },
+    {
+      "track": "b",
+      "case": "fuzz2",
+      "sha256": "25590385a9ccb207d505cc8e2bd8c26f12f6f793c02e634bbeae11b5274646e4",
+      "local_seconds": 0.066555
+    },
+    {
+      "track": "b",
+      "case": "fuzz3",
+      "sha256": "a0101a9dc0ec524307fc3d79013224eacbd2a2e05e30c9e8925d8b89bacd485a",
+      "local_seconds": 0.066181
+    },
+    {
+      "track": "b",
+      "case": "fuzz4",
+      "sha256": "3ccc000d02240f2446ba2d99980dd903990d160da38ee4ddb8463a4ff484cc89",
+      "local_seconds": 0.066361
+    },
+    {
+      "track": "b",
+      "case": "fuzz5",
+      "sha256": "7cb744e6571dfd4c7d5359ba88d0e6422cffaba18c0b7f9fa72e7d9be2093490",
+      "local_seconds": 0.066697
+    },
+    {
+      "track": "b",
+      "case": "fuzz6",
+      "sha256": "7d0db89106794a48c58308055c8cc7972e5c2247637d21bf953a7e043fc09264",
+      "local_seconds": 0.066456
+    },
+    {
+      "track": "b",
+      "case": "fuzz7",
+      "sha256": "568fe36c012170ff877c039b5e13fd7141b8bf924a5eb9d65d1a942c4e84e207",
+      "local_seconds": 0.066285
+    },
+    {
+      "track": "b",
+      "case": "fuzz8",
+      "sha256": "09ea51ae1d2e948fcdd7ee8e8b5c6e1410238a7dcff0d77a096dd4e45fb78c5a",
+      "local_seconds": 0.06639
+    },
+    {
+      "track": "b",
+      "case": "fuzz9",
+      "sha256": "8c7482637a5576b8441e024b797c7d104894b6a802974266371fa65e7d9a46a9",
+      "local_seconds": 0.066008
+    },
+    {
+      "track": "b",
+      "case": "token-and-block-boundaries",
+      "sha256": "5bd7e3a09036ca3f5fc8fa3b9e8c3b8c0a07a56a904d91fd73df92716f0ee750",
+      "local_seconds": 0.116544
+    },
+    {
+      "track": "b",
+      "case": "sample-seed2",
+      "sha256": "86b92e3ceda664396bad5cabc3809b447de0610282eee484605fd23cbd12fea6",
+      "local_seconds": 0.920497
+    },
+    {
+      "track": "b",
+      "case": "sample-seed17",
+      "sha256": "e935098dcdcd03d3eb3a869e8472ebaa1d28bf92d25f4bfae588004407e8ed05",
+      "local_seconds": 0.820227
+    },
+    {
+      "track": "b",
+      "case": "tiny-seed20261031",
+      "sha256": "a33076143581946ae7a490381bcaad7cc99f93ad217356b1c4dd705cf50ba4fd",
+      "local_seconds": 0.116551
+    },
+    {
+      "track": "b",
+      "case": "sample-seed20261031",
+      "sha256": "5bc01d0f6be13d239426178f1f9da80589b159803566c983d13ceea757e0e993",
+      "local_seconds": 0.819699
+    },
+    {
+      "track": "b",
+      "case": "full-seed1",
+      "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+      "local_seconds": 9.361255
+    },
+    {
+      "track": "b",
+      "case": "fresh-full-seed20261031",
+      "sha256": "d9aca5145790528d1dafa51998c4e6e7b106bd9c9592962caecb2600199963e3",
+      "local_seconds": 9.460973
+    },
+    {
+      "track": "b",
+      "case": "stream-ring",
+      "sha256": "fbf63fe805c9a3792be50d3393236b074817d61efc2bf2e219ab1e44623f504d",
+      "local_seconds": 0.066528
+    }
+  ]
+}

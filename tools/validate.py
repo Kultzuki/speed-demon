@@ -19,6 +19,7 @@ MODULE = {"a": "a_ingest", "b": "b_index", "c": "c_join", "d": "d_traverse"}
 OUTPUT = {"a": "summary.txt", "b": "results.txt", "c": "aggregates.txt", "d": "distances.txt"}
 REPORT = []
 BINARY_DIR = ROOT / "build"
+REUSE_GENERATED = False
 
 
 def load(name, path):
@@ -59,9 +60,10 @@ def generated(tracks, scales):
     for scale, seed in scales:
         for track in tracks:
             data = ROOT / f"data/{track}/{scale}-seed{seed}"
-            subprocess.run([sys.executable, str(OFFICIAL / f"generators/{MODULE[track]}.py"),
-                            "--seed", str(seed), "--scale", scale, "--out", str(data)], check=True,
-                           stdout=subprocess.DEVNULL)
+            if not REUSE_GENERATED or not data.is_dir():
+                subprocess.run([sys.executable, str(OFFICIAL / f"generators/{MODULE[track]}.py"),
+                                "--seed", str(seed), "--scale", scale, "--out", str(data)], check=True,
+                               stdout=subprocess.DEVNULL)
             check(track, f"{scale}-seed{seed}", data)
 
 
@@ -160,14 +162,61 @@ def adversarial():
     check("a", "percentile-boundaries", data)
 
 
+def parallel_edges():
+    # Exceed the parallel threshold, with long shared endpoints and many ties.
+    data = ROOT / "data/a/parallel-boundaries"
+    data.mkdir(parents=True, exist_ok=True)
+    with (data / "requests.log").open("w", newline="\n") as output:
+        for i in range(40000):
+            stamp = ["2026-10-30T18:00:00", "2026-10-31T23:59:59", "2026-11-01T00:00:00", "2026-11-02T17:59:59"][i % 4]
+            endpoint = "/" + "long_" * 20 + ["a", "aa", "A", "a.csv", "a-export"][i % 5]
+            output.write(f"{stamp}.000000Z OPTIONS {endpoint} {499 + i % 2} {0 if i % 3 else 4294967295}\n")
+    check("a", "parallel-boundaries", data)
+
+    data = ROOT / "data/b/token-and-block-boundaries"
+    data.mkdir(parents=True, exist_ok=True)
+    token = "a" * 32
+    texts = ["", "---", "a", "b", "c", "a a a", "a b c", token.upper(),
+             "a—b/c", "Zürich İSTANBUL 273K ﬁ", "prefixa a suffixb", "a a b a"]
+    with (data / "docs.txt").open("w", encoding="utf-8", newline="\n") as output:
+        for i in range(24000):
+            # Extra separators force byte/block boundaries through UTF-8 and
+            # 32-byte tokens without changing token semantics.
+            output.write(f"{i}\t{texts[i % len(texts)]}{'.' * (i % 193)}\n")
+    (data / "queries.txt").write_text(
+        f'BOOL {token}\nPHRASE "{token} a"\nPHRASE "a {token}"\n'
+        'BOOL absent AND a OR b\nBOOL a OR b AND c\nBOOL a NOT a OR c\n'
+        'BOOL a OR b NOT a\nPHRASE "a b"\nPHRASE "a a a"\n'
+        'PHRASE "a a a a"\nPHRASE "z rich"\nPHRASE "273 a"\n'
+        'PHRASE "a b c"\nBOOL absent\nBOOL a OR b OR c\n', newline="\n")
+    check("b", "token-and-block-boundaries", data)
+
+    data = ROOT / "data/c/parallel-hostile"
+    data.mkdir(parents=True, exist_ok=True)
+    (data / "regions.csv").write_bytes(b"region_id,country\n1,AAA\n2,BBB\n3,CCC\n")
+    with (data / "records.csv").open("wb") as output:
+        output.write(b'\xef\xbb\xbfid,name,note,region_id,amount\r\n')
+        for i in range(52000):
+            if i % 37 == 0: output.write(b"\xef\xbb\xbf")
+            name = ['"Ann ""Annie"" Lee"', '"Ann ""Annie"" Lee "', '""', '', '"same"'][i % 5]
+            note = '"' + 'padding ' * (i % 13) + '""first\nsecond, \"\"last"""'
+            ending = b"" if i == 51999 else (b"\r\n" if i % 2 else b"\n")
+            output.write(f'{i+1},{name},{note},{1+i%4},{"-0.01" if i%3 else "99999.99"}'.encode() + ending)
+    check("c", "parallel-hostile", data)
+
+
 def main():
-    global BINARY_DIR
+    global BINARY_DIR, REUSE_GENERATED
     parser = argparse.ArgumentParser()
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--quick", action="store_true")
     parser.add_argument("--binary-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--report", type=Path)
+    parser.add_argument("--fresh", action="store_true")
+    parser.add_argument("--reuse-generated", action="store_true")
     args = parser.parse_args()
     BINARY_DIR = args.binary_dir.resolve()
+    REUSE_GENERATED = args.reuse_generated
     if args.full:
         manifest = json.loads((ROOT / ".competition/SHA256SUMS.json").read_text(encoding="utf-8-sig"))
         for track, spec in manifest["tracks"].items():
@@ -179,9 +228,12 @@ def main():
         worked_examples()
         generated("abcd", [("tiny", 1), ("tiny", 2), ("tiny", 17)])
         adversarial()
+        parallel_edges()
         if not args.quick:
             generated("abcd", [("sample", 2), ("sample", 17)])
-    report = ROOT / (".competition/full-validation.json" if args.full else ".competition/validation.json")
+        if args.fresh:
+            generated("abcd", [("tiny", 20261031), ("sample", 20261031)])
+    report = args.report or ROOT / (".competition/full-validation.json" if args.full else ".competition/validation.json")
     report.write_text(json.dumps({"environment": "local Linux container on Windows WSL2; not official board timings", "results": REPORT}, indent=2))
     print(f"PASS: {len(REPORT)} cases. Report: {report}", flush=True)
 

@@ -1,0 +1,32 @@
+{
+  "name": "b-hybrid-confirm-final",
+  "track": "b",
+  "source": "research/prototypes/b-hybrid.cpp",
+  "source_sha256": "18c5f7e08964156bf6cd2692d63ecbf0b4c3a0dccc315d41801c7032ef210f07",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    1.639744846999747,
+    1.689930036000078,
+    1.860796623999704,
+    2.0262818629998947,
+    2.1700142429999687
+  ],
+  "rss_bytes": [
+    403738624,
+    403738624,
+    403734528,
+    403611648,
+    404131840
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+  "trimmed_mean_s": 1.8590028409998922
+}

@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Parse only the fixed UTC hour, endpoint, error-status digit and integer latency. Ignore method and sub-hour timestamp fields. Intern endpoints and keep 72 groups per endpoint; the complete span is fixed by the spec. Sort small groups and select the three nearest ranks in large groups, preserving previously selected ranks. Sort output endpoint keys lexicographically for each hour. All percentile and error-ppm arithmetic uses integers.
+Six workers parse complete newline-aligned ranges into private endpoint/hour groups. Parse only the fixed UTC hour, endpoint, error-status digit and integer latency. Merge every request and error exactly, then schedule independent hours across workers for percentile selection and formatting. Sort small groups and select the three nearest ranks in large groups, preserving previously selected ranks. Write hour buffers in order, with endpoint keys in byte order. All percentile and error-ppm arithmetic uses integers.
 
 ## Build and dependencies
 
@@ -22,4 +22,4 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Parallel parsing, packed latency storage and output formatting should be measured independently before adding complexity.
+Compare contiguous count/scatter latency storage against the remaining per-group vectors. Keep preprocessing and output inside every benchmark.

@@ -1,7 +1,9 @@
 #include "common.hpp"
 #include <array>
+#include <atomic>
 #include <numeric>
 #include <unordered_map>
+#include <thread>
 
 struct Group {
     std::vector<uint32_t> latencies;
@@ -12,17 +14,14 @@ struct Endpoint {
     std::array<Group, 72> hours;
 };
 
-int main(int argc, char** argv) {
-    try {
-        Paths paths(argc, argv);
-        MappedFile input(paths.data + "/requests.log");
-        std::unordered_map<std::string_view, uint32_t> ids;
-        ids.reserve(2048);
-        std::vector<Endpoint> endpoints;
-        endpoints.reserve(2048);
-        std::array<std::string, 72> hour_names;
-        const char* p = input.data;
-        while (p < input.end()) {
+struct Partial {
+    std::unordered_map<std::string_view, uint32_t> ids;
+    std::vector<Endpoint> endpoints;
+    std::array<std::string, 72> hour_names;
+    void parse(const char* begin, const char* end) {
+        ids.reserve(2048); endpoints.reserve(2048);
+        const char* p = begin;
+        while (p < end) {
             // Fixed timestamp layout and the 72-hour span are spec guarantees.
             unsigned day = (p[8] - '0') * 10 + p[9] - '0';
             unsigned hour = (p[11] - '0') * 10 + p[12] - '0';
@@ -43,12 +42,55 @@ int main(int argc, char** argv) {
             group.latencies.push_back(static_cast<uint32_t>(integer(p)));
             ++p;
         }
+    }
+};
+
+int main(int argc, char** argv) {
+    try {
+        Paths paths(argc, argv);
+        MappedFile input(paths.data + "/requests.log");
+        unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        if (input.size < 2 * 1024 * 1024) workers = 1;
+        std::vector<const char*> boundaries(workers + 1);
+        boundaries[0] = input.data; boundaries[workers] = input.end();
+        for (unsigned i = 1; i < workers; ++i) {
+            const char* at = input.data + input.size * i / workers;
+            while (at < input.end() && at[-1] != '\n') ++at;
+            boundaries[i] = at;
+        }
+        std::vector<Partial> partials(workers);
+        std::vector<std::thread> threads;
+        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { partials[i].parse(boundaries[i], boundaries[i + 1]); });
+        for (auto& thread : threads) thread.join();
+        auto& ids = partials[0].ids;
+        auto& endpoints = partials[0].endpoints;
+        auto& hour_names = partials[0].hour_names;
+        for (unsigned i = 1; i < workers; ++i) {
+            for (unsigned h = 0; h < 72; ++h) if (hour_names[h].empty()) hour_names[h] = partials[i].hour_names[h];
+            for (auto& entry : partials[i].endpoints) {
+                auto [it, inserted] = ids.try_emplace(entry.name, endpoints.size());
+                if (inserted) endpoints.push_back(Endpoint{entry.name, {}});
+                for (unsigned h = 0; h < 72; ++h) {
+                    auto& from = entry.hours[h]; auto& to = endpoints[it->second].hours[h];
+                    to.errors += from.errors;
+                    if (to.latencies.empty()) to.latencies = std::move(from.latencies);
+                    else to.latencies.insert(to.latencies.end(), from.latencies.begin(), from.latencies.end());
+                }
+            }
+            partials[i] = Partial{};
+        }
         std::vector<uint32_t> order(endpoints.size());
         std::iota(order.begin(), order.end(), 0);
         std::sort(order.begin(), order.end(), [&](auto a, auto b) { return endpoints[a].name < endpoints[b].name; });
-        std::string output;
-        output.reserve(12 * 1024 * 1024);
-        for (unsigned hour = 0; hour < 72; ++hour) {
+        std::array<std::string, 72> outputs;
+        std::atomic<unsigned> next_hour{0};
+        threads.clear();
+        for (unsigned worker = 0; worker < workers; ++worker) threads.emplace_back([&] {
+          for (;;) {
+            unsigned hour = next_hour.fetch_add(1, std::memory_order_relaxed);
+            if (hour >= 72) break;
+            auto& output = outputs[hour];
+            output.reserve(192 * 1024);
             for (auto id : order) {
                 auto& group = endpoints[id].hours[hour];
                 auto& values = group.latencies;
@@ -74,6 +116,13 @@ int main(int argc, char** argv) {
                 output += '\n';
             }
         }
-        write_output(paths.out + "/summary.txt", output);
+        });
+        for (auto& thread : threads) thread.join();
+        FILE* file = fopen((paths.out + "/summary.txt").c_str(), "wb");
+        if (!file) throw std::runtime_error("Cannot open summary");
+        bool ok = true;
+        for (const auto& output : outputs)
+            ok &= fwrite(output.data(), 1, output.size(), file) == output.size();
+        if (fclose(file) != 0 || !ok) throw std::runtime_error("Output write failed");
     } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
 }

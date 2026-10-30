@@ -50,3 +50,44 @@ Parallel parsing and the flat dictionary improved board wall time from 5.822991s
 Commit `5dc9c4f`, run `run-72a424b92d56`: T=2.192134s, M=643.08MB, S=355, D=1, K=5.286576, machine points=36.158726. All gates passed.
 
 Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.
+## Continuation from df84b71: remove global tokens and posting merges
+
+Runtime samples choose phrase anchors; a complete exact pass builds selected
+64-bit byte offsets and Boolean-only document postings. Phrases compare exact
+ASCII tokens in mapped input, stopping at document boundaries. Workers retain
+disjoint document blocks; left-fold Boolean results can be summarized per block
+without building a duplicate global index. Frequent postings promote to dense
+bitmaps during construction; rare terms retain sorted lists.
+
+Five serialized Linux-local full public runs:
+
+| Variant | Trimmed mean (s) | Approximate peak process RSS (MiB) |
+|---|---:|---:|
+| Published architecture, rerun | 2.23731 | 852.4 |
+| Raw anchors and block-local sparse postings | 1.48281 | 416.4 |
+| Raw anchors plus adaptive sparse/bitmap postings | 1.06426 | 385.3 |
+
+Results are local AMD/WSL2 evidence, not official T/M. See corresponding
+`research/results/b-baseline-confirm.json`, `b-raw-anchors.json`, `b-hybrid-6.json`.
+Sampling only changes planning; it never substitutes estimated results.
+Bitmap tail bits cannot be set by AND or binary NOT, and every OR operand
+contains only actual document bits. Sparse cursors preserve document order.
+
+Release and ASan/UBSan passed the expanded 69-case four-track suite and full
+public hashes. B tests include exact 32-byte tokens, UTF-8 separators, repeated
+terms, chunk boundaries, empty documents, and an empty left fold followed by OR.
+Offline image and official sandbox/hash checks also passed.
+
+The additional streaming-phrase experiment was not promoted: its five-run local
+trimmed mean was 1.71814s at about 387.4 MiB RSS, with no useful memory reduction.
+It passed 22 release/sanitizer B checks, including both full seeds and a ring-wrap
+fixture. Late repeats showed substantial timing drift: hybrid 1.85900s versus
+unchanged baseline 3.27725s, compared with the earlier 1.06426s/2.23731s.
+Streaming's time comparison is therefore inconclusive, not a proven 61% regression.
+Retain the simpler hybrid until a repeatable additional benefit is established.
+See `b-stream-6.json`, `b-hybrid-confirm-final.json` and `b-baseline-final.json`.
+
+The promoted version also matches its independently generated full-seed-20261031
+reference output; input and binary hashes are in
+validation/fresh-full-seed20261031.json. This is a local correctness check, not
+a hidden-seed or official timing result.

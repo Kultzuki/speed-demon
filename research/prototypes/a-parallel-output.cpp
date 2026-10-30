@@ -1,0 +1,128 @@
+#include "common.hpp"
+#include <array>
+#include <atomic>
+#include <numeric>
+#include <unordered_map>
+#include <thread>
+
+struct Group {
+    std::vector<uint32_t> latencies;
+    uint32_t errors = 0;
+};
+struct Endpoint {
+    std::string_view name;
+    std::array<Group, 72> hours;
+};
+
+struct Partial {
+    std::unordered_map<std::string_view, uint32_t> ids;
+    std::vector<Endpoint> endpoints;
+    std::array<std::string, 72> hour_names;
+    void parse(const char* begin, const char* end) {
+        ids.reserve(2048); endpoints.reserve(2048);
+        const char* p = begin;
+        while (p < end) {
+            // Fixed timestamp layout and the 72-hour span are spec guarantees.
+            unsigned day = (p[8] - '0') * 10 + p[9] - '0';
+            unsigned hour = (p[11] - '0') * 10 + p[12] - '0';
+            unsigned day_index = p[6] == '0' ? day - 30 : day + 1;
+            unsigned bucket = day_index * 24 + hour - 18;
+            if (hour_names[bucket].empty()) hour_names[bucket] = std::string(p, 13) + ":00:00Z";
+            p += 28;
+            while (*p++ != ' ') {} // method is irrelevant to the aggregation
+            const char* start = p;
+            while (*p != ' ') ++p;
+            std::string_view key(start, p - start);
+            auto [it, inserted] = ids.try_emplace(key, endpoints.size());
+            if (inserted) endpoints.push_back(Endpoint{key, {}});
+            Group& group = endpoints[it->second].hours[bucket];
+            ++p;
+            group.errors += *p == '5';
+            p += 4;
+            group.latencies.push_back(static_cast<uint32_t>(integer(p)));
+            ++p;
+        }
+    }
+};
+
+int main(int argc, char** argv) {
+    try {
+        Paths paths(argc, argv);
+        MappedFile input(paths.data + "/requests.log");
+        unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        if (input.size < 2 * 1024 * 1024) workers = 1;
+        std::vector<const char*> boundaries(workers + 1);
+        boundaries[0] = input.data; boundaries[workers] = input.end();
+        for (unsigned i = 1; i < workers; ++i) {
+            const char* at = input.data + input.size * i / workers;
+            while (at < input.end() && at[-1] != '\n') ++at;
+            boundaries[i] = at;
+        }
+        std::vector<Partial> partials(workers);
+        std::vector<std::thread> threads;
+        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { partials[i].parse(boundaries[i], boundaries[i + 1]); });
+        for (auto& thread : threads) thread.join();
+        auto& ids = partials[0].ids;
+        auto& endpoints = partials[0].endpoints;
+        auto& hour_names = partials[0].hour_names;
+        for (unsigned i = 1; i < workers; ++i) {
+            for (unsigned h = 0; h < 72; ++h) if (hour_names[h].empty()) hour_names[h] = partials[i].hour_names[h];
+            for (auto& entry : partials[i].endpoints) {
+                auto [it, inserted] = ids.try_emplace(entry.name, endpoints.size());
+                if (inserted) endpoints.push_back(Endpoint{entry.name, {}});
+                for (unsigned h = 0; h < 72; ++h) {
+                    auto& from = entry.hours[h]; auto& to = endpoints[it->second].hours[h];
+                    to.errors += from.errors;
+                    if (to.latencies.empty()) to.latencies = std::move(from.latencies);
+                    else to.latencies.insert(to.latencies.end(), from.latencies.begin(), from.latencies.end());
+                }
+            }
+            partials[i] = Partial{};
+        }
+        std::vector<uint32_t> order(endpoints.size());
+        std::iota(order.begin(), order.end(), 0);
+        std::sort(order.begin(), order.end(), [&](auto a, auto b) { return endpoints[a].name < endpoints[b].name; });
+        std::array<std::string, 72> outputs;
+        std::atomic<unsigned> next_hour{0};
+        threads.clear();
+        for (unsigned worker = 0; worker < workers; ++worker) threads.emplace_back([&] {
+          for (;;) {
+            unsigned hour = next_hour.fetch_add(1, std::memory_order_relaxed);
+            if (hour >= 72) break;
+            auto& output = outputs[hour];
+            output.reserve(192 * 1024);
+            for (auto id : order) {
+                auto& group = endpoints[id].hours[hour];
+                auto& values = group.latencies;
+                uint64_t n = values.size();
+                if (!n) continue;
+                size_t r50 = (50 * n + 99) / 100 - 1;
+                size_t r95 = (95 * n + 99) / 100 - 1;
+                size_t r99 = (99 * n + 99) / 100 - 1;
+                if (n <= 128) std::sort(values.begin(), values.end());
+                else {
+                    // Each later selection can skip the already partitioned prefix.
+                    std::nth_element(values.begin(), values.begin() + r50, values.end());
+                    if (r95 > r50) std::nth_element(values.begin() + r50 + 1, values.begin() + r95, values.end());
+                    if (r99 > r95) std::nth_element(values.begin() + r95 + 1, values.begin() + r99, values.end());
+                }
+                output += hour_names[hour];
+                output += ' ';
+                output += endpoints[id].name;
+                for (uint64_t value : {n, uint64_t(values[r50]), uint64_t(values[r95]), uint64_t(values[r99]), uint64_t(group.errors), uint64_t(group.errors) * 1000000 / n}) {
+                    output += ' ';
+                    number(output, value);
+                }
+                output += '\n';
+            }
+        }
+        });
+        for (auto& thread : threads) thread.join();
+        FILE* file = fopen((paths.out + "/summary.txt").c_str(), "wb");
+        if (!file) throw std::runtime_error("Cannot open summary");
+        bool ok = true;
+        for (const auto& output : outputs)
+            ok &= fwrite(output.data(), 1, output.size(), file) == output.size();
+        if (fclose(file) != 0 || !ok) throw std::runtime_error("Output write failed");
+    } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
+}

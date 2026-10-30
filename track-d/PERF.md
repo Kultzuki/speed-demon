@@ -50,3 +50,34 @@ Radix heaps improved board wall time from 1.609181s to 1.245620s. Memory increas
 Commit `5dc9c4f`, run `run-d5d71e806018`: T=1.189051s, M=355.59MB, S=276, D=1, K=7.112136, machine points=42.600004. All gates passed.
 
 Runtime implementation code was unchanged from the second board run; differences are not attributed to another optimization.
+## Continuation from df84b71: packed state and BFS locality
+
+BFS builds a permutation over every component and isolated vertex. Both CSR
+directions and all query endpoints use that permutation. This is a layout
+transformation; weighted bidirectional Dijkstra still computes every distance.
+Relabeling is included in the timed process.
+
+Each worker stores distance and generation in one uint64 per node/direction.
+An accepted improving label has a simple-path representative of at most n-1
+edges, so `(n-1)*UINT32_MAX` bounds the required distance field. At full n this
+needs 53 bits, leaving 11 generation bits. Before a wrapped tag is reused, both
+state arrays are cleared. Zero distance and uint32-maximum weights are ordinary
+values, not sentinels. A direct test forces wrap and checks wide distances.
+
+Five serialized local public runs: four workers averaged 1.84803s trimmed mean
+at about 217.5 MiB RSS; six workers averaged 1.68420s at about 270.8 MiB RSS.
+The checkpoint baseline was 2.61708s / 337.5 MiB in an earlier batch. Retain six
+workers for the first official trial; the four-worker time/memory tradeoff is
+close under a local sensitivity calculation, not an established scoring gain.
+See `research/results/d-packed-bfs-4.json` and `d-packed-bfs-6-confirm.json`.
+
+Release and ASan/UBSan passed the expanded 69-case four-track suite, all public
+full hashes, and the separate generation-wrap/53-bit-budget test. Arbitrary
+directed multigraph all-pairs tests cover zero cycles, unreachable and isolated
+nodes, self-loops, parallel edges and distances above uint32. Offline image and
+official sandbox/hash checks passed. Local measurements are not official T/M.
+
+The promoted version also matches its independently generated full-seed-20261031
+reference output; input and binary hashes are in
+validation/fresh-full-seed20261031.json. This is a local correctness check, not
+a hidden-seed or official timing result.

@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read all queries first and index only their terms. A contiguous read-only dictionary serves six parser workers, each responsible for complete document lines. Concatenating blocks in corpus order preserves sorted postings; local occurrence offsets are translated into one global token array. Corpus tokenization lowercases ASCII A-Z only; all other non-alphanumeric bytes are separators. Sorted document postings support strictly left-to-right Boolean set operations. For phrases, select the least frequent occurrence list as the anchor and compare exact adjacent token IDs. A boundary bit on every document's final token forbids cross-document matches. Full string equality resolves dictionary hash collisions; results are exact.
+Read all queries first and index only their terms. Six workers parse complete document lines through a read-only exact dictionary. Boolean postings start as sorted unique document lists and promote to bitmaps when dense. Queries retain strict left-to-right evaluation; disjoint document blocks are summarized without merging their indexes. Runtime sampling chooses phrase anchors, then a complete pass stores their 64-bit raw byte offsets. Exact ASCII token comparison around each anchor verifies phrases without crossing TAB/LF boundaries. There is no global token-ID array. Sampling changes work planning only, never correctness. Full byte equality resolves hash collisions.
 
 ## Build and dependencies
 
@@ -22,4 +22,4 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-The corpus lookup loop and common-term Boolean operations are the first profiling candidates. Evaluate adaptive dense bitsets against sorted postings and measure smaller posting representations.
+Measure batching or streaming common-anchor phrases to reduce occurrence storage further. Keep sparse/bitmap thresholds and sampling costs in the total measurement.

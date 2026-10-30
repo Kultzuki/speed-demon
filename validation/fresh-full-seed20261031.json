@@ -1,0 +1,59 @@
+{
+  "environment": "Local Linux/WSL2; correctness only, not a performance comparison",
+  "seed": 20261031,
+  "provenance": {
+    "a": {
+      "inputs_sha256": {
+        "requests.log": "10067b641c83ca341f0ee6157dc131f1c5ec83d7d9f174ab8d27093fa8f0538a"
+      },
+      "binary_sha256": "59d0fa90d438b43a7cf3b3c236ea22ec52cb0d94775641e334441b0ca10acc23"
+    },
+    "b": {
+      "inputs_sha256": {
+        "docs.txt": "8421204c6bc75de0a73c893e7a34c48e5a7bbf5b57cc470e1d61a025e740ff14",
+        "queries.txt": "3ca236629ac37dd5867aa7c42399576ab8d7045ee07d534ccaf9bfb0f1b97f31"
+      },
+      "binary_sha256": "d9654fe9969687bfe7e3770e7426c690d09a767c38ffe9a4e9e29001957e74e6"
+    },
+    "c": {
+      "inputs_sha256": {
+        "records.csv": "57420e5c11e8072e4706b1a9d069ec554c5181835ce0385c4c7992137432035d",
+        "regions.csv": "21e0c617807cb378baa43646c0f1c1f2f37e2b40d088618f83cf49a0fa5af4ae"
+      },
+      "binary_sha256": "b796f5274444b2ede7d358833581a967125cd55a3b06c8bd71944e7654e2a5eb"
+    },
+    "d": {
+      "inputs_sha256": {
+        "graph.txt": "0ea6d37eba1f8d4548b668e7ef1d236202b454d666206636c6c05977ad97c311",
+        "queries.txt": "b58913144ab06871748f19c66c76187b502c20e2860d806e58b030a002b86862"
+      },
+      "binary_sha256": "833cca3edc86c3603d98e5aa1e64de78b239a98382f52b9a43b127c68a053513"
+    }
+  },
+  "results": [
+    {
+      "track": "a",
+      "case": "fresh-full-seed20261031",
+      "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+      "local_seconds": 0.267389
+    },
+    {
+      "track": "b",
+      "case": "fresh-full-seed20261031",
+      "sha256": "d9aca5145790528d1dafa51998c4e6e7b106bd9c9592962caecb2600199963e3",
+      "local_seconds": 1.831651
+    },
+    {
+      "track": "c",
+      "case": "fresh-full-seed20261031",
+      "sha256": "50cf41d11da645bb40d6fc4924b2b158c0f7c1052da8661297f02c50dd7cd15e",
+      "local_seconds": 0.369347
+    },
+    {
+      "track": "d",
+      "case": "fresh-full-seed20261031",
+      "sha256": "64f1981215abee6e01332dd548fd39a3da89e9e1f99a0687d85bfe6f3eca3c58",
+      "local_seconds": 2.828222
+    }
+  ]
+}

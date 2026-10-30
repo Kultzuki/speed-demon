@@ -1,0 +1,32 @@
+{
+  "name": "c-shared-6",
+  "track": "c",
+  "source": "research/prototypes/c-shared.cpp",
+  "source_sha256": "ad0dc34ca1a5abad6b797cc0a4b52bb43ff2598a3b70868d39dd4e27e1734358",
+  "workers": null,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    0.2544735719993696,
+    0.21362129699991783,
+    0.2606652899994515,
+    0.21948629899998195,
+    0.2050871740002549
+  ],
+  "rss_bytes": [
+    217841664,
+    217841664,
+    217710592,
+    217710592,
+    217710592
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536",
+  "trimmed_mean_s": 0.22919372266642313
+}

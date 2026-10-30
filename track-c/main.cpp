@@ -2,6 +2,10 @@
 #include <array>
 #include <limits>
 #include <unordered_map>
+#include <thread>
+#include <mutex>
+#include <immintrin.h>
+#include <bit>
 
 struct Field {
     std::string_view value;
@@ -42,12 +46,12 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
 // At most 240 country codes plus _UNMATCHED need four membership words.
 struct NameTable {
     struct Slot { size_t hash = 0; uint32_t id = UINT32_MAX, length = 0; };
-    std::vector<Slot> slots = std::vector<Slot>(1 << 18);
+    std::vector<Slot> slots = std::vector<Slot>(1 << 10);
     std::vector<uint32_t> offsets;
     std::vector<std::array<uint64_t, 4>> membership;
     std::vector<char> arena;
-    NameTable() { offsets.reserve(131072); membership.reserve(131072); arena.reserve(4 * 1024 * 1024); }
-    bool add(std::string_view name, uint16_t country) {
+    NameTable() { offsets.reserve(512); membership.reserve(512); arena.reserve(4096); }
+    uint32_t intern(std::string_view name, size_t hash) {
         if (offsets.size() * 2 >= slots.size()) {
             std::vector<Slot> grown(slots.size() * 2);
             for (const auto& slot : slots) if (slot.id != UINT32_MAX) {
@@ -57,7 +61,7 @@ struct NameTable {
             }
             slots.swap(grown);
         }
-        size_t hash = std::hash<std::string_view>()(name), at = hash & (slots.size() - 1);
+        size_t at = hash & (slots.size() - 1);
         while (slots[at].id != UINT32_MAX) {
             const auto& slot = slots[at];
             if (slot.hash == hash && slot.length == name.size() &&
@@ -71,9 +75,27 @@ struct NameTable {
             arena.insert(arena.end(), name.begin(), name.end());
             membership.push_back({});
         }
-        uint64_t& bits = membership[slot.id][country / 64];
+        return slot.id;
+    }
+    bool add(std::string_view name, uint16_t country, size_t hash) {
+        uint32_t id = intern(name, hash);
+        uint64_t& bits = membership[id][country / 64];
         uint64_t bit = uint64_t(1) << (country % 64);
         bool fresh = !(bits & bit); bits |= bit; return fresh;
+    }
+
+};
+
+// All names and membership words have one owner. Shards bound contention;
+// each mutex also protects arena/table growth and the exact membership test.
+struct SharedNames {
+    struct alignas(64) Shard { std::mutex mutex; NameTable names; };
+    std::array<Shard, 256> shards;
+    bool add(std::string_view name, uint16_t country) {
+        size_t hash = std::hash<std::string_view>()(name);
+        auto& shard = shards[(hash >> 32) & 255];
+        std::lock_guard<std::mutex> lock(shard.mutex);
+        return shard.names.add(name, country, hash);
     }
 };
 
@@ -89,6 +111,79 @@ void money(std::string& out, int64_t value) {
     out += '.';
     out += char('0' + value % 100 / 10);
     out += char('0' + value % 10);
+}
+
+struct Partial {
+    std::vector<Country> countries;
+    void parse(const char* begin, const char* end, const std::vector<uint16_t>& lookup, size_t count, SharedNames& names) {
+        countries.resize(count);
+        const char* p = begin;
+        std::string scratch;
+        while (p < end) {
+            if (static_cast<unsigned char>(*p) == 0xef) p += 3;
+            uint64_t id = integer(p);
+            ++p;
+            Field name = text_field(p, end, &scratch);
+            ++p;
+            Field note = text_field(p, end, nullptr);
+            ++p;
+            uint32_t region = integer(p);
+            ++p;
+            bool negative = *p == '-';
+            p += negative;
+            int64_t amount = integer(p) * 100;
+            ++p;
+            amount += (p[0] - '0') * 10 + p[1] - '0';
+            p += 2;
+            if (p < end && *p == '\r') ++p;
+            if (p < end && *p == '\n') ++p;
+            if (negative) amount = -amount;
+            uint16_t country = region < lookup.size() ? lookup[region] : 0;
+            auto& group = countries[country];
+            group.distinct += names.add(name.value, country);
+            ++group.count;
+            group.id_sum += id;
+            group.sum += amount;
+            group.minimum = std::min(group.minimum, amount);
+            group.maximum = std::max(group.maximum, amount);
+            group.name_bytes += name.bytes;
+            group.note_bytes += note.bytes;
+        }
+    }
+};
+
+// A doubled quote toggles twice, so parity also handles escaped CSV quotes.
+// Only newlines outside quotes are eligible partition boundaries.
+__attribute__((target("avx2,popcnt")))
+std::vector<const char*> boundaries(const char* begin, const char* end, unsigned workers) {
+    std::vector<const char*> result(workers + 1, end);
+    result[0] = begin;
+    unsigned next = 1;
+    const char* p = begin;
+    bool quoted = false;
+    while (end - p >= 32 && next < workers) {
+        auto bytes = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(p));
+        uint32_t q = _mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes, _mm256_set1_epi8('"')));
+        const char* target = begin + (end - begin) * next / workers;
+        if (p + 32 < target) quoted ^= std::popcount(q) & 1;
+        else {
+            q ^= q << 1; q ^= q << 2; q ^= q << 4; q ^= q << 8; q ^= q << 16;
+            q ^= quoted ? UINT32_MAX : 0;
+            uint32_t lf = _mm256_movemask_epi8(_mm256_cmpeq_epi8(bytes, _mm256_set1_epi8('\n'))) & ~q;
+            while (lf && next < workers) {
+                const char* after = p + std::countr_zero(lf) + 1;
+                if (after >= begin + (end - begin) * next / workers) result[next++] = after;
+                lf &= lf - 1;
+            }
+            quoted = q >> 31;
+        }
+        p += 32;
+    }
+    while (p < end && next < workers) {
+        quoted ^= *p == '"';
+        if (*p++ == '\n' && !quoted && p >= begin + (end - begin) * next / workers) result[next++] = p;
+    }
+    return result;
 }
 
 int main(int argc, char** argv) {
@@ -112,40 +207,23 @@ int main(int argc, char** argv) {
             lookup[region] = it->second;
             p += 4;
         }
-        // Exact names are interned once; full byte equality resolves collisions.
-        NameTable names;
-        std::string scratch;
         p = records.data;
         while (p < records.end() && *p++ != '\n') {}
-        while (p < records.end()) {
-            if (static_cast<unsigned char>(*p) == 0xef) p += 3;
-            uint64_t id = integer(p);
-            ++p;
-            Field name = text_field(p, records.end(), &scratch);
-            ++p;
-            Field note = text_field(p, records.end(), nullptr);
-            ++p;
-            uint32_t region = integer(p);
-            ++p;
-            bool negative = *p == '-';
-            p += negative;
-            int64_t amount = integer(p) * 100;
-            ++p;
-            amount += (p[0] - '0') * 10 + p[1] - '0';
-            p += 2;
-            if (p < records.end() && *p == '\r') ++p;
-            if (p < records.end() && *p == '\n') ++p;
-            if (negative) amount = -amount;
-            uint16_t country = region < lookup.size() ? lookup[region] : 0;
-            auto& group = countries[country];
-            group.distinct += names.add(name.value, country);
-            ++group.count;
-            group.id_sum += id;
-            group.sum += amount;
-            group.minimum = std::min(group.minimum, amount);
-            group.maximum = std::max(group.maximum, amount);
-            group.name_bytes += name.bytes;
-            group.note_bytes += note.bytes;
+        unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        if (records.size < 2 * 1024 * 1024) workers = 1;
+        auto cuts = boundaries(p, records.end(), workers);
+        SharedNames names;
+        std::vector<Partial> parts(workers);
+        std::vector<std::thread> threads;
+        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { parts[i].parse(cuts[i], cuts[i+1], lookup, countries.size(), names); });
+        for (auto& thread : threads) thread.join();
+        for (unsigned i = 0; i < workers; ++i) {
+            for (size_t j = 0; j < countries.size(); ++j) {
+                const auto& from = parts[i].countries[j]; auto& to = countries[j];
+                to.count += from.count; to.id_sum += from.id_sum; to.sum += from.sum; to.distinct += from.distinct;
+                to.minimum = std::min(to.minimum, from.minimum); to.maximum = std::max(to.maximum, from.maximum);
+                to.name_bytes += from.name_bytes; to.note_bytes += from.note_bytes;
+            }
         }
         std::sort(countries.begin(), countries.end(), [](auto& a, auto& b) { return a.key < b.key; });
         std::string output;

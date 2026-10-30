@@ -1,0 +1,32 @@
+{
+  "flags": [
+    "-std=c++20",
+    "-pthread",
+    "-O3",
+    "-DNDEBUG",
+    "-static",
+    "-s"
+  ],
+  "tracks": {
+    "a": {
+      "source": "a-parallel-output.cpp",
+      "source_sha256": "be5a33770e79141c67fb9cb571ec20305045395e93e7a39e684fc9d9b5d28475",
+      "binary_sha256": "59d0fa90d438b43a7cf3b3c236ea22ec52cb0d94775641e334441b0ca10acc23"
+    },
+    "b": {
+      "source": "b-hybrid.cpp",
+      "source_sha256": "7510ea9cfa2caa240feaef72634dda862f75b69ee0e1e79954f616da8e7dca12",
+      "binary_sha256": "d9654fe9969687bfe7e3770e7426c690d09a767c38ffe9a4e9e29001957e74e6"
+    },
+    "c": {
+      "source": "c-shared.cpp",
+      "source_sha256": "da835a73c8d2c9b5018fa6e3d33a8db26c5013393da20d0bc8a118e372136a2d",
+      "binary_sha256": "b796f5274444b2ede7d358833581a967125cd55a3b06c8bd71944e7654e2a5eb"
+    },
+    "d": {
+      "source": "d-packed-bfs.cpp",
+      "source_sha256": "ea2bf9803c8f89fb032e5164758fe669fb48a2379e3b36fee403b687dc77fbd6",
+      "binary_sha256": "833cca3edc86c3603d98e5aa1e64de78b239a98382f52b9a43b127c68a053513"
+    }
+  }
+}

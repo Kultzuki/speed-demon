@@ -4,7 +4,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read graph bytes into forward and reverse compressed sparse row arrays with two parsing passes. Each query runs bidirectional Dijkstra on the directed graph, with 64-bit distances, zero weights and parallel edges preserved. Monotone integer keys use a radix heap with 65 buckets instead of a comparison-based binary heap. Stop when the frontier lower bound reaches the best complete path. Generation stamps avoid clearing every node per query. Six workers own independent search storage; results are written in input order after joining.
+Build forward/reverse CSR with two parsing passes. BFS relabels every component and isolated vertex to improve locality; edges and queries use the same permutation. Exact weighted searches still use bidirectional Dijkstra and 65-bucket radix heaps. Distance and generation share one 64-bit word per vertex/direction. The distance width is derived from (n-1)*UINT32_MAX (53 bits at full scale), and generation wrap clears both arrays before tag reuse. Six workers own independent state. Stop at the valid frontier lower bound and write answers in input order. Zero weights, parallel edges and 64-bit distances are preserved; all relabeling work is timed.
 
 ## Build and dependencies
 

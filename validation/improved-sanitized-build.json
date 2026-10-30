@@ -1,0 +1,32 @@
+{
+  "flags": [
+    "-std=c++20",
+    "-pthread",
+    "-O1",
+    "-g",
+    "-fsanitize=address,undefined",
+    "-fno-omit-frame-pointer"
+  ],
+  "tracks": {
+    "a": {
+      "source": "a-parallel-output.cpp",
+      "source_sha256": "be5a33770e79141c67fb9cb571ec20305045395e93e7a39e684fc9d9b5d28475",
+      "binary_sha256": "a73d4cff2ae2dcc09396d2ad2f061b818439a4b1df9b2a1a661a5cbdd53cc719"
+    },
+    "b": {
+      "source": "b-hybrid.cpp",
+      "source_sha256": "7510ea9cfa2caa240feaef72634dda862f75b69ee0e1e79954f616da8e7dca12",
+      "binary_sha256": "ebde710822a8a6e7847539e2b655ed0f7813f17d59f772a2110f9ca53349f390"
+    },
+    "c": {
+      "source": "c-shared.cpp",
+      "source_sha256": "da835a73c8d2c9b5018fa6e3d33a8db26c5013393da20d0bc8a118e372136a2d",
+      "binary_sha256": "6fdf673c4814953cab5ea6eedb11110a87aeac03c549176856b1f4bd5f52bc48"
+    },
+    "d": {
+      "source": "d-packed-bfs.cpp",
+      "source_sha256": "ea2bf9803c8f89fb032e5164758fe669fb48a2379e3b36fee403b687dc77fbd6",
+      "binary_sha256": "e20b7e3a2f127e5d59ac728f14a3ce556aedd06c137e89915c3df65a638acd51"
+    }
+  }
+}

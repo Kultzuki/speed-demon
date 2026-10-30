@@ -4,10 +4,10 @@ Solo entrant: **Prashant Krishan Bharti**. C++20 implementations for **all four 
 
 | Track | Approach |
 |---|---|
-| A Ingest | Fixed-layout timestamp parsing, endpoint/hour groups, exact percentile selection |
-| B Index | Query-driven term index, sorted Boolean postings, exact positional phrase checks |
-| C Join | Quote-aware CSV scanning, exact cents, direct region lookup, exact interned-name membership |
-| D Traverse | Forward/reverse CSR, bidirectional Dijkstra, reusable search storage, six workers |
+| A Ingest | Parallel line parsing, exact group merge, parallel percentile selection and ordered formatting |
+| B Index | Query-only dictionary, adaptive sparse/bitmap postings, exact mapped-text phrase verification |
+| C Join | Quote-safe parallel parsing, exact cents, shared sharded name membership |
+| D Traverse | Forward/reverse CSR, BFS locality relabeling, bidirectional radix Dijkstra, packed search state |
 
 No third-party runtime dependencies. Every track builds independently, offline,
 from allowlisted digest-pinned images. The runtime executable is statically linked.
@@ -31,7 +31,12 @@ are ignored by Git and do not enter any track image.
 `tools/validate.py` compares compiled `build/track-*` binaries against the frozen
 references using worked examples, three tiny seeds, two unseen sample seeds,
 random directed multigraphs, random mixed Boolean/phrase queries, CSV edge cases
-and percentile rank boundaries. The 57-case suite also passes under AddressSanitizer and UndefinedBehaviorSanitizer; reports are in validation/. `--full` checks the published full-size hashes.
+and percentile rank boundaries. The suite now has 61 cases, or 69 with `--fresh`
+(tiny and sample seed 20261031). Both release and AddressSanitizer/UndefinedBehaviorSanitizer
+builds pass those 69 cases and the four public full hashes. Reports and build
+hashes are in validation/. `--full` checks the published full-size hashes.
+All four selected implementations also match reference outputs on a freshly
+generated full-scale seed 20261031, with input/binary hashes saved in validation/.
 Run it on Linux with Python 3.13 and the compiled binaries. `tools/prepare.py`
 refreshes the four identical helper headers, Dockerfiles and track manifests.
 
@@ -42,6 +47,12 @@ coverage for those inputs, not proof for every hidden seed. Local measurements
 are made on an AMD Windows laptop through WSL2 and are not official scores.
 Each track's PERF.md separates published reference numbers, local evidence and
 board runs. No local timing is presented as a board run ID.
+
+The continuation from checkpoint `df84b71` evaluates all three external reports
+in [research/EXTERNAL_REVIEW.md](research/EXTERNAL_REVIEW.md). Reproducible candidate
+checks are in `tools/research_checks.py`; `tools/fresh_full.py` generates and
+differentially checks another full-scale seed. Experiments and rejected variants
+remain under research/, outside the isolated track builds.
 
 The public board is a practice score. Final scoring uses unseen data and adds
 human judging. See the [frozen specs and harness](https://github.com/hackathon-raptors/speed-demon-2026)

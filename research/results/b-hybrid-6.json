@@ -1,0 +1,32 @@
+{
+  "name": "b-hybrid-6",
+  "track": "b",
+  "source": "research/prototypes/b-hybrid.cpp",
+  "source_sha256": "18c5f7e08964156bf6cd2692d63ecbf0b4c3a0dccc315d41801c7032ef210f07",
+  "workers": 6,
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "walls_s": [
+    1.0762898160000987,
+    1.0587336709995725,
+    1.0821688139994876,
+    1.0577464329999202,
+    1.05185042300036
+  ],
+  "rss_bytes": [
+    403742720,
+    403996672,
+    403951616,
+    403865600,
+    404000768
+  ],
+  "environment": "Local WSL2, Linux-local public seed-1 inputs. RSS is not the official memory axis.",
+  "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+  "trimmed_mean_s": 1.0642566399998639
+}
