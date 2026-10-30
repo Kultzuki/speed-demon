@@ -63,3 +63,11 @@ The promoted version also matches its independently generated full-seed-20261031
 reference output; input and binary hashes are in
 validation/fresh-full-seed20261031.json. This is a local correctness check, not
 a hidden-seed or official timing result.
+
+## Fourth official board run: all-track architecture update
+
+Commit `0c89c6e71d502e9edee2b646072b86f9b48c082a`, run `run-20fa752e4d42`:
+T=0.096460s, M=48439296 bytes, S=250, D=1,
+K=19.851814, machine points=64.890010. All check/build/correctness/
+timeout/sandbox gates passed. This is one official public-seed run, not final
+holdout scoring. Exact evidence is in `validation/board-fourth.json`.

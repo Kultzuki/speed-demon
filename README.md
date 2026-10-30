@@ -42,6 +42,13 @@ refreshes the four identical helper headers, Dockerfiles and track manifests.
 
 ## Evidence and limits
 
+The all-track architecture update at **0c89c6e** passed every official gate and
+improved each track. Its best-three public machine aggregate is **58.008**, up
+from **47.178**; A/B/C count and D is dropped. Exact run IDs and measurements are
+in `validation/board-fourth.json` and the per-track PERF.md files. This is one
+public-seed measurement, not final holdout scoring. For continuing work, start
+with [HANDOVER_NEXT.md](HANDOVER_NEXT.md).
+
 All four full public output hashes have passed locally and all four tracks passed their first official board runs at commit b5cbc28. This is correctness
 coverage for those inputs, not proof for every hidden seed. Local measurements
 are made on an AMD Windows laptop through WSL2 and are not official scores.

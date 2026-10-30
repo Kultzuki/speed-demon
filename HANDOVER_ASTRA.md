@@ -1,5 +1,9 @@
 # Astra handover: CodeScythe / Speed Demon 2026
 
+**Historical checkpoint.** The October 31 continuation is complete; read
+[HANDOVER_NEXT.md](HANDOVER_NEXT.md) for the current implementation, official
+results and next experiments. The original handover below is preserved.
+
 Prepared **October 30, 2026, approximately 23:08 IST / 17:38 UTC**.
 This is a continuation of an active implementation/research task, not a fresh
 project. Read this first, then inspect the named files and git status. Preserve

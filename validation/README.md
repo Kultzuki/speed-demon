@@ -3,6 +3,12 @@
 These files distinguish local tests, local experiments and official public-board
 measurements. None is a final hidden-seed result or a claim of winning the event.
 
+- `board-fourth.json`: all four official runs at `0c89c6e`, every gate passed,
+  every track improved, best-three aggregate 58.007574. A/B/C count.
+- `leaderboard-continuation.json`: dated 18:35:36 UTC October 30 public-feed
+  comparison, including the leader and a C++ team in fourth place. Rankings can
+  change; this snapshot is not a final result.
+
 - `board-baseline.json`: first official four-track runs at `b5cbc28`; all gates
   passed. The exact run IDs, wall times, kernel memory measurements, formatted
   source sizes and coefficient values come from the organizers' public feed.

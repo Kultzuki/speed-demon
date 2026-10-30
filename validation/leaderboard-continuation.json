@@ -1,0 +1,193 @@
+{
+  "source": "https://s3.amazonaws.com/raptors.dev/speeddemon.dev/2026/board/board.json",
+  "generated_at": "2026-10-30T18:35:36Z",
+  "rules": {
+    "runs_per_push": 1,
+    "timeout_factor": 3.0,
+    "min_interval_s": 300,
+    "branch": "speed-demon",
+    "build_timeout_s": 600,
+    "image_max_bytes": 2147483648
+  },
+  "note": "Rank and overall computed from the best three successful public machine-point values; dated snapshot, not final judging.",
+  "ours": {
+    "team": "CodeScythe",
+    "points": 58.00757392274158,
+    "languages": [
+      "C++"
+    ],
+    "rank": 17
+  },
+  "top_five": [
+    {
+      "team": "ALL STAR",
+      "points": 72.79800394307681,
+      "languages": [
+        "Rust"
+      ],
+      "rank": 1
+    },
+    {
+      "team": "Cause Of Death",
+      "points": 69.7049555720564,
+      "languages": [
+        "Rust"
+      ],
+      "rank": 2
+    },
+    {
+      "team": "Sanjay Sah",
+      "points": 68.26352413820663,
+      "languages": [
+        "Rust"
+      ],
+      "rank": 3
+    },
+    {
+      "team": "Cache Me",
+      "points": 68.25940220005965,
+      "languages": [
+        "C++"
+      ],
+      "rank": 4
+    },
+    {
+      "team": "ahptour",
+      "points": 67.91378562803564,
+      "languages": [
+        "Rust"
+      ],
+      "rank": 5
+    }
+  ],
+  "leader_best": {
+    "a": {
+      "run_id": "run-8ae4936485be",
+      "commit": "f2cfd465d761115a43fd8a9eaf7b5bb86323c48d",
+      "pushed_at": "2026-10-30T18:32:46Z",
+      "dispatched_at": "2026-10-30T18:33:41Z",
+      "started_at": "2026-10-30T18:34:29Z",
+      "ended_at": "2026-10-30T18:34:30Z",
+      "queue_latency_s": 102.8,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.032259,
+      "M_bytes": 20398080,
+      "S": 305,
+      "D": 1,
+      "K": 39.611028,
+      "points": 79.890806,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 10.53,
+      "image_bytes": 118222939,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ]
+    },
+    "b": {
+      "run_id": "run-4a4c21171079",
+      "commit": "f2cfd465d761115a43fd8a9eaf7b5bb86323c48d",
+      "pushed_at": "2026-10-30T18:32:46Z",
+      "dispatched_at": "2026-10-30T18:33:41Z",
+      "started_at": "2026-10-30T18:34:30Z",
+      "ended_at": "2026-10-30T18:34:31Z",
+      "queue_latency_s": 103.6,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.305298,
+      "M_bytes": 39645184,
+      "S": 805,
+      "D": 1,
+      "K": 21.422737,
+      "points": 66.543748,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 10.708,
+      "image_bytes": 118226849,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ]
+    },
+    "c": {
+      "run_id": "run-c96eba9a4379",
+      "commit": "0a74d98db92e0a440c4f550364624078f926ccd1",
+      "pushed_at": "2026-10-30T18:00:29Z",
+      "dispatched_at": "2026-10-30T18:05:27Z",
+      "started_at": "2026-10-30T18:06:17Z",
+      "ended_at": "2026-10-30T18:06:18Z",
+      "queue_latency_s": 348.4,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.04991,
+      "M_bytes": 12869632,
+      "S": 485,
+      "D": 1,
+      "K": 26.547658,
+      "points": 71.20131,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 8.229,
+      "image_bytes": 118170348,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ]
+    },
+    "d": {
+      "run_id": "run-20366d30099c",
+      "commit": "f2cfd465d761115a43fd8a9eaf7b5bb86323c48d",
+      "pushed_at": "2026-10-30T18:32:46Z",
+      "dispatched_at": "2026-10-30T18:33:41Z",
+      "started_at": "2026-10-30T18:34:31Z",
+      "ended_at": "2026-10-30T18:34:32Z",
+      "queue_latency_s": 105.4,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.184114,
+      "M_bytes": 82063360,
+      "S": 424,
+      "D": 1,
+      "K": 22.722153,
+      "points": 67.822474,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 10.79,
+      "image_bytes": 118227000,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ]
+    }
+  }
+}
