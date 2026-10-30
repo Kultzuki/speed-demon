@@ -4,7 +4,18 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Six workers parse complete newline-aligned ranges into private endpoint/hour groups. Parse only the fixed UTC hour, endpoint, error-status digit and integer latency. Merge every request and error exactly, then schedule independent hours across workers for percentile selection and formatting. Sort small groups and select the three nearest ranks in large groups, preserving previously selected ranks. Write hour buffers in order, with endpoint keys in byte order. All percentile and error-ppm arithmetic uses integers.
+Up to twelve workers parse complete line ranges. A shared endpoint registry
+publishes immutable keys with release/acquire ordering and compares their full
+bytes; the 4,096-entry capacity exceeds the binding 1,842-endpoint catalogue.
+Each parser stores uint32 latencies and separate uint16 endpoint/error tags in
+72 hour buckets. SIMD endpoint scans load only within their mapped range.
+
+Workers gather one hour at a time into reusable latency storage, release its
+parser buckets, and compute exact nearest-rank p50/p95/p99 values. Later nth
+selections exclude earlier selected positions. Each hour formats endpoints in
+byte order; the writer streams completed hours in chronological order and frees
+their buffers. Empty input produces a zero-byte summary. Duplicates, 499/500,
+uint32 extremes and all hour/month boundaries retain exact integer behavior.
 
 ## Build and dependencies
 
@@ -22,4 +33,6 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Compare contiguous count/scatter latency storage against the remaining per-group vectors. Keep preprocessing and output inside every benchmark.
+Profile parsing and allocation on the scoring CPU, then compare output-buffer
+reuse and percentile thresholds using the full coefficient. Keep all parsing,
+selection, output and cleanup inside every timed run.

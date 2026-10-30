@@ -4,10 +4,10 @@ Solo entrant: **Prashant Krishan Bharti**. C++20 implementations for **all four 
 
 | Track | Approach |
 |---|---|
-| A Ingest | Parallel line parsing, exact group merge, parallel percentile selection and ordered formatting |
-| B Index | Query-only dictionary, adaptive sparse/bitmap postings, exact mapped-text phrase verification |
-| C Join | Quote-safe parallel parsing, exact cents, shared sharded name membership |
-| D Traverse | Forward/reverse CSR, BFS locality relabeling, bidirectional radix Dijkstra, packed search state |
+| A Ingest | Exact shared endpoint registry, latency/tag hour buckets, parallel selection and ordered streaming output |
+| B Index | Query-only exact dictionary with a negative filter, adaptive sparse/bitmap postings, mapped-text phrase verification |
+| C Join | Contract-safe parallel parsing, exact cents, compact owned names and sharded atomic membership |
+| D Traverse | Forward/reverse compact CSR, bidirectional radix Dijkstra, generation-tagged sparse uint64 distances |
 
 No third-party runtime dependencies. Every track builds independently, offline,
 from allowlisted digest-pinned images. The runtime executable is statically linked.
@@ -42,12 +42,11 @@ refreshes the four identical helper headers, Dockerfiles and track manifests.
 
 ## Evidence and limits
 
-The all-track architecture update at **0c89c6e** passed every official gate and
-improved each track. Its best-three public machine aggregate is **58.008**, up
-from **47.178**; A/B/C count and D is dropped. Exact run IDs and measurements are
-in `validation/board-fourth.json` and the per-track PERF.md files. This is one
-public-seed measurement, not final holdout scoring. For continuing work, start
-with [HANDOVER_NEXT.md](HANDOVER_NEXT.md).
+The live baseline at the start of continuation from **d069bfd** was **63.490**,
+rank **19**, using A/C/D. Earlier official runs and each subsequent promotion
+decision are recorded separately in each track's PERF.md. This is public
+practice scoring, not final holdout scoring. For the latest measured result and
+continuation state, start with [HANDOVER_NEXT.md](HANDOVER_NEXT.md).
 
 All four full public output hashes have passed locally and all four tracks passed their first official board runs at commit b5cbc28. This is correctness
 coverage for those inputs, not proof for every hidden seed. Local measurements
@@ -64,6 +63,12 @@ remain under research/, outside the isolated track builds.
 The public board is a practice score. Final scoring uses unseen data and adds
 human judging. See the [frozen specs and harness](https://github.com/hackathon-raptors/speed-demon-2026)
 and [competition rules](https://speeddemon.dev/#coefficient).
+
+The third and fourth pasted sets were preserved and reviewed in
+[research/SUPPLIED_CONTINUATION_REVIEW.md](research/SUPPLIED_CONTINUATION_REVIEW.md).
+The repository is private. A fresh successful board watch against the same
+authenticated remote head, with anonymous GitHub access returning 404, is
+recorded in `validation/private-repository-access.json`.
 
 ## License and assistance
 

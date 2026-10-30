@@ -1,0 +1,18 @@
+{
+  "a": {
+    "source": "research\\prototypes\\a-simd3.cpp",
+    "source_sha256": "4d69c132b2b39f3a5c645e6888f4e9ab0b8472a0a840196dbda20774f678c638"
+  },
+  "b": {
+    "source": "research\\prototypes\\b-bloom3.cpp",
+    "source_sha256": "7fb803f389a134f432a393d03ebda57ca499e0acb4b96c43822202914794428b"
+  },
+  "c": {
+    "source": "research\\prototypes\\c-compactbyte3.cpp",
+    "source_sha256": "1d6cb9168349b72eb3483cc55915f2683418bafb8d25d6ece0e247968872cb41"
+  },
+  "d": {
+    "source": "research\\prototypes\\d-wide3-twelve.cpp",
+    "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336"
+  }
+}

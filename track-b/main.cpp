@@ -41,18 +41,23 @@ struct Lookup {
     const std::vector<Term>& terms;
     std::vector<Slot> slots;
     size_t mask;
+    std::array<uint64_t,8192> filter{};
+    static uint64_t filter_bits(uint32_t h) {return (uint64_t(1)<<((h>>13)&63))|(uint64_t(1)<<((h>>19)&63));}
     explicit Lookup(const std::unordered_map<std::string_view, uint32_t>& dictionary, const std::vector<Term>& words) : terms(words) {
         size_t capacity = 1;
         while (capacity < dictionary.size() * 2) capacity *= 2;
         slots.resize(capacity); mask = capacity - 1;
         for (auto [word, id] : dictionary) {
             uint32_t hash = std::hash<std::string_view>()(word); size_t at = hash & mask;
+            filter[hash&8191]|=filter_bits(hash);
             while (slots[at].id != NONE) at = (at + 1) & mask;
             slots[at] = {hash, id};
         }
     }
     uint32_t find(std::string_view word) const {
         uint32_t hash = std::hash<std::string_view>()(word); size_t at = hash & mask;
+        uint64_t wanted=filter_bits(hash);
+        if ((filter[hash&8191]&wanted)!=wanted) return NONE;
         for (;;) {
             const auto& slot = slots[at];
             if (slot.id == NONE) return NONE;
@@ -108,14 +113,14 @@ template<class Doc> struct Posting {
     bool dense() const {return capacity==UINT32_MAX;}
     const Doc* data() const {return capacity?storage.documents:storage.small;}
     void add(uint32_t doc,uint32_t base,uint32_t total) {
-        if (dense()) {storage.bits[(doc-base)/64]|=uint64_t(1)<<((doc-base)%64);return;}
+        if (dense()) {if (count!=doc) {storage.bits[(doc-base)/64]|=uint64_t(1)<<((doc-base)%64);count=doc;}return;}
         if (count && data()[count-1]==doc) return;
         if (uint64_t(count)+1>=std::max<uint64_t>(1,(uint64_t(total)+8*sizeof(Doc)-1)/(8*sizeof(Doc)))) {
             auto* bits=new uint64_t[(size_t(total)+63)/64]{};
             for (uint32_t i=0;i<count;++i) {uint32_t id=data()[i];bits[(id-base)/64]|=uint64_t(1)<<((id-base)%64);}
             bits[(doc-base)/64]|=uint64_t(1)<<((doc-base)%64);
             if (capacity) delete[] storage.documents;
-            storage.bits=bits; capacity=UINT32_MAX; return;
+            storage.bits=bits; capacity=UINT32_MAX;count=doc; return;
         }
         if (count==(capacity?capacity:INLINE)) {
             uint32_t grown=(capacity?capacity:INLINE)*2;
@@ -229,7 +234,7 @@ template<class Doc,class Offset> void solve(const Paths& paths) {
             auto& term = terms[q.terms[q.anchor]];
             if (term.anchor == NONE) term.anchor = anchor_count++;
         }
-        unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        unsigned workers = std::min(12u, std::max(1u, std::thread::hardware_concurrency()));
         if (corpus.size < 2 * 1024 * 1024) workers = 1;
         std::vector<const char*> cuts(workers + 1);
         cuts[0] = corpus.data; cuts[workers] = corpus.end();

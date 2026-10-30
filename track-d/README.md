@@ -4,7 +4,13 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Build forward/reverse CSR with two parsing passes. BFS relabels every component and isolated vertex to improve locality; edges and queries use the same permutation. Exact weighted searches still use bidirectional Dijkstra and 65-bucket radix heaps. Distance and generation share one 64-bit word per vertex/direction. The distance width is derived from (n-1)*UINT32_MAX (53 bits at full scale), and generation wrap clears both arrays before tag reuse. Six workers own independent state. Stop at the valid frontier lower bound and write answers in input order. Zero weights, parallel edges and 64-bit distances are preserved; all relabeling work is timed.
+Six parsers build forward and reverse CSR in two passes. Edge words derive the
+node width from n; sentinel weights use exact sorted overflow entries. There is
+no BFS remapping. Up to twelve query workers own independent generation-tagged
+sparse hash tables with full uint64 distances and safe epoch wrap. Bidirectional
+radix Dijkstra expands the smaller frontier and stops only at the valid sum of
+frontier-minimum lower bounds. Answers retain input order. Zero and wide weights,
+duplicates, parallel edges, isolated nodes and every component remain exact.
 
 ## Build and dependencies
 

@@ -1,0 +1,95 @@
+{
+  "track": "b",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "twelve": {
+      "source": "research/prototypes/b-twelve3.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "d102ac24f88bccefe0c7b4585a5b9844ab9deb6e4018b1648fe4526063b423f5",
+      "walls_s": [
+        0.5338822279991291,
+        0.5633605889997853,
+        0.6257616380007676,
+        0.582121648998509,
+        0.5651462459991308
+      ],
+      "rss_bytes": [
+        351473664,
+        351735808,
+        351801344,
+        351735808,
+        351739904
+      ],
+      "trimmed_mean_s": 0.5702094946658084
+    },
+    "dedup": {
+      "source": "research/prototypes/b-dedup3.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "18ae12e36c4e6f3790211792ea5e705244002a7ca387312a10cfdcbd64d2bbc7",
+      "walls_s": [
+        0.5685891049997736,
+        0.5712391920005757,
+        0.5320941749996564,
+        0.5444144960001722,
+        0.5623666709998361
+      ],
+      "rss_bytes": [
+        351604736,
+        351739904,
+        351735808,
+        351739904,
+        351731712
+      ],
+      "trimmed_mean_s": 0.5584567573332606
+    },
+    "bloom": {
+      "source": "research/prototypes/b-bloom3.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "7fb803f389a134f432a393d03ebda57ca499e0acb4b96c43822202914794428b",
+      "walls_s": [
+        0.5920178619999206,
+        0.5596929869989253,
+        0.5244391110009019,
+        0.5354508430009446,
+        0.5347754320009699
+      ],
+      "rss_bytes": [
+        351797248,
+        351666176,
+        351666176,
+        351666176,
+        351797248
+      ],
+      "trimmed_mean_s": 0.5433064206669466
+    }
+  }
+}

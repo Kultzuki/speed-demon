@@ -1,0 +1,25 @@
+{
+  "a": {
+    "attachment": "2716c290-2863-4d02-9552-52df9d5ec913",
+    "bytes": 9027,
+    "sha256": "826135bd81c1a7965357f4d7472eef8ed82cc5c76223bb20446a2d17a7962ece",
+    "identical_to_second": false
+  },
+  "b": {
+    "attachment": "ae4152bf-d285-4496-a044-9e1897710728",
+    "bytes": 21505,
+    "sha256": "2ad5cd1a55cd66b149bd588ded41cd7d653f33db145a646e616c34f7f95d3b4a",
+    "identical_to_second": true
+  },
+  "c": {
+    "attachment": "9884cb23-162a-4672-b1ec-82a7a108a0f2",
+    "bytes": 11399,
+    "sha256": "9893d296d4e976d57c1e2408d08aa9ab9634172c2c5a060467fa510885c7d5c6",
+    "identical_to_second": false
+  },
+  "c-duplicate": {
+    "attachment": "4a70d0d1-a4ef-444d-8901-6909b3c250a7",
+    "bytes": 11399,
+    "sha256": "9893d296d4e976d57c1e2408d08aa9ab9634172c2c5a060467fa510885c7d5c6"
+  }
+}

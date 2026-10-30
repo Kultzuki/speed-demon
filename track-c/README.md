@@ -4,7 +4,20 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-AVX2 quote parity finds record-safe chunk boundaries, including doubled quotes and embedded newlines. Six workers scan fields with memchr and aggregate exact integer cents and decoded byte lengths. A read-only direct region lookup resolves the join. One shared name catalog is divided into 256 mutex-protected shards; each owns a growing exact hash table, byte arena and country-membership words. This avoids copying the entire catalog per worker. Full byte equality resolves collisions and offsets survive arena growth. The lock covers both interning and membership insertion, so each distinct name/country pair increments exactly one worker's count. Country totals are merged after joining the threads.
+The published section 2.2 contract makes LF followed by a digit or BOM a record
+boundary: names contain no LF and note text contains no digits/BOM. Local cut
+discovery uses that rule; it is not a general arbitrary-CSV boundary shortcut.
+Up to twelve workers decode fields with memchr, preserve escaped quotes and
+significant spaces, and aggregate exact cents and decoded byte lengths.
+
+The lookup's byte-sized country IDs are justified by the 240-country input
+bound plus the unmatched group. A shared catalog has 256 shards, immutable
+owned names in growing arenas, and release/acquire publication. Exact equality
+uses the complete decoded bytes. Only insertion misses take a shard lock;
+atomic membership elects exactly one count per name/country pair. Compact
+nodes avoid redundant stored hashes and string-view descriptors. There is no
+fixed record-length, distinct-name-count or suffix-arena limit. Country totals
+merge after every parser joins.
 
 ## Build and dependencies
 

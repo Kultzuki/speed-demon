@@ -1,0 +1,68 @@
+{
+  "track": "d",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "old": {
+      "source": "research/prototypes/d-wide3-twelve.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "walls_s": [
+        0.6174185989984835,
+        0.5885014840005169,
+        0.6478710569990653,
+        0.7904628839987708,
+        0.7136437320004916
+      ],
+      "rss_bytes": [
+        160432128,
+        160432128,
+        160432128,
+        160432128,
+        160432128
+      ],
+      "trimmed_mean_s": 0.6596444626660135
+    },
+    "private": {
+      "source": "research/prototypes/d-private3.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "733c5cf90483e8d1f3c6a503b90371e6f6ef1765968f20e6f5f7f303f5ec682b",
+      "walls_s": [
+        0.7313476180006546,
+        0.7352866319997702,
+        0.7599099180006306,
+        0.8682774799999606,
+        0.9093761629992514
+      ],
+      "rss_bytes": [
+        167247872,
+        167378944,
+        167378944,
+        167378944,
+        167378944
+      ],
+      "trimmed_mean_s": 0.7878246766667871
+    }
+  }
+}

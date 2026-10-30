@@ -114,3 +114,12 @@ Run `run-5129f4051865`: T=0.095759s, M=48582656 bytes, S=250, D=1, K=19.912571, 
 Runtime source is the stronger restored 0c89c6e implementation; the small improvement over its previous score is run variability, not a new A optimization.
 
 Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.
+
+
+## Continuation from d069bfd: selected local refinement
+
+A shared exact endpoint registry and separate latency/tag hour buckets replace six large endpoint/group catalogs and their serial merge. Twelve workers gather/select/format hours, release consumed buckets, and stream completed hours in order. All SIMD loads stay within the input range; the full uint32 latency and nearest-rank behavior remain.
+
+Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.146446s, selected 0.062678s trimmed mean. See `research/results/continuation3-paired-a.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
+
+Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.

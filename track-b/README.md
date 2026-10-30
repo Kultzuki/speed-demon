@@ -4,7 +4,20 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read all queries first and index only their terms. Six workers parse complete document lines through a read-only exact dictionary. Boolean postings start as sorted unique document lists and promote to bitmaps when dense. Queries retain strict left-to-right evaluation; disjoint document blocks are summarized without merging their indexes. Runtime sampling chooses phrase anchors, then a complete pass stores their 64-bit raw byte offsets. Exact ASCII token comparison around each anchor verifies phrases without crossing TAB/LF boundaries. There is no global token-ID array. Sampling changes work planning only, never correctness. Full byte equality resolves hash collisions.
+Read queries first and index only their terms with up to twelve workers. A small
+negative filter rejects only terms that cannot be in the exact dictionary;
+every possible hit still receives a complete byte comparison. Boolean postings
+start with four inline uint16 document IDs, grow into sorted lists, and promote
+to bitmaps when dense. Dense postings skip repeated writes for the same document.
+Blocks use uint32 IDs if their domain exceeds 65,536 documents. Boolean operators
+fold strictly left to right, independently over disjoint document blocks.
+
+Sampling chooses phrase anchors, followed by a complete exact index pass.
+Relative byte offsets use uint32 only when the whole block fits, with a checked
+uint64 fallback. Exact ASCII token comparisons around mapped anchor positions
+verify phrases without crossing TAB/LF. The corpus mapping stays alive, and no
+global token-ID array or merged postings are needed. Sampling and the negative
+filter change work only; complete term equality resolves every hash collision.
 
 ## Build and dependencies
 

@@ -133,3 +133,12 @@ Run `run-a050a88e5612`: T=0.423428s, M=88023040 bytes, S=384, D=1, K=14.995774, 
 Runtime source is unchanged from b30392c; this rerun improved its recorded best, without another B/D kernel change.
 
 Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.
+
+
+## Continuation from d069bfd: selected local refinement
+
+Only the query-worker cap changes from six to twelve. Six-worker CSR construction, full uint64 sparse labels, overflow weights, radix heaps and balanced bidirectional search remain. Private counters, direct-address labels and narrow sparse labels did not justify replacing this kernel.
+
+Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.759925s, selected 0.628559s trimmed mean. See `research/results/continuation3-paired-d.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
+
+Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.

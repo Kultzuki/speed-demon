@@ -144,3 +144,12 @@ Run `run-5dbacdad7818`: T=0.703434s, M=86552576 bytes, S=570, D=1, K=12.982145, 
 Runtime source is unchanged from b30392c; this rerun improved its recorded best, without another B/D kernel change.
 
 Best-three aggregate is 63.343397; captured rank 19. Exact data: `validation/leaderboard-refinement-final.json`. Public practice scoring remains separate from final holdouts and judging.
+
+
+## Continuation from d069bfd: selected local refinement
+
+Twelve block workers, an exact-safe negative dictionary filter, and duplicate-write suppression for dense postings are selected. Every possible filter hit still goes through exact byte equality. Query folds, phrase verification, uint16/uint32 document fallback and uint32/uint64 relative-offset fallback remain.
+
+Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.775465s, selected 0.549416s trimmed mean. See `research/results/continuation3-paired-b.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
+
+Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.

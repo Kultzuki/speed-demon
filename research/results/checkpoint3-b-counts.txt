@@ -1,0 +1,7 @@
+B terms=75747 bool=53444 lookup_bytes=2097152
+B worker=1 docs=41662 scanned=6049319 found=4789108 boolean=4595843 anchor=167423 dense=177 sparse=2183884 occurrences=167423
+B worker=0 docs=41706 scanned=6050805 found=4789516 boolean=4596569 anchor=166359 dense=180 sparse=2174490 occurrences=166359
+B worker=5 docs=41784 scanned=6043587 found=4783425 boolean=4591368 anchor=165722 dense=179 sparse=2174228 occurrences=165722
+B worker=4 docs=41773 scanned=6043207 found=4784445 boolean=4592684 anchor=166079 dense=176 sparse=2183671 occurrences=166079
+B worker=3 docs=41538 scanned=6043032 found=4783932 boolean=4591193 anchor=166537 dense=180 sparse=2170601 occurrences=166537
+B worker=2 docs=41537 scanned=6046707 found=4786271 boolean=4593561 anchor=166411 dense=179 sparse=2174867 occurrences=166411

@@ -16,8 +16,9 @@ def main():
     parser.add_argument('--sanitized',action='store_true')
     parser.add_argument('--extra-only',action='store_true')
     parser.add_argument('--final',action='store_true')
+    parser.add_argument('--name',default='',help='Use a new evidence/build prefix instead of overwriting a prior gate')
     args=parser.parse_args()
-    name=('final' if args.final else 'refined')+('-sanitized' if args.sanitized else '-release')
+    name=args.name or (('final' if args.final else 'refined')+('-sanitized' if args.sanitized else '-release'))
     output=ROOT/'build'/name
     output.mkdir(parents=True,exist_ok=True)
     provenance={}
@@ -37,7 +38,7 @@ def main():
     if not args.extra_only:
         subprocess.run(command+['--report',str(ROOT/f'validation/{name}.json')],check=True)
         subprocess.run(command+['--full','--report',str(ROOT/f'validation/{name}-full.json')],check=True)
-    units=[] if args.extra_only else [('c','c-boundaries.cpp'),('c','c-concurrent-names.cpp'),('d','d-sparse-state.cpp')]
+    units=[] if args.extra_only else [('a','a-publication-guard.cpp'),('c','c-boundaries.cpp'),('c','c-concurrent-names.cpp'),('d','d-sparse-state.cpp')]
     for track,file in units:
         binary=output/file.removesuffix('.cpp')
         flags=flags_by_track[track]

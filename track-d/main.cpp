@@ -213,6 +213,7 @@ int main(int argc, char** argv) {
         std::vector<int64_t> answers(queries.size());
         std::atomic<size_t> next{0};
         unsigned workers = std::min(6u, std::max(1u, std::thread::hardware_concurrency()));
+        workers=std::min(12u,std::max(1u,std::thread::hardware_concurrency()));
         if (queries.size() < 100) workers = 1;
         std::vector<std::thread> threads;
         for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&] {

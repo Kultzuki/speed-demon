@@ -50,8 +50,8 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
 struct SharedNames {
     struct Node {
         Node* next;
-        size_t hash;
-        std::string_view name;
+        size_t length;
+        std::string_view name() const {return {reinterpret_cast<const char*>(this)+sizeof(Node),length};}
         std::atomic<uint64_t> membership[4]{};
     };
     struct alignas(64) Shard {
@@ -59,7 +59,7 @@ struct SharedNames {
         std::array<std::atomic<Node*>,512> heads{};
         std::vector<std::unique_ptr<char[]>> arenas;
         size_t used=8192;
-        Node* insert(std::string_view name,size_t hash,Node* next) {
+        Node* insert(std::string_view name,Node* next) {
             size_t bytes=sizeof(Node)+name.size();
             size_t at=(used+alignof(Node)-1)&~(alignof(Node)-1);
             if (arenas.empty() || at+bytes>8192) {
@@ -67,7 +67,7 @@ struct SharedNames {
                 at=0;
             }
             char* data=arenas.back().get()+at;
-            auto* node=new(data) Node{next,hash,std::string_view(data+sizeof(Node),name.size())};
+            auto* node=new(data) Node{next,name.size()};
             memcpy(data+sizeof(Node),name.data(),name.size());
             used=at+bytes;
             return node;
@@ -79,7 +79,7 @@ struct SharedNames {
         auto& shard=shards[(hash>>32)&255];
         auto& head=shard.heads[hash&511];
         auto find=[&](Node* node) {
-            while (node && (node->hash!=hash || node->name!=name)) node=node->next;
+            while (node && (node->name()!=name)) node=node->next;
             return node;
         };
         Node* node=find(head.load(std::memory_order_acquire));
@@ -88,7 +88,7 @@ struct SharedNames {
             auto first=head.load(std::memory_order_relaxed);
             node=find(first);
             if (!node) {
-                node=shard.insert(name,hash,first);
+                node=shard.insert(name,first);
                 head.store(node,std::memory_order_release);
             }
         }
@@ -115,7 +115,7 @@ void money(std::string& out, int64_t value) {
 
 struct Partial {
     std::vector<Country> countries;
-    void parse(const char* begin, const char* end, const std::vector<uint16_t>& lookup, size_t count, SharedNames& names) {
+    template<class Id> void parse(const char* begin, const char* end, const std::vector<Id>& lookup, size_t count, SharedNames& names) {
         countries.resize(count);
         const char* p = begin;
         std::string scratch;
@@ -176,7 +176,7 @@ int main(int argc, char** argv) {
         countries[0].key = "_UNMATCHED";
         std::unordered_map<std::string_view, uint16_t> country_ids;
         // The lookup has IDs <= 999999. Out-of-range record IDs are unmatched.
-        std::vector<uint16_t> lookup(1000000);
+        std::vector<uint8_t> lookup(1000000);
         const char* p = regions.data;
         while (p < regions.end() && *p++ != '\n') {}
         while (p < regions.end()) {

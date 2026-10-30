@@ -1,0 +1,19 @@
+{
+  "fetched_at": "2026-10-30T20:17:05.741465+00:00",
+  "anonymous_github_status": 404,
+  "remote_head": "3ad7b344d7ca613975968248270a2a2221c646b2",
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "3ad7b344d7ca613975968248270a2a2221c646b2",
+    "checked_at": "2026-10-30T20:16:29Z"
+  },
+  "queue": {
+    "in_flight": null,
+    "queued": null
+  },
+  "watch_age_s": 41.602335,
+  "watch_matches_remote": true,
+  "recent_successful_private_watch": true,
+  "scope": "Anonymous 404 is consistent with the user-confirmed private visibility; a fresh successful board watch at the same remote head verifies continued read access. A scored new push additionally verifies private cloning/building."
+}
