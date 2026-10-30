@@ -168,3 +168,24 @@ Dockerfiles; `check_all.py` reuses existing images, so rebuild changed images fi
   rebuild offline/sandbox; push one serious candidate; wait; record IDs; reject
   coefficient regressions. Context7 outside the sandbox applies to actual
   library/SDK/CLI documentation questions, not ordinary code-review/logic work.
+
+## Latest user update for the next chat
+
+The user confirmed on October 31 that the GitHub repository was made private.
+They previously installed the competition GitHub App and supplied the repo link.
+Keep the same repo and speed-demon branch. Private repositories are supported by
+the frozen board implementation; repository-specific App access and successful
+watching after the visibility change have not yet been independently verified.
+Check the public board watch state before the next submission; do not re-register.
+
+Both supplied code sets helped the review. The C set directly supplied the
+contract-backed boundary shortcut adopted in Track C: official points rose from
+62.012380 at b30392c to 66.545161 at 154e195. The Rust B document-filter idea was
+tested in an exact C++ prototype but was slower and not promoted. Other supplied
+code exposed useful comparisons and reproduced correctness/bounds defects; no
+whole Rust or C replacement was adopted.
+
+Resume from the current HEAD, with runtime implementation measured at 154e195.
+Final measured aggregate 63.343397, captured rank 19, captured leader 73.812408.
+Refresh those live figures. The user is opening a new chat because context is
+nearly full; continue the existing optimization objective rather than restarting.
