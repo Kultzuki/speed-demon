@@ -197,8 +197,31 @@ int main(int argc, char** argv) {
         SharedNames names;
         std::vector<Partial> parts(workers);
         std::vector<std::thread> threads;
-        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { parts[i].parse(cuts[i], cuts[i+1], lookup, countries.size(), names); });
-        for (auto& thread : threads) thread.join();
+        int fd=open((paths.data+"/records.csv").c_str(),O_RDONLY);
+        if (fd<0) throw std::runtime_error("Cannot open record stream");
+        for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
+            std::vector<char> buffer(65536);
+            size_t have=0,offset=cuts[i]-records.data,stop=cuts[i+1]-records.data;
+            parts[i].countries.resize(countries.size());
+            while (offset<stop || have) {
+                if (offset<stop) {
+                    size_t want=std::min(stop-offset,buffer.size()-have);
+                    ssize_t got=pread(fd,buffer.data()+have,want,offset);
+                    if (got<=0) throw std::runtime_error("Record stream read failed");
+                    offset+=got;have+=got;
+                }
+                size_t limit=have;
+                if (offset<stop) {
+                    while (limit && !(limit<have && buffer[limit-1]=='\n' &&
+                          (unsigned(buffer[limit]-'0')<10 || static_cast<unsigned char>(buffer[limit])==0xef))) --limit;
+                    if (!limit) {buffer.resize(buffer.size()*2);continue;}
+                }
+                parts[i].parse(buffer.data(),buffer.data()+limit,lookup,countries.size(),names);
+                have-=limit;memmove(buffer.data(),buffer.data()+limit,have);
+            }
+        });
+        for (auto& thread:threads) thread.join();
+        close(fd);
         for (unsigned i = 0; i < workers; ++i) {
             for (size_t j = 0; j < countries.size(); ++j) {
                 const auto& from = parts[i].countries[j]; auto& to = countries[j];

@@ -1,0 +1,12 @@
+{
+  "a": {
+    "image_id": "sha256:c42ab4535e317eb5fa8e69eed26d753623755fc668678f2f66181cadbc29edec",
+    "size_bytes": 118931874,
+    "solution_sha256": "c51d4a032c20e6ada4f2f3d11336ab02273e70bde545b633c14cfb41c4aef240"
+  },
+  "c": {
+    "image_id": "sha256:b672e0f9e934ad5e55f1c7ad0a7051f368f07c597d88da63a415287062336a96",
+    "size_bytes": 118955574,
+    "solution_sha256": "d73006439aad9a91b58221254edded4f065329fbbd7d4e78f30b7ddec92ab6eb"
+  }
+}

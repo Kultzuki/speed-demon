@@ -6,7 +6,8 @@ import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-parser=argparse.ArgumentParser();parser.add_argument('--name',default='refined');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--name',default='refined');parser.add_argument('--tracks',default='abcd');args=parser.parse_args()
+assert args.tracks and set(args.tracks)<=set('abcd') and len(set(args.tracks))==len(args.tracks)
 manifest=json.loads((ROOT/'.competition/SHA256SUMS.json').read_text(encoding='utf-8-sig'))['tracks']
 # check.py recreates exactly these output folders. Resolve them before any delete.
 for track in 'abcd':
@@ -15,7 +16,7 @@ for track in 'abcd':
     print(f'Verified sandbox output target: {target}',flush=True)
 sizes={}
 with (ROOT/f'validation/sandbox-{args.name}.txt').open('w') as log:
-    for track in 'abcd':
+    for track in args.tracks:
         command=[sys.executable,str(ROOT/'check.py'),track,'--data',str(ROOT/f'data/{track}/full-seed1'),
                  '--expected',manifest[track]['expected_output_sha256'][0]]
         run=subprocess.run(command,capture_output=True,text=True)
@@ -29,4 +30,4 @@ with (ROOT/f'validation/sandbox-{args.name}.txt').open('w') as log:
         digest=subprocess.check_output(['docker','run','--rm','--network=none','--read-only','--entrypoint','sha256sum',tag,'/app/solution'],text=True).split()[0]
         sizes[track]={'image_id':info['Id'],'size_bytes':info['Size'],'solution_sha256':digest}
 (ROOT/f'validation/image-sizes-{args.name}.json').write_text(json.dumps(sizes,indent=2)+'\n')
-print('PASS all rebuilt offline images, sandbox contracts, sizes and full hashes',flush=True)
+print(f'PASS rebuilt offline images, sandbox contracts, sizes and full hashes: {args.tracks}',flush=True)

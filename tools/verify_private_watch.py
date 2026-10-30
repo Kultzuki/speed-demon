@@ -29,11 +29,19 @@ result['queue'] = team.get('queue')
 checked = datetime.fromisoformat(result['watch']['checked_at'].replace('Z', '+00:00'))
 result['watch_age_s'] = (datetime.now(timezone.utc) - checked).total_seconds()
 result['watch_matches_remote'] = result['watch'].get('head') == result['remote_head']
+latest = {track: item.get('latest') or {} for track, item in team['tracks'].items()}
+result['scored_runs'] = {track: {key: run.get(key) for key in ['run_id','commit','stage','ok']}
+                         for track, run in latest.items()}
+result['private_clone_build_scoring_verified'] = (
+    result.get('anonymous_github_status') == 404 and len(latest) == 4
+    and all(run.get('commit') == result['remote_head'] and run.get('ok')
+            and all((run.get('gates') or {}).get(gate) for gate in ['check','build','correctness','timeout','sandbox'])
+            for run in latest.values()))
 result['recent_successful_private_watch'] = (
     result.get('anonymous_github_status') == 404 and result['watch'].get('ok') is True
     and result['watch_matches_remote'] and 0 <= result['watch_age_s'] < 180)
 result['scope'] = ('Anonymous 404 is consistent with the user-confirmed private visibility; '
                    'a fresh successful board watch at the same remote head verifies continued read access. '
-                   'A scored new push additionally verifies private cloning/building.')
+                   'Four scored runs at this exact remote head additionally verify private cloning, building and scoring.')
 (ROOT / 'validation/private-repository-access.json').write_text(json.dumps(result, indent=2) + '\n')
 print(json.dumps(result, indent=2))

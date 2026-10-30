@@ -1,0 +1,54 @@
+{
+  "a": {
+    "source_sha256": "9e8797adfdfc9625e4ad6aa6fefde0f9460ea13c850271715f0a03316135351d",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "c51d4a032c20e6ada4f2f3d11336ab02273e70bde545b633c14cfb41c4aef240",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O3",
+      "-DNDEBUG",
+      "-static",
+      "-s"
+    ]
+  },
+  "b": {
+    "source_sha256": "7fb803f389a134f432a393d03ebda57ca499e0acb4b96c43822202914794428b",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "90559ab0f5c67a04029f26c56e03a339faf05fdb626ee33be27eba56807cbb0f",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O3",
+      "-DNDEBUG",
+      "-static",
+      "-s"
+    ]
+  },
+  "c": {
+    "source_sha256": "20772b89b370d975d7f210f8ba61262b71ec253e7d2cbf9496e2b9d69e40ca06",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "d73006439aad9a91b58221254edded4f065329fbbd7d4e78f30b7ddec92ab6eb",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O3",
+      "-DNDEBUG",
+      "-static",
+      "-s"
+    ]
+  },
+  "d": {
+    "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+    "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+    "binary_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-O3",
+      "-DNDEBUG",
+      "-static",
+      "-s"
+    ]
+  }
+}

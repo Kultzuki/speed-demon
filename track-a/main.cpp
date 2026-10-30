@@ -8,10 +8,13 @@
 #include <numeric>
 #include <thread>
 
-// The binding input catalogue has 1,842 endpoints; the tag has 15 ID bits.
+// The binding catalogue has 1,842 endpoints, so 11 ID bits are sufficient.
+// A record uses 20 latency bits, 11 endpoint bits and one error bit. The
+// latency sentinel has an exact, ordered uint32 overflow stream per bucket.
+constexpr uint32_t WIDE=(1u<<20)-1;
 struct EndpointTable {
     std::array<std::atomic<uint32_t>,4096> slots{};
-    std::array<std::string_view,4096> names{};
+    std::array<std::string_view,2048> names{};
     std::atomic<uint32_t> count{0};
     uint16_t find(std::string_view name) {
         size_t hash=std::hash<std::string_view>()(name);
@@ -30,8 +33,7 @@ struct EndpointTable {
     }
 };
 struct Bucket {
-    std::vector<uint32_t> latencies;
-    std::vector<uint16_t> tags;
+    std::vector<uint32_t> records,wide;
 };
 struct Partial {
     std::array<Bucket,72> hours;
@@ -50,12 +52,13 @@ struct Partial {
                 p+=32;
             }
             while (*p!=' ') ++p;
-            uint16_t tag=endpoints.find({start,size_t(p-start)});
-            tag|=uint16_t(p[1]=='5')<<15;
+            uint32_t id=endpoints.find({start,size_t(p-start)});
+            uint32_t error=p[1]=='5';
             p+=5;
             uint32_t latency=integer(p);++p;
-            hours[bucket].latencies.push_back(latency);
-            hours[bucket].tags.push_back(tag);
+            auto& b=hours[bucket];
+            b.records.push_back((std::min(latency,WIDE)<<12)|(id<<1)|error);
+            if (latency>=WIDE) b.wide.push_back(latency);
         }
     }
 };
@@ -101,15 +104,20 @@ int main(int argc,char** argv) {
                 size_t total=0;
                 for (auto& part:parts) {
                     auto& b=part.hours[hour];
-                    total+=b.tags.size();
-                    for (uint16_t tag:b.tags) {++counts[tag&32767];errors[tag&32767]+=tag>>15;}
+                    total+=b.records.size();
+                    for (uint32_t word:b.records) {++counts[(word>>1)&2047];errors[(word>>1)&2047]+=word&1;}
                 }
                 uint32_t at=0;
                 for (uint32_t i=0;i<count;++i) {positions[i]=at;at+=counts[i];}
                 values.resize(total);
                 for (auto& part:parts) {
                     auto& b=part.hours[hour];
-                    for (size_t i=0;i<b.tags.size();++i) values[positions[b.tags[i]&32767]++]=b.latencies[i];
+                    size_t wide=0;
+                    for (uint32_t word:b.records) {
+                        uint32_t latency=word>>12;
+                        if (latency==WIDE) latency=b.wide[wide++];
+                        values[positions[(word>>1)&2047]++]=latency;
+                    }
                     b=Bucket{};
                 }
                 auto& output=outputs[hour];

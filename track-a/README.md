@@ -6,9 +6,11 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 Up to twelve workers parse complete line ranges. A shared endpoint registry
 publishes immutable keys with release/acquire ordering and compares their full
-bytes; the 4,096-entry capacity exceeds the binding 1,842-endpoint catalogue.
-Each parser stores uint32 latencies and separate uint16 endpoint/error tags in
-72 hour buckets. SIMD endpoint scans load only within their mapped range.
+bytes; its 2,048-key capacity exceeds the binding 1,842-endpoint catalogue.
+Each parser stores a 32-bit record with 20 latency bits, 11 endpoint bits and
+one error bit in each of 72 hour buckets. The reserved latency sentinel has an
+ordered uint32 overflow stream, so every latency retains all 32 bits exactly.
+SIMD endpoint scans load only within their mapped range.
 
 Workers gather one hour at a time into reusable latency storage, release its
 parser buckets, and compute exact nearest-rank p50/p95/p99 values. Later nth

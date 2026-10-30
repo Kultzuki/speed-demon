@@ -123,3 +123,32 @@ A shared exact endpoint registry and separate latency/tag hour buckets replace s
 Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.146446s, selected 0.062678s trimmed mean. See `research/results/continuation3-paired-a.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
 
 Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.
+
+
+## Official continuation measurement at 7321615
+
+Run `run-14a15eda11d9`: T=0.056243s, M=34742272 bytes, S=283, D=1, K=27.272851, points=71.786527. All official gates passed.
+
+Compared with the refreshed starting best K=19.912571: **retained**. This is one public-practice run; local paired gains and unchanged-code rerun variation are separate from hidden-seed/final judging results.
+
+
+## Packed A follow-up to measured 7321615
+
+One 32-bit record replaces the separate uint32 latency/uint16 tag vectors:
+20 latency bits, 11 endpoint bits and one error bit. The binding 1,842-key
+catalogue fits in 11 bits. The latency sentinel has an exact ordered uint32
+overflow stream, including the sentinel's own numeric value. No input latency
+is truncated and no frequency/distribution assumption decides the answers.
+
+Seven alternating full-hash runs: measured source 0.058654s, packed source
+0.057950s trimmed mean. Runtime is effectively tied locally; process RSS falls
+by about 6-7 MiB. This is a memory tradeoff to measure officially, not an
+established coefficient gain. Raw evidence: research/results/a-packed4-paired.json.
+
+Both release and ASan/UBSan pass 85 dataset comparisons (the prior 83 plus two
+sentinel/overflow-heavy fixtures), four direct programs and forced uint64 B
+offset verification. A's guard program now checks 4,375 parses, with latencies
+0, 2^20-2, 2^20-1, 2^20 and UINT32_MAX, and twelve-way endpoint publication.
+The new A image passes its offline build and full-hash sandbox. B/D sources
+and images are unchanged from 7321615; new builds retain their exact hashes.
+Compiler/source/binary provenance: validation/continuation4ac-*-build.json.

@@ -6,6 +6,18 @@
 #undef main
 #include <cstdlib>
 
+template<class B> bool check_bucket(const B& bucket,uint32_t value,const EndpointTable& table,std::string_view endpoint) {
+    if constexpr (requires {bucket.records;}) {
+        if (bucket.records.size()!=1) return false;
+        uint32_t word=bucket.records[0],latency=word>>12;
+        if (latency==((1u<<20)-1)) latency=bucket.wide[0];
+        return latency==value && (word&1) && table.names[(word>>1)&2047]==endpoint;
+    } else {
+        return bucket.latencies.size()==1 && bucket.latencies[0]==value && bucket.tags.size()==1 &&
+            (bucket.tags[0]&32768) && table.names[bucket.tags[0]&32767]==endpoint;
+    }
+}
+
 int main() {
     EndpointTable table;
     std::vector<std::string> names;
@@ -32,15 +44,14 @@ int main() {
     EndpointTable guards;
     for (unsigned n=1;n<=125;++n) for (std::string_view method:{"GET","POST","PUT","PATCH","DELETE","HEAD","OPTIONS"}) {
         std::string endpoint="/"+std::string(n-1,'x');
-        for (uint32_t value:{0u,UINT32_MAX}) {
+        for (uint32_t value:{0u,(1u<<20)-2,(1u<<20)-1,1u<<20,UINT32_MAX}) {
             std::string line="2026-11-02T17:59:59.999999Z "+std::string(method)+" "+endpoint+" 599 "+std::to_string(value)+"\n";
             char* begin=page+4096-line.size();memcpy(begin,line.data(),line.size());
             Partial partial;partial.parse(begin,page+4096,guards);
             auto& hour=partial.hours[71];
-            if (hour.latencies.size()!=1 || hour.latencies[0]!=value || hour.tags.size()!=1 ||
-                !(hour.tags[0]&32768) || guards.names[hour.tags[0]&32767]!=endpoint) std::abort();
+            if (!check_bucket(hour,value,guards,endpoint)) std::abort();
         }
     }
     munmap(page,8192);
-    puts("PASS A twelve-way exact endpoint publication and 1,750 guard-page parses across all methods, lengths and uint32 extremes");
+    puts("PASS A twelve-way exact endpoint publication and 4,375 guard-page parses across methods, lengths, 20-bit sentinel and uint32 extremes");
 }

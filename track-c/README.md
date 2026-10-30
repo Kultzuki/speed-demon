@@ -7,8 +7,11 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 The published section 2.2 contract makes LF followed by a digit or BOM a record
 boundary: names contain no LF and note text contains no digits/BOM. Local cut
 discovery uses that rule; it is not a general arbitrary-CSV boundary shortcut.
-Up to twelve workers decode fields with memchr, preserve escaped quotes and
-significant spaces, and aggregate exact cents and decoded byte lengths.
+Up to twelve workers read through private 64 KiB buffers and decode complete
+records with memchr, preserving escaped quotes and significant spaces. An
+incomplete record carries forward, and buffers grow for long records. The same
+proven boundary rule selects complete prefixes; no fixed record cap is imposed.
+Totals use exact cents and decoded byte lengths.
 
 The lookup's byte-sized country IDs are justified by the 240-country input
 bound plus the unmatched group. A shared catalog has 256 shards, immutable

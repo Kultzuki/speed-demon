@@ -142,3 +142,10 @@ Only the query-worker cap changes from six to twelve. Six-worker CSR constructio
 Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.759925s, selected 0.628559s trimmed mean. See `research/results/continuation3-paired-d.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
 
 Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.
+
+
+## Official continuation measurement at 7321615
+
+Run `run-5eb2205782b0`: T=0.361719s, M=114028544 bytes, S=385, D=1, K=15.399979, points=59.376007. All official gates passed.
+
+Compared with the refreshed starting best K=15.139976: **retained**. This is one public-practice run; local paired gains and unchanged-code rerun variation are separate from hidden-seed/final judging results.

@@ -158,3 +158,28 @@ Owned name nodes retain length and exact bytes without redundant stored hashes/s
 Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.070719s, selected 0.064280s trimmed mean. See `research/results/continuation3-paired-c.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
 
 Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.
+
+
+## Official continuation measurement at 7321615
+
+Run `run-d5814037f358`: T=0.077342s, M=13303808 bytes, S=349, D=1, K=22.257059, points=67.373389. All official gates passed.
+
+Compared with the refreshed starting best K=21.649058: **retained**. This is one public-practice run; local paired gains and unchanged-code rerun variation are separate from hidden-seed/final judging results.
+
+
+## Buffered C follow-up to measured 7321615
+
+Parser workers read through private 64 KiB buffers. The same section 2.2
+record-boundary rule selects only complete records for each parse call; an
+incomplete record is carried forward, and the buffer grows without a fixed
+record-length cap. Exact owned name storage makes buffer reuse safe. All cents,
+escaping, BOMs, EOF and membership logic remain. No cache-dropping advice is used.
+
+Five alternating public full-hash runs: mapped source 0.068021s, selected 64 KiB
+stream 0.056815s trimmed mean. Larger 256 KiB/1 MiB buffers were slower.
+The huge RSS decrease mostly removes mapped input, and is not an official memory
+saving. Source and anonymous-buffer costs must still be priced by the board.
+Both final release/ASan gates pass 85 dataset comparisons plus the direct and
+forced-offset programs, including the long-name, hostile parallel CSV and both
+full seeds. New A/C images pass offline builds and full-hash sandbox checks.
+Reports and actual build hashes use validation/continuation4ac-*.

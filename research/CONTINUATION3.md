@@ -51,3 +51,40 @@ Anonymous GitHub access returns 404 for the user-confirmed private repository;
 a fresh successful board watch reads the same remote head. Evidence is in
 validation/private-repository-access.json. Scoring the new implementation will
 add a direct private-clone/build check.
+
+## Official result
+
+Implementation `7321615dd4b7f43d35cd71d45c607541b0fd73af` passed every official gate on all four tracks. Best-three public aggregate: **65.975209**, captured rank **14**; leader **74.784070**. Exact run IDs and per-track promotion decisions are in PERF.md and validation/leaderboard-continuation3.json.
+
+
+## Packed A follow-up to measured 7321615
+
+One 32-bit record replaces the separate uint32 latency/uint16 tag vectors:
+20 latency bits, 11 endpoint bits and one error bit. The binding 1,842-key
+catalogue fits in 11 bits. The latency sentinel has an exact ordered uint32
+overflow stream, including the sentinel's own numeric value. No input latency
+is truncated and no frequency/distribution assumption decides the answers.
+
+Seven alternating full-hash runs: measured source 0.058654s, packed source
+0.057950s trimmed mean. Runtime is effectively tied locally; process RSS falls
+by about 6-7 MiB. This is a memory tradeoff to measure officially, not an
+established coefficient gain. Raw evidence: research/results/a-packed4-paired.json.
+
+Both release and ASan/UBSan pass 85 dataset comparisons (the prior 83 plus two
+sentinel/overflow-heavy fixtures), four direct programs and forced uint64 B
+offset verification. A's guard program now checks 4,375 parses, with latencies
+0, 2^20-2, 2^20-1, 2^20 and UINT32_MAX, and twelve-way endpoint publication.
+The new A image passes its offline build and full-hash sandbox. B/D sources
+and images are unchanged from 7321615; new builds retain their exact hashes.
+Compiler/source/binary provenance: validation/continuation4ac-*-build.json.
+
+
+## Buffered C follow-up
+
+Current C uses private 64 KiB pread buffers, carrying incomplete records and
+growing for arbitrarily long records. Exact owned names make reuse safe. The
+boundary shortcut retains the published section 2.2 proof. The public full-hash
+paired mean improves 0.068021s to 0.056815s; larger buffers are rejected. Lower
+RSS mostly reflects absent mapped pages, not a proven cgroup-memory reduction.
+Current A/C plus unchanged B/D pass both 85-comparison gates in
+validation/continuation4ac-* and the A/C offline sandbox checks.

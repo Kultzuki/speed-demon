@@ -153,3 +153,10 @@ Twelve block workers, an exact-safe negative dictionary filter, and duplicate-wr
 Five alternating full-hash-checked Linux-local runs of the actual selected source: checkpoint 0.775465s, selected 0.549416s trimmed mean. See `research/results/continuation3-paired-b.json`. These are AMD/WSL2 timings; RSS includes mapped input and is not official cgroup memory.
 
 Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D boundary/concurrency/state programs, and a forced uint64-offset B full-hash build. A also passes 1,750 guard-page parses and twelve-way endpoint publication. Provenance is in `validation/continuation3-*-build.json`. Offline rebuilt images pass all four public full hashes in the read-only/no-network/unprivileged sandbox; see `validation/sandbox-continuation3.txt` and `image-sizes-continuation3.json`. Official promotion is decided separately from these local measurements.
+
+
+## Official continuation measurement at 7321615
+
+Run `run-210e7863db85`: T=0.551677s, M=102199296 bytes, S=583, D=1, K=14.132306, points=57.510652. All official gates passed.
+
+Compared with the refreshed starting best K=12.982145: **retained**. This is one public-practice run; local paired gains and unchanged-code rerun variation are separate from hidden-seed/final judging results.

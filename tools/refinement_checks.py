@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--extra-only',action='store_true')
     parser.add_argument('--final',action='store_true')
     parser.add_argument('--name',default='',help='Use a new evidence/build prefix instead of overwriting a prior gate')
+    parser.add_argument('--packed-a',action='store_true',help='Include exact packed-latency threshold and overflow-stream cases')
     args=parser.parse_args()
     name=args.name or (('final' if args.final else 'refined')+('-sanitized' if args.sanitized else '-release'))
     output=ROOT/'build'/name
@@ -78,6 +79,9 @@ def main():
         for file,digest in previous['provenance'][track]['inputs_sha256'].items():
             assert validate.digest(data/file)==digest
         validate.check(track,'fresh-full-seed20261031',data,expected)
+    if args.packed_a:
+        import packed_a_cases
+        packed_a_cases.check()
     (ROOT/f'validation/{name}-extra.json').write_text(json.dumps({'provenance':provenance,'results':validate.REPORT},indent=2)+'\n')
     print(f'PASS refinement gate {name}',flush=True)
 
