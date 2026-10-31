@@ -4,6 +4,8 @@ from datetime import datetime,timezone
 import json
 import math
 from pathlib import Path
+import time
+import urllib.error
 import urllib.request
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -13,8 +15,15 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--name',required=True)
     args=parser.parse_args()
-    request=urllib.request.Request(URL,headers={'User-Agent':'CodeScythe-refinement/1.0'})
-    with urllib.request.urlopen(request,timeout=25) as response:board=json.load(response)
+    for attempt in range(6):
+        request=urllib.request.Request(URL+'?snapshot='+str(time.time_ns()),headers={'User-Agent':'CodeScythe-refinement/1.0','Cache-Control':'no-cache'})
+        try:
+            with urllib.request.urlopen(request,timeout=25) as response:board=json.load(response)
+            break
+        except (json.JSONDecodeError,urllib.error.URLError,TimeoutError):
+            if attempt==5:raise
+            print('Board feed temporarily unreadable; retrying a fresh snapshot',flush=True)
+            time.sleep(2)
     teams=[]
     for team in board['teams']:
         best={k:(v.get('best') or {}) for k,v in team.get('tracks',{}).items()}

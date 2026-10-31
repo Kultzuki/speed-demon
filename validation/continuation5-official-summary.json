@@ -1,0 +1,173 @@
+{
+  "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+  "fetched_at": "2026-10-31T05:38:46.223220+00:00",
+  "aggregate": 69.07774428374928,
+  "rank": 16,
+  "leader": 79.190878047782,
+  "latest": {
+    "a": {
+      "run_id": "run-258ef14a9368",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "pushed_at": "2026-10-31T05:33:37Z",
+      "dispatched_at": "2026-10-31T05:36:23Z",
+      "started_at": "2026-10-31T05:37:16Z",
+      "ended_at": "2026-10-31T05:37:17Z",
+      "queue_latency_s": 219.0,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.052783,
+      "M_bytes": 29478912,
+      "S": 290,
+      "D": 1,
+      "K": 28.986473,
+      "points": 73.109768,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 8.111,
+      "image_bytes": 118932051,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "b": {
+      "run_id": "run-c3af4a46878b",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "pushed_at": "2026-10-31T05:33:37Z",
+      "dispatched_at": "2026-10-31T05:36:23Z",
+      "started_at": "2026-10-31T05:37:18Z",
+      "ended_at": "2026-10-31T05:37:19Z",
+      "queue_latency_s": 220.4,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.31168,
+      "M_bytes": 79962112,
+      "S": 922,
+      "D": 1,
+      "K": 18.435477,
+      "points": 63.282719,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 21.609,
+      "image_bytes": 119119210,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "c": {
+      "run_id": "run-6c8aae8ae5d2",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "pushed_at": "2026-10-31T05:33:37Z",
+      "dispatched_at": "2026-10-31T05:36:23Z",
+      "started_at": "2026-10-31T05:37:19Z",
+      "ended_at": "2026-10-31T05:37:20Z",
+      "queue_latency_s": 222.0,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.06621,
+      "M_bytes": 13393920,
+      "S": 379,
+      "D": 1,
+      "K": 23.727679,
+      "points": 68.762763,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 8.119,
+      "image_bytes": 118955104,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "d": {
+      "run_id": "run-12519a0ceed8",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "pushed_at": "2026-10-31T05:33:37Z",
+      "dispatched_at": "2026-10-31T05:36:23Z",
+      "started_at": "2026-10-31T05:37:21Z",
+      "ended_at": "2026-10-31T05:37:22Z",
+      "queue_latency_s": 223.5,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.391017,
+      "M_bytes": 107118592,
+      "S": 391,
+      "D": 1,
+      "K": 14.963401,
+      "points": 58.751516,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 6.257,
+      "image_bytes": 118937602,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    }
+  },
+  "decisions": {
+    "a": {
+      "decision": "unchanged A kernel; retain source and historical best",
+      "all_gates_passed": true,
+      "previous_best_K": 32.732322,
+      "new_K": 28.986473,
+      "K_ratio": 0.8855611587836634
+    },
+    "b": {
+      "decision": "retain",
+      "all_gates_passed": true,
+      "previous_best_K": 14.154553,
+      "new_K": 18.435477,
+      "K_ratio": 1.3024414829631143
+    },
+    "c": {
+      "decision": "retain",
+      "all_gates_passed": true,
+      "previous_best_K": 22.257059,
+      "new_K": 23.727679,
+      "K_ratio": 1.0660743182646009
+    },
+    "d": {
+      "decision": "reject and restore incoming source",
+      "all_gates_passed": true,
+      "previous_best_K": 15.399979,
+      "new_K": 14.963401,
+      "K_ratio": 0.9716507405626981
+    }
+  },
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+    "checked_at": "2026-10-31T05:37:58Z"
+  }
+}

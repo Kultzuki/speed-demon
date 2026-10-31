@@ -165,3 +165,22 @@ sources pass 89 release and 89 ASan/UBSan dataset comparisons, both full seeds,
 four direct programs and the forced uint64 B-offset full hash. Rebuilt offline
 images pass the starter sandbox and match the release binary hashes. These are
 local checks, not official coefficient gains. Official run IDs are pending.
+
+
+## Official continuation measurement 160e4dd
+
+Run `run-12519a0ceed8` at `160e4dd03a5210afd31ba01af791c03d1907da7b`: gates=True,
+T=0.391017s, M=107118592 bytes, S=391,
+D=1, K=14.963401, points=58.751516.
+Previous recorded best K=15.399979. Decision: **reject and restore incoming source**.
+
+Captured best-three aggregate 69.077744, rank 16; leader 79.190878. Snapshot: validation/leaderboard-continuation5-official.json. Public practice, not final judging.
+
+
+## Restored full-width D after official regression
+
+The overflow-label trial at 160e4dd is rejected. The incoming full-uint64 kernel
+is restored without changing A/B/C. Both final source combinations pass 89
+release and 89 sanitizer comparisons, the direct programs and forced uint64 B
+offsets. D was rebuilt offline and passes the full-hash sandbox; the final
+image manifest matches every final release executable. Follow-up run pending.

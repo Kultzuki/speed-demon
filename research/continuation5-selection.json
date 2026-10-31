@@ -10,8 +10,11 @@
       "sha256": "d7b1c4be2974737677f68740f51bd28e91b0bc5d453e89471c76d93ddf253b81"
     },
     "d": {
-      "prototype": "d-labelescape5.cpp",
-      "sha256": "b850747c5612c8cb6aaa8feeaa55fa94d3473d5f8e2441ee44027c5eef09a194"
+      "prototype": "continuation5-start-d.cpp",
+      "sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "decision": "Restored: 160e4dd trial K=14.963401 regresses from best K=15.399979"
     }
-  }
+  },
+  "official_implementation": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+  "status": "B/C officially retained; D restored; final 89-case release/sanitizer gates and rebuilt images pass; follow-up push pending"
 }

@@ -148,3 +148,22 @@ Local WSL2, fresh cgroups, Linux-local hot inputs, process fork/exec/exit timer,
 | d | escaped | 0.726307 | 112410624 | 391 | 1.013712 |
 
 The one-pass B layout wins the full local comparison despite the two-pass layouts lower memory. C and D gains are modest and need official confirmation. The extra helper is stopped; the separate codescythe-bench-continuation5 volume remains. Existing /benchdata and /benchfresh were not changed.
+
+
+## Official result at 160e4dd
+
+Exact pushed commit: 160e4dd03a5210afd31ba01af791c03d1907da7b. Captured at 2026-10-31T05:38:46.223220+00:00.
+Best-three aggregate **69.077744**, rank **16**;
+leader **79.190878**. This remains public practice.
+
+| Track | T seconds | M bytes | S | K | Points | Official run | Decision |
+|---|---:|---:|---:|---:|---:|---|---|
+| A | 0.052783 | 29478912 | 290 | 28.986473 | 73.109768 | run-258ef14a9368 | unchanged A kernel; retain source and historical best |
+| B | 0.31168 | 79962112 | 922 | 18.435477 | 63.282719 | run-c3af4a46878b | retain |
+| C | 0.06621 | 13393920 | 379 | 23.727679 | 68.762763 | run-6c8aae8ae5d2 | retain |
+| D | 0.391017 | 107118592 | 391 | 14.963401 | 58.751516 | run-12519a0ceed8 | reject and restore incoming source |
+
+A has no new runtime change. Each other decision compares the full official coefficient with the starting historical best, not the most recent losing rerun. Rejected candidates must be restored and changed images rebuilt before closing the handover.
+
+
+D is restored locally to the incoming full-uint64 source after its official K regression. B/C are retained. Final mixed-source release/sanitizer gates and a rebuilt D image precede the next push.

@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "track": "b",
+      "case": "continuation5-wide-domain",
+      "sha256": "8a300ec9ee5e24b0f9855b426195081cdc6953482830bbc67ccb6d63d9db8bee",
+      "local_seconds": 0.266534
+    },
+    {
+      "track": "d",
+      "case": "continuation5-wide-labels",
+      "sha256": "a1a54989913355e260b979da4e61ff51373a731531f975b5ba1b83b051c2235d",
+      "local_seconds": 0.03356
+    },
+    {
+      "track": "c",
+      "case": "continuation5-ring-reuse",
+      "sha256": "1aa7dc8407f7bb6ae2c0d5cd560971b60b306a99c2be64a6d6f2b184a54431c5",
+      "local_seconds": 0.06568
+    },
+    {
+      "track": "a",
+      "case": "continuation5-crc-collision",
+      "sha256": "f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88",
+      "local_seconds": 0.017512
+    }
+  ]
+}

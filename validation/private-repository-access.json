@@ -1,19 +1,46 @@
 {
-  "fetched_at": "2026-10-30T20:54:25.846102+00:00",
+  "fetched_at": "2026-10-31T05:44:23.461347+00:00",
   "anonymous_github_status": 404,
-  "remote_head": "7321615dd4b7f43d35cd71d45c607541b0fd73af",
+  "remote_head": "160e4dd03a5210afd31ba01af791c03d1907da7b",
   "watch": {
     "ok": true,
     "error": null,
-    "head": "7321615dd4b7f43d35cd71d45c607541b0fd73af",
-    "checked_at": "2026-10-30T20:53:16Z"
+    "head": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+    "checked_at": "2026-10-31T05:43:24Z"
   },
   "queue": {
     "in_flight": null,
     "queued": null
   },
-  "watch_age_s": 74.601585,
+  "watch_age_s": 64.487172,
   "watch_matches_remote": true,
+  "scored_runs": {
+    "a": {
+      "run_id": "run-258ef14a9368",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "stage": "scored",
+      "ok": true
+    },
+    "b": {
+      "run_id": "run-c3af4a46878b",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "stage": "scored",
+      "ok": true
+    },
+    "c": {
+      "run_id": "run-6c8aae8ae5d2",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "stage": "scored",
+      "ok": true
+    },
+    "d": {
+      "run_id": "run-12519a0ceed8",
+      "commit": "160e4dd03a5210afd31ba01af791c03d1907da7b",
+      "stage": "scored",
+      "ok": true
+    }
+  },
+  "private_clone_build_scoring_verified": true,
   "recent_successful_private_watch": true,
-  "scope": "Anonymous 404 is consistent with the user-confirmed private visibility; a fresh successful board watch at the same remote head verifies continued read access. A scored new push additionally verifies private cloning/building."
+  "scope": "Anonymous 404 is consistent with the user-confirmed private visibility; a fresh successful board watch at the same remote head verifies continued read access. Four scored runs at this exact remote head additionally verify private cloning, building and scoring."
 }

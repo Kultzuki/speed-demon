@@ -34,4 +34,5 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Measure batching or streaming common-anchor phrases to reduce occurrence storage further. Keep sparse/bitmap thresholds and sampling costs in the total measurement.
+Measure packed-stream bucket sizes, dense thresholds and batched exact phrase
+checks. Compare the full coefficient, including memory and source size.

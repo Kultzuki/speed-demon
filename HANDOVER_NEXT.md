@@ -19,8 +19,8 @@ chats were created. Solo entrant remains CodeScythe / Prashant Krishan Bharti.
 ## Current candidate and evidence
 
 Selected sources: A unchanged; B checked query-aware CSR with pipelined lookups;
-C restored mmap plus a safe exact-name prefetch ring; D sparse uint32 labels
-with exact uint64 overflow storage. Runtime dependencies remain zero, D=1,
+C restored mmap plus a safe exact-name prefetch ring; D restored full uint64
+sparse labels after rejecting the overflow-label coefficient regression. Runtime dependencies remain zero, D=1,
 C++20. B targets x86-64-v3, compatible with the scoring CPU. There is no
 approximate/hash-only identity, cached output or seed recognition.
 
@@ -62,11 +62,15 @@ Before this batch, the refreshed board showed 67.167388, rank 20, leader
 78.617098, in validation/leaderboard-continuation5-start.json. The older rank 12
 and leader 75.793 snapshot is historical. Refresh before quoting standings.
 
-This checkpoint is prepared for the next implementation commit and official
-measurement. Do not claim local improvements as official. Wait for all four
-tracks at the pushed SHA, compare K against the recorded best independently,
-and restore any coefficient loser before the final handover is written. The
-board retains historical bests independently of branch tip.
+Commit 160e4dd03a5210afd31ba01af791c03d1907da7b passed all official gates.
+B improved K=14.154553 to 18.435477 and C=22.257059 to 23.727679; both stay.
+D regressed from 15.399979 to 14.963401 despite lower memory, so the stronger
+incoming full-uint64 D source is restored. A is unchanged. Best-three public
+aggregate is 69.077744, captured rank 16, leader 79.190878, in
+validation/leaderboard-continuation5-official.json. Final restored-D release and sanitizer gates each pass 89 comparisons. The
+rebuilt D image and the complete current image manifest match the final
+release binaries. The follow-up push and official measurement are pending.
+The board retains historical bests independently of branch tip.
 
 ## Environment and next steps
 

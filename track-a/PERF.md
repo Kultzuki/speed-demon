@@ -168,3 +168,14 @@ sources pass 89 release and 89 ASan/UBSan dataset comparisons, both full seeds,
 four direct programs and the forced uint64 B-offset full hash. Rebuilt offline
 images pass the starter sandbox and match the release binary hashes. These are
 local checks, not official coefficient gains. Official run IDs are pending.
+
+
+## Official continuation measurement 160e4dd
+
+Run `run-258ef14a9368` at `160e4dd03a5210afd31ba01af791c03d1907da7b`: gates=True,
+T=0.052783s, M=29478912 bytes, S=290,
+D=1, K=28.986473, points=73.109768.
+Previous recorded best K=32.732322. Decision: **unchanged A kernel; retain source and historical best**.
+A runtime source is unchanged; any result difference is rerun variation.
+
+Captured best-three aggregate 69.077744, rank 16; leader 79.190878. Snapshot: validation/leaderboard-continuation5-official.json. Public practice, not final judging.

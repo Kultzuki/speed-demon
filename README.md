@@ -4,9 +4,9 @@ Solo entrant: **Prashant Krishan Bharti**. C++20 implementations for **all four 
 
 | Track | Approach |
 |---|---|
-| A Ingest | Exact shared endpoint registry, latency/tag hour buckets, parallel selection and ordered streaming output |
-| B Index | Query-only exact dictionary with a negative filter, adaptive sparse/bitmap postings, mapped-text phrase verification |
-| C Join | Contract-safe parallel parsing, exact cents, compact owned names and sharded atomic membership |
+| A Ingest | Exact shared endpoint registry, packed hour records with full-width overflow, parallel selection and ordered output |
+| B Index | Pipelined exact dictionary lookups, packed posting streams, checked-width CSR/bitmaps and mapped-text phrase verification |
+| C Join | Contract-safe parallel parsing, exact cents, growing owned names, safe prefetch and sharded atomic membership |
 | D Traverse | Forward/reverse compact CSR, bidirectional radix Dijkstra, generation-tagged sparse uint64 distances |
 
 No third-party runtime dependencies. Every track builds independently, offline,
@@ -37,8 +37,12 @@ builds pass those 69 cases and the four public full hashes. Reports and build
 hashes are in validation/. `--full` checks the published full-size hashes.
 All four selected implementations also match reference outputs on a freshly
 generated full-scale seed 20261031, with input/binary hashes saved in validation/.
-Run it on Linux with Python 3.13 and the compiled binaries. `tools/prepare.py`
-refreshes the four identical helper headers, Dockerfiles and track manifests.
+The complete refinement gate adds boundary, forced-width and fresh-full checks;
+the current continuation adds four more exact regressions for 89 comparisons
+per build mode. See HANDOVER_NEXT.md for the matching final binary directories.
+Run validation on Linux with Python 3.13 and the compiled binaries.
+`tools/prepare.py` initializes headers, Dockerfiles and manifests, overwriting
+current build settings; read it before using it on an optimized checkpoint.
 
 ## Evidence and limits
 
@@ -66,6 +70,9 @@ and [competition rules](https://speeddemon.dev/#coefficient).
 
 The third and fourth pasted sets were preserved and reviewed in
 [research/SUPPLIED_CONTINUATION_REVIEW.md](research/SUPPLIED_CONTINUATION_REVIEW.md).
+The fifth and sixth sets, width/collision reproductions, full coefficient
+comparisons and official retention decisions are in
+[research/CONTINUATION5.md](research/CONTINUATION5.md).
 The repository is private. A fresh successful board watch against the same
 authenticated remote head, with anonymous GitHub access returning 404, is
 recorded in `validation/private-repository-access.json`.

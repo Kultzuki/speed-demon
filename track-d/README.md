@@ -7,10 +7,7 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 Six parsers build forward and reverse CSR in two passes. Edge words derive the
 node width from n; sentinel weights use exact sorted overflow entries. There is
 no BFS remapping. Up to twelve query workers own independent generation-tagged
-sparse hash tables and safe epoch wrap. Common labels occupy uint32 fields;
-the reserved UINT32_MAX value resolves through an exact uint64 overflow map,
-including a distance of UINT32_MAX itself. No query is narrowed or restarted.
-Bidirectional
+sparse hash tables with full uint64 distances and safe epoch wrap. Bidirectional
 radix Dijkstra expands the smaller frontier and stops only at the valid sum of
 frontier-minimum lower bounds. Answers retain input order. Zero and wide weights,
 duplicates, parallel edges, isolated nodes and every component remain exact.
