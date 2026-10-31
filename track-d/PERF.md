@@ -250,3 +250,10 @@ Captured practice aggregate 69.780860, rank 17; leader 80.253740. This is public
 ## Continuation 8 Rust candidate
 
 Rust port selected for official measurement after the complete local gate. All 97 comparisons pass in release, ASan and checked-arithmetic modes; both full seeds and direct tests pass. Rebuilt offline images match the validated release executables exactly. Canonical S=485, D=1. Matched local measurements and rejected trials: research/CONTINUATION8_RUST.md. Official retention is pending; local results are not official scores.
+
+
+## Official Rust continuation at 0ca1987
+
+Run `run-5ccc134f1b0c` at `0ca1987477223527268d60911e073ff334feb8bd`: T=0.397762s, M=102604800, S=473, D=1, K=14.542976. All five official gates pass. Incoming exact-head K=14.469309; historical best K=15.399979. Rust passes every gate; compare with historical best and incoming exact-head rerun before final retention.
+
+Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-candidate.json.

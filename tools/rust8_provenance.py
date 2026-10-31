@@ -13,7 +13,8 @@ def digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 selection = read('research/rust8-selection.json')
 images = read('validation/image-sizes-rust8-final.json')
-static = read('validation/rust8-final-static.json')
+static = read('validation/rust8-final-static-corrected.json' if (ROOT / 'validation/rust8-final-static-corrected.json').exists()
+              else 'validation/rust8-final-static.json')
 old = read('validation/continuation7-final-artifact-provenance.json')
 result = {'scope': 'Frozen Rust A/D and byte-identical validated C++ B/C; no unvalidated trial binary.',
           'compiler': read('validation/rust8-final-release-build.json')['compiler'], 'tracks': {}, 'gates': {}}

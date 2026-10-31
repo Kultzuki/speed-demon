@@ -25,6 +25,10 @@ def main():
     bench6.BUILD.mkdir(exist_ok=True)
     shutil.copy2(ROOT / 'build/bench6/monitor6', bench6.BUILD / 'monitor6')
     static = json.loads((ROOT / f'validation/{args.static}-static.json').read_text())
+    correction = ROOT / 'validation/rust8-canonical-source-correction.json'
+    if correction.exists():
+        rows = json.loads(correction.read_text())['reports'].get(f'{args.static}-static.json', {})
+        for key, row in rows.items(): static[key]['S'] = row['canonical_S']
     track = args.track
     binaries = {f'{track}-cpp8': (ROOT / f'build/continuation7-final-release/track-{track}', 310 if track == 'a' else 385),
                 f'{track}-{args.build}': (ROOT / f'build/{args.build}/track-{track}', static[track]['S'])}

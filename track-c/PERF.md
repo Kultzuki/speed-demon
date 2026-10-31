@@ -261,3 +261,10 @@ continuation7 builds contain the rejected D trial and remain historical only.
 Run `run-aaa6f10b1e14` at `e9deec07fa38f9abf0c167d6768c41c388e37ba5`: T=0.062062s, M=13279232 bytes, S=401, D=1, K=24.343070, points=69.318767. All five official gates passed. Starting historical best K=23.727679: **unchanged retained f992539 kernel; this measurement is rerun variation**.
 
 Captured practice aggregate 69.780860, rank 17; leader 80.253740. This is public practice, not final holdout or human judging. Full record: validation/leaderboard-continuation7-final.json.
+
+
+## Official Rust continuation at 0ca1987
+
+Run `run-026c3a6758fb` at `0ca1987477223527268d60911e073ff334feb8bd`: T=0.061315s, M=13463552, S=401, D=1, K=24.423479. All five official gates pass. Incoming exact-head K=24.343070; historical best K=24.427280. Unchanged B/C source; timing/coefficient differences are rerun variation.
+
+Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-candidate.json.

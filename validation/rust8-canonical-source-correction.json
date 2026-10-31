@@ -1,0 +1,305 @@
+{
+  "captured_at": "2026-10-31T15:57:02.775448+00:00",
+  "reason": "The original local counter summed TOML manifests. Official static_axes.NOT_CODE exempts TOML/data. No executable, timing, memory observation or original report was changed.",
+  "reports": {
+    "rust8-channel-static.json": {
+      "a": {
+        "original_S": 474,
+        "canonical_S": 462,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 521,
+        "canonical_S": 509,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-compact-static.json": {
+      "a": {
+        "original_S": 427,
+        "canonical_S": 415,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 481,
+        "canonical_S": 469,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-exit-static.json": {
+      "a": {
+        "original_S": 441,
+        "canonical_S": 429,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 510,
+        "canonical_S": 498,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-fast-static.json": {
+      "a": {
+        "original_S": 467,
+        "canonical_S": 455,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 521,
+        "canonical_S": 509,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-final-static.json": {
+      "a": {
+        "original_S": 449,
+        "canonical_S": 437,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 485,
+        "canonical_S": 473,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-initial-static.json": {
+      "a": {
+        "original_S": 425,
+        "canonical_S": 413,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 481,
+        "canonical_S": 469,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-owned-once-static.json": {
+      "a": {
+        "original_S": 437,
+        "canonical_S": 425,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 506,
+        "canonical_S": 494,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-read-simple-static.json": {
+      "a": {
+        "original_S": 475,
+        "canonical_S": 463,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 496,
+        "canonical_S": 484,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-read-static.json": {
+      "a": {
+        "original_S": 499,
+        "canonical_S": 487,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 521,
+        "canonical_S": 509,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-relax-static.json": {
+      "a": {
+        "original_S": 441,
+        "canonical_S": 429,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 516,
+        "canonical_S": 504,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-scalar-static.json": {
+      "a": {
+        "original_S": 449,
+        "canonical_S": 437,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 496,
+        "canonical_S": 484,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-swar-static.json": {
+      "a": {
+        "original_S": 467,
+        "canonical_S": 455,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 516,
+        "canonical_S": 504,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    },
+    "rust8-twopass-static.json": {
+      "a": {
+        "original_S": 499,
+        "canonical_S": 487,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "d": {
+        "original_S": 496,
+        "canonical_S": 484,
+        "excluded_data": {
+          "TOML": 12
+        }
+      },
+      "u": {
+        "original_S": 316,
+        "canonical_S": 302,
+        "excluded_data": {
+          "TOML": 14
+        }
+      }
+    }
+  }
+}

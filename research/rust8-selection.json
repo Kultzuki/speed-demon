@@ -9,20 +9,22 @@
         "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db",
         "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145"
       },
-      "S": 449,
+      "S": 437,
       "D": 1,
       "source_origin": "buffered scalar parser",
-      "previous_cpp": "research/baseline8/track-a"
+      "previous_cpp": "research/baseline8/track-a",
+      "initial_counter_S_including_TOML": 449
     },
     "d": {
       "sources": {
         "main.rs": "984b086837a42719fbab78f70dd403da01f3383410a974fa39c9bbe95c882cf3",
         "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4"
       },
-      "S": 485,
+      "S": 473,
       "D": 1,
       "source_origin": "research/prototypes/d-simple8",
-      "previous_cpp": "research/baseline8/track-d"
+      "previous_cpp": "research/baseline8/track-d",
+      "initial_counter_S_including_TOML": 485
     }
   },
   "history": [
@@ -33,6 +35,22 @@
     {
       "at": "2026-10-31T15:52:32.598855+00:00",
       "status": "All local gates, exact offline/LF artifacts and TSan publication pass; first official Rust push pending"
+    },
+    {
+      "at": "2026-10-31T15:57:02.775448+00:00",
+      "status": "Source counter corrected to exclude TOML; kernels unchanged; official build in progress"
+    },
+    {
+      "at": "2026-10-31T16:01:12.995372+00:00",
+      "status": "All official gates passed at 0ca1987477223527268d60911e073ff334feb8bd; measurement recorded"
+    }
+  ],
+  "source_counter_correction": "validation/rust8-canonical-source-correction.json",
+  "official_runs": [
+    {
+      "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+      "summary": "validation/rust8-candidate-official-summary.json",
+      "unchanged_source_rerun": false
     }
   ]
 }

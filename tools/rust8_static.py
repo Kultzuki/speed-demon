@@ -40,7 +40,7 @@ def main():
         counts = json.loads(subprocess.check_output(['docker', 'exec', 'codescythe-research',
             '/work/build/static-tools/scc', '--no-config', '--no-gitignore', '--no-ignore', '--no-scc-ignore',
             '--no-gitmodule', '--no-cocomo', '--no-size', '--no-complexity', '--by-file', '--format', 'json', linux], text=True))
-        result = {'S': sum(c['Code'] for c in counts), 'D': static_axes.dependency_axis(str(dest))['D'],
+        result = {'S': sum(c['Code'] for c in counts if c['Name'] not in static_axes.NOT_CODE), 'D': static_axes.dependency_axis(str(dest))['D'],
                   'original_sha256': original, 'canonical_counts': counts,
                   'formatters': {'rustfmt': '1.10.0-stable (58cf8f9c35 2026-10-13)', 'scc': '4.1.0'},
                   'note': 'Stage has exactly candidate Rust/common/Dockerfile and zero-dependency manifests. '

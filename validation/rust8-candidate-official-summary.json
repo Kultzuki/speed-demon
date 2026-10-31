@@ -1,0 +1,161 @@
+{
+  "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+  "fetched_at": "2026-10-31T15:58:55.698572+00:00",
+  "aggregate": 69.78085979282214,
+  "rank": 28,
+  "leader": 81.80573151957819,
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "0ca1987477223527268d60911e073ff334feb8bd",
+    "checked_at": "2026-10-31T15:58:26Z"
+  },
+  "latest": {
+    "a": {
+      "run_id": "run-672e375ec819",
+      "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+      "pushed_at": "2026-10-31T15:55:04Z",
+      "dispatched_at": "2026-10-31T15:55:04Z",
+      "started_at": "2026-10-31T15:55:36Z",
+      "ended_at": "2026-10-31T15:55:37Z",
+      "queue_latency_s": 31.3,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.04511,
+      "M_bytes": 23592960,
+      "S": 437,
+      "D": 1,
+      "K": 30.827569,
+      "points": 74.446964,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 9.379,
+      "image_bytes": 119433964,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ],
+      "historical_best_K_at_start": 33.234541,
+      "incoming_exact_head_K": 29.654383,
+      "ratio_to_incoming_latest": 1.039561976386425,
+      "ratio_to_historical_best": 0.9275761924920221
+    },
+    "b": {
+      "run_id": "run-bfdb1fa492e6",
+      "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+      "pushed_at": "2026-10-31T15:55:04Z",
+      "dispatched_at": "2026-10-31T15:55:04Z",
+      "started_at": "2026-10-31T15:55:38Z",
+      "ended_at": "2026-10-31T15:55:39Z",
+      "queue_latency_s": 33.5,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.346143,
+      "M_bytes": 71774208,
+      "S": 922,
+      "D": 1,
+      "K": 17.875749,
+      "points": 62.613212,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 1.111,
+      "image_bytes": 119119217,
+      "failure": null,
+      "lang": [
+        "C++"
+      ],
+      "historical_best_K_at_start": 19.373796,
+      "incoming_exact_head_K": 19.243317,
+      "ratio_to_incoming_latest": 0.9289328341886172,
+      "ratio_to_historical_best": 0.9226766401380504
+    },
+    "c": {
+      "run_id": "run-026c3a6758fb",
+      "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+      "pushed_at": "2026-10-31T15:55:04Z",
+      "dispatched_at": "2026-10-31T15:55:04Z",
+      "started_at": "2026-10-31T15:55:40Z",
+      "ended_at": "2026-10-31T15:55:42Z",
+      "queue_latency_s": 36.1,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.061315,
+      "M_bytes": 13463552,
+      "S": 401,
+      "D": 1,
+      "K": 24.423479,
+      "points": 69.390376,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 0.552,
+      "image_bytes": 118950718,
+      "failure": null,
+      "lang": [
+        "C++"
+      ],
+      "historical_best_K_at_start": 24.42728,
+      "incoming_exact_head_K": 24.34307,
+      "ratio_to_incoming_latest": 1.0033031577364728,
+      "ratio_to_historical_best": 0.9998443952826512
+    },
+    "d": {
+      "run_id": "run-5ccc134f1b0c",
+      "commit": "0ca1987477223527268d60911e073ff334feb8bd",
+      "pushed_at": "2026-10-31T15:55:04Z",
+      "dispatched_at": "2026-10-31T15:55:04Z",
+      "started_at": "2026-10-31T15:55:43Z",
+      "ended_at": "2026-10-31T15:55:44Z",
+      "queue_latency_s": 38.4,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.397762,
+      "M_bytes": 102604800,
+      "S": 473,
+      "D": 1,
+      "K": 14.542976,
+      "points": 58.132664,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 9.094,
+      "image_bytes": 119433480,
+      "failure": null,
+      "lang": [
+        "Rust"
+      ],
+      "historical_best_K_at_start": 15.399979,
+      "incoming_exact_head_K": 14.469309,
+      "ratio_to_incoming_latest": 1.0050912590228047,
+      "ratio_to_historical_best": 0.9443503786596072
+    }
+  },
+  "unchanged_source_rerun": false,
+  "snapshot": "leaderboard-rust8-candidate"
+}

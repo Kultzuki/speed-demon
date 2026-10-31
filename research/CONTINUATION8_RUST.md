@@ -115,3 +115,31 @@ Both Cargo manifests/locks check offline. LF-normalized Rust sources compile to
 the exact validated release and image executables:
 validation/rust8-lf-artifact-provenance.json. Complete source/configuration copies
 are retained in rust8-validated/ even if official measurements reject a port.
+
+
+## Canonical source-counter correction during official build
+
+The initial local Rust counter mistakenly included TOML manifest code lines.
+The organizer's static_axes.NOT_CODE excludes TOML/data. The actual canonical
+totals are **A=437, D=473**, both D=1, rather than the conservative 449/485
+shown in the original pre-push reports. Those raw reports, timings, memory and
+source hashes are retained verbatim. Only the coefficient calculation changes.
+Corrected evidence: validation/rust8-canonical-source-correction.json,
+validation/rust8-final-static-corrected.json and
+validation/rust8-final-artifact-provenance-corrected.json. No kernel or binary
+changed. Corrected selected local coefficients are
+research/results/rust8-corrected-selected-coefficients.json.
+
+
+## Official result at 0ca1987
+
+All five gates pass on every track at 0ca1987477223527268d60911e073ff334feb8bd. Captured 2026-10-31T15:58:55.698572+00:00: aggregate 69.780860, rank 28, leader 81.805732. Unchanged-source rerun: False.
+
+| Track | T s | M bytes | S | K | Incoming exact-head K | Historical best K | Run |
+|---|---:|---:|---:|---:|---:|---:|---|
+| A | 0.045110 | 23592960 | 437 | 30.827569 | 29.654383 | 33.234541 | run-672e375ec819 |
+| B | 0.346143 | 71774208 | 922 | 17.875749 | 19.243317 | 19.373796 | run-bfdb1fa492e6 |
+| C | 0.061315 | 13463552 | 401 | 24.423479 | 24.343070 | 24.427280 | run-026c3a6758fb |
+| D | 0.397762 | 102604800 | 473 | 14.542976 | 14.469309 | 15.399979 | run-5ccc134f1b0c |
+
+B/C sources are unchanged. A/D historical records are not improved by the first Rust run; first place remains outstanding. Public practice is separate from final holdouts and judging.
