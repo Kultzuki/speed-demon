@@ -184,3 +184,28 @@ is restored without changing A/B/C. Both final source combinations pass 89
 release and 89 sanitizer comparisons, the direct programs and forced uint64 B
 offsets. D was rebuilt offline and passes the full-hash sandbox; the final
 image manifest matches every final release executable. Follow-up run pending.
+
+
+## Official continuation measurement c503752
+
+Run `run-db13a80ccdcb` at `c503752efebdbebcd9c6de41a4485af8ef1776fd`: gates=True,
+T=0.368451s, M=123584512 bytes, S=385,
+D=1, K=15.015017, points=58.826292.
+Previous recorded best K=15.399979. Decision: **restored incoming full-uint64 kernel; retain proven source**.
+
+Captured best-three aggregate 69.160567, rank 16; leader 79.338836. Snapshot: validation/leaderboard-continuation5-final.json. Public practice, not final judging.
+
+
+## Continuation 7: selected local candidate
+
+Parse graph text once, encode normal temporary edges in eight bytes, and index a growing exact per-worker stream for all wider weights. Bucket each direction into 64 node ranges whose owners count/prefix/scatter without shared atomic cursors. Final CSR, full uint64 labels and balanced bidirectional radix search are retained.
+
+public: T=0.839969->0.613400s, M=124801024->125763584 bytes, S=385->450, D=1; local K ratio 1.141378 (`research/results/d-heap-layout7.json`).
+
+fresh: T=0.850462->0.607711s, M=114728960->125358080 bytes, S=385->450, D=1; local K ratio 1.135325 (`research/results/d-compact-fresh7.json`).
+
+Checkpoint phase medians from the separate instrumented source: map-degree-count=121.812 ms, prefix-allocate=41.082 ms, parse-scatter=283.725 ms, build-cleanup=7.338 ms, parse-queries=0.181 ms, search=396.997 ms, format=0.111 ms, output=0.171 ms. Raw stderr is in research/results/d-lifetime-workers7.json. These diagnostic intervals omit parts of process startup/cleanup and must not be added to invent an official time.
+
+These are alternating hot-data local WSL2 measurements with fresh cgroups, including process exit; they are not official scores. Short A/C repeats vary materially, and the gain is not a stable percentage across every batch. Every measured output hash matches.
+
+The frozen combination passes 93 release and 93 ASan/UBSan dataset comparisons, both full seeds, the existing direct guard/publication/boundary/membership/state checks, and two new independent checks of all 200,000 forward/reverse CSR edges. Forced uint64 B offsets pass the full hash. All four rebuilt offline images pass the unprivileged read-only/no-network starter sandbox and their executables match the validated release binaries exactly. Exact source/common/compiler/binary/image identities are in validation/continuation7-artifact-provenance.json. Official retention remains pending.

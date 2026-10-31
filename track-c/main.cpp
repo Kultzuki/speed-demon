@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "common.hpp"
 #include <array>
 #include <limits>
@@ -9,6 +10,16 @@
 #include <atomic>
 #include <memory>
 
+static inline size_t fast_hash(std::string_view name) {
+    const char* p=name.data();
+    size_t n=name.size();
+    uint64_t a=0,b=0;
+    if (n>=8) {__builtin_memcpy(&a,p,8);__builtin_memcpy(&b,p+n-8,8);}
+    else {for (size_t i=0;i<n;++i) a=a<<8|uint8_t(p[i]); b=a;}
+    uint64_t h=(a^std::rotl(b,29))+(n*0x9E3779B97F4A7C15ull);
+    h^=h>>30;h*=0xBF58476D1CE4E5B9ull;h^=h>>27;h*=0x94D049BB133111EBull;h^=h>>31;
+    return size_t(h);
+}
 struct Field {
     std::string_view value;
     size_t bytes;
@@ -76,7 +87,7 @@ struct SharedNames {
     std::array<Shard,256> shards;
 
     size_t prefetch(std::string_view name) {
-        size_t hash=std::hash<std::string_view>()(name);
+        size_t hash=fast_hash(name);
         auto& head=shards[(hash>>32)&255].heads[hash&511];
         __builtin_prefetch(&head,0,3);
         if (auto* node=head.load(std::memory_order_acquire)) __builtin_prefetch(node,0,3);
@@ -127,7 +138,7 @@ struct Partial {
         countries.resize(count);
         const char* p = begin;
         struct Pending {std::string scratch;std::string_view name;uint16_t country;size_t hash;};
-        std::array<Pending,16> pending;
+        std::array<Pending,4> pending;
         size_t serial=0;
         auto retire=[&](Pending& old) {countries[old.country].distinct+=names.add(old.name,old.country,old.hash);};
         while (p < end) {
@@ -233,5 +244,6 @@ int main(int argc, char** argv) {
             output += '\n';
         }
         write_output(paths.out + "/aggregates.txt", output);
+        _exit(0);
     } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
 }

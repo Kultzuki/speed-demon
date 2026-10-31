@@ -1,0 +1,22 @@
+{
+  "source": "codescythe-research:/benchfresh/seed20261031",
+  "volume": "codescythe-bench-continuation5",
+  "destination": "/data/fresh7",
+  "inputs_sha256": {
+    "a": {
+      "requests.log": "10067b641c83ca341f0ee6157dc131f1c5ec83d7d9f174ab8d27093fa8f0538a"
+    },
+    "b": {
+      "docs.txt": "8421204c6bc75de0a73c893e7a34c48e5a7bbf5b57cc470e1d61a025e740ff14",
+      "queries.txt": "3ca236629ac37dd5867aa7c42399576ab8d7045ee07d534ccaf9bfb0f1b97f31"
+    },
+    "c": {
+      "records.csv": "57420e5c11e8072e4706b1a9d069ec554c5181835ce0385c4c7992137432035d",
+      "regions.csv": "21e0c617807cb378baa43646c0f1c1f2f37e2b40d088618f83cf49a0fa5af4ae"
+    },
+    "d": {
+      "graph.txt": "0ea6d37eba1f8d4548b668e7ef1d236202b454d666206636c6c05977ad97c311",
+      "queries.txt": "b58913144ab06871748f19c66c76187b502c20e2860d806e58b030a002b86862"
+    }
+  }
+}

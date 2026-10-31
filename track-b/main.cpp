@@ -294,7 +294,7 @@ template<class Doc> class BlockList {
     static constexpr size_t STRIDE=sizeof(Doc)==2?3:8;
     using Packed=std::conditional_t<sizeof(Doc)==2,u32,u64>;
 public:
-    static constexpr size_t BLOCK = 1 << 12;          // entries per block
+    static constexpr size_t BLOCK = 1 << 16;          // entries per block
     static constexpr size_t BYTES = STRIDE * BLOCK + sizeof(Packed);    // a 4-byte store at the last entry spills one byte
     ~BlockList() { for (uint8_t* b : blocks_) munmap(b, BYTES); }
 

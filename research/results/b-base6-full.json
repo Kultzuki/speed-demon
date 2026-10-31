@@ -1,0 +1,22 @@
+{
+  "track": "b",
+  "data": "/data/b",
+  "runs": 1,
+  "entries": {
+    "base-b": {
+      "T_s": 0.527013324,
+      "M_bytes": 337436672,
+      "sha256": [
+        "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927"
+      ],
+      "raw": [
+        {
+          "T_s": 0.527013324,
+          "M_bytes": 337436672,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ]
+    }
+  }
+}

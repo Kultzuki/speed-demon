@@ -16,5 +16,8 @@
     }
   },
   "official_implementation": "160e4dd03a5210afd31ba01af791c03d1907da7b",
-  "status": "B/C officially retained; D restored; final 89-case release/sanitizer gates and rebuilt images pass; follow-up push pending"
+  "status": "Final restored mix passes both 89-case gates, rebuilt sandbox images and all official gates",
+  "final_commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+  "final_aggregate": 69.16056669320479,
+  "final_rank": 16
 }

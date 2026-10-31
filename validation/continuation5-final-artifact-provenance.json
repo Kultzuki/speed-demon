@@ -1,0 +1,87 @@
+{
+  "implementation_commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+  "scope": "Final actual sources, final release build and rebuilt images; original 160e4dd trial evidence remains separate",
+  "tracks": {
+    "a": {
+      "build": {
+        "source_sha256": "9e8797adfdfc9625e4ad6aa6fefde0f9460ea13c850271715f0a03316135351d",
+        "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "binary_sha256": "c51d4a032c20e6ada4f2f3d11336ab02273e70bde545b633c14cfb41c4aef240",
+        "flags": [
+          "-std=c++20",
+          "-pthread",
+          "-O3",
+          "-DNDEBUG",
+          "-static",
+          "-s"
+        ]
+      },
+      "image": {
+        "image_id": "sha256:0dc6f577ffd496fac8bf36c53ae1ec7f730bcbabf965a14f828670aab80106bb",
+        "size_bytes": 118931874,
+        "solution_sha256": "c51d4a032c20e6ada4f2f3d11336ab02273e70bde545b633c14cfb41c4aef240"
+      }
+    },
+    "b": {
+      "build": {
+        "source_sha256": "4743dcb3bd6465ee61d5fdd63220b0ac4e418808afd4656c271d3aeeccf10128",
+        "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "binary_sha256": "187d626b6107fee6e0618e940f952a36cedabdf1958dc2eee976903a9827a38b",
+        "flags": [
+          "-std=c++20",
+          "-pthread",
+          "-O3",
+          "-DNDEBUG",
+          "-static",
+          "-s",
+          "-march=x86-64-v3"
+        ]
+      },
+      "image": {
+        "image_id": "sha256:6e7f93000ad20295a94ff419651dd1de940d6bff117f36495dba699161867020",
+        "size_bytes": 119119034,
+        "solution_sha256": "187d626b6107fee6e0618e940f952a36cedabdf1958dc2eee976903a9827a38b"
+      }
+    },
+    "c": {
+      "build": {
+        "source_sha256": "d7b1c4be2974737677f68740f51bd28e91b0bc5d453e89471c76d93ddf253b81",
+        "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "binary_sha256": "e4a8605bafac8ef58fb5fe6c40dd8e808d3c96479d82f715a192b06b344d7f43",
+        "flags": [
+          "-std=c++20",
+          "-pthread",
+          "-O3",
+          "-DNDEBUG",
+          "-static",
+          "-s"
+        ]
+      },
+      "image": {
+        "image_id": "sha256:b50c60ab937d834f97415c02ad73a957d744b6542e1841a3c297be5ade8b9bdc",
+        "size_bytes": 118954922,
+        "solution_sha256": "e4a8605bafac8ef58fb5fe6c40dd8e808d3c96479d82f715a192b06b344d7f43"
+      }
+    },
+    "d": {
+      "build": {
+        "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+        "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "binary_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+        "flags": [
+          "-std=c++20",
+          "-pthread",
+          "-O3",
+          "-DNDEBUG",
+          "-static",
+          "-s"
+        ]
+      },
+      "image": {
+        "image_id": "sha256:4c107c9bf1cf3af50e99fb9f9d9658ca16a2344a2e639b73b1f07249714cc832",
+        "size_bytes": 118926127,
+        "solution_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9"
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ The published section 2.2 contract makes LF followed by a digit or BOM a record
 boundary: names contain no LF and note text contains no digits/BOM. Local cut
 discovery uses that rule; it is not a general arbitrary-CSV boundary shortcut.
 Up to twelve workers parse complete mapped ranges with memchr, preserving
-escaped quotes and significant spaces. A sixteen-record pipeline prefetches
+escaped quotes and significant spaces. A four-record pipeline prefetches
 the exact name table while retaining decoded escaped names until their lookup
 retires. There is no fixed record cap. Totals use exact cents and decoded byte
 lengths. The losing buffered implementation from 12aa1a4 has been removed.
@@ -21,6 +21,9 @@ atomic membership elects exactly one count per name/country pair. Compact
 nodes avoid redundant stored hashes and string-view descriptors. There is no
 fixed record-length, distinct-name-count or suffix-arena limit. Country totals
 merge after every parser joins.
+The hash reads the first and last eight decoded bytes plus length; complete
+decoded bytes still decide equality. After the output is checked and closed,
+`_exit(0)` skips C++ object destruction. Kernel process cleanup remains timed.
 
 ## Build and dependencies
 

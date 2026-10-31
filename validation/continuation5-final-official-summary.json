@@ -1,0 +1,173 @@
+{
+  "commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+  "fetched_at": "2026-10-31T05:48:24.092372+00:00",
+  "aggregate": 69.16056669320479,
+  "rank": 16,
+  "leader": 79.33883575988872,
+  "latest": {
+    "a": {
+      "run_id": "run-02ab1cca8d4c",
+      "commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+      "pushed_at": "2026-10-31T05:45:35Z",
+      "dispatched_at": "2026-10-31T05:45:35Z",
+      "started_at": "2026-10-31T05:45:51Z",
+      "ended_at": "2026-10-31T05:45:52Z",
+      "queue_latency_s": 15.8,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.050963,
+      "M_bytes": 30470144,
+      "S": 290,
+      "D": 1,
+      "K": 29.305039,
+      "points": 73.347115,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 0.584,
+      "image_bytes": 118932051,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "b": {
+      "run_id": "run-23826c7d60fc",
+      "commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+      "pushed_at": "2026-10-31T05:45:35Z",
+      "dispatched_at": "2026-10-31T05:45:35Z",
+      "started_at": "2026-10-31T05:45:52Z",
+      "ended_at": "2026-10-31T05:45:53Z",
+      "queue_latency_s": 17.4,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.30495,
+      "M_bytes": 80130048,
+      "S": 922,
+      "D": 1,
+      "K": 18.629977,
+      "points": 63.510615,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 0.554,
+      "image_bytes": 119119210,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "c": {
+      "run_id": "run-25f9cb923f54",
+      "commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+      "pushed_at": "2026-10-31T05:45:35Z",
+      "dispatched_at": "2026-10-31T05:45:35Z",
+      "started_at": "2026-10-31T05:45:54Z",
+      "ended_at": "2026-10-31T05:45:55Z",
+      "queue_latency_s": 19.2,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.087797,
+      "M_bytes": 12759040,
+      "S": 379,
+      "D": 1,
+      "K": 20.806314,
+      "points": 65.909758,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 0.671,
+      "image_bytes": 118955104,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "d": {
+      "run_id": "run-db13a80ccdcb",
+      "commit": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+      "pushed_at": "2026-10-31T05:45:35Z",
+      "dispatched_at": "2026-10-31T05:45:35Z",
+      "started_at": "2026-10-31T05:45:56Z",
+      "ended_at": "2026-10-31T05:45:57Z",
+      "queue_latency_s": 20.7,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.368451,
+      "M_bytes": 123584512,
+      "S": 385,
+      "D": 1,
+      "K": 15.015017,
+      "points": 58.826292,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 5.675,
+      "image_bytes": 118926296,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    }
+  },
+  "decisions": {
+    "a": {
+      "decision": "unchanged A kernel; retain source and historical best",
+      "all_gates_passed": true,
+      "previous_best_K": 32.732322,
+      "new_K": 29.305039,
+      "K_ratio": 0.8952936183384729
+    },
+    "b": {
+      "decision": "unchanged retained 160e4dd kernel; rerun variation",
+      "all_gates_passed": true,
+      "previous_best_K": 14.154553,
+      "new_K": 18.629977,
+      "K_ratio": 1.3161826445526044
+    },
+    "c": {
+      "decision": "unchanged retained 160e4dd kernel; rerun variation",
+      "all_gates_passed": true,
+      "previous_best_K": 22.257059,
+      "new_K": 20.806314,
+      "K_ratio": 0.9348186568584824
+    },
+    "d": {
+      "decision": "restored incoming full-uint64 kernel; retain proven source",
+      "all_gates_passed": true,
+      "previous_best_K": 15.399979,
+      "new_K": 15.015017,
+      "K_ratio": 0.9750024334448768
+    }
+  },
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+    "checked_at": "2026-10-31T05:47:45Z"
+  }
+}

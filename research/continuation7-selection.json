@@ -1,0 +1,47 @@
+{
+  "checkpoint": "c503752efebdbebcd9c6de41a4485af8ef1776fd",
+  "archive": "C:\\Users\\kultzuki\\Coding\\Speed-demon\\.out\\continuation7-incoming",
+  "selected": {
+    "a": {
+      "source": "research/prototypes/continuation7-incoming-a.cpp",
+      "incoming_sha256": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+      "selected_sha256": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+      "S": 310,
+      "D": 1
+    },
+    "b": {
+      "source": "research/prototypes/continuation7-block16-b.cpp",
+      "incoming_sha256": "4743dcb3bd6465ee61d5fdd63220b0ac4e418808afd4656c271d3aeeccf10128",
+      "selected_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "S": 922,
+      "D": 1
+    },
+    "c": {
+      "source": "research/prototypes/continuation7-incoming-exit-c.cpp",
+      "incoming_sha256": "28d05177d550417dda7c5750b9a49cc0437b7b9756452b182a81f84f732767e6",
+      "selected_sha256": "5dee5f7f05040b557e28fbbf57fa7d6165f232191efd349e8f9b2d7304623841",
+      "S": 401,
+      "D": 1
+    },
+    "d": {
+      "source": "research/prototypes/continuation7-compact-shards-d.cpp",
+      "incoming_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "selected_sha256": "46b98e35544a0d4fc66e7387823ce5cdbd12747856f9f47e8cab8bd24ab52b81",
+      "S": 450,
+      "D": 1
+    }
+  },
+  "status": "local selection only; full gates, rebuilt images and official K pending",
+  "rejected": [
+    "A parallel prefault and reserve",
+    "C split membership",
+    "D inline/spill graph",
+    "D packed radix entries",
+    "generator-only A/C PGO: no established gain over simpler finalists"
+  ],
+  "unselected": [
+    "B exclusive interior bitmap words and SIMD keys",
+    "D twelve-worker construction",
+    "generic early exit in A/B/D"
+  ]
+}

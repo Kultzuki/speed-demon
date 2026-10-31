@@ -5,6 +5,7 @@
 #include <numeric>
 #include <thread>
 #include <mutex>
+#include <memory>
 
 struct Edge { uint32_t node, weight; };
 
@@ -47,53 +48,111 @@ struct Graph {
     EdgeStore edges[2];
     uint32_t n;
 
+
     explicit Graph(const std::string& path) {
         MappedFile file(path);
         const char* p=file.data;
         n=integer(p);++p;
         uint32_t m=integer(p);++p;
+        constexpr unsigned SHARDS=64;
+        unsigned shift=unsigned(std::max(0,int(std::bit_width(n-1))-6));
         unsigned workers=std::min(6u,std::max(1u,std::thread::hardware_concurrency()));
-        if (file.size<2*1024*1024) workers=1;
+        if(file.size<2*1024*1024) workers=1;
         std::vector<const char*> cuts(workers+1);
         cuts[0]=p;cuts[workers]=file.end();
-        for (unsigned i=1;i<workers;++i) {
+        for(unsigned i=1;i<workers;++i) {
             auto at=p+(file.end()-p)*i/workers;
-            while (at<file.end() && at[-1]!='\n') ++at;
+            while(at<file.end() && at[-1]!='\n') ++at;
             cuts[i]=at;
         }
-        for (auto& side:offset) side.resize(size_t(n)+1);
-        std::vector<std::thread> threads;
-        // Atomic references avoid allocating a second degree table.
-        for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
-            const char* at=cuts[i];
-            while (at<cuts[i+1]) {
-                uint32_t u=integer(at);++at;
-                uint32_t v=integer(at);++at;
-                integer(at);++at;
-                std::atomic_ref<uint32_t>(offset[0][u+1]).fetch_add(1,std::memory_order_relaxed);
-                std::atomic_ref<uint32_t>(offset[1][v+1]).fetch_add(1,std::memory_order_relaxed);
+        struct Triple {uint32_t u,v,w;};
+        std::vector<std::vector<uint64_t>> parsed(workers);
+        std::vector<std::vector<Triple>> wide(workers);
+        for(auto& side:edges) side.configure(n);
+        unsigned weight_bits=edges[0].shift;
+        uint64_t sentinel=edges[0].mask;
+        // A sentinel record indexes a growing per-worker stream, preserving
+        // all endpoints and uint32 weights. Normal records need eight bytes.
+        auto decode=[&](uint64_t word) -> Triple {
+            if((word&sentinel)==sentinel) {
+                uint64_t index=word>>weight_bits;
+                return wide[index%workers][index/workers];
             }
-        });
-        for (auto& t:threads)t.join();
-        for (unsigned d=0;d<2;++d) {
-            std::partial_sum(offset[d].begin(),offset[d].end(),offset[d].begin());
-            edges[d].configure(n);edges[d].resize(m);
-        }
-        auto forward=offset[0],reverse=offset[1];
-        threads.clear();
-        for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
-            const char* at=cuts[i];
-            while (at<cuts[i+1]) {
+            return {uint32_t(word>>32),uint32_t(word)>>weight_bits,uint32_t(word&sentinel)};
+        };
+        std::vector<std::array<uint32_t,SHARDS>> counts[2];
+        for(auto& side:counts) side.resize(workers);
+        std::vector<std::thread> threads;
+        for(unsigned t=0;t<workers;++t) threads.emplace_back([&,t] {
+            auto& part=parsed[t];
+            part.reserve(size_t(m)/workers+4096);
+            const char* at=cuts[t];
+            while(at<cuts[t+1]) {
                 uint32_t u=integer(at);++at;
                 uint32_t v=integer(at);++at;
                 uint32_t w=integer(at);++at;
-                uint32_t a=std::atomic_ref<uint32_t>(forward[u]).fetch_add(1,std::memory_order_relaxed);
-                uint32_t b=std::atomic_ref<uint32_t>(reverse[v]).fetch_add(1,std::memory_order_relaxed);
-                edges[0].set(a,{v,w});edges[1].set(b,{u,w});
+                if(w>=sentinel) {
+                    uint64_t index=uint64_t(wide[t].size())*workers+t;
+                    if(index>(UINT64_MAX>>weight_bits)) std::terminate();
+                    part.push_back((index<<weight_bits)|sentinel);
+                    wide[t].push_back({u,v,w});
+                } else part.push_back((uint64_t(u)<<32)|(uint64_t(v)<<weight_bits)|w);
+                ++counts[0][t][u>>shift];++counts[1][t][v>>shift];
             }
         });
-        for (auto& t:threads)t.join();
-        for (auto& side:edges) side.finish();
+        for(auto& thread:threads) thread.join();
+        threads.clear();
+        std::unique_ptr<uint64_t[]> bucket(new uint64_t[m]);
+        std::vector<uint32_t> cursor(n);
+        for(auto& side:offset) side.resize(size_t(n)+1);
+        for(unsigned d=0;d<2;++d) {
+            std::array<uint32_t,SHARDS+1> first{};
+            auto positions=counts[d];
+            uint32_t total=0;
+            for(unsigned b=0;b<SHARDS;++b) {
+                first[b]=total;
+                for(unsigned t=0;t<workers;++t) {
+                    uint32_t count=counts[d][t][b];
+                    positions[t][b]=total;total+=count;
+                }
+            }
+            first[SHARDS]=total;
+            if(total!=m) throw std::runtime_error("Edge count mismatch");
+            for(unsigned t=0;t<workers;++t) threads.emplace_back([&,t] {
+                auto at=positions[t];
+                for(uint64_t word:parsed[t]) {
+                    auto edge=decode(word);
+                    bucket[at[(d?edge.v:edge.u)>>shift]++]=word;
+                }
+            });
+            for(auto& thread:threads) thread.join();
+            threads.clear();
+            if(d) std::vector<std::vector<uint64_t>>{}.swap(parsed);
+            edges[d].configure(n);edges[d].resize(m);
+            std::atomic<unsigned> next{0};
+            for(unsigned t=0;t<workers;++t) threads.emplace_back([&] {
+                for(unsigned b;(b=next.fetch_add(1,std::memory_order_relaxed))<SHARDS;) {
+                    uint32_t lo=std::min<uint64_t>(n,uint64_t(b)<<shift);
+                    uint32_t hi=std::min<uint64_t>(n,uint64_t(b+1)<<shift);
+                    for(uint32_t i=first[b];i<first[b+1];++i) {
+                        auto edge=decode(bucket[i]);
+                        ++offset[d][(d?edge.v:edge.u)+1];
+                    }
+                    uint32_t sum=first[b];
+                    for(uint32_t u=lo;u<hi;++u) {
+                        cursor[u]=sum;sum+=offset[d][u+1];offset[d][u+1]=sum;
+                    }
+                    for(uint32_t i=first[b];i<first[b+1];++i) {
+                        auto edge=decode(bucket[i]);
+                        uint32_t u=d?edge.v:edge.u,v=d?edge.u:edge.v;
+                        edges[d].set(cursor[u]++,{v,edge.w});
+                    }
+                }
+            });
+            for(auto& thread:threads) thread.join();
+            threads.clear();
+            edges[d].finish();
+        }
     }
 
 };

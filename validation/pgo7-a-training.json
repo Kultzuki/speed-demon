@@ -1,0 +1,31 @@
+{
+  "scope": "Generator-only local PGO trial; no public/holdout input or cached answers in profiles.",
+  "track": "a",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "seeds": [
+    197731,
+    806317
+  ],
+  "scale": "sample",
+  "generator_sha256": "dffbc4aa1f4e4df155cc5755c54c7b2c9713093b61fbbac6f9a356e6e1a628a4",
+  "source_sha256": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+  "binary_sha256": "1e26c4a5bc5583d6cb3f24617f1703927ed31b2b7f6087de017275d660ff5776",
+  "inputs_sha256": {
+    "197731": {
+      "requests.log": "734b0fa49c1aa570d6df153ef27d80b07a7cf1349543be2bb8804fd3f67c6be1"
+    },
+    "806317": {
+      "requests.log": "2fae0b5e11c3fd15bd1a0672c9dadd99681e36dc7bd9027a2721083f7a81e6f0"
+    }
+  },
+  "profiles_sha256": {
+    "work/build/pgo7/a/solution-continuation7-incoming-a.gcda": "ceac9419f6e61853b5b8aa99a3966178a524fe7ee53a016e00f9c5ea337260bf"
+  }
+}

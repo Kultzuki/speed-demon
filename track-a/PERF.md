@@ -179,3 +179,29 @@ Previous recorded best K=32.732322. Decision: **unchanged A kernel; retain sourc
 A runtime source is unchanged; any result difference is rerun variation.
 
 Captured best-three aggregate 69.077744, rank 16; leader 79.190878. Snapshot: validation/leaderboard-continuation5-official.json. Public practice, not final judging.
+
+
+## Official continuation measurement c503752
+
+Run `run-02ab1cca8d4c` at `c503752efebdbebcd9c6de41a4485af8ef1776fd`: gates=True,
+T=0.050963s, M=30470144 bytes, S=290,
+D=1, K=29.305039, points=73.347115.
+Previous recorded best K=32.732322. Decision: **unchanged A kernel; retain source and historical best**.
+A runtime source is unchanged; any result difference is rerun variation.
+
+Captured best-three aggregate 69.160567, rank 16; leader 79.338836. Snapshot: validation/leaderboard-continuation5-final.json. Public practice, not final judging.
+
+
+## Continuation 7: selected local candidate
+
+Retain the incoming first/last-eight-byte plus length hash, with complete endpoint equality. No prefault, reservation or PGO is selected.
+
+public: T=0.068653->0.064268s, M=29190144->30720000 bytes, S=290->310, D=1; local K ratio 1.012863 (`research/results/a-pgo-confirm7.json`).
+
+fresh: T=0.078047->0.062025s, M=29755392->30416896 bytes, S=290->310, D=1; local K ratio 1.105708 (`research/results/a-pgo-fresh7.json`).
+
+Checkpoint phase medians from the separate instrumented source: cuts=1.110 ms, parse=27.284 ms, sort-names=0.430 ms, select-format-output=18.459 ms, close=0.044 ms. Raw stderr is in research/results/a-lifetime-prefault7.json. These diagnostic intervals omit parts of process startup/cleanup and must not be added to invent an official time.
+
+These are alternating hot-data local WSL2 measurements with fresh cgroups, including process exit; they are not official scores. Short A/C repeats vary materially, and the gain is not a stable percentage across every batch. Every measured output hash matches.
+
+The frozen combination passes 93 release and 93 ASan/UBSan dataset comparisons, both full seeds, the existing direct guard/publication/boundary/membership/state checks, and two new independent checks of all 200,000 forward/reverse CSR edges. Forced uint64 B offsets pass the full hash. All four rebuilt offline images pass the unprivileged read-only/no-network starter sandbox and their executables match the validated release binaries exactly. Exact source/common/compiler/binary/image identities are in validation/continuation7-artifact-provenance.json. Official retention remains pending.

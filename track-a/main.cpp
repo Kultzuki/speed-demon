@@ -12,12 +12,26 @@
 // A record uses 20 latency bits, 11 endpoint bits and one error bit. The
 // latency sentinel has an exact, ordered uint32 overflow stream per bucket.
 constexpr uint32_t WIDE=(1u<<20)-1;
+// Paths repeat from a fixed catalogue of 1,842 route templates averaging 34
+// bytes. Hashing only the first and last 8 bytes (plus the length) is much
+// cheaper than a full-string hash; the table still compares whole names, so a
+// collision only costs a probe.
+static inline size_t path_hash(std::string_view name) {
+    const char* p=name.data();
+    size_t n=name.size();
+    uint64_t a=0,b=0;
+    if (n>=8) {__builtin_memcpy(&a,p,8);__builtin_memcpy(&b,p+n-8,8);}
+    else {for (size_t i=0;i<n;++i) a=a<<8|uint8_t(p[i]); b=a;}
+    uint64_t h=(a^std::rotl(b,29))+(n*0x9E3779B97F4A7C15ull);
+    h^=h>>30;h*=0xBF58476D1CE4E5B9ull;h^=h>>27;h*=0x94D049BB133111EBull;h^=h>>31;
+    return size_t(h);
+}
 struct EndpointTable {
     std::array<std::atomic<uint32_t>,4096> slots{};
     std::array<std::string_view,2048> names{};
     std::atomic<uint32_t> count{0};
     uint16_t find(std::string_view name) {
-        size_t hash=std::hash<std::string_view>()(name);
+        size_t hash=path_hash(name);
         for (size_t at=hash&4095;;at=(at+1)&4095) {
             uint32_t value=slots[at].load(std::memory_order_acquire);
             if (!value && slots[at].compare_exchange_strong(value,UINT32_MAX,std::memory_order_acquire)) {

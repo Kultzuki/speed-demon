@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "track": "d",
+      "case": "continuation7-parallel-wide-2",
+      "sha256": "6a33a504c8d16194914401f4f46532de96e1b63119fc5981341c6b65c6c27096",
+      "local_seconds": 0.216569
+    },
+    {
+      "track": "d",
+      "case": "continuation7-parallel-wide-65537",
+      "sha256": "433337604a1f9e6cb3c351ac2a6748036f7771ee03910c20c6edc039751e5b6e",
+      "local_seconds": 0.567478
+    },
+    {
+      "track": "a",
+      "case": "continuation7-partial-hash-collision",
+      "sha256": "19a9d342ad05edd087db4d84809cca82dc917c3cabd75c109f45aebd5301ad92",
+      "local_seconds": 0.066181
+    },
+    {
+      "track": "c",
+      "case": "continuation7-partial-hash-collision",
+      "sha256": "37d9f37928321520a655681a2a510380bd36c7fa91e55491f659be3442216519",
+      "local_seconds": 0.033978
+    }
+  ],
+  "direct": [
+    "d-csr-contents7: 200000 edges, n=2",
+    "d-csr-contents7: 200000 edges, n=65537"
+  ]
+}

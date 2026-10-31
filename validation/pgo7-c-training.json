@@ -1,0 +1,33 @@
+{
+  "scope": "Generator-only local PGO trial; no public/holdout input or cached answers in profiles.",
+  "track": "c",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "seeds": [
+    197731,
+    806317
+  ],
+  "scale": "sample",
+  "generator_sha256": "12ec6a0db10277558c644f95dad5b1a06bc10ee1148dfce3ee610455d9bba921",
+  "source_sha256": "28d05177d550417dda7c5750b9a49cc0437b7b9756452b182a81f84f732767e6",
+  "binary_sha256": "4dfffc016d71ab64ccb6e19994c30275524dcaada629c8e13495422a0b46c056",
+  "inputs_sha256": {
+    "197731": {
+      "records.csv": "01b31a34a14ced5f27124d515079110558ab8d05f158e344fd824608b10d86b3",
+      "regions.csv": "3299797341b57c985ba3e6681bb033e59031a248a168ce271ddf1bac05cedf9a"
+    },
+    "806317": {
+      "records.csv": "ce1cb35032115fc899b386c4bc0503235e089904f45f16067a6938bd9be95980",
+      "regions.csv": "f1f94b00a1c59f340c377033b979200b5a3f0da770f7d6e5525a88e0ca0834b8"
+    }
+  },
+  "profiles_sha256": {
+    "work/build/pgo7/c/solution-continuation7-incoming-c.gcda": "7c59b82d273ef6cfd4470cdc3750b11faf47e242cb890f271c63ae08508eca48"
+  }
+}

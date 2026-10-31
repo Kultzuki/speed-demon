@@ -1,0 +1,175 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "d",
+  "data": "/data/d",
+  "entries": {
+    "base-d7": {
+      "source": "research/prototypes/continuation7-base-d.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "binary_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+      "S": 385,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 1.338679797,
+          "M_bytes": 125124608,
+          "CPU_s": 9.854022,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.800539137,
+          "M_bytes": 122646528,
+          "CPU_s": 6.352768,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.907729109,
+          "M_bytes": 124342272,
+          "CPU_s": 7.360438,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.907729109,
+      "M_bytes": 124342272,
+      "CPU_s": 7.360438,
+      "local_K_ratio": 1.0
+    },
+    "exit-d7": {
+      "source": "research/prototypes/continuation7-exit-d.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "source_sha256": "0eaa0de501b339df47589b1073cf28bea2124be0f820b8022dadc2db55b6f000",
+      "binary_sha256": "b0ee9c23f9fbdd306d99d8c9af85d43b1865ddb9d4faebb160b612a5bc3f0b28",
+      "S": 387,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 1.044584207,
+          "M_bytes": 121716736,
+          "CPU_s": 7.995807,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.893809776,
+          "M_bytes": 122888192,
+          "CPU_s": 6.831685,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.885508917,
+          "M_bytes": 118595584,
+          "CPU_s": 7.297,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.893809776,
+      "M_bytes": 121716736,
+      "CPU_s": 7.297,
+      "local_K_ratio": 1.0112807629058636
+    },
+    "build12-d7": {
+      "source": "research/prototypes/continuation7-build12-d.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "source_sha256": "988a6ad4ea31271d114e43132d77605395f0947cb015a0f273d4b522e846857c",
+      "binary_sha256": "21bcb6c3229e73610d33ebae12ff2d4040954d0ff24c1a37e7db81190c5d7bbb",
+      "S": 385,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 1.03196704,
+          "M_bytes": 120459264,
+          "CPU_s": 10.413867,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.845620809,
+          "M_bytes": 124657664,
+          "CPU_s": 8.197995,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.798436402,
+          "M_bytes": 118616064,
+          "CPU_s": 8.211358,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.845620809,
+      "M_bytes": 120459264,
+      "CPU_s": 8.211358,
+      "local_K_ratio": 1.0426679379523265
+    },
+    "profile-d7": {
+      "source": "research/prototypes/continuation7-profile-d.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "source_sha256": "7dfb1e6b160d75add9ef8ebf889ca9066b6a788cde2ec2cdc333261a6c72dd67",
+      "binary_sha256": "cf18265be01dce3aa6d50e8daac40f6f7d9f59ce029f4b1d3c6f90c3ea31f137",
+      "S": 401,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.847754863,
+          "M_bytes": 120557568,
+          "CPU_s": 6.594021,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": "PHASE map-degree-count 0.123934360\nPHASE prefix-allocate 0.042812518\nPHASE parse-scatter 0.264450029\nPHASE build-cleanup 0.007338359\nPHASE parse-queries 0.000122479\nPHASE search 0.382164166\nPHASE format 0.000090597\nPHASE output 0.000178900\n"
+        },
+        {
+          "T_s": 0.860240846,
+          "M_bytes": 123944960,
+          "CPU_s": 6.836463,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": "PHASE map-degree-count 0.113051141\nPHASE prefix-allocate 0.030574530\nPHASE parse-scatter 0.283724518\nPHASE build-cleanup 0.007572668\nPHASE parse-queries 0.000243256\nPHASE search 0.396996523\nPHASE format 0.000110697\nPHASE output 0.000170874\n"
+        },
+        {
+          "T_s": 0.942005754,
+          "M_bytes": 123142144,
+          "CPU_s": 7.270203,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": "PHASE map-degree-count 0.121812231\nPHASE prefix-allocate 0.041081751\nPHASE parse-scatter 0.341921721\nPHASE build-cleanup 0.007325966\nPHASE parse-queries 0.000180829\nPHASE search 0.401520960\nPHASE format 0.000120429\nPHASE output 0.000077844\n"
+        }
+      ],
+      "T_s": 0.860240846,
+      "M_bytes": 123142144,
+      "CPU_s": 6.836463,
+      "local_K_ratio": 1.0229583989697768
+    }
+  }
+}

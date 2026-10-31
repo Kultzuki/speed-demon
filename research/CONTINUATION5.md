@@ -167,3 +167,27 @@ A has no new runtime change. Each other decision compares the full official coef
 
 
 D is restored locally to the incoming full-uint64 source after its official K regression. B/C are retained. Final mixed-source release/sanitizer gates and a rebuilt D image precede the next push.
+
+
+## Official result at c503752
+
+Exact pushed commit: c503752efebdbebcd9c6de41a4485af8ef1776fd. Captured at 2026-10-31T05:48:24.092372+00:00.
+Best-three aggregate **69.160567**, rank **16**;
+leader **79.338836**. This remains public practice.
+
+| Track | T seconds | M bytes | S | K | Points | Official run | Decision |
+|---|---:|---:|---:|---:|---:|---|---|
+| A | 0.050963 | 30470144 | 290 | 29.305039 | 73.347115 | run-02ab1cca8d4c | unchanged A kernel; retain source and historical best |
+| B | 0.30495 | 80130048 | 922 | 18.629977 | 63.510615 | run-23826c7d60fc | unchanged retained 160e4dd kernel; rerun variation |
+| C | 0.087797 | 12759040 | 379 | 20.806314 | 65.909758 | run-25f9cb923f54 | unchanged retained 160e4dd kernel; rerun variation |
+| D | 0.368451 | 123584512 | 385 | 15.015017 | 58.826292 | run-db13a80ccdcb | restored incoming full-uint64 kernel; retain proven source |
+
+The rejected D trial has been restored to the stronger incoming full-uint64 kernel. A/B/C are unchanged since 160e4dd, so their new measurements are rerun variation, not additional kernel optimizations. All final official gates passed.
+
+
+Final handover completed at c503752efebdbebcd9c6de41a4485af8ef1776fd. Final sources and rebuilt binaries agree; both final gates pass 89 comparisons and every final official gate passes. Current best-three aggregate 69.160567, captured rank 16, leader 79.338836. D trial is rejected and restored; B/C best coefficients improve; A unchanged. First place remains outstanding.
+
+C's unchanged final rerun is 0.087797s / K=20.806314, below the old mapped best
+K=22.257059, while its 160e4dd best is 0.066210s / K=23.727679. Retention uses
+the higher official best and modest local paired/full-coefficient evidence;
+a stable 6.6% gain across repeat runs has not been established.

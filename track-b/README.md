@@ -12,6 +12,8 @@ lists while their temporary pages are released. A checked 15-bit local stream
 uses uint16 postings; larger real worker domains dispatch to a 32-bit document
 stream and postings. Corpus byte offsets use uint32 with a checked uint64
 fallback. Sample decisions affect work, never answers.
+The temporary streams use 65,536-entry lazy anonymous blocks, reducing mapping
+calls and page-rounding waste while still returning each consumed block.
 
 Boolean operators fold strictly left to right, switching between lists and
 bitmaps as each operand requires. Phrase terms intersect rarest first, followed

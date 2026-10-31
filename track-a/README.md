@@ -7,6 +7,9 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 Up to twelve workers parse complete line ranges. A shared endpoint registry
 publishes immutable keys with release/acquire ordering and compares their full
 bytes; its 2,048-key capacity exceeds the binding 1,842-endpoint catalogue.
+The registry hashes the first and last eight bytes plus length, then resolves
+every collision with full byte equality. Middle-byte and hash collisions never
+merge endpoints; this is an indexing choice, not an identity shortcut.
 Each parser stores a 32-bit record with 20 latency bits, 11 endpoint bits and
 one error bit in each of 72 hour buckets. The reserved latency sentinel has an
 ordered uint32 overflow stream, so every latency retains all 32 bits exactly.
