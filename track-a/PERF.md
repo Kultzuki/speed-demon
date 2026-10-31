@@ -225,3 +225,15 @@ A/B/C images originate in sandbox-continuation7.txt; restored D was rebuilt
 in sandbox-continuation7-final-d.txt. Complete final provenance is
 validation/continuation7-final-artifact-provenance.json. The earlier
 continuation7 builds contain the rejected D trial and remain historical only.
+
+
+## Official continuation 7 at e9deec0
+
+Run `run-3313bc9b6eb0` at `e9deec07fa38f9abf0c167d6768c41c388e37ba5`: T=0.050025s, M=28614656 bytes, S=310, D=1, K=29.654383, points=73.604444. All five official gates passed. Starting historical best K=32.732322: **unchanged retained f992539 kernel; this measurement is rerun variation**.
+
+Captured practice aggregate 69.780860, rank 17; leader 80.253740. This is public practice, not final holdout or human judging. Full record: validation/leaderboard-continuation7-final.json.
+
+
+## Continuation 8 Rust candidate
+
+Rust port selected for official measurement after the complete local gate. All 97 comparisons pass in release, ASan and checked-arithmetic modes; both full seeds and direct tests pass. Rebuilt offline images match the validated release executables exactly. Canonical S=449, D=1. Matched local measurements and rejected trials: research/CONTINUATION8_RUST.md. Official retention is pending; local results are not official scores.

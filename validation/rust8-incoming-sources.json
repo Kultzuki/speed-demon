@@ -1,0 +1,11 @@
+{
+  "track-a/main.cpp": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+  "track-a/common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+  "track-a/Dockerfile": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+  "track-a/.speed-demon.toml": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714",
+  "track-d/main.cpp": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+  "track-d/common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+  "track-d/Dockerfile": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+  "track-d/.speed-demon.toml": "e98fa471dfdefd000c0e7f548cf1401e7e7778667d726f6a9886ff55d84fe576",
+  "user_d_sha256": "09f4a7107566ae792fc2e0017ece5057cd40c319c9e4f4c79623091dcb4b8e4d"
+}

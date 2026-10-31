@@ -1,0 +1,150 @@
+{
+  "commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+  "fetched_at": "2026-10-31T08:45:14.417964+00:00",
+  "aggregate": 69.78085979282214,
+  "rank": 17,
+  "leader": 80.25373960928896,
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+    "checked_at": "2026-10-31T08:44:05Z"
+  },
+  "latest": {
+    "a": {
+      "run_id": "run-3313bc9b6eb0",
+      "commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+      "pushed_at": "2026-10-31T08:42:59Z",
+      "dispatched_at": "2026-10-31T08:43:14Z",
+      "started_at": "2026-10-31T08:43:44Z",
+      "ended_at": "2026-10-31T08:43:45Z",
+      "queue_latency_s": 45.1,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.050025,
+      "M_bytes": 28614656,
+      "S": 310,
+      "D": 1,
+      "K": 29.654383,
+      "points": 73.604444,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 0.534,
+      "image_bytes": 118931936,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "b": {
+      "run_id": "run-6d82f9e889d8",
+      "commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+      "pushed_at": "2026-10-31T08:42:59Z",
+      "dispatched_at": "2026-10-31T08:43:14Z",
+      "started_at": "2026-10-31T08:43:46Z",
+      "ended_at": "2026-10-31T08:43:47Z",
+      "queue_latency_s": 46.7,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.299818,
+      "M_bytes": 71102464,
+      "S": 922,
+      "D": 1,
+      "K": 19.243317,
+      "points": 64.213996,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 0.524,
+      "image_bytes": 119119217,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "c": {
+      "run_id": "run-aaa6f10b1e14",
+      "commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+      "pushed_at": "2026-10-31T08:42:59Z",
+      "dispatched_at": "2026-10-31T08:43:14Z",
+      "started_at": "2026-10-31T08:43:48Z",
+      "ended_at": "2026-10-31T08:43:49Z",
+      "queue_latency_s": 48.6,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.062062,
+      "M_bytes": 13279232,
+      "S": 401,
+      "D": 1,
+      "K": 24.34307,
+      "points": 69.318767,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 0.53,
+      "image_bytes": 118950718,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "d": {
+      "run_id": "run-b9af384939b6",
+      "commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+      "pushed_at": "2026-10-31T08:42:59Z",
+      "dispatched_at": "2026-10-31T08:43:14Z",
+      "started_at": "2026-10-31T08:43:50Z",
+      "ended_at": "2026-10-31T08:43:51Z",
+      "queue_latency_s": 50.5,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.400875,
+      "M_bytes": 120442880,
+      "S": 385,
+      "D": 1,
+      "K": 14.469309,
+      "points": 58.02239,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 0.566,
+      "image_bytes": 118926296,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    }
+  },
+  "decisions": {
+    "a": "unchanged retained f992539 kernel; this measurement is rerun variation",
+    "b": "unchanged retained f992539 kernel; this measurement is rerun variation",
+    "c": "unchanged retained f992539 kernel; this measurement is rerun variation",
+    "d": "restored established full-uint64 kernel; retain; this measurement is a rerun"
+  },
+  "snapshot": "leaderboard-continuation7-final"
+}

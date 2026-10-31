@@ -1,0 +1,145 @@
+{
+  "scope": "Local WSL2. exec-to-exit, fresh cgroups, pinned 12 CPUs, 8g/no swap, read-only root/data, network none. Complete K ratio includes measured cgroup memory, canonical S and D=1. Not official.",
+  "track": "d",
+  "data": "/data/d",
+  "entries": {
+    "d-cpp8": {
+      "binary_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+      "S": 385,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.903570848,
+          "M_bytes": 121999360,
+          "CPU_s": 7.136332,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.737549041,
+          "M_bytes": 123367424,
+          "CPU_s": 5.886215,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.853630766,
+          "M_bytes": 121884672,
+          "CPU_s": 6.712847,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.726044894,
+          "M_bytes": 127422464,
+          "CPU_s": 5.714731,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.762840999,
+          "M_bytes": 125341696,
+          "CPU_s": 6.149337,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.762840999,
+      "M_bytes": 123367424,
+      "CPU_s": 6.149337,
+      "local_K_ratio": 1.0
+    },
+    "d-rust8-initial-release": {
+      "binary_sha256": "e577306faf02d39671cf5fb715e84f66e4eb468e8e1d746287e0d4124610417e",
+      "S": 481,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.782566624,
+          "M_bytes": 105877504,
+          "CPU_s": 6.320329,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.730953876,
+          "M_bytes": 101941248,
+          "CPU_s": 6.011325,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.80702462,
+          "M_bytes": 104247296,
+          "CPU_s": 6.753049,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.764585404,
+          "M_bytes": 106078208,
+          "CPU_s": 6.394,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.698136288,
+          "M_bytes": 107405312,
+          "CPU_s": 5.736803,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.764585404,
+      "M_bytes": 105877504,
+      "CPU_s": 6.320329,
+      "local_K_ratio": 0.9960490370511202
+    },
+    "d-user-cli8": {
+      "binary_sha256": "ee92a925801142b6a43e942c2984802e92de0f0fb0400041fc24eace84627be3",
+      "S": 316,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.821769434,
+          "M_bytes": 298663936,
+          "CPU_s": 5.796041,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.802231987,
+          "M_bytes": 300040192,
+          "CPU_s": 5.526463,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.854707495,
+          "M_bytes": 300462080,
+          "CPU_s": 5.50211,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.810448973,
+          "M_bytes": 299798528,
+          "CPU_s": 5.731747,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.805860404,
+          "M_bytes": 299954176,
+          "CPU_s": 5.529745,
+          "sha256": "a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.810448973,
+      "M_bytes": 299954176,
+      "CPU_s": 5.529745,
+      "local_K_ratio": 0.836660640646896
+    }
+  }
+}

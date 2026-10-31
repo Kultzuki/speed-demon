@@ -1,0 +1,4 @@
+    Checking solution v0.1.0 (/work/track-a)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.36s
+    Checking solution v0.1.0 (/work/track-d)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.34s

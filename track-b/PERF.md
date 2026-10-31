@@ -231,3 +231,10 @@ A/B/C images originate in sandbox-continuation7.txt; restored D was rebuilt
 in sandbox-continuation7-final-d.txt. Complete final provenance is
 validation/continuation7-final-artifact-provenance.json. The earlier
 continuation7 builds contain the rejected D trial and remain historical only.
+
+
+## Official continuation 7 at e9deec0
+
+Run `run-6d82f9e889d8` at `e9deec07fa38f9abf0c167d6768c41c388e37ba5`: T=0.299818s, M=71102464 bytes, S=922, D=1, K=19.243317, points=64.213996. All five official gates passed. Starting historical best K=18.629977: **unchanged retained f992539 kernel; this measurement is rerun variation**.
+
+Captured practice aggregate 69.780860, rank 17; leader 80.253740. This is public practice, not final holdout or human judging. Full record: validation/leaderboard-continuation7-final.json.

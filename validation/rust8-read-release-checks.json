@@ -1,0 +1,238 @@
+{
+  "scope": "Local differential/reference hashes including both full seeds; no official timing claims.",
+  "build": {
+    "mode": "release",
+    "tracks": {
+      "a": {
+        "flags": [
+          "--edition=2021",
+          "-C",
+          "opt-level=3",
+          "-C",
+          "lto=fat",
+          "-C",
+          "codegen-units=1",
+          "-C",
+          "panic=abort",
+          "-C",
+          "strip=symbols",
+          "-C",
+          "target-feature=+crt-static",
+          "-C",
+          "target-cpu=x86-64-v3"
+        ],
+        "binary_sha256": "641680bc71d2571c7e66ae46685e801e3ebc3b0755cc3226098678b23318177b",
+        "sources": {
+          "main.rs": "3922844fd6f63111d3e8bfb28c5142c1c0c47c7837c8e630d583059892a0fe3b",
+          "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145"
+        }
+      },
+      "d": {
+        "flags": [
+          "--edition=2021",
+          "-C",
+          "opt-level=3",
+          "-C",
+          "lto=fat",
+          "-C",
+          "codegen-units=1",
+          "-C",
+          "panic=abort",
+          "-C",
+          "strip=symbols",
+          "-C",
+          "target-feature=+crt-static",
+          "-C",
+          "target-cpu=x86-64-v3"
+        ],
+        "binary_sha256": "8f8af0d072b1dbdd836348cd0b4dae2888f3df482a35e166fad10c1f5999a9b5",
+        "sources": {
+          "main.rs": "6f0436a60fbc9abc092485aa161f6bf0bf521222c22523dedcf8212fb79633b9",
+          "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4"
+        }
+      },
+      "b": {
+        "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+        "origin": "build\\continuation7-final-release\\track-b"
+      },
+      "c": {
+        "binary_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+        "origin": "build\\continuation7-final-release\\track-c"
+      }
+    },
+    "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n"
+  },
+  "results": [
+    {
+      "track": "a",
+      "case": "worked-example",
+      "sha256": "0782f9b9a885bdbcdfadf330f6bea55accdc06018c0108f69ea43372d2fac692",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.03116944900011731,
+      "inputs_sha256": {
+        "requests.log": "6a9acf26f676d7930132fd1d3a389c459d42c465954a42019f1288a3843d411c"
+      }
+    },
+    {
+      "track": "a",
+      "case": "tiny-seed1",
+      "sha256": "c24fa507c963eaeac9224fd8435019b4f4e8c002ece7e32f316681a3957eb92f",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.04394354399983058,
+      "inputs_sha256": {
+        "requests.log": "a99dd14856a3e6e408097dabc1b3ad5ac5a3801fb12f388bacb2802c8591339f"
+      }
+    },
+    {
+      "track": "a",
+      "case": "tiny-seed2",
+      "sha256": "1f6a431b0fc8e5f5033d5bf7dff0c3b498917a14e27ba8d63ddcf3beeac06d82",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.0404703240001254,
+      "inputs_sha256": {
+        "requests.log": "ae9ee99098efb4e0bf6d2150cc8fe625ffbb5751f9bbe96c708288bad047fe84"
+      }
+    },
+    {
+      "track": "a",
+      "case": "tiny-seed17",
+      "sha256": "38cc17f9205c0d9f6b9f16fa19f722e9fc348a07258b96ac56c7a55d1c62e4f6",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.042291439000109676,
+      "inputs_sha256": {
+        "requests.log": "f20b6bc5aa52bcb60c027605d127e5893fd76e37243348f306f3d2820e339ea6"
+      }
+    },
+    {
+      "track": "a",
+      "case": "empty",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.02318686400030856,
+      "inputs_sha256": {
+        "requests.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "track": "a",
+      "case": "percentile-boundaries",
+      "sha256": "b35786c33ba3e1f7acac90b1dc6d98b33dbdb7f6378a54ba5a9951238673662b",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.026460445999873627,
+      "inputs_sha256": {
+        "requests.log": "9a430de003eae58535e6e6b0cab9a94cff49734f9285f3749ec58fe1fab90164"
+      }
+    },
+    {
+      "track": "a",
+      "case": "parallel-boundaries",
+      "sha256": "15e0596d3fa44fb34a7dc81ebacff8198f9b370eef47f075f989c6101266210d",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.039680470999883255,
+      "inputs_sha256": {
+        "requests.log": "23bcec9a5fadd361ed8bac806e75f4b483272114babaabd3f2385c06fc005d56"
+      }
+    },
+    {
+      "track": "a",
+      "case": "sample-seed2",
+      "sha256": "fd26778fa5e70fac2905a0a0f0142bd26ca4e6f510dfe182a881e525286ff12f",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.1476571299999705,
+      "inputs_sha256": {
+        "requests.log": "72422fd1ec489252d2522619750558f4a472547c696a27616300af242e950ac3"
+      }
+    },
+    {
+      "track": "a",
+      "case": "sample-seed17",
+      "sha256": "2a0c065b69741e2c3094e35c6baf0c7e38ef7452c8f832b42532ea4a8f055ed5",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.15957338899988827,
+      "inputs_sha256": {
+        "requests.log": "7c2ad76cad89abacb318dd4aba735e0dfc7d8feef28a22c24fe0a1dc7815d7c3"
+      }
+    },
+    {
+      "track": "a",
+      "case": "tiny-seed20261031",
+      "sha256": "9240066f5058dc84e4d81689aeada83bcfc6fe4baf524bc9adf847409e7ee8f0",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.03949236000016754,
+      "inputs_sha256": {
+        "requests.log": "b9a293664b23eafe0a4928953546b5d66c4cbfbe112129aa4d4a519a2813b101"
+      }
+    },
+    {
+      "track": "a",
+      "case": "sample-seed20261031",
+      "sha256": "e3856ff38aff5ad3ccbdf5a880197bf32f3cca02c2613e80fd8dee08e83389cb",
+      "reference_report": "continuation7-final-release.json",
+      "local_seconds": 0.16096101600032853,
+      "inputs_sha256": {
+        "requests.log": "97bb09c919781b9ab23cd9a52039cd1d92bf171ef66a4db7575f34c442e5d885"
+      }
+    },
+    {
+      "track": "a",
+      "case": "full-seed1",
+      "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+      "reference_report": "continuation7-final-release-full.json",
+      "local_seconds": 0.1869094789999508,
+      "inputs_sha256": {
+        "requests.log": "7ec80ba45bceef51ac7f79d3a14521fc6187b2dcb87b5e5542d08063fe5d962a"
+      }
+    },
+    {
+      "track": "a",
+      "case": "fresh-full-seed20261031",
+      "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+      "reference_report": "continuation7-final-release-extra.json",
+      "local_seconds": 0.19198292400005812,
+      "inputs_sha256": {
+        "requests.log": "10067b641c83ca341f0ee6157dc131f1c5ec83d7d9f174ab8d27093fa8f0538a"
+      }
+    },
+    {
+      "track": "a",
+      "case": "packed-latency-thresholds",
+      "sha256": "cdc291fe7bd35cb89987c5f0abf204ca4717baf40b0947b71b7fdc6f9d2331ec",
+      "reference_report": "continuation7-final-release-extra.json",
+      "local_seconds": 0.05148971500011612,
+      "inputs_sha256": {
+        "requests.log": "aec7db0f5eadbe2caeadd995bb45d013017ccd02f0fb5d0e52e0b9233d659698"
+      }
+    },
+    {
+      "track": "a",
+      "case": "packed-wide-heavy",
+      "sha256": "e4f94e8bab95dddc13f7c811747dab3f68de960886eb86e529267b6deb47bb46",
+      "reference_report": "continuation7-final-release-extra.json",
+      "local_seconds": 0.03890500099987548,
+      "inputs_sha256": {
+        "requests.log": "457d64c7385a5ce44ed8e971651434f94a370c72d8604fbb443c3bf5a97c7ccc"
+      }
+    },
+    {
+      "track": "a",
+      "case": "continuation5-crc-collision",
+      "sha256": "f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88",
+      "reference_report": "continuation7-final-release-additional.json",
+      "local_seconds": 0.02677883100022882,
+      "inputs_sha256": {
+        "requests.log": "c068c10c9fb5c13a07756ce2b84eded45d218107d672ca1306fcf75ffb29d4d3"
+      }
+    },
+    {
+      "track": "a",
+      "case": "continuation7-partial-hash-collision",
+      "sha256": "19a9d342ad05edd087db4d84809cca82dc917c3cabd75c109f45aebd5301ad92",
+      "reference_report": "continuation7-final-release-new.json",
+      "local_seconds": 0.02557446099990557,
+      "inputs_sha256": {
+        "requests.log": "8a5a287afaf19aa8b99b82abae73791dad696e8086469aa6b17479b84a776e33"
+      }
+    }
+  ],
+  "direct": []
+}

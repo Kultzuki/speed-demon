@@ -1,0 +1,39 @@
+{
+  "results": [
+    {
+      "track": "a",
+      "case": "rust8-buffer-boundaries",
+      "sha256": "3ec0b729a9abceb88bc75ac1ee110df5fdfd2f10b46f7b041d03c0006fcfcf65",
+      "inputs_sha256": {
+        "requests.log": "cadc5b155971ff8e8ffab58e9672d3bf7eaed61eb4752c3dbd6bd7a87587322c"
+      }
+    },
+    {
+      "track": "d",
+      "case": "rust8-one-node",
+      "sha256": "11466e55104cfb6ef862b9fb9fa9d97d6e79e4cb3778e6c860620792922d9dca",
+      "inputs_sha256": {
+        "graph.txt": "25206b076a663c4fa3f310ae1d683f659a60892d4cb62ad5c91bd88242904f37",
+        "queries.txt": "7a52b329b981e21bd4230ee5b6aea829201b7127815226b2051f1404cc568a9a"
+      }
+    },
+    {
+      "track": "d",
+      "case": "rust8-empty-graph",
+      "sha256": "89a76f6c18a32b3426110fc6e23b13b40cc3a6f158bcec067642a71ab4457424",
+      "inputs_sha256": {
+        "graph.txt": "9fb76105a4662e3cbbaf009335e4ea650cf6d2d6212484ddeeb1eefe6d11fd45",
+        "queries.txt": "03ce3d40aec9081ac3e57917c468488ba3d24b19cf7e86e92575bade022968bb"
+      }
+    },
+    {
+      "track": "d",
+      "case": "rust8-empty-queries",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs_sha256": {
+        "graph.txt": "83094678de885b626d87866f659a1f56195aad2a8867a7e0dffcf5120b299712",
+        "queries.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

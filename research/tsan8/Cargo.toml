@@ -1,0 +1,10 @@
+[package]
+name = "rust8-publication-check"
+version = "0.1.0"
+edition = "2021"
+
+[[test]]
+name = "publication"
+path = "../tests/a-rust8.rs"
+
+[dependencies]

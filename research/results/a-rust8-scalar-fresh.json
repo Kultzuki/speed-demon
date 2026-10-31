@@ -1,0 +1,229 @@
+{
+  "scope": "Local WSL2. exec-to-exit, fresh cgroups, pinned 12 CPUs, 8g/no swap, read-only root/data, network none. Complete K ratio includes measured cgroup memory, canonical S and D=1. Not official.",
+  "track": "a",
+  "data": "/data/fresh7/a",
+  "entries": {
+    "a-cpp8": {
+      "binary_sha256": "2dc478f4ac9386743b3bbf261e50da16708defc9bc6d0ea4c7cae147007954d0",
+      "S": 310,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.07280276,
+          "M_bytes": 29073408,
+          "CPU_s": 0.380306,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.074528331,
+          "M_bytes": 29630464,
+          "CPU_s": 0.427438,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.093039275,
+          "M_bytes": 29511680,
+          "CPU_s": 0.575011,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.061967751,
+          "M_bytes": 29564928,
+          "CPU_s": 0.328098,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.061680134,
+          "M_bytes": 31264768,
+          "CPU_s": 0.335693,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.057131758,
+          "M_bytes": 29442048,
+          "CPU_s": 0.299255,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.062336592,
+          "M_bytes": 31436800,
+          "CPU_s": 0.33912,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.078259804,
+          "M_bytes": 29364224,
+          "CPU_s": 0.415204,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.063933224,
+          "M_bytes": 28258304,
+          "CPU_s": 0.3537,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.063933224,
+      "M_bytes": 29511680,
+      "CPU_s": 0.3537,
+      "local_K_ratio": 1.0
+    },
+    "a-rust8-scalar-release": {
+      "binary_sha256": "3cc68b188cd6e13e1a328a98baac99a4e0e7b9bc0bce48fb5fc4568edd3c3d36",
+      "S": 449,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.062243151,
+          "M_bytes": 23822336,
+          "CPU_s": 0.277488,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.075394465,
+          "M_bytes": 24170496,
+          "CPU_s": 0.324824,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.055420322,
+          "M_bytes": 24797184,
+          "CPU_s": 0.250308,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.055987425,
+          "M_bytes": 24121344,
+          "CPU_s": 0.23961,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.053878347,
+          "M_bytes": 23740416,
+          "CPU_s": 0.231251,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.055296285,
+          "M_bytes": 24223744,
+          "CPU_s": 0.247506,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.054165018,
+          "M_bytes": 23334912,
+          "CPU_s": 0.230711,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.054608656,
+          "M_bytes": 23855104,
+          "CPU_s": 0.242137,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.062470475,
+          "M_bytes": 25001984,
+          "CPU_s": 0.277154,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.055420322,
+      "M_bytes": 24121344,
+      "CPU_s": 0.247506,
+      "local_K_ratio": 1.0578268091634198
+    },
+    "a-read-swar": {
+      "binary_sha256": "2d8b0a760d540bca71805c34891fb43d6a33fbe1aec8e798b3791ff4059a3a7d",
+      "S": 475,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.072233564,
+          "M_bytes": 24150016,
+          "CPU_s": 0.308054,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.061329972,
+          "M_bytes": 24449024,
+          "CPU_s": 0.272067,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.05361809,
+          "M_bytes": 24305664,
+          "CPU_s": 0.237764,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.054582442,
+          "M_bytes": 23805952,
+          "CPU_s": 0.235655,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.053356525,
+          "M_bytes": 24453120,
+          "CPU_s": 0.239645,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.064905303,
+          "M_bytes": 24539136,
+          "CPU_s": 0.284811,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.054670927,
+          "M_bytes": 24125440,
+          "CPU_s": 0.250726,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.058894774,
+          "M_bytes": 23707648,
+          "CPU_s": 0.268704,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.057300055,
+          "M_bytes": 24297472,
+          "CPU_s": 0.251197,
+          "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.057300055,
+      "M_bytes": 24297472,
+      "CPU_s": 0.251197,
+      "local_K_ratio": 1.030083817448283
+    }
+  }
+}

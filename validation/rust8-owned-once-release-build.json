@@ -1,0 +1,62 @@
+{
+  "mode": "release",
+  "tracks": {
+    "a": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "lto=fat",
+        "-C",
+        "codegen-units=1",
+        "-C",
+        "panic=abort",
+        "-C",
+        "strip=symbols",
+        "-C",
+        "target-feature=+crt-static",
+        "-C",
+        "target-cpu=x86-64-v3"
+      ],
+      "binary_sha256": "d46caef891756763d54b9eab41849d5d4af1ced0953631fa8b97f174244dcbb4",
+      "sources": {
+        "main.rs": "f9d56de1f26447a73be4b4d46b42ddd6eb0d272c3ef838b5cd947dea2b37406b",
+        "common.rs": "3afcc967963e5c77a754e73a200defd23f733f7dbeaa0ba3d0a1b0c801831f26"
+      }
+    },
+    "d": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "lto=fat",
+        "-C",
+        "codegen-units=1",
+        "-C",
+        "panic=abort",
+        "-C",
+        "strip=symbols",
+        "-C",
+        "target-feature=+crt-static",
+        "-C",
+        "target-cpu=x86-64-v3"
+      ],
+      "binary_sha256": "ae91bca9f9de464a78adb7709f95eac282191d8015628faea39f697decc1438a",
+      "sources": {
+        "main.rs": "84061e5a1e71272c86ba8e94cf6dcd5bad16f4ffb14fc9a127a604596610406e",
+        "common.rs": "3afcc967963e5c77a754e73a200defd23f733f7dbeaa0ba3d0a1b0c801831f26"
+      }
+    },
+    "b": {
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "origin": "build\\continuation7-final-release\\track-b"
+    },
+    "c": {
+      "binary_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+      "origin": "build\\continuation7-final-release\\track-c"
+    }
+  },
+  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n"
+}

@@ -29,5 +29,7 @@
       "D": 1
     }
   },
-  "status": "Final 93+93 mixed gates and exact rebuilt images pass; final push/official rerun pending"
+  "status": "Final validated, rebuilt and officially scored; retained A/B/C and restored D",
+  "final_commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+  "final_snapshot": "leaderboard-continuation7-final"
 }

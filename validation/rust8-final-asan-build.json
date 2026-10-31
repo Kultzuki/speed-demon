@@ -1,0 +1,106 @@
+{
+  "mode": "asan",
+  "tracks": {
+    "a": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=1",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=yes",
+        "-C",
+        "overflow-checks=yes",
+        "-C",
+        "force-frame-pointers=yes",
+        "-C",
+        "target-cpu=x86-64-v3",
+        "-Z",
+        "sanitizer=address"
+      ],
+      "binary_sha256": "80f0cab4c87a7f042ab9167aeb75baf054a2906784a3d6e95f807088e58c97dc",
+      "sources": {
+        "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db",
+        "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145"
+      },
+      "direct_test": {
+        "binary_sha256": "7788dbec177e0bd22486f3673d981291daaa466b423b4b57ed590498495969aa",
+        "flags": [
+          "--test",
+          "--edition=2021",
+          "-C",
+          "opt-level=2",
+          "-C",
+          "debuginfo=2",
+          "-C",
+          "debug-assertions=yes",
+          "-C",
+          "overflow-checks=yes",
+          "-C",
+          "force-frame-pointers=yes",
+          "-C",
+          "target-cpu=x86-64-v3",
+          "-Z",
+          "sanitizer=address"
+        ],
+        "source_sha256": "9ffa15297dbf822bd530a26fbda8d6c201f787e4ea93ab6ce6a852afa8418355"
+      }
+    },
+    "d": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=1",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=yes",
+        "-C",
+        "overflow-checks=yes",
+        "-C",
+        "force-frame-pointers=yes",
+        "-C",
+        "target-cpu=x86-64-v3",
+        "-Z",
+        "sanitizer=address"
+      ],
+      "binary_sha256": "fe3fc2a5c3401666f6c8fba6aa4fbdd736dcc7c7315938418f0cca30ac5d6662",
+      "sources": {
+        "main.rs": "984b086837a42719fbab78f70dd403da01f3383410a974fa39c9bbe95c882cf3",
+        "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4"
+      },
+      "direct_test": {
+        "binary_sha256": "b32cebc7e713bc3d08ec256e89cc7d077db5f54183ee126f69163234ebcff3a6",
+        "flags": [
+          "--test",
+          "--edition=2021",
+          "-C",
+          "opt-level=2",
+          "-C",
+          "debuginfo=2",
+          "-C",
+          "debug-assertions=yes",
+          "-C",
+          "overflow-checks=yes",
+          "-C",
+          "force-frame-pointers=yes",
+          "-C",
+          "target-cpu=x86-64-v3",
+          "-Z",
+          "sanitizer=address"
+        ],
+        "source_sha256": "97493e12c6ef47ae6207356df87d5cd137b5c5f13f3e3c17dceb131946c93be7"
+      }
+    },
+    "b": {
+      "binary_sha256": "a97163b59d42dd29904321254f8e9e9a82446a7f65fd0e14496744cab3d11d16",
+      "origin": "build\\continuation7-final-sanitized\\track-b"
+    },
+    "c": {
+      "binary_sha256": "e0f6590b1013117129d6bb2bd985cbbb1beea2c7b7981ac2b41cbe6938ea37d7",
+      "origin": "build\\continuation7-final-sanitized\\track-c"
+    }
+  },
+  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n"
+}

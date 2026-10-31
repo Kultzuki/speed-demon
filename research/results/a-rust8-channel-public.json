@@ -1,0 +1,127 @@
+{
+  "scope": "Local WSL2. exec-to-exit, fresh cgroups, pinned 12 CPUs, 8g/no swap, read-only root/data, network none. Complete K ratio includes measured cgroup memory, canonical S and D=1. Not official.",
+  "track": "a",
+  "data": "/data/a",
+  "entries": {
+    "a-cpp8": {
+      "binary_sha256": "2dc478f4ac9386743b3bbf261e50da16708defc9bc6d0ea4c7cae147007954d0",
+      "S": 310,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.063733075,
+          "M_bytes": 30019584,
+          "CPU_s": 0.324712,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.055761291,
+          "M_bytes": 31371264,
+          "CPU_s": 0.292379,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.055230724,
+          "M_bytes": 29548544,
+          "CPU_s": 0.297812,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.05637587,
+          "M_bytes": 31100928,
+          "CPU_s": 0.309286,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.062513839,
+          "M_bytes": 30691328,
+          "CPU_s": 0.330026,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.064769294,
+          "M_bytes": 30261248,
+          "CPU_s": 0.332272,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.059907117,
+          "M_bytes": 29159424,
+          "CPU_s": 0.319436,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.059907117,
+      "M_bytes": 30261248,
+      "CPU_s": 0.319436,
+      "local_K_ratio": 1.0
+    },
+    "a-rust8-channel-release": {
+      "binary_sha256": "8f26c754c5311da37b361a703759d4f797d384f8471ebc3344bf9a63c70e9d3d",
+      "S": 474,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.072264392,
+          "M_bytes": 27529216,
+          "CPU_s": 0.28544,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.062701922,
+          "M_bytes": 27463680,
+          "CPU_s": 0.257706,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.064365587,
+          "M_bytes": 26226688,
+          "CPU_s": 0.264365,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.076740777,
+          "M_bytes": 27455488,
+          "CPU_s": 0.365577,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.06566698,
+          "M_bytes": 27582464,
+          "CPU_s": 0.263766,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.070841829,
+          "M_bytes": 25792512,
+          "CPU_s": 0.29325,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.070025059,
+          "M_bytes": 26279936,
+          "CPU_s": 0.293932,
+          "sha256": "495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.070025059,
+      "M_bytes": 27455488,
+      "CPU_s": 0.28544,
+      "local_K_ratio": 0.8849148935188357
+    }
+  }
+}

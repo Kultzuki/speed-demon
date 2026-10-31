@@ -143,3 +143,27 @@ A/B/C images originate in sandbox-continuation7.txt; restored D was rebuilt
 in sandbox-continuation7-final-d.txt. Complete final provenance is
 validation/continuation7-final-artifact-provenance.json. The earlier
 continuation7 builds contain the rejected D trial and remain historical only.
+
+
+## Official measurement at e9deec0
+
+Exact commit: e9deec07fa38f9abf0c167d6768c41c388e37ba5; captured 2026-10-31T08:45:14.417964+00:00.
+All four tracks passed all five official gates. Practice aggregate
+**69.780860**, rank **17**; leader **80.253740**.
+
+| Track | T s | M bytes | S | K | Starting best K | Official run |
+|---|---:|---:|---:|---:|---:|---|
+| A | 0.050025 | 28614656 | 310 | 29.654383 | 32.732322 | run-3313bc9b6eb0 |
+| B | 0.299818 | 71102464 | 922 | 19.243317 | 18.629977 | run-6d82f9e889d8 |
+| C | 0.062062 | 13279232 | 401 | 24.343070 | 23.727679 | run-aaa6f10b1e14 |
+| D | 0.400875 | 120442880 | 385 | 14.469309 | 15.399979 | run-b9af384939b6 |
+
+- A: unchanged retained f992539 kernel; this measurement is rerun variation.
+- B: unchanged retained f992539 kernel; this measurement is rerun variation.
+- C: unchanged retained f992539 kernel; this measurement is rerun variation.
+- D: restored established full-uint64 kernel; retain; this measurement is a rerun.
+
+These are public practice measurements, separate from unseen-seed final scoring and judging.
+
+
+Final checkpoint e9deec07fa38f9abf0c167d6768c41c388e37ba5: all official gates pass; aggregate 69.780860, captured rank 17, leader 80.253740. A/B/C retained; D restored. Final artifacts agree with both 93-comparison gates. Later unchanged-source measurements are rerun variation. First place remains outstanding.

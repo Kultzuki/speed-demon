@@ -1,0 +1,173 @@
+{
+  "scope": "Frozen Rust A/D and byte-identical validated C++ B/C; no unvalidated trial binary.",
+  "compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.1\nLLVM version: 23.1.1\n",
+  "tracks": {
+    "a": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "lto=fat",
+        "-C",
+        "codegen-units=1",
+        "-C",
+        "panic=abort",
+        "-C",
+        "strip=symbols",
+        "-C",
+        "target-feature=+crt-static",
+        "-C",
+        "target-cpu=x86-64-v3"
+      ],
+      "binary_sha256": "3cc68b188cd6e13e1a328a98baac99a4e0e7b9bc0bce48fb5fc4568edd3c3d36",
+      "sources": {
+        "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db",
+        "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145"
+      },
+      "direct_test": {
+        "binary_sha256": "312e31c46d0959440844ed6ee869fc010f8d72b20f4f3414d07faf76abf6112c",
+        "flags": [
+          "--test",
+          "--edition=2021",
+          "-C",
+          "opt-level=2",
+          "-C",
+          "debuginfo=2",
+          "-C",
+          "debug-assertions=yes",
+          "-C",
+          "overflow-checks=yes",
+          "-C",
+          "force-frame-pointers=yes",
+          "-C",
+          "target-cpu=x86-64-v3"
+        ],
+        "source_sha256": "9ffa15297dbf822bd530a26fbda8d6c201f787e4ea93ab6ce6a852afa8418355"
+      },
+      "image_id": "sha256:300382acb9175be3bce1e63eb1b1a0badc44a4b3160a468ae61601b663993da1",
+      "size_bytes": 119433796,
+      "solution_sha256": "3cc68b188cd6e13e1a328a98baac99a4e0e7b9bc0bce48fb5fc4568edd3c3d36",
+      "submission_sha256": {
+        "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db",
+        "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145",
+        "Cargo.toml": "f8dfe7748b75a81546d4ddcee695c60ef5e31bfbd3e63a0026e961a7502f5730",
+        "Cargo.lock": "3bc9928511ee402a3d64ad3417d31699b496dcce2939b2c543d078c11c68e89c",
+        "Dockerfile": "a14916c23d4a0115f049229e0fcf1f26ca40194e9702f716c4bfdd209edac3af",
+        ".speed-demon.toml": "89e2d060721f8f2c85505a2602e4a16bc46fd8ba216f9660aa1f82e31c19b74e"
+      },
+      "S": 449,
+      "D": 1
+    },
+    "b": {
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "origin": "build\\continuation7-final-release\\track-b",
+      "image_id": "sha256:44c79834a92697f3c735a663b35ad8920a002eed3e84f7c9618893cfe9c8dea4",
+      "size_bytes": 119119040,
+      "solution_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "submission_sha256": {
+        "main.cpp": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "Dockerfile": "36ee0f7eb244964ca4d06c15b60e78835ab0d29500eae04ffdc3608640eae232",
+        ".speed-demon.toml": "6186eba187f92d32c0bfc9812ca7f2cf714d11aac7989128714892dc678ae7bc"
+      },
+      "S": 922,
+      "D": 1
+    },
+    "c": {
+      "binary_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+      "origin": "build\\continuation7-final-release\\track-c",
+      "image_id": "sha256:67a9da694f5668d38594047dcff7121e209643aab0e802c5e8c81506782c9795",
+      "size_bytes": 118950546,
+      "solution_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+      "submission_sha256": {
+        "main.cpp": "5dee5f7f05040b557e28fbbf57fa7d6165f232191efd349e8f9b2d7304623841",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "Dockerfile": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+        ".speed-demon.toml": "a7d23da37e7ed7c037e7ae7eee341a85e3b7a43068e18d2dd8a4735d110429e9"
+      },
+      "S": 401,
+      "D": 1
+    },
+    "d": {
+      "flags": [
+        "--edition=2021",
+        "-C",
+        "opt-level=3",
+        "-C",
+        "lto=fat",
+        "-C",
+        "codegen-units=1",
+        "-C",
+        "panic=abort",
+        "-C",
+        "strip=symbols",
+        "-C",
+        "target-feature=+crt-static",
+        "-C",
+        "target-cpu=x86-64-v3"
+      ],
+      "binary_sha256": "390da3cd76a1cd4fc5c87cae9542ca3386f5f3464099de0000957944d20ca0eb",
+      "sources": {
+        "main.rs": "984b086837a42719fbab78f70dd403da01f3383410a974fa39c9bbe95c882cf3",
+        "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4"
+      },
+      "direct_test": {
+        "binary_sha256": "e9c7d8b85f93891c16ad608f2926d5e51f5d52f216d9769752c7e213a4171956",
+        "flags": [
+          "--test",
+          "--edition=2021",
+          "-C",
+          "opt-level=2",
+          "-C",
+          "debuginfo=2",
+          "-C",
+          "debug-assertions=yes",
+          "-C",
+          "overflow-checks=yes",
+          "-C",
+          "force-frame-pointers=yes",
+          "-C",
+          "target-cpu=x86-64-v3"
+        ],
+        "source_sha256": "97493e12c6ef47ae6207356df87d5cd137b5c5f13f3e3c17dceb131946c93be7"
+      },
+      "image_id": "sha256:b50ea3525b901e35587cf570be059862316d0e9f06260b5b5b321fa14bfea547",
+      "size_bytes": 119433297,
+      "solution_sha256": "390da3cd76a1cd4fc5c87cae9542ca3386f5f3464099de0000957944d20ca0eb",
+      "submission_sha256": {
+        "main.rs": "984b086837a42719fbab78f70dd403da01f3383410a974fa39c9bbe95c882cf3",
+        "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4",
+        "Cargo.toml": "f8dfe7748b75a81546d4ddcee695c60ef5e31bfbd3e63a0026e961a7502f5730",
+        "Cargo.lock": "3bc9928511ee402a3d64ad3417d31699b496dcce2939b2c543d078c11c68e89c",
+        "Dockerfile": "a14916c23d4a0115f049229e0fcf1f26ca40194e9702f716c4bfdd209edac3af",
+        ".speed-demon.toml": "e1455f80c4a9d110443f8ed061071d21b50c54e77edaf8510fa88065e119dfa8"
+      },
+      "S": 485,
+      "D": 1
+    }
+  },
+  "gates": {
+    "release": {
+      "comparisons": 97,
+      "direct": [
+        "a-rust8-tests",
+        "d-rust8-tests"
+      ]
+    },
+    "asan": {
+      "comparisons": 97,
+      "direct": [
+        "a-rust8-tests",
+        "d-rust8-tests"
+      ]
+    },
+    "checked": {
+      "comparisons": 97,
+      "direct": [
+        "a-rust8-tests",
+        "d-rust8-tests"
+      ]
+    }
+  }
+}

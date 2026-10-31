@@ -1,0 +1,590 @@
+{
+  "a": {
+    "S": 449,
+    "D": 1,
+    "original_sha256": {
+      ".speed-demon.toml": "89e2d060721f8f2c85505a2602e4a16bc46fd8ba216f9660aa1f82e31c19b74e",
+      "Cargo.toml": "f8dfe7748b75a81546d4ddcee695c60ef5e31bfbd3e63a0026e961a7502f5730",
+      "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145",
+      "Dockerfile": "a14916c23d4a0115f049229e0fcf1f26ca40194e9702f716c4bfdd209edac3af",
+      "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db"
+    },
+    "canonical_counts": [
+      {
+        "Name": "TOML",
+        "Bytes": 238,
+        "CodeBytes": 0,
+        "Lines": 15,
+        "Code": 12,
+        "Comment": 1,
+        "Blank": 2,
+        "Complexity": 0,
+        "Count": 3,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": ".speed-demon.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/a/.speed-demon.toml",
+            "Symlocation": "",
+            "Bytes": 75,
+            "Lines": 4,
+            "Code": 4,
+            "Comment": 0,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "Cargo.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/a/Cargo.toml",
+            "Symlocation": "",
+            "Bytes": 133,
+            "Lines": 10,
+            "Code": 8,
+            "Comment": 0,
+            "Blank": 2,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "neutral.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/a/neutral.toml",
+            "Symlocation": "",
+            "Bytes": 30,
+            "Lines": 1,
+            "Code": 0,
+            "Comment": 1,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Rust",
+        "Bytes": 15368,
+        "CodeBytes": 0,
+        "Lines": 456,
+        "Code": 430,
+        "Comment": 9,
+        "Blank": 17,
+        "Complexity": 0,
+        "Count": 2,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Rust",
+            "PossibleLanguages": [
+              "Rust"
+            ],
+            "Filename": "common.rs",
+            "Extension": "rs",
+            "Location": "/work/build/rust8-scalar-static/a/common.rs",
+            "Symlocation": "",
+            "Bytes": 1693,
+            "Lines": 63,
+            "Code": 55,
+            "Comment": 2,
+            "Blank": 6,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "Rust",
+            "PossibleLanguages": [
+              "Rust"
+            ],
+            "Filename": "main.rs",
+            "Extension": "rs",
+            "Location": "/work/build/rust8-scalar-static/a/main.rs",
+            "Symlocation": "",
+            "Bytes": 13675,
+            "Lines": 393,
+            "Code": 375,
+            "Comment": 7,
+            "Blank": 11,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Dockerfile",
+        "Bytes": 480,
+        "CodeBytes": 0,
+        "Lines": 8,
+        "Code": 7,
+        "Comment": 0,
+        "Blank": 1,
+        "Complexity": 0,
+        "Count": 1,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Dockerfile",
+            "PossibleLanguages": [
+              "Dockerfile"
+            ],
+            "Filename": "Dockerfile",
+            "Extension": "Dockerfile",
+            "Location": "/work/build/rust8-scalar-static/a/Dockerfile",
+            "Symlocation": "",
+            "Bytes": 480,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      }
+    ],
+    "formatters": {
+      "rustfmt": "1.10.0-stable (58cf8f9c35 2026-10-13)",
+      "scc": "4.1.0"
+    },
+    "note": "Stage has exactly candidate Rust/common/Dockerfile and zero-dependency manifests. The preserved organizer Python reference is exempt and old C++ is outside the candidate."
+  },
+  "d": {
+    "S": 496,
+    "D": 1,
+    "original_sha256": {
+      ".speed-demon.toml": "e1455f80c4a9d110443f8ed061071d21b50c54e77edaf8510fa88065e119dfa8",
+      "Cargo.toml": "f8dfe7748b75a81546d4ddcee695c60ef5e31bfbd3e63a0026e961a7502f5730",
+      "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4",
+      "Dockerfile": "a14916c23d4a0115f049229e0fcf1f26ca40194e9702f716c4bfdd209edac3af",
+      "main.rs": "286131265c52c299bc0f3a29844076b21bd36f878ce9dca7bc935487464e69c2"
+    },
+    "canonical_counts": [
+      {
+        "Name": "TOML",
+        "Bytes": 238,
+        "CodeBytes": 0,
+        "Lines": 15,
+        "Code": 12,
+        "Comment": 1,
+        "Blank": 2,
+        "Complexity": 0,
+        "Count": 3,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": ".speed-demon.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/d/.speed-demon.toml",
+            "Symlocation": "",
+            "Bytes": 75,
+            "Lines": 4,
+            "Code": 4,
+            "Comment": 0,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "Cargo.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/d/Cargo.toml",
+            "Symlocation": "",
+            "Bytes": 133,
+            "Lines": 10,
+            "Code": 8,
+            "Comment": 0,
+            "Blank": 2,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "neutral.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/d/neutral.toml",
+            "Symlocation": "",
+            "Bytes": 30,
+            "Lines": 1,
+            "Code": 0,
+            "Comment": 1,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Rust",
+        "Bytes": 16102,
+        "CodeBytes": 0,
+        "Lines": 502,
+        "Code": 477,
+        "Comment": 11,
+        "Blank": 14,
+        "Complexity": 0,
+        "Count": 2,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Rust",
+            "PossibleLanguages": [
+              "Rust"
+            ],
+            "Filename": "common.rs",
+            "Extension": "rs",
+            "Location": "/work/build/rust8-scalar-static/d/common.rs",
+            "Symlocation": "",
+            "Bytes": 2944,
+            "Lines": 99,
+            "Code": 88,
+            "Comment": 4,
+            "Blank": 7,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "Rust",
+            "PossibleLanguages": [
+              "Rust"
+            ],
+            "Filename": "main.rs",
+            "Extension": "rs",
+            "Location": "/work/build/rust8-scalar-static/d/main.rs",
+            "Symlocation": "",
+            "Bytes": 13158,
+            "Lines": 403,
+            "Code": 389,
+            "Comment": 7,
+            "Blank": 7,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Dockerfile",
+        "Bytes": 480,
+        "CodeBytes": 0,
+        "Lines": 8,
+        "Code": 7,
+        "Comment": 0,
+        "Blank": 1,
+        "Complexity": 0,
+        "Count": 1,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Dockerfile",
+            "PossibleLanguages": [
+              "Dockerfile"
+            ],
+            "Filename": "Dockerfile",
+            "Extension": "Dockerfile",
+            "Location": "/work/build/rust8-scalar-static/d/Dockerfile",
+            "Symlocation": "",
+            "Bytes": 480,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      }
+    ],
+    "formatters": {
+      "rustfmt": "1.10.0-stable (58cf8f9c35 2026-10-13)",
+      "scc": "4.1.0"
+    },
+    "note": "Stage has exactly candidate Rust/common/Dockerfile and zero-dependency manifests. The preserved organizer Python reference is exempt and old C++ is outside the candidate."
+  },
+  "u": {
+    "S": 316,
+    "D": 1,
+    "original_sha256": {
+      ".speed-demon.toml": "e1455f80c4a9d110443f8ed061071d21b50c54e77edaf8510fa88065e119dfa8",
+      "Cargo.toml": "001535673995e173110bfa1d71e0bd6f740da5356b1322e17443caaa4529a4ff",
+      "Dockerfile": "b6418f6ad111817338ea27b60e2af50f329c871c0350d1aeaf0b536f4cf4de4e",
+      "main.rs": "3a726066f0edd56618fac39a103b0c6dfd9b6b4ac6950ee02ab3215542b112a6"
+    },
+    "canonical_counts": [
+      {
+        "Name": "TOML",
+        "Bytes": 263,
+        "CodeBytes": 0,
+        "Lines": 17,
+        "Code": 14,
+        "Comment": 1,
+        "Blank": 2,
+        "Complexity": 0,
+        "Count": 3,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": ".speed-demon.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/u/.speed-demon.toml",
+            "Symlocation": "",
+            "Bytes": 75,
+            "Lines": 4,
+            "Code": 4,
+            "Comment": 0,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "Cargo.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/u/Cargo.toml",
+            "Symlocation": "",
+            "Bytes": 158,
+            "Lines": 12,
+            "Code": 10,
+            "Comment": 0,
+            "Blank": 2,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          },
+          {
+            "Language": "TOML",
+            "PossibleLanguages": [
+              "TOML"
+            ],
+            "Filename": "neutral.toml",
+            "Extension": "toml",
+            "Location": "/work/build/rust8-scalar-static/u/neutral.toml",
+            "Symlocation": "",
+            "Bytes": 30,
+            "Lines": 1,
+            "Code": 0,
+            "Comment": 1,
+            "Blank": 0,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Dockerfile",
+        "Bytes": 386,
+        "CodeBytes": 0,
+        "Lines": 9,
+        "Code": 8,
+        "Comment": 0,
+        "Blank": 1,
+        "Complexity": 0,
+        "Count": 1,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Dockerfile",
+            "PossibleLanguages": [
+              "Dockerfile"
+            ],
+            "Filename": "Dockerfile",
+            "Extension": "Dockerfile",
+            "Location": "/work/build/rust8-scalar-static/u/Dockerfile",
+            "Symlocation": "",
+            "Bytes": 386,
+            "Lines": 9,
+            "Code": 8,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      },
+      {
+        "Name": "Rust",
+        "Bytes": 11801,
+        "CodeBytes": 0,
+        "Lines": 333,
+        "Code": 294,
+        "Comment": 25,
+        "Blank": 14,
+        "Complexity": 0,
+        "Count": 1,
+        "WeightedComplexity": 0,
+        "Files": [
+          {
+            "Language": "Rust",
+            "PossibleLanguages": [
+              "Rust"
+            ],
+            "Filename": "main.rs",
+            "Extension": "rs",
+            "Location": "/work/build/rust8-scalar-static/u/main.rs",
+            "Symlocation": "",
+            "Bytes": 11801,
+            "Lines": 333,
+            "Code": 294,
+            "Comment": 25,
+            "Blank": 14,
+            "Complexity": 0,
+            "WeightedComplexity": 0,
+            "Hash": null,
+            "Binary": false,
+            "Minified": false,
+            "Generated": false,
+            "EndPoint": 0,
+            "Uloc": 0
+          }
+        ],
+        "LineLength": null,
+        "ULOC": 0
+      }
+    ],
+    "formatters": {
+      "rustfmt": "1.10.0-stable (58cf8f9c35 2026-10-13)",
+      "scc": "4.1.0"
+    },
+    "note": "Stage has exactly candidate Rust/common/Dockerfile and zero-dependency manifests. The preserved organizer Python reference is exempt and old C++ is outside the candidate."
+  }
+}

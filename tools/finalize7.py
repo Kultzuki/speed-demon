@@ -186,8 +186,8 @@ be dirty or untracked. Preserve them; submitted kernels should be clean.
 
 Read research/CONTINUATION7.md before new work. D's compact owner-sharded build
 won 14-17% on the full local coefficient but failed officially: 0.366347 s,
-123572224 bytes, S=450, K=14.710088. It did not improve official time over the
-incoming 0.368451 s rerun, so source cost hurt K. It is rejected and restored.
+123572224 bytes, S=450, K=14.710088. Time was only 0.6% below the incoming
+0.368451 s rerun while source size rose 17%, so K fell. It is rejected and restored.
 The larger-memory inline graph also loses. Twelve build workers and 12-byte
 heap entries do not justify promotion. A parallel prefault and reservation
 lose locally. C split membership loses. B SIMD keys/exclusive bitmap words
@@ -198,7 +198,7 @@ Generator-only PGO was actually tested on unmodified-generator sample seeds
 is submitted. Profiles/binary/input hashes remain in validation/pgo7-*-training.json.
 Short A/C repeat gains vary by batch; do not claim a stable percentage from one
 fast run. Paired hot-data cgroup reports and monotonic phase stderr are under
-research/results; every measured output hash matches.
+research/results; every continuation-7 benchmarked candidate matches its expected full output hash.
 
 Both supplied-fifth and supplied-sixth sets were already reviewed. Their known
 C fixed-name-table hang, B document-width failures and A hash-only endpoint

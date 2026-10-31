@@ -1,0 +1,236 @@
+Built rust8-final-asan
+PASS a worked-example
+PASS b worked-example
+PASS c worked-example
+PASS d worked-example
+PASS a tiny-seed1
+PASS b tiny-seed1
+PASS c tiny-seed1
+PASS d tiny-seed1
+PASS a tiny-seed2
+PASS b tiny-seed2
+PASS c tiny-seed2
+PASS d tiny-seed2
+PASS a tiny-seed17
+PASS b tiny-seed17
+PASS c tiny-seed17
+PASS d tiny-seed17
+PASS d fuzz0
+PASS d fuzz1
+PASS d fuzz2
+PASS d fuzz3
+PASS d fuzz4
+PASS d fuzz5
+PASS d fuzz6
+PASS d fuzz7
+PASS d fuzz8
+PASS d fuzz9
+PASS d fuzz10
+PASS d fuzz11
+PASS d fuzz12
+PASS d fuzz13
+PASS d fuzz14
+PASS d fuzz15
+PASS d fuzz16
+PASS d fuzz17
+PASS d fuzz18
+PASS d fuzz19
+PASS b fuzz0
+PASS b fuzz1
+PASS b fuzz2
+PASS b fuzz3
+PASS b fuzz4
+PASS b fuzz5
+PASS b fuzz6
+PASS b fuzz7
+PASS b fuzz8
+PASS b fuzz9
+PASS c final-no-newline
+PASS c name-table-growth
+PASS a empty
+PASS a percentile-boundaries
+PASS a parallel-boundaries
+PASS b token-and-block-boundaries
+PASS c parallel-hostile
+PASS a sample-seed2
+PASS b sample-seed2
+PASS c sample-seed2
+PASS d sample-seed2
+PASS a sample-seed17
+PASS b sample-seed17
+PASS c sample-seed17
+PASS d sample-seed17
+PASS a tiny-seed20261031
+PASS b tiny-seed20261031
+PASS c tiny-seed20261031
+PASS d tiny-seed20261031
+PASS a sample-seed20261031
+PASS b sample-seed20261031
+PASS c sample-seed20261031
+PASS d sample-seed20261031
+PASS a full-seed1
+PASS b full-seed1
+PASS c full-seed1
+PASS d full-seed1
+PASS b supplied-phrase-1024
+PASS c supplied-long-name
+PASS b refined-block-1003
+PASS b refined-block-65536
+PASS b refined-block-65537
+PASS b refined-block-70000
+PASS a fresh-full-seed20261031
+PASS b fresh-full-seed20261031
+PASS c fresh-full-seed20261031
+PASS d fresh-full-seed20261031
+PASS a packed-latency-thresholds
+PASS a packed-wide-heavy
+PASS b continuation5-wide-domain
+PASS d continuation5-wide-labels
+PASS c continuation5-ring-reuse
+PASS a continuation5-crc-collision
+PASS d continuation7-parallel-wide-2
+PASS d continuation7-parallel-wide-65537
+PASS a continuation7-partial-hash-collision
+PASS c continuation7-partial-hash-collision
+
+running 5 tests
+test bounded_simd_and_exact_overflow ... ok
+test buffered_range_alignment_owns_each_line_once ... ok
+test exact_decimal_lengths_and_terminated_tails ... ok
+test exact_publication ... ok
+test percentile_duplicate_ranks ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
+
+
+running 4 tests
+test complete_parallel_csr_against_independent_text_parser ... ok
+test exact_compact_weight_fallbacks ... ok
+test repeated_wide_zero_and_unreachable_paths ... ok
+test sparse_growth_and_width_derived_epoch_wrap ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.74s
+
+PASS rust8-final-asan 93 comparisons ['a-rust8-tests', 'd-rust8-tests']
+PASS new a rust8-buffer-boundaries
+PASS new d rust8-one-node
+PASS new d rust8-empty-graph
+PASS new d rust8-empty-queries
+Built rust8-final-checked
+PASS a worked-example
+PASS b worked-example
+PASS c worked-example
+PASS d worked-example
+PASS a tiny-seed1
+PASS b tiny-seed1
+PASS c tiny-seed1
+PASS d tiny-seed1
+PASS a tiny-seed2
+PASS b tiny-seed2
+PASS c tiny-seed2
+PASS d tiny-seed2
+PASS a tiny-seed17
+PASS b tiny-seed17
+PASS c tiny-seed17
+PASS d tiny-seed17
+PASS d fuzz0
+PASS d fuzz1
+PASS d fuzz2
+PASS d fuzz3
+PASS d fuzz4
+PASS d fuzz5
+PASS d fuzz6
+PASS d fuzz7
+PASS d fuzz8
+PASS d fuzz9
+PASS d fuzz10
+PASS d fuzz11
+PASS d fuzz12
+PASS d fuzz13
+PASS d fuzz14
+PASS d fuzz15
+PASS d fuzz16
+PASS d fuzz17
+PASS d fuzz18
+PASS d fuzz19
+PASS b fuzz0
+PASS b fuzz1
+PASS b fuzz2
+PASS b fuzz3
+PASS b fuzz4
+PASS b fuzz5
+PASS b fuzz6
+PASS b fuzz7
+PASS b fuzz8
+PASS b fuzz9
+PASS c final-no-newline
+PASS c name-table-growth
+PASS a empty
+PASS a percentile-boundaries
+PASS a parallel-boundaries
+PASS b token-and-block-boundaries
+PASS c parallel-hostile
+PASS a sample-seed2
+PASS b sample-seed2
+PASS c sample-seed2
+PASS d sample-seed2
+PASS a sample-seed17
+PASS b sample-seed17
+PASS c sample-seed17
+PASS d sample-seed17
+PASS a tiny-seed20261031
+PASS b tiny-seed20261031
+PASS c tiny-seed20261031
+PASS d tiny-seed20261031
+PASS a sample-seed20261031
+PASS b sample-seed20261031
+PASS c sample-seed20261031
+PASS d sample-seed20261031
+PASS a full-seed1
+PASS b full-seed1
+PASS c full-seed1
+PASS d full-seed1
+PASS b supplied-phrase-1024
+PASS c supplied-long-name
+PASS b refined-block-1003
+PASS b refined-block-65536
+PASS b refined-block-65537
+PASS b refined-block-70000
+PASS a fresh-full-seed20261031
+PASS b fresh-full-seed20261031
+PASS c fresh-full-seed20261031
+PASS d fresh-full-seed20261031
+PASS a packed-latency-thresholds
+PASS a packed-wide-heavy
+PASS b continuation5-wide-domain
+PASS d continuation5-wide-labels
+PASS c continuation5-ring-reuse
+PASS a continuation5-crc-collision
+PASS d continuation7-parallel-wide-2
+PASS d continuation7-parallel-wide-65537
+PASS a continuation7-partial-hash-collision
+PASS c continuation7-partial-hash-collision
+
+running 5 tests
+test bounded_simd_and_exact_overflow ... ok
+test buffered_range_alignment_owns_each_line_once ... ok
+test exact_decimal_lengths_and_terminated_tails ... ok
+test exact_publication ... ok
+test percentile_duplicate_ranks ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+
+running 4 tests
+test complete_parallel_csr_against_independent_text_parser ... ok
+test exact_compact_weight_fallbacks ... ok
+test repeated_wide_zero_and_unreachable_paths ... ok
+test sparse_growth_and_width_derived_epoch_wrap ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+PASS rust8-final-checked 93 comparisons ['a-rust8-tests', 'd-rust8-tests']
+PASS new a rust8-buffer-boundaries
+PASS new d rust8-one-node
+PASS new d rust8-empty-graph
+PASS new d rust8-empty-queries

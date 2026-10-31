@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "exit_code": 0,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network=none",
+    "--read-only",
+    "--memory=5g",
+    "--memory-swap=5g",
+    "--cpuset-cpus=0-11",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges",
+    "--security-opt=seccomp=unconfined",
+    "--tmpfs",
+    "/tmp:rw,size=1g,exec",
+    "--mount",
+    "type=bind,src=C:\\Users\\kultzuki\\Coding\\Speed-demon\\build\\rust8-tsan-target,dst=/check,readonly",
+    "-e",
+    "RUST_MIN_STACK=8388608",
+    "--entrypoint",
+    "/check/x86_64-unknown-linux-gnu/debug/deps/publication-786b3aa53bae7e26",
+    "codescythe/rust8-tools:local",
+    "exact_publication",
+    "--exact",
+    "--nocapture"
+  ],
+  "scope": "Additional TSan race check only. Instrumented std/test. Per-process ASLR control permitted with seccomp unconfined; no global sysctl or official runtime sandbox change."
+}

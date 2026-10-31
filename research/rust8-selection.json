@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-10-31T15:33:26.623613+00:00",
+  "starting_commit": "e9deec07fa38f9abf0c167d6768c41c388e37ba5",
+  "status": "All local gates, exact offline/LF artifacts and TSan publication pass; first official Rust push pending",
+  "user_original_d_sha256": "09f4a7107566ae792fc2e0017ece5057cd40c319c9e4f4c79623091dcb4b8e4d",
+  "selected": {
+    "a": {
+      "sources": {
+        "main.rs": "b26730709452d59d96ba2ee60b8e9e5def868617d0683564f8390dbac2caa4db",
+        "common.rs": "fb87d33a94de7518d61392d101b36c0f974ae43cb3c4b09440f858c88ab63145"
+      },
+      "S": 449,
+      "D": 1,
+      "source_origin": "buffered scalar parser",
+      "previous_cpp": "research/baseline8/track-a"
+    },
+    "d": {
+      "sources": {
+        "main.rs": "984b086837a42719fbab78f70dd403da01f3383410a974fa39c9bbe95c882cf3",
+        "common.rs": "632e1550ee17098277e722949833c683207226e8e43ce9f2795281d67408d3b4"
+      },
+      "S": 485,
+      "D": 1,
+      "source_origin": "research/prototypes/d-simple8",
+      "previous_cpp": "research/baseline8/track-d"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-31T15:33:26.623613+00:00",
+      "status": "Frozen for complete validation and official measurement; no claimed official improvement yet"
+    },
+    {
+      "at": "2026-10-31T15:52:32.598855+00:00",
+      "status": "All local gates, exact offline/LF artifacts and TSan publication pass; first official Rust push pending"
+    }
+  ]
+}
