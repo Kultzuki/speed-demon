@@ -1,0 +1,22 @@
+{
+  "a": {
+    "image_id": "sha256:0dc6f577ffd496fac8bf36c53ae1ec7f730bcbabf965a14f828670aab80106bb",
+    "size_bytes": 118931874,
+    "solution_sha256": "c51d4a032c20e6ada4f2f3d11336ab02273e70bde545b633c14cfb41c4aef240"
+  },
+  "b": {
+    "image_id": "sha256:6e7f93000ad20295a94ff419651dd1de940d6bff117f36495dba699161867020",
+    "size_bytes": 119119034,
+    "solution_sha256": "187d626b6107fee6e0618e940f952a36cedabdf1958dc2eee976903a9827a38b"
+  },
+  "c": {
+    "image_id": "sha256:b50c60ab937d834f97415c02ad73a957d744b6542e1841a3c297be5ade8b9bdc",
+    "size_bytes": 118954922,
+    "solution_sha256": "e4a8605bafac8ef58fb5fe6c40dd8e808d3c96479d82f715a192b06b344d7f43"
+  },
+  "d": {
+    "image_id": "sha256:4c107c9bf1cf3af50e99fb9f9d9658ca16a2344a2e639b73b1f07249714cc832",
+    "size_bytes": 118926127,
+    "solution_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9"
+  }
+}

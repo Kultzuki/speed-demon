@@ -1,0 +1,240 @@
+PASS a/worked-example 0.0178s 0782f9b9a885bdbcdfadf330f6bea55accdc06018c0108f69ea43372d2fac692
+PASS b/worked-example 0.0348s 9c296c063de983fd734d9e6ab985866967731d6478d33b7e1b8723391b6e325b
+PASS c/worked-example 0.0338s 72ed9e59bff2dad354a9fb4cbc2d4b102477f634230b47e86035864c88d27444
+PASS d/worked-example 0.0348s 2e9871bba1d5013144ceff48d806a28da0e3f203b29118a89d98d8f654c3f6a0
+PASS a/tiny-seed1 0.0338s c24fa507c963eaeac9224fd8435019b4f4e8c002ece7e32f316681a3957eb92f
+PASS b/tiny-seed1 0.0341s dcdad7cedfc07eb66ecced1861cc91d9017e004c56cbe4f38e9413b62b17ff70
+PASS c/tiny-seed1 0.0342s e4e43bc39920e9d446c3fcd700fdd35b3959e9495c6aaa738491df38a1aed733
+PASS d/tiny-seed1 0.0340s ecaca77d3221fe3928109da36480cfdb39f288f2e57ecbc61d3d7706d5cb4bd5
+PASS a/tiny-seed2 0.0337s 1f6a431b0fc8e5f5033d5bf7dff0c3b498917a14e27ba8d63ddcf3beeac06d82
+PASS b/tiny-seed2 0.0339s fc3ca378ec12c492b4ee1fb4f0b489784b0b94650550bddec688702a078a6490
+PASS c/tiny-seed2 0.0342s 33751caa2d533502b540bad1ad914bce49118ca9732c89c37892541c91b6713a
+PASS d/tiny-seed2 0.0339s 686519de01b6c28cc2bb73423152b0636e0e2c1b9a0cb90cda8b0f21673a3474
+PASS a/tiny-seed17 0.0341s 38cc17f9205c0d9f6b9f16fa19f722e9fc348a07258b96ac56c7a55d1c62e4f6
+PASS b/tiny-seed17 0.0342s e67d694cae7b8a126e3931c7dbc74cdf91d655fcf0eafb31da3fc02546166079
+PASS c/tiny-seed17 0.0341s b7aa5e77e1db9b030a44fb8c845d067c54171f791b11e1f2ade6d3c5ecdb6019
+PASS d/tiny-seed17 0.0343s f9fd765204d3baf58afd4204e9e591640e38c0d1b4b21dc01051f1a2d022f18a
+PASS d/fuzz0 0.0342s d088988f339e82fde4f892fca1df734525056af3464dee6becfd4a506bd9c26b
+PASS d/fuzz1 0.0339s b13970fddefe6c185b3dded2225dbd8b284750023150c6d7f8adf10624b1d0e7
+PASS d/fuzz2 0.0343s d0bc88b4b871770f20fe27fae70f8a18a9360f8b09c55a0571903013fee7febe
+PASS d/fuzz3 0.0340s f335b10154fdc890d4d05b5c05421d5f43c8d386a60b88b2f3a3bb95f6cd2f91
+PASS d/fuzz4 0.0342s fdebceefcae147060ec83010d5b58ba58f9de0fba93c1847dca49d5e8a31d228
+PASS d/fuzz5 0.0343s f95a040df0dbcddcb8aff9c711df7fc3b483e938209314f8727af77147076bb7
+PASS d/fuzz6 0.0343s 71da91cf200f59a0184c7b0457f66c4d23461bc9fe367dc69e32c9e31a089fc2
+PASS d/fuzz7 0.0336s 1cdf09776740987b46ab6a14587926f7e751bf070be2187db40ffc7b5fe70544
+PASS d/fuzz8 0.0344s 77e1da311ad04016ba62f1d02180591430f8f08c5740b54f6462a7ee085a3c1f
+PASS d/fuzz9 0.0343s e0b6daa1277babbf0ce9fae196eb034b3814303b018894247c3715edd76556f9
+PASS d/fuzz10 0.0341s 097ca92ebf22880b55c77b69ea16f9461e0d53c6ff4cb7f22b1b32d6f9149926
+PASS d/fuzz11 0.0343s b5677e9805b78d79a2b12fabf35a2960c7bb9505a137207c03f16fb8c0116ce1
+PASS d/fuzz12 0.0341s 704e64154374eeaac7f009e4435d50a4fa95b23c7c17166fd096afc7c00e6f3c
+PASS d/fuzz13 0.0340s a60532469125a777e960e9ba9e4058cb136316ae527291d5806f375c12dcb4b9
+PASS d/fuzz14 0.0336s 94dc0331a37d60b882cc01b66b5defc1a44f65cb9b343951120ec4a084d1d5c5
+PASS d/fuzz15 0.0344s b194f303d786e9d6545fc9df12f0f6e771e34341c2edb6c966e2bbee1c9ec803
+PASS d/fuzz16 0.0335s 4130528fcf35f555fe7de651a52d8dc5142f8217de11333103af3d20113352e7
+PASS d/fuzz17 0.0336s b4e5ef9a9049849e176de1bc1a5e75587da71ef8a61382ce22c5ec501d741213
+PASS d/fuzz18 0.0175s 20158b6ad295787cd9ec3bc579336c81e3e2ca5ef5622a9b58cffb2dd2e1758c
+PASS d/fuzz19 0.0335s 2adf0f5367684b399528653bfd826d411827031dc8441bd3c8f056e21e8a65d6
+PASS b/fuzz0 0.0339s 86c72f5452b3ab76cead56e4afbfb0c56b603bad5f4a31c95910f48fb60a168b
+PASS b/fuzz1 0.0339s 87149b96867f2b868e802d273fd01bad57c77223fc91ccd16ce71af7139860c4
+PASS b/fuzz2 0.0338s 25590385a9ccb207d505cc8e2bd8c26f12f6f793c02e634bbeae11b5274646e4
+PASS b/fuzz3 0.0343s a0101a9dc0ec524307fc3d79013224eacbd2a2e05e30c9e8925d8b89bacd485a
+PASS b/fuzz4 0.0337s 3ccc000d02240f2446ba2d99980dd903990d160da38ee4ddb8463a4ff484cc89
+PASS b/fuzz5 0.0340s 7cb744e6571dfd4c7d5359ba88d0e6422cffaba18c0b7f9fa72e7d9be2093490
+PASS b/fuzz6 0.0337s 7d0db89106794a48c58308055c8cc7972e5c2247637d21bf953a7e043fc09264
+PASS b/fuzz7 0.0339s 568fe36c012170ff877c039b5e13fd7141b8bf924a5eb9d65d1a942c4e84e207
+PASS b/fuzz8 0.0338s 09ea51ae1d2e948fcdd7ee8e8b5c6e1410238a7dcff0d77a096dd4e45fb78c5a
+PASS b/fuzz9 0.0335s 8c7482637a5576b8441e024b797c7d104894b6a802974266371fa65e7d9a46a9
+PASS c/final-no-newline 0.0340s e25d578f0f157a790bd6844ed73152ee6f237a8eeb195a23ab398b1d0e1bffd1
+PASS c/name-table-growth 0.1167s c15f9a3edf198aa79c73a43766c08c798323aaf2a24c8b881fbe9f21cf9e4c3a
+PASS a/empty 0.0184s e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+PASS a/percentile-boundaries 0.0345s b35786c33ba3e1f7acac90b1dc6d98b33dbdb7f6378a54ba5a9951238673662b
+PASS a/parallel-boundaries 0.0664s 15e0596d3fa44fb34a7dc81ebacff8198f9b370eef47f075f989c6101266210d
+PASS b/token-and-block-boundaries 0.0662s 5bd7e3a09036ca3f5fc8fa3b9e8c3b8c0a07a56a904d91fd73df92716f0ee750
+PASS c/parallel-hostile 0.0335s 6160ddd6e38a5aecbe7c0ae65339863ee772e2a298dbf88252ea5cce1d122610
+PASS a/sample-seed2 0.1664s fd26778fa5e70fac2905a0a0f0142bd26ca4e6f510dfe182a881e525286ff12f
+PASS b/sample-seed2 0.1161s 86b92e3ceda664396bad5cabc3809b447de0610282eee484605fd23cbd12fea6
+PASS c/sample-seed2 0.1159s f389938275df1b495a38c4375fe741795df180e64617e01e2cf77a95a56982a3
+PASS d/sample-seed2 0.1178s 70e94813fc6fbee12c22cc040bc4a4629c70508d13eaab2bfabbdd75e1d51aed
+PASS a/sample-seed17 0.1664s 2a0c065b69741e2c3094e35c6baf0c7e38ef7452c8f832b42532ea4a8f055ed5
+PASS b/sample-seed17 0.1668s e935098dcdcd03d3eb3a869e8472ebaa1d28bf92d25f4bfae588004407e8ed05
+PASS c/sample-seed17 0.1163s 15a5add0a5224b0de3e58a12cc3b9ef1613e305182bca830547f4f890c43be67
+PASS d/sample-seed17 0.1160s 1c03f6046d75ef9a4e1f5d4cac506904424c56082b559706effeb639b2eac387
+PASS a/tiny-seed20261031 0.0338s 9240066f5058dc84e4d81689aeada83bcfc6fe4baf524bc9adf847409e7ee8f0
+PASS b/tiny-seed20261031 0.0338s a33076143581946ae7a490381bcaad7cc99f93ad217356b1c4dd705cf50ba4fd
+PASS c/tiny-seed20261031 0.0337s a9244d98b33b3290e8caa9c62af6e20a5b20f8485574e2a5da198c6e4fd032cb
+PASS d/tiny-seed20261031 0.0340s 1509836c18e1ee230c6b343c2ddc51f51f50537556c1bb2669acd3ef27e571b7
+PASS a/sample-seed20261031 0.1660s e3856ff38aff5ad3ccbdf5a880197bf32f3cca02c2613e80fd8dee08e83389cb
+PASS b/sample-seed20261031 0.1169s 5bc01d0f6be13d239426178f1f9da80589b159803566c983d13ceea757e0e993
+PASS c/sample-seed20261031 0.1160s 6f0354ac98629267659857fc28774b9f14dc9b764df43981099b8fd904b38eb6
+PASS d/sample-seed20261031 0.1168s 1b90c205a9ca9c1c9dea5936691fbb07052c8c81e40481c337d69ad07fc7c40f
+PASS: 69 cases. Report: /work/validation/continuation7-final-release.json
+PASS a/full-seed1 0.6679s 495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3
+PASS b/full-seed1 1.0203s f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927
+PASS c/full-seed1 0.6178s d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536
+PASS d/full-seed1 0.9744s a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e
+PASS: 4 cases. Report: /work/validation/continuation7-final-release-full.json
+In file included from /work/research/tests/a-publication-guard.cpp:5:
+/work/track-a/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/track-a/main.cpp:171:1: warning: control reaches end of non-void function [-Wreturn-type]
+  171 | }
+      | ^
+PASS A twelve-way exact endpoint publication and 4,375 guard-page parses across methods, lengths, 20-bit sentinel and uint32 extremes
+PASS C quote boundaries: 64 alignments, 1-12 workers, LF/CRLF, BOM, EOF
+PASS C twelve-way concurrent publication and exactly-once country membership
+In file included from /work/research/tests/d-sparse-state.cpp:2:
+/work/research/tests/../../track-d/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/research/tests/../../track-d/main.cpp:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
+PASS D sparse rehash/membership/wrap, full-width overflow edges, repeated wide/zero/unreachable searches
+PASS b/supplied-phrase-1024 0.0336s 9be22678d74a3b4c6d36acd5d5b9b1df4c6dfc8ad2f4bebeb49cac95ecef36ad
+PASS c/supplied-long-name 0.0337s d3bd6b7ba30252fc430439905ef1ae47a64810ab1b6f1afb89ff95f72a82a601
+PASS b/refined-block-1003 0.0339s 290b38280863a8aae24c5a473693db07d5a646fe6b00ac837583dededc7dee76
+PASS b/refined-block-65536 0.0341s b295cc56998f2d72bf456e23b44290f34168db91ed82bab0454fa1ec0631e49e
+PASS b/refined-block-65537 0.0659s 1597a4b6dd6b592e6571199a71350af1feb4897f35d88b50d57ab454b681ebc7
+PASS b/refined-block-70000 0.0340s 30abeb8c82184d58781605b1e9859a39eda20d8c97bd4fc2ae6769d8b884efb7
+PASS B forced uint64 offset instantiation, full public hash
+PASS a/fresh-full-seed20261031 0.1705s 814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c
+PASS b/fresh-full-seed20261031 0.5270s d9aca5145790528d1dafa51998c4e6e7b106bd9c9592962caecb2600199963e3
+PASS c/fresh-full-seed20261031 0.1197s 50cf41d11da645bb40d6fc4924b2b158c0f7c1052da8661297f02c50dd7cd15e
+PASS d/fresh-full-seed20261031 0.9236s 64f1981215abee6e01332dd548fd39a3da89e9e1f99a0687d85bfe6f3eca3c58
+PASS a/packed-latency-thresholds 0.0676s cdc291fe7bd35cb89987c5f0abf204ca4717baf40b0947b71b7fdc6f9d2331ec
+PASS a/packed-wide-heavy 0.0673s e4f94e8bab95dddc13f7c811747dab3f68de960886eb86e529267b6deb47bb46
+PASS refinement gate continuation7-final-release
+PASS b/continuation5-wide-domain 0.2668s 8a300ec9ee5e24b0f9855b426195081cdc6953482830bbc67ccb6d63d9db8bee
+PASS d/continuation5-wide-labels 0.0342s a1a54989913355e260b979da4e61ff51373a731531f975b5ba1b83b051c2235d
+PASS c/continuation5-ring-reuse 0.0659s 1aa7dc8407f7bb6ae2c0d5cd560971b60b306a99c2be64a6d6f2b184a54431c5
+PASS a/continuation5-crc-collision 0.0177s f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88
+PASS additional real wide-document dispatch, uint32 label sentinel, escaped-name ring reuse, and exact CRC-collision endpoint identities
+In file included from /work/research/tests/d-csr-contents7.cpp:5:
+/work/track-d/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/track-d/main.cpp:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
+PASS d/continuation7-parallel-wide-2 0.0657s 6a33a504c8d16194914401f4f46532de96e1b63119fc5981341c6b65c6c27096
+PASS d/continuation7-parallel-wide-65537 0.1162s 433337604a1f9e6cb3c351ac2a6748036f7771ee03910c20c6edc039751e5b6e
+PASS a/continuation7-partial-hash-collision 0.0177s 19a9d342ad05edd087db4d84809cca82dc917c3cabd75c109f45aebd5301ad92
+PASS c/continuation7-partial-hash-collision 0.0340s 37d9f37928321520a655681a2a510380bd36c7fa91e55491f659be3442216519
+PASS complete exact forward/reverse CSR contents, duplicate multiplicities and full uint32 weights
+PASS complete exact forward/reverse CSR contents, duplicate multiplicities and full uint32 weights
+PASS new exact partial-hash identities, wide temporary streams and every forward/reverse CSR edge.
+PASS a/worked-example 0.0661s 0782f9b9a885bdbcdfadf330f6bea55accdc06018c0108f69ea43372d2fac692
+PASS b/worked-example 0.0661s 9c296c063de983fd734d9e6ab985866967731d6478d33b7e1b8723391b6e325b
+PASS c/worked-example 0.0339s 72ed9e59bff2dad354a9fb4cbc2d4b102477f634230b47e86035864c88d27444
+PASS d/worked-example 0.0665s 2e9871bba1d5013144ceff48d806a28da0e3f203b29118a89d98d8f654c3f6a0
+PASS a/tiny-seed1 0.0662s c24fa507c963eaeac9224fd8435019b4f4e8c002ece7e32f316681a3957eb92f
+PASS b/tiny-seed1 0.1162s dcdad7cedfc07eb66ecced1861cc91d9017e004c56cbe4f38e9413b62b17ff70
+PASS c/tiny-seed1 0.0661s e4e43bc39920e9d446c3fcd700fdd35b3959e9495c6aaa738491df38a1aed733
+PASS d/tiny-seed1 0.0667s ecaca77d3221fe3928109da36480cfdb39f288f2e57ecbc61d3d7706d5cb4bd5
+PASS a/tiny-seed2 0.0666s 1f6a431b0fc8e5f5033d5bf7dff0c3b498917a14e27ba8d63ddcf3beeac06d82
+PASS b/tiny-seed2 0.1162s fc3ca378ec12c492b4ee1fb4f0b489784b0b94650550bddec688702a078a6490
+PASS c/tiny-seed2 0.0663s 33751caa2d533502b540bad1ad914bce49118ca9732c89c37892541c91b6713a
+PASS d/tiny-seed2 0.0661s 686519de01b6c28cc2bb73423152b0636e0e2c1b9a0cb90cda8b0f21673a3474
+PASS a/tiny-seed17 0.0660s 38cc17f9205c0d9f6b9f16fa19f722e9fc348a07258b96ac56c7a55d1c62e4f6
+PASS b/tiny-seed17 0.1167s e67d694cae7b8a126e3931c7dbc74cdf91d655fcf0eafb31da3fc02546166079
+PASS c/tiny-seed17 0.0661s b7aa5e77e1db9b030a44fb8c845d067c54171f791b11e1f2ade6d3c5ecdb6019
+PASS d/tiny-seed17 0.0662s f9fd765204d3baf58afd4204e9e591640e38c0d1b4b21dc01051f1a2d022f18a
+PASS d/fuzz0 0.0665s d088988f339e82fde4f892fca1df734525056af3464dee6becfd4a506bd9c26b
+PASS d/fuzz1 0.0667s b13970fddefe6c185b3dded2225dbd8b284750023150c6d7f8adf10624b1d0e7
+PASS d/fuzz2 0.0666s d0bc88b4b871770f20fe27fae70f8a18a9360f8b09c55a0571903013fee7febe
+PASS d/fuzz3 0.0671s f335b10154fdc890d4d05b5c05421d5f43c8d386a60b88b2f3a3bb95f6cd2f91
+PASS d/fuzz4 0.0668s fdebceefcae147060ec83010d5b58ba58f9de0fba93c1847dca49d5e8a31d228
+PASS d/fuzz5 0.0671s f95a040df0dbcddcb8aff9c711df7fc3b483e938209314f8727af77147076bb7
+PASS d/fuzz6 0.0662s 71da91cf200f59a0184c7b0457f66c4d23461bc9fe367dc69e32c9e31a089fc2
+PASS d/fuzz7 0.1183s 1cdf09776740987b46ab6a14587926f7e751bf070be2187db40ffc7b5fe70544
+PASS d/fuzz8 0.0663s 77e1da311ad04016ba62f1d02180591430f8f08c5740b54f6462a7ee085a3c1f
+PASS d/fuzz9 0.0671s e0b6daa1277babbf0ce9fae196eb034b3814303b018894247c3715edd76556f9
+PASS d/fuzz10 0.0662s 097ca92ebf22880b55c77b69ea16f9461e0d53c6ff4cb7f22b1b32d6f9149926
+PASS d/fuzz11 0.0659s b5677e9805b78d79a2b12fabf35a2960c7bb9505a137207c03f16fb8c0116ce1
+PASS d/fuzz12 0.0660s 704e64154374eeaac7f009e4435d50a4fa95b23c7c17166fd096afc7c00e6f3c
+PASS d/fuzz13 0.0662s a60532469125a777e960e9ba9e4058cb136316ae527291d5806f375c12dcb4b9
+PASS d/fuzz14 0.0659s 94dc0331a37d60b882cc01b66b5defc1a44f65cb9b343951120ec4a084d1d5c5
+PASS d/fuzz15 0.0667s b194f303d786e9d6545fc9df12f0f6e771e34341c2edb6c966e2bbee1c9ec803
+PASS d/fuzz16 0.0662s 4130528fcf35f555fe7de651a52d8dc5142f8217de11333103af3d20113352e7
+PASS d/fuzz17 0.0663s b4e5ef9a9049849e176de1bc1a5e75587da71ef8a61382ce22c5ec501d741213
+PASS d/fuzz18 0.0665s 20158b6ad295787cd9ec3bc579336c81e3e2ca5ef5622a9b58cffb2dd2e1758c
+PASS d/fuzz19 0.0680s 2adf0f5367684b399528653bfd826d411827031dc8441bd3c8f056e21e8a65d6
+PASS b/fuzz0 0.1166s 86c72f5452b3ab76cead56e4afbfb0c56b603bad5f4a31c95910f48fb60a168b
+PASS b/fuzz1 0.1162s 87149b96867f2b868e802d273fd01bad57c77223fc91ccd16ce71af7139860c4
+PASS b/fuzz2 0.1178s 25590385a9ccb207d505cc8e2bd8c26f12f6f793c02e634bbeae11b5274646e4
+PASS b/fuzz3 0.0661s a0101a9dc0ec524307fc3d79013224eacbd2a2e05e30c9e8925d8b89bacd485a
+PASS b/fuzz4 0.1167s 3ccc000d02240f2446ba2d99980dd903990d160da38ee4ddb8463a4ff484cc89
+PASS b/fuzz5 0.1175s 7cb744e6571dfd4c7d5359ba88d0e6422cffaba18c0b7f9fa72e7d9be2093490
+PASS b/fuzz6 0.1162s 7d0db89106794a48c58308055c8cc7972e5c2247637d21bf953a7e043fc09264
+PASS b/fuzz7 0.1162s 568fe36c012170ff877c039b5e13fd7141b8bf924a5eb9d65d1a942c4e84e207
+PASS b/fuzz8 0.1173s 09ea51ae1d2e948fcdd7ee8e8b5c6e1410238a7dcff0d77a096dd4e45fb78c5a
+PASS b/fuzz9 0.1164s 8c7482637a5576b8441e024b797c7d104894b6a802974266371fa65e7d9a46a9
+PASS c/final-no-newline 0.0340s e25d578f0f157a790bd6844ed73152ee6f237a8eeb195a23ab398b1d0e1bffd1
+PASS c/name-table-growth 0.1666s c15f9a3edf198aa79c73a43766c08c798323aaf2a24c8b881fbe9f21cf9e4c3a
+PASS a/empty 0.0667s e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+PASS a/percentile-boundaries 0.0670s b35786c33ba3e1f7acac90b1dc6d98b33dbdb7f6378a54ba5a9951238673662b
+PASS a/parallel-boundaries 0.1164s 15e0596d3fa44fb34a7dc81ebacff8198f9b370eef47f075f989c6101266210d
+PASS b/token-and-block-boundaries 0.1679s 5bd7e3a09036ca3f5fc8fa3b9e8c3b8c0a07a56a904d91fd73df92716f0ee750
+PASS c/parallel-hostile 0.0665s 6160ddd6e38a5aecbe7c0ae65339863ee772e2a298dbf88252ea5cce1d122610
+PASS a/sample-seed2 0.2165s fd26778fa5e70fac2905a0a0f0142bd26ca4e6f510dfe182a881e525286ff12f
+PASS b/sample-seed2 0.2170s 86b92e3ceda664396bad5cabc3809b447de0610282eee484605fd23cbd12fea6
+PASS c/sample-seed2 0.2173s f389938275df1b495a38c4375fe741795df180e64617e01e2cf77a95a56982a3
+PASS d/sample-seed2 1.3840s 70e94813fc6fbee12c22cc040bc4a4629c70508d13eaab2bfabbdd75e1d51aed
+PASS a/sample-seed17 0.2168s 2a0c065b69741e2c3094e35c6baf0c7e38ef7452c8f832b42532ea4a8f055ed5
+PASS b/sample-seed17 0.2688s e935098dcdcd03d3eb3a869e8472ebaa1d28bf92d25f4bfae588004407e8ed05
+PASS c/sample-seed17 0.2172s 15a5add0a5224b0de3e58a12cc3b9ef1613e305182bca830547f4f890c43be67
+PASS d/sample-seed17 0.8248s 1c03f6046d75ef9a4e1f5d4cac506904424c56082b559706effeb639b2eac387
+PASS a/tiny-seed20261031 0.0666s 9240066f5058dc84e4d81689aeada83bcfc6fe4baf524bc9adf847409e7ee8f0
+PASS b/tiny-seed20261031 0.1163s a33076143581946ae7a490381bcaad7cc99f93ad217356b1c4dd705cf50ba4fd
+PASS c/tiny-seed20261031 0.0662s a9244d98b33b3290e8caa9c62af6e20a5b20f8485574e2a5da198c6e4fd032cb
+PASS d/tiny-seed20261031 0.0663s 1509836c18e1ee230c6b343c2ddc51f51f50537556c1bb2669acd3ef27e571b7
+PASS a/sample-seed20261031 0.2173s e3856ff38aff5ad3ccbdf5a880197bf32f3cca02c2613e80fd8dee08e83389cb
+PASS b/sample-seed20261031 0.2166s 5bc01d0f6be13d239426178f1f9da80589b159803566c983d13ceea757e0e993
+PASS c/sample-seed20261031 0.2673s 6f0354ac98629267659857fc28774b9f14dc9b764df43981099b8fd904b38eb6
+PASS d/sample-seed20261031 0.8740s 1b90c205a9ca9c1c9dea5936691fbb07052c8c81e40481c337d69ad07fc7c40f
+PASS: 69 cases. Report: /work/validation/continuation7-final-sanitized.json
+PASS a/full-seed1 0.8194s 495ca09682b9673ef836a506496177680bb4a3af54255174befddb1f83481cd3
+PASS b/full-seed1 1.7749s f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927
+PASS c/full-seed1 1.2253s d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536
+PASS d/full-seed1 8.6528s a23dbdf0a3e49cc8901310a9ee1dc6a9a569a85297b6da75c2a7002cb2ed277e
+PASS: 4 cases. Report: /work/validation/continuation7-final-sanitized-full.json
+In file included from /work/research/tests/a-publication-guard.cpp:5:
+/work/track-a/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/track-a/main.cpp:171:1: warning: control reaches end of non-void function [-Wreturn-type]
+  171 | }
+      | ^
+PASS A twelve-way exact endpoint publication and 4,375 guard-page parses across methods, lengths, 20-bit sentinel and uint32 extremes
+PASS C quote boundaries: 64 alignments, 1-12 workers, LF/CRLF, BOM, EOF
+PASS C twelve-way concurrent publication and exactly-once country membership
+In file included from /work/research/tests/d-sparse-state.cpp:2:
+/work/research/tests/../../track-d/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/research/tests/../../track-d/main.cpp:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
+PASS D sparse rehash/membership/wrap, full-width overflow edges, repeated wide/zero/unreachable searches
+PASS b/supplied-phrase-1024 0.1175s 9be22678d74a3b4c6d36acd5d5b9b1df4c6dfc8ad2f4bebeb49cac95ecef36ad
+PASS c/supplied-long-name 0.0670s d3bd6b7ba30252fc430439905ef1ae47a64810ab1b6f1afb89ff95f72a82a601
+PASS b/refined-block-1003 0.0662s 290b38280863a8aae24c5a473693db07d5a646fe6b00ac837583dededc7dee76
+PASS b/refined-block-65536 0.1170s b295cc56998f2d72bf456e23b44290f34168db91ed82bab0454fa1ec0631e49e
+PASS b/refined-block-65537 0.1175s 1597a4b6dd6b592e6571199a71350af1feb4897f35d88b50d57ab454b681ebc7
+PASS b/refined-block-70000 0.1167s 30abeb8c82184d58781605b1e9859a39eda20d8c97bd4fc2ae6769d8b884efb7
+PASS B forced uint64 offset instantiation, full public hash
+PASS a/fresh-full-seed20261031 0.3203s 814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c
+PASS b/fresh-full-seed20261031 1.4767s d9aca5145790528d1dafa51998c4e6e7b106bd9c9592962caecb2600199963e3
+PASS c/fresh-full-seed20261031 0.8251s 50cf41d11da645bb40d6fc4924b2b158c0f7c1052da8661297f02c50dd7cd15e
+PASS d/fresh-full-seed20261031 8.5976s 64f1981215abee6e01332dd548fd39a3da89e9e1f99a0687d85bfe6f3eca3c58
+PASS a/packed-latency-thresholds 0.1686s cdc291fe7bd35cb89987c5f0abf204ca4717baf40b0947b71b7fdc6f9d2331ec
+PASS a/packed-wide-heavy 0.1167s e4f94e8bab95dddc13f7c811747dab3f68de960886eb86e529267b6deb47bb46
+PASS refinement gate continuation7-final-sanitized
+PASS b/continuation5-wide-domain 0.5676s 8a300ec9ee5e24b0f9855b426195081cdc6953482830bbc67ccb6d63d9db8bee
+PASS d/continuation5-wide-labels 0.0663s a1a54989913355e260b979da4e61ff51373a731531f975b5ba1b83b051c2235d
+PASS c/continuation5-ring-reuse 0.1171s 1aa7dc8407f7bb6ae2c0d5cd560971b60b306a99c2be64a6d6f2b184a54431c5
+PASS a/continuation5-crc-collision 0.0676s f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88
+PASS additional real wide-document dispatch, uint32 label sentinel, escaped-name ring reuse, and exact CRC-collision endpoint identities
+In file included from /work/research/tests/d-csr-contents7.cpp:5:
+/work/track-d/main.cpp: In function ‘int candidate_main(int, char**)’:
+/work/track-d/main.cpp:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
+PASS d/continuation7-parallel-wide-2 0.1673s 6a33a504c8d16194914401f4f46532de96e1b63119fc5981341c6b65c6c27096
+PASS d/continuation7-parallel-wide-65537 0.4709s 433337604a1f9e6cb3c351ac2a6748036f7771ee03910c20c6edc039751e5b6e
+PASS a/continuation7-partial-hash-collision 0.0665s 19a9d342ad05edd087db4d84809cca82dc917c3cabd75c109f45aebd5301ad92
+PASS c/continuation7-partial-hash-collision 0.0343s 37d9f37928321520a655681a2a510380bd36c7fa91e55491f659be3442216519
+PASS complete exact forward/reverse CSR contents, duplicate multiplicities and full uint32 weights
+PASS complete exact forward/reverse CSR contents, duplicate multiplicities and full uint32 weights
+PASS new exact partial-hash identities, wide temporary streams and every forward/reverse CSR edge.

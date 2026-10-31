@@ -2,25 +2,27 @@
 
 Continue this entry. Do not restart, reset, force-push or re-register.
 
-## Continuation 7 candidate ready for official measurement
+## Continuation 7 final combination ready for its official rerun
 
 This section supersedes the older kernel description below while the next
-ordinary commit/push is prepared. HEAD is still c503752 at this instant.
+ordinary commit/push is prepared. HEAD is f992539 at this instant; local D has
+been restored after that commit's official regression. The older checkpoint
+description below is historical and will be replaced after the final rerun.
 All incoming dirty state is archived byte for byte in .out/continuation7-incoming;
 the full incoming handover is research/HANDOVER_INCOMING_CONTINUATION7.md.
 
 - A: incoming exact first/last-byte endpoint hash; full equality remains.
 - B: 65,536-entry lazy posting blocks, with both checked width fallbacks.
 - C: incoming exact hash/four-record ring, then checked-close _exit(0).
-- D: one text parse and 64-owner compact CSR construction; an unbounded exact
-  wide-edge stream preserves all uint32 weights. Search remains full uint64.
+- D: restored exact incoming two-pass CSR/full-uint64 search. The owner-sharded
+  trial loses officially: K=14.710088 versus historical 15.399979.
 
 The frozen bundle passes 93 release and 93 ASan/UBSan dataset comparisons,
 both full seeds, the prior direct tests, two complete independent 200,000-edge
 CSR checks and forced uint64 B offsets. All four rebuilt offline images pass
-the starter sandbox and match build/continuation7-release binaries exactly.
-Use build/continuation7-{release,sanitized}, not earlier trial binaries.
-Provenance: validation/continuation7-artifact-provenance.json.
+the starter sandbox and match build/continuation7-final-release binaries exactly.
+Use build/continuation7-final-{release,sanitized}, not earlier trial binaries.
+Provenance: validation/continuation7-final-artifact-provenance.json.
 
 Read research/CONTINUATION7.md, research/continuation7-selection.json and each
 PERF.md for paired full coefficients and rejected experiments. A/C effects
@@ -28,10 +30,12 @@ vary by repeat; PGO, parallel prefault, reservation, split membership, inline
 graph storage and packed heap entries are unselected/rejected. No PGO enters
 the submitted builds. Do not rerun selector/generator scripts blindly.
 
-The new official coefficient is pending. Refreshed starting practice result:
-69.160567, rank 18, leader 80.244238. Wait for the next exact commit's four
-official results before another kernel edit. Restore genuine regressions and
-then reconcile rebuilt images/validation. No agents were spawned.
+At f992539 all official gates passed: A K=33.234541, B K=19.373796,
+C K=24.427280; each improves its recorded best. Practice aggregate rises from
+69.160567 / rank 18 to 69.780860 / rank 17, leader 80.244238. D is rejected and
+restored. The next push changes only D's runtime source; wait for its exact
+four-track official results before another kernel edit. A/B/C rerun differences
+are variation. No agents were spawned.
 
 ## Current checkpoint
 

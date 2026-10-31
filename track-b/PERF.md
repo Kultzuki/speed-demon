@@ -211,3 +211,23 @@ Checkpoint phase medians from the separate instrumented source: map-check-widths
 These are alternating hot-data local WSL2 measurements with fresh cgroups, including process exit; they are not official scores. Short A/C repeats vary materially, and the gain is not a stable percentage across every batch. Every measured output hash matches.
 
 The frozen combination passes 93 release and 93 ASan/UBSan dataset comparisons, both full seeds, the existing direct guard/publication/boundary/membership/state checks, and two new independent checks of all 200,000 forward/reverse CSR edges. Forced uint64 B offsets pass the full hash. All four rebuilt offline images pass the unprivileged read-only/no-network starter sandbox and their executables match the validated release binaries exactly. Exact source/common/compiler/binary/image identities are in validation/continuation7-artifact-provenance.json. Official retention remains pending.
+
+
+## Official continuation 7 at f992539
+
+Run `run-55ec3a94a1e5` at `f99253995d7fa9f97f825c9c8b37c4ec705d3e66`: T=0.295209s, M=71454720 bytes, S=922, D=1, K=19.373796, points=64.360736. All five official gates passed. Starting historical best K=18.629977: **candidate exceeds the starting recorded best**.
+
+Captured practice aggregate 69.780860, rank 17; leader 80.244238. This is public practice, not final holdout or human judging. Full record: validation/leaderboard-continuation7-official.json.
+
+
+## Final continuation 7 local reconciliation
+
+A/B/C retain their improved f992539 sources. D is restored exactly to the
+stronger incoming source after its official coefficient regression. The final
+mix passes 93 release and 93 ASan/UBSan comparisons, both full seeds, the direct
+programs including both complete 200,000-edge CSR checks, and forced uint64 B
+offsets. All final image executables match build/continuation7-final-release.
+A/B/C images originate in sandbox-continuation7.txt; restored D was rebuilt
+in sandbox-continuation7-final-d.txt. Complete final provenance is
+validation/continuation7-final-artifact-provenance.json. The earlier
+continuation7 builds contain the rejected D trial and remain historical only.

@@ -1,0 +1,110 @@
+{
+  "scope": "Final retained A/B/C plus exact restored D; no rejected D trial is used.",
+  "images_origin": {
+    "abc": "validation/sandbox-continuation7.txt",
+    "d": "validation/sandbox-continuation7-final-d.txt"
+  },
+  "tracks": {
+    "a": {
+      "source_sha256": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "2dc478f4ac9386743b3bbf261e50da16708defc9bc6d0ea4c7cae147007954d0",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O3",
+        "-DNDEBUG",
+        "-static",
+        "-s"
+      ],
+      "image_id": "sha256:22494b8471c7534fcdbb5d11d9f6aefc8f2fcc1563da763b362f758839490b56",
+      "size_bytes": 118931764,
+      "solution_sha256": "2dc478f4ac9386743b3bbf261e50da16708defc9bc6d0ea4c7cae147007954d0",
+      "S": 310,
+      "D": 1,
+      "source_lf_sha256": "8c0ddd195692081b28878471b6b7c9a9aa75b9b402d3ce857ba26466758b39b0",
+      "Dockerfile_sha256": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+      "manifest_sha256": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714"
+    },
+    "b": {
+      "source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O3",
+        "-DNDEBUG",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "image_id": "sha256:6b2f3f633153cfe431ea48e547ea0a922c6f8522eeedffe73255e7050c933a32",
+      "size_bytes": 119119040,
+      "solution_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "S": 922,
+      "D": 1,
+      "source_lf_sha256": "46e400770f154020d1e21e8488f47c06362e74d43892f0e6965ece461991bc8f",
+      "Dockerfile_sha256": "36ee0f7eb244964ca4d06c15b60e78835ab0d29500eae04ffdc3608640eae232",
+      "manifest_sha256": "6186eba187f92d32c0bfc9812ca7f2cf714d11aac7989128714892dc678ae7bc"
+    },
+    "c": {
+      "source_sha256": "5dee5f7f05040b557e28fbbf57fa7d6165f232191efd349e8f9b2d7304623841",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O3",
+        "-DNDEBUG",
+        "-static",
+        "-s"
+      ],
+      "image_id": "sha256:f4a8e1464d7f316300dd05de366b5683576a1300fab2dfbc6d8c2b190a0a54ce",
+      "size_bytes": 118950546,
+      "solution_sha256": "a48dfde9d8726fb5494fa6210dc34e9bf640fd849c0e57648a29af2259f149b0",
+      "S": 401,
+      "D": 1,
+      "source_lf_sha256": "dff72b4045201c96f7d203dbfeccc67bdeecec1d2205c532889b4633b2fcede0",
+      "Dockerfile_sha256": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+      "manifest_sha256": "a7d23da37e7ed7c037e7ae7eee341a85e3b7a43068e18d2dd8a4735d110429e9"
+    },
+    "d": {
+      "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O3",
+        "-DNDEBUG",
+        "-static",
+        "-s"
+      ],
+      "image_id": "sha256:7eb2cccd10c86d7d9e2ad428ccc5a9117bc6183ed13ea7395e20274b5d4eb169",
+      "size_bytes": 118926127,
+      "solution_sha256": "f082c225632953fb21b8139bd892b9178932fab0b025403393987dd165b202f9",
+      "S": 385,
+      "D": 1,
+      "source_lf_sha256": "319f7b219001252813a6ca3994ba834802262fb9fc5a5a8e3dd934617389145d",
+      "Dockerfile_sha256": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+      "manifest_sha256": "e98fa471dfdefd000c0e7f548cf1401e7e7778667d726f6a9886ff55d84fe576"
+    }
+  },
+  "gates": {
+    "release": {
+      "": 69,
+      "-full": 4,
+      "-extra": 12,
+      "-additional": 4,
+      "-new": 4
+    },
+    "sanitized": {
+      "": 69,
+      "-full": 4,
+      "-extra": 12,
+      "-additional": 4,
+      "-new": 4
+    }
+  }
+}

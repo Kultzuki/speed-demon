@@ -4,16 +4,9 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Six workers parse the text once into compact temporary edges. They bucket each
-direction into 64 disjoint node ranges; each range owns its degree counts,
-prefixes and scatter cursors, so construction needs no atomic cursor updates.
-Ordinary temporary edges occupy eight bytes. A sentinel indexes a growing
-per-worker stream containing complete endpoints and uint32 weights, with no
-fixed wide-edge cap. Parsed storage is released after reverse bucketing.
-
-The final forward and reverse CSR retain compact edge words derived from n;
-sentinel weights use exact sorted overflow entries. There is no BFS remapping.
-Up to twelve query workers own independent generation-tagged
+Six parsers build forward and reverse CSR in two passes. Edge words derive the
+node width from n; sentinel weights use exact sorted overflow entries. There is
+no BFS remapping. Up to twelve query workers own independent generation-tagged
 sparse hash tables with full uint64 distances and safe epoch wrap. Bidirectional
 radix Dijkstra expands the smaller frontier and stops only at the valid sum of
 frontier-minimum lower bounds. Answers retain input order. Zero and wide weights,

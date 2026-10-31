@@ -1,12 +1,17 @@
 """Run both complete gates and the new construction/identity regressions."""
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-selection = json.loads((ROOT / 'research/continuation7-selection.json').read_text())
+parser = argparse.ArgumentParser()
+parser.add_argument('--name', default='continuation7')
+parser.add_argument('--selection', default='research/continuation7-selection.json')
+args = parser.parse_args()
+selection = json.loads((ROOT / args.selection).read_text())
 
 
 def verify_sources():
@@ -15,9 +20,9 @@ def verify_sources():
         assert actual == entry['selected_sha256'], track
 
 
-with (ROOT / 'validation/continuation7-gates.txt').open('x') as log:
+with (ROOT / f'validation/{args.name}-gates.txt').open('x') as log:
     for mode in ['release', 'sanitized']:
-        name = f'continuation7-{mode}'
+        name = f'{args.name}-{mode}'
         print('START', name, flush=True)
         verify_sources()
         extra = ['--sanitized'] if mode == 'sanitized' else []

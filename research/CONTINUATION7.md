@@ -100,3 +100,46 @@ The same independently referenced full seed was copied, never regenerated,
 into /data/fresh7 in the existing benchmark volume. Every copied input hash
 matches its original. The new helper is stopped; no original dataset or volume
 was deleted. Official measurement of this candidate bundle is the next step.
+
+
+## Official measurement at f992539
+
+Exact commit: f99253995d7fa9f97f825c9c8b37c4ec705d3e66; captured 2026-10-31T08:33:19.624313+00:00.
+All four tracks passed all five official gates. Practice aggregate
+**69.780860**, rank **17**; leader **80.244238**.
+
+| Track | T s | M bytes | S | K | Starting best K | Official run |
+|---|---:|---:|---:|---:|---:|---|
+| A | 0.039374 | 29446144 | 310 | 33.234541 | 32.732322 | run-49fde5df3d4e |
+| B | 0.295209 | 71454720 | 922 | 19.373796 | 18.629977 | run-55ec3a94a1e5 |
+| C | 0.062636 | 12754944 | 401 | 24.427280 | 23.727679 | run-6b85ee32eee3 |
+| D | 0.366347 | 123572224 | 450 | 14.710088 | 15.399979 | run-cf5d7be2d8af |
+
+- A: candidate exceeds the starting recorded best.
+- B: candidate exceeds the starting recorded best.
+- C: candidate exceeds the starting recorded best.
+- D: candidate did not beat the starting recorded best; retention decision required.
+
+These are public practice measurements, separate from unseen-seed final scoring and judging.
+
+
+D's owner-sharded candidate is rejected after the official run: K=14.710088,
+versus the historical 15.399979 and unchanged incoming rerun 15.015017. Its
+0.366347 s does not reproduce the 14-17% local coefficient gain; the incoming
+kernel's latest official time was 0.368451 s at similar memory, while source
+size rose from 385 to 450. The exact incoming full-uint64 kernel is restored.
+A/B/C retain their officially improved implementations. Final mixed-source
+gates, rebuilt D image and another exact-commit official run follow.
+
+
+## Final continuation 7 local reconciliation
+
+A/B/C retain their improved f992539 sources. D is restored exactly to the
+stronger incoming source after its official coefficient regression. The final
+mix passes 93 release and 93 ASan/UBSan comparisons, both full seeds, the direct
+programs including both complete 200,000-edge CSR checks, and forced uint64 B
+offsets. All final image executables match build/continuation7-final-release.
+A/B/C images originate in sandbox-continuation7.txt; restored D was rebuilt
+in sandbox-continuation7-final-d.txt. Complete final provenance is
+validation/continuation7-final-artifact-provenance.json. The earlier
+continuation7 builds contain the rejected D trial and remain historical only.

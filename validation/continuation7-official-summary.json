@@ -1,0 +1,150 @@
+{
+  "commit": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+  "fetched_at": "2026-10-31T08:33:19.624313+00:00",
+  "aggregate": 69.78085979282214,
+  "rank": 17,
+  "leader": 80.24423788334063,
+  "watch": {
+    "ok": true,
+    "error": null,
+    "head": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+    "checked_at": "2026-10-31T08:32:02Z"
+  },
+  "latest": {
+    "a": {
+      "run_id": "run-49fde5df3d4e",
+      "commit": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+      "pushed_at": "2026-10-31T08:30:57Z",
+      "dispatched_at": "2026-10-31T08:30:59Z",
+      "started_at": "2026-10-31T08:32:13Z",
+      "ended_at": "2026-10-31T08:32:14Z",
+      "queue_latency_s": 76.1,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.039374,
+      "M_bytes": 29446144,
+      "S": 310,
+      "D": 1,
+      "K": 33.234541,
+      "points": 76.079484,
+      "static_axes": "measured",
+      "timeout_s": 96.142,
+      "build_s": 8.055,
+      "image_bytes": 118931936,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "b": {
+      "run_id": "run-55ec3a94a1e5",
+      "commit": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+      "pushed_at": "2026-10-31T08:30:57Z",
+      "dispatched_at": "2026-10-31T08:30:59Z",
+      "started_at": "2026-10-31T08:32:15Z",
+      "ended_at": "2026-10-31T08:32:16Z",
+      "queue_latency_s": 77.9,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.295209,
+      "M_bytes": 71454720,
+      "S": 922,
+      "D": 1,
+      "K": 19.373796,
+      "points": 64.360736,
+      "static_axes": "measured",
+      "timeout_s": 169.057,
+      "build_s": 21.992,
+      "image_bytes": 119119217,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "c": {
+      "run_id": "run-6b85ee32eee3",
+      "commit": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+      "pushed_at": "2026-10-31T08:30:57Z",
+      "dispatched_at": "2026-10-31T08:30:59Z",
+      "started_at": "2026-10-31T08:32:17Z",
+      "ended_at": "2026-10-31T08:32:18Z",
+      "queue_latency_s": 80.0,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.062636,
+      "M_bytes": 12754944,
+      "S": 401,
+      "D": 1,
+      "K": 24.42728,
+      "points": 69.393755,
+      "static_axes": "measured",
+      "timeout_s": 43.332,
+      "build_s": 8.378,
+      "image_bytes": 118950718,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    },
+    "d": {
+      "run_id": "run-cf5d7be2d8af",
+      "commit": "f99253995d7fa9f97f825c9c8b37c4ec705d3e66",
+      "pushed_at": "2026-10-31T08:30:57Z",
+      "dispatched_at": "2026-10-31T08:30:59Z",
+      "started_at": "2026-10-31T08:32:19Z",
+      "ended_at": "2026-10-31T08:32:20Z",
+      "queue_latency_s": 81.7,
+      "ok": true,
+      "stage": "scored",
+      "gates": {
+        "check": true,
+        "build": true,
+        "correctness": true,
+        "timeout": true,
+        "sandbox": true
+      },
+      "T_s": 0.366347,
+      "M_bytes": 123572224,
+      "S": 450,
+      "D": 1,
+      "K": 14.710088,
+      "points": 58.380763,
+      "static_axes": "measured",
+      "timeout_s": 218.078,
+      "build_s": 6.642,
+      "image_bytes": 118937801,
+      "failure": null,
+      "lang": [
+        "C++"
+      ]
+    }
+  },
+  "decisions": {
+    "a": "candidate exceeds the starting recorded best",
+    "b": "candidate exceeds the starting recorded best",
+    "c": "candidate exceeds the starting recorded best",
+    "d": "candidate did not beat the starting recorded best; retention decision required"
+  },
+  "snapshot": "leaderboard-continuation7-official"
+}
