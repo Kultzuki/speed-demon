@@ -143,3 +143,36 @@ All five gates pass on every track at 0ca1987477223527268d60911e073ff334feb8bd. 
 | D | 0.397762 | 102604800 | 473 | 14.542976 | 14.469309 | 15.399979 | run-5ccc134f1b0c |
 
 B/C sources are unchanged. A/D historical records are not improved by the first Rust run; first place remains outstanding. Public practice is separate from final holdouts and judging.
+
+
+## Official result at 8aa8ddb
+
+All five gates pass on every track at 8aa8ddb8f8aeba7d5d9b2b7c32745a26e5683d6e. Captured 2026-10-31T16:09:54.778683+00:00: aggregate 69.811783, rank 28, leader 81.805732. Unchanged-source rerun: True.
+
+| Track | T s | M bytes | S | K | Incoming exact-head K | Historical best K | Run |
+|---|---:|---:|---:|---:|---:|---:|---|
+| A | 0.044191 | 23535616 | 437 | 31.161629 | 29.654383 | 33.234541 | run-170f65d9b5b9 |
+| B | 0.318701 | 71217152 | 922 | 18.658515 | 19.243317 | 19.373796 | run-a27adb1e3656 |
+| C | 0.061219 | 13221888 | 401 | 24.531325 | 24.343070 | 24.427280 | run-69e0c9d51265 |
+| D | 0.533241 | 103596032 | 473 | 12.536262 | 14.469309 | 15.399979 | run-b60fed8b90d9 |
+
+B/C sources are unchanged. A/D historical records are not improved by the first Rust run; first place remains outstanding. Public practice is separate from final holdouts and judging.
+
+
+## Official retention decision
+
+Both full Rust implementations pass all five official gates at 0ca1987 and the
+source-identical 8aa8ddb. Best Rust A K=31.161629 is below the established
+33.234541; best Rust D K=14.542976 is below 15.399979, and its unchanged rerun
+falls to 12.536262. Local coefficient gains did not establish an official best.
+Under the explicit regression rule, both submitted A/D kernels are restored
+exactly to the incoming C++ sources. No rollback/reset/force-push is used.
+
+The requested Rust work is complete and retained as independently buildable
+packages in research/rust8-validated/track-{a,d}, with all release/ASan/checked
+artifacts, original user work, source-counter erratum and official evidence.
+Those are research alternatives, not the active submitted entry after restoration.
+
+C's new best K=24.531325 and aggregate 69.811783 at 8aa8ddb come from unchanged
+C++ source; they are rerun variation, not a Rust or C algorithm improvement.
+Final restored-source gates, offline identities and official reconciliation follow.

@@ -1,0 +1,111 @@
+{
+  "mode": "sanitized",
+  "scope": "Exact restored established C++ sources; same validated executables as continuation 7.",
+  "tracks": {
+    "a": {
+      "source_sha256": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "e397cf8fa26900ec6724065b92e1a28c0e1143f070f9e7190afc6d47a67a7c84",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "language": "C++",
+      "sources": {
+        "main.cpp": "e8b43ecd793904ddb8e30d650eb104005fc6be8a528f918414f62650baa2968d",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0"
+      }
+    },
+    "b": {
+      "source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "a97163b59d42dd29904321254f8e9e9a82446a7f65fd0e14496744cab3d11d16",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-march=x86-64-v3"
+      ],
+      "language": "C++",
+      "sources": {
+        "main.cpp": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0"
+      }
+    },
+    "c": {
+      "source_sha256": "5dee5f7f05040b557e28fbbf57fa7d6165f232191efd349e8f9b2d7304623841",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "e0f6590b1013117129d6bb2bd985cbbb1beea2c7b7981ac2b41cbe6938ea37d7",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "language": "C++",
+      "sources": {
+        "main.cpp": "5dee5f7f05040b557e28fbbf57fa7d6165f232191efd349e8f9b2d7304623841",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0"
+      }
+    },
+    "d": {
+      "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "f256b31abeab30d72d9bac3403b1fcfe6e33d4758cc6ee447c3c7206eac2a031",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "language": "C++",
+      "sources": {
+        "main.cpp": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+        "common.hpp": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0"
+      }
+    }
+  },
+  "direct_binaries": [
+    {
+      "binary": "a-publication-guard",
+      "args": []
+    },
+    {
+      "binary": "c-boundaries",
+      "args": []
+    },
+    {
+      "binary": "c-concurrent-names",
+      "args": []
+    },
+    {
+      "binary": "d-sparse-state",
+      "args": [
+        "/work/data/d/worked-example/graph.txt"
+      ]
+    },
+    {
+      "binary": "d-csr-contents7",
+      "args": [
+        "/work/data/d/continuation7-parallel-wide-2/graph.txt"
+      ]
+    },
+    {
+      "binary": "d-csr-contents7",
+      "args": [
+        "/work/data/d/continuation7-parallel-wide-65537/graph.txt"
+      ]
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 # CodeScythe - Speed Demon 2026
 
-Solo entrant: **Prashant Krishan Bharti**. Rust implementations for **A/D** and C++20 for **B/C**.
+Solo entrant: **Prashant Krishan Bharti**. C++20 implementations for **all four submitted tracks**. Validated Rust A/D alternatives are preserved under `research/rust8-validated/`.
 
 | Track | Approach |
 |---|---|
-| A Ingest | Buffered parallel reads, owned exact endpoint registry, packed hour records with full-width overflow, parallel selection and ordered output |
+| A Ingest | Exact shared endpoint registry, packed hour records with full-width overflow, parallel selection and ordered output |
 | B Index | Pipelined exact dictionary lookups, packed posting streams, checked-width CSR/bitmaps and mapped-text phrase verification |
 | C Join | Contract-safe parallel parsing, exact cents, growing owned names, safe prefetch and sharded atomic membership |
-| D Traverse | Forward/reverse compact CSR, bidirectional radix Dijkstra, separate uint64 distances and width-derived node/generation tags |
+| D Traverse | Forward/reverse compact CSR, bidirectional radix Dijkstra, generation-tagged sparse uint64 distances |
 
 No third-party runtime dependencies. Every track builds independently, offline,
 from allowlisted digest-pinned images. The runtime executable is statically linked.

@@ -244,3 +244,15 @@ Rust port selected for official measurement after the complete local gate. All 9
 Run `run-672e375ec819` at `0ca1987477223527268d60911e073ff334feb8bd`: T=0.045110s, M=23592960, S=437, D=1, K=30.827569. All five official gates pass. Incoming exact-head K=29.654383; historical best K=33.234541. Rust passes every gate; compare with historical best and incoming exact-head rerun before final retention.
 
 Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-candidate.json.
+
+
+## Official Rust continuation at 8aa8ddb
+
+Run `run-170f65d9b5b9` at `8aa8ddb8f8aeba7d5d9b2b7c32745a26e5683d6e`: T=0.044191s, M=23535616, S=437, D=1, K=31.161629. All five official gates pass. Incoming exact-head K=29.654383; historical best K=33.234541. Unchanged submitted source; this run measures rerun variation. Rust passes every gate; compare with historical best and incoming exact-head rerun before final retention.
+
+Captured practice aggregate 69.811783, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-repeat.json.
+
+
+## Rust continuation 8 retention decision
+
+Both Rust official runs pass every gate. Best Rust K=31.161629 does not exceed the established 33.234541. The exact stronger incoming C++ kernel is restored, following the coefficient-regression rule. The requested complete Rust implementation, Cargo/Docker builds, validation, corrected source counts and both official records remain in research/rust8-validated and validation/. No reset, force-push, registration change or evidence deletion was used.

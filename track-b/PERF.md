@@ -245,3 +245,10 @@ Captured practice aggregate 69.780860, rank 17; leader 80.253740. This is public
 Run `run-bfdb1fa492e6` at `0ca1987477223527268d60911e073ff334feb8bd`: T=0.346143s, M=71774208, S=922, D=1, K=17.875749. All five official gates pass. Incoming exact-head K=19.243317; historical best K=19.373796. Unchanged B/C source; timing/coefficient differences are rerun variation.
 
 Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-candidate.json.
+
+
+## Official Rust continuation at 8aa8ddb
+
+Run `run-a27adb1e3656` at `8aa8ddb8f8aeba7d5d9b2b7c32745a26e5683d6e`: T=0.318701s, M=71217152, S=922, D=1, K=18.658515. All five official gates pass. Incoming exact-head K=19.243317; historical best K=19.373796. Unchanged submitted source; this run measures rerun variation. Unchanged B/C source; timing/coefficient differences are rerun variation.
+
+Captured practice aggregate 69.811783, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-repeat.json.

@@ -51,9 +51,11 @@ def main():
         print('PASS', track, case, flush=True)
     direct = []
     if args.direct:
-        for track in 'ad':
-            path = binary_dir / f'{track}-rust8-tests'
-            subprocess.run([str(path), '--test-threads=1', '--nocapture'], check=True)
+        specs = build.get('direct_binaries', [{'binary': f'{t}-rust8-tests',
+            'args': ['--test-threads=1', '--nocapture']} for t in 'ad'])
+        for spec in specs:
+            path = binary_dir / spec['binary']
+            subprocess.run([str(path), *spec.get('args', [])], check=True)
             direct.append(path.name)
     result = {'scope': 'Local differential/reference hashes including both full seeds; no official timing claims.',
               'build': build, 'results': results, 'direct': direct}
