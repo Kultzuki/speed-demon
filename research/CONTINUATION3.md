@@ -81,10 +81,12 @@ Compiler/source/binary provenance: validation/continuation4ac-*-build.json.
 
 ## Buffered C follow-up
 
-Current C uses private 64 KiB pread buffers, carrying incomplete records and
+The rejected 12aa1a4 C trial used private 64 KiB pread buffers, carrying incomplete records and
 growing for arbitrarily long records. Exact owned names make reuse safe. The
 boundary shortcut retains the published section 2.2 proof. The public full-hash
 paired mean improves 0.068021s to 0.056815s; larger buffers are rejected. Lower
 RSS mostly reflects absent mapped pages, not a proven cgroup-memory reduction.
-Current A/C plus unchanged B/D pass both 85-comparison gates in
+That A/C trial plus unchanged B/D passed both 85-comparison gates in
 validation/continuation4ac-* and the A/C offline sandbox checks.
+
+Official follow-up `12aa1a4b22c970d7ce41700594fb8561f981dccd`: packed A retained, buffered C rejected; best-three aggregate 67.167388, captured rank 12, leader 75.793365. B/D kernels are unchanged; their rerun variation is recorded separately.

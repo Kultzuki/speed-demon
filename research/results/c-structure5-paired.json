@@ -1,0 +1,95 @@
+{
+  "track": "c",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "baseline": {
+      "source": "research/prototypes/continuation5-start-c.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "1d6cb9168349b72eb3483cc55915f2683418bafb8d25d6ece0e247968872cb41",
+      "walls_s": [
+        0.06573940599992056,
+        0.06476495099991553,
+        0.0686537240000007,
+        0.06494133699993654,
+        0.06727135000005546
+      ],
+      "rss_bytes": [
+        213647360,
+        213647360,
+        213516288,
+        214040576,
+        213647360
+      ],
+      "trimmed_mean_s": 0.06598403099997086
+    },
+    "structure": {
+      "source": "research/prototypes/c-structure5.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "f82232e974bd62cbf0a76caba97190754759e11494b982150cdaa6b996464a4c",
+      "walls_s": [
+        0.06786999600001309,
+        0.06534140700000535,
+        0.08978083700003481,
+        0.07328367000002345,
+        0.07151604399996359
+      ],
+      "rss_bytes": [
+        213516288,
+        213647360,
+        213909504,
+        213778432,
+        214040576
+      ],
+      "trimmed_mean_s": 0.07088990333333338
+    },
+    "piped": {
+      "source": "research/prototypes/c-structure-prefetch5.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "95a96cf7b2594afaa21682064b156007bf62fa694f07baa5282bd814d13999f0",
+      "walls_s": [
+        0.0648010529999965,
+        0.10102619200006302,
+        0.06736130299998422,
+        0.06996405699999286,
+        0.0643996920000518
+      ],
+      "rss_bytes": [
+        214040576,
+        214040576,
+        213909504,
+        214040576,
+        213909504
+      ],
+      "trimmed_mean_s": 0.0673754709999912
+    }
+  }
+}

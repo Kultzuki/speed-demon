@@ -1,0 +1,123 @@
+{
+  "track": "a",
+  "flags": [
+    "-std=c++20",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-static",
+    "-s"
+  ],
+  "environment": "Local WSL2 paired runs; RSS is not official cgroup memory",
+  "results": {
+    "baseline": {
+      "source": "research/prototypes/continuation5-start-a.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "9e8797adfdfc9625e4ad6aa6fefde0f9460ea13c850271715f0a03316135351d",
+      "walls_s": [
+        0.052386820000037915,
+        0.06825730699995347,
+        0.058321066999951654,
+        0.05827658900000188,
+        0.05875220799998715
+      ],
+      "rss_bytes": [
+        258048000,
+        257589248,
+        258441216,
+        258654208,
+        258281472
+      ],
+      "trimmed_mean_s": 0.058449954666646896
+    },
+    "crc": {
+      "source": "research/prototypes/a-crc5.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "7f3ba898cf4babff1d62b190da5b3ec1d82307df8b124cd7e122cd9222e1767d",
+      "walls_s": [
+        0.05696723500000189,
+        0.05451899299998786,
+        0.05526054099993871,
+        0.05939235899995765,
+        0.0596375300000318
+      ],
+      "rss_bytes": [
+        258224128,
+        258543616,
+        257925120,
+        258404352,
+        258416640
+      ],
+      "trimmed_mean_s": 0.05720671166663275
+    },
+    "private": {
+      "source": "research/prototypes/a-private5.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s"
+      ],
+      "sha256": "6fab9c4a5e307f9307a9c05fe58bb605a5015ed22780b92ddc4e0e48876c2b5c",
+      "walls_s": [
+        0.0618965720000233,
+        0.060102863999986766,
+        0.06364083899995876,
+        0.06055589799996142,
+        0.0643212360000689
+      ],
+      "rss_bytes": [
+        259547136,
+        258576384,
+        258707456,
+        259473408,
+        258535424
+      ],
+      "trimmed_mean_s": 0.06203110299998116
+    },
+    "supplied": {
+      "source": "research/prototypes/supplied-fifth-a.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "sha256": "9cc7886133949e7063b6620b5f7fb16a7c437c1902b6c91cfa066656ff4206b0",
+      "walls_s": [
+        0.06387435899989669,
+        0.0653137090000655,
+        0.06530098600001111,
+        0.06694802799995614,
+        0.06642500800001017
+      ],
+      "rss_bytes": [
+        256835584,
+        257290240,
+        256761856,
+        256475136,
+        256466944
+      ],
+      "trimmed_mean_s": 0.06567990100002892
+    }
+  }
+}

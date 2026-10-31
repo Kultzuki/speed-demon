@@ -1,0 +1,2600 @@
+{
+  "tools": {
+    "scc": "4.1.0",
+    "clang-format": "23.1.3"
+  },
+  "scope": "Canonical C++ and header formatting plus Dockerfile; byte-identical organizer references excluded; D=1 unchanged",
+  "tracks": {
+    "a": {
+      "continuation5-start-a": {
+        "S": 290,
+        "source_sha256": "9e8797adfdfc9625e4ad6aa6fefde0f9460ea13c850271715f0a03316135351d",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 7533,
+            "CodeBytes": 0,
+            "Lines": 207,
+            "Code": 202,
+            "Comment": 3,
+            "Blank": 2,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp8eq9z4su/main.cpp",
+                "Symlocation": "",
+                "Bytes": 7533,
+                "Lines": 207,
+                "Code": 202,
+                "Comment": 3,
+                "Blank": 2,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp8eq9z4su/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp8eq9z4su/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "a-crc5": {
+        "S": 294,
+        "source_sha256": "7f3ba898cf4babff1d62b190da5b3ec1d82307df8b124cd7e122cd9222e1767d",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 7534,
+            "CodeBytes": 0,
+            "Lines": 212,
+            "Code": 206,
+            "Comment": 3,
+            "Blank": 3,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpx4ggtsc6/main.cpp",
+                "Symlocation": "",
+                "Bytes": 7534,
+                "Lines": 212,
+                "Code": 206,
+                "Comment": 3,
+                "Blank": 3,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpx4ggtsc6/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpx4ggtsc6/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "a-format5": {
+        "S": 293,
+        "source_sha256": "29d49585afc7af7374b97c26f532823a8a9f7f2408162f2bc1c93f81c9bceacd",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 7534,
+            "CodeBytes": 0,
+            "Lines": 210,
+            "Code": 205,
+            "Comment": 3,
+            "Blank": 2,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpjbw48182/main.cpp",
+                "Symlocation": "",
+                "Bytes": 7534,
+                "Lines": 210,
+                "Code": 205,
+                "Comment": 3,
+                "Blank": 2,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpjbw48182/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpjbw48182/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "a-private5": {
+        "S": 295,
+        "source_sha256": "6fab9c4a5e307f9307a9c05fe58bb605a5015ed22780b92ddc4e0e48876c2b5c",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 7572,
+            "CodeBytes": 0,
+            "Lines": 212,
+            "Code": 207,
+            "Comment": 3,
+            "Blank": 2,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpa61vic92/main.cpp",
+                "Symlocation": "",
+                "Bytes": 7572,
+                "Lines": 212,
+                "Code": 207,
+                "Comment": 3,
+                "Blank": 2,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpa61vic92/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpa61vic92/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      }
+    },
+    "b": {
+      "continuation5-start-b": {
+        "S": 583,
+        "source_sha256": "7fb803f389a134f432a393d03ebda57ca499e0acb4b96c43822202914794428b",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 18251,
+            "CodeBytes": 0,
+            "Lines": 521,
+            "Code": 495,
+            "Comment": 13,
+            "Blank": 13,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp73a27a6k/main.cpp",
+                "Symlocation": "",
+                "Bytes": 18251,
+                "Lines": 521,
+                "Code": 495,
+                "Comment": 13,
+                "Blank": 13,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp73a27a6k/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp73a27a6k/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "b-csr5": {
+        "S": 922,
+        "source_sha256": "4743dcb3bd6465ee61d5fdd63220b0ac4e418808afd4656c271d3aeeccf10128",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 32460,
+            "CodeBytes": 0,
+            "Lines": 989,
+            "Code": 834,
+            "Comment": 92,
+            "Blank": 63,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpyamvuz04/main.cpp",
+                "Symlocation": "",
+                "Bytes": 32460,
+                "Lines": 989,
+                "Code": 834,
+                "Comment": 92,
+                "Blank": 63,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpyamvuz04/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpyamvuz04/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "b-twopass5": {
+        "S": 914,
+        "source_sha256": "46a17f1eeeb3a2a220c346c1e243580bc1d8d03f6517a49863e38e8b9b5b3817",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 30250,
+            "CodeBytes": 0,
+            "Lines": 959,
+            "Code": 826,
+            "Comment": 69,
+            "Blank": 64,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpz88b7kwg/main.cpp",
+                "Symlocation": "",
+                "Bytes": 30250,
+                "Lines": 959,
+                "Code": 826,
+                "Comment": 69,
+                "Blank": 64,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpz88b7kwg/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpz88b7kwg/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "b-wordsummary5": {
+        "S": 593,
+        "source_sha256": "e06c42226f31a83854358ed172222b5284e998377e4c3a531777b6e37df69e3b",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 18313,
+            "CodeBytes": 0,
+            "Lines": 532,
+            "Code": 505,
+            "Comment": 13,
+            "Blank": 14,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpwzjnc9yk/main.cpp",
+                "Symlocation": "",
+                "Bytes": 18313,
+                "Lines": 532,
+                "Code": 505,
+                "Comment": 13,
+                "Blank": 14,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpwzjnc9yk/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpwzjnc9yk/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      }
+    },
+    "c": {
+      "continuation5-start-c": {
+        "S": 349,
+        "source_sha256": "1d6cb9168349b72eb3483cc55915f2683418bafb8d25d6ece0e247968872cb41",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 8827,
+            "CodeBytes": 0,
+            "Lines": 275,
+            "Code": 261,
+            "Comment": 6,
+            "Blank": 8,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpu7nbkeep/main.cpp",
+                "Symlocation": "",
+                "Bytes": 8827,
+                "Lines": 275,
+                "Code": 261,
+                "Comment": 6,
+                "Blank": 8,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpu7nbkeep/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpu7nbkeep/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "c-decimal-prefetch5": {
+        "S": 397,
+        "source_sha256": "86cb27467baaf6cc78569de003e741260453daf895157b7b97c75e2f81c7850d",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 10531,
+            "CodeBytes": 0,
+            "Lines": 327,
+            "Code": 309,
+            "Comment": 8,
+            "Blank": 10,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp6l_qvaty/main.cpp",
+                "Symlocation": "",
+                "Bytes": 10531,
+                "Lines": 327,
+                "Code": 309,
+                "Comment": 8,
+                "Blank": 10,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp6l_qvaty/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp6l_qvaty/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "c-decimal5": {
+        "S": 367,
+        "source_sha256": "0cdf9bb83b78514d0830d78eb082c97298459217c7dbb929140bfcd82b892852",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9523,
+            "CodeBytes": 0,
+            "Lines": 296,
+            "Code": 279,
+            "Comment": 8,
+            "Blank": 9,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpb1oqbq48/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9523,
+                "Lines": 296,
+                "Code": 279,
+                "Comment": 8,
+                "Blank": 9,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpb1oqbq48/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpb1oqbq48/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "c-prefetch5": {
+        "S": 379,
+        "source_sha256": "d7b1c4be2974737677f68740f51bd28e91b0bc5d453e89471c76d93ddf253b81",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9560,
+            "CodeBytes": 0,
+            "Lines": 306,
+            "Code": 291,
+            "Comment": 6,
+            "Blank": 9,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp25iig8fm/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9560,
+                "Lines": 306,
+                "Code": 291,
+                "Comment": 6,
+                "Blank": 9,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp25iig8fm/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp25iig8fm/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "c-structure-prefetch5": {
+        "S": 436,
+        "source_sha256": "95a96cf7b2594afaa21682064b156007bf62fa694f07baa5282bd814d13999f0",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 11705,
+            "CodeBytes": 0,
+            "Lines": 366,
+            "Code": 348,
+            "Comment": 8,
+            "Blank": 10,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp04drnkgl/main.cpp",
+                "Symlocation": "",
+                "Bytes": 11705,
+                "Lines": 366,
+                "Code": 348,
+                "Comment": 8,
+                "Blank": 10,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp04drnkgl/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp04drnkgl/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "c-structure5": {
+        "S": 406,
+        "source_sha256": "f82232e974bd62cbf0a76caba97190754759e11494b982150cdaa6b996464a4c",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 10697,
+            "CodeBytes": 0,
+            "Lines": 335,
+            "Code": 318,
+            "Comment": 8,
+            "Blank": 9,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpfca_ofm6/main.cpp",
+                "Symlocation": "",
+                "Bytes": 10697,
+                "Lines": 335,
+                "Code": 318,
+                "Comment": 8,
+                "Blank": 9,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpfca_ofm6/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpfca_ofm6/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      }
+    },
+    "d": {
+      "continuation5-start-d": {
+        "S": 385,
+        "source_sha256": "b89d2dbd9923f1fad602fa566d17c209b971c0ae76a01a31aab2a32de90ad336",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9692,
+            "CodeBytes": 0,
+            "Lines": 311,
+            "Code": 297,
+            "Comment": 6,
+            "Blank": 8,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp9rcv4x84/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9692,
+                "Lines": 311,
+                "Code": 297,
+                "Comment": 6,
+                "Blank": 8,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp9rcv4x84/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp9rcv4x84/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-forward-window5": {
+        "S": 421,
+        "source_sha256": "df491b5b60c249e55711cf49c613e3b07e603d082af1366a3186df2d171cdaab",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9902,
+            "CodeBytes": 0,
+            "Lines": 351,
+            "Code": 333,
+            "Comment": 7,
+            "Blank": 11,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp9i69qnsu/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9902,
+                "Lines": 351,
+                "Code": 333,
+                "Comment": 7,
+                "Blank": 11,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp9i69qnsu/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp9i69qnsu/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-forward5": {
+        "S": 369,
+        "source_sha256": "f5594bc8c0f5fb0ecaad2f291192f472ab9e4af793a44d285dfe253472c2333c",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 8590,
+            "CodeBytes": 0,
+            "Lines": 296,
+            "Code": 281,
+            "Comment": 5,
+            "Blank": 10,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpvlngmsgx/main.cpp",
+                "Symlocation": "",
+                "Bytes": 8590,
+                "Lines": 296,
+                "Code": 281,
+                "Comment": 5,
+                "Blank": 10,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpvlngmsgx/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpvlngmsgx/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-labelescape5": {
+        "S": 391,
+        "source_sha256": "b850747c5612c8cb6aaa8feeaa55fa94d3473d5f8e2441ee44027c5eef09a194",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9693,
+            "CodeBytes": 0,
+            "Lines": 317,
+            "Code": 303,
+            "Comment": 6,
+            "Blank": 8,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpijsaofpb/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9693,
+                "Lines": 317,
+                "Code": 303,
+                "Comment": 6,
+                "Blank": 8,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpijsaofpb/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpijsaofpb/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-locality5": {
+        "S": 473,
+        "source_sha256": "571f3c3b5fd48a64babd1d741f5806ec6b9c380452f3e7579df6a25e7649955f",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 12169,
+            "CodeBytes": 0,
+            "Lines": 405,
+            "Code": 385,
+            "Comment": 6,
+            "Blank": 14,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmpdv0ctsok/main.cpp",
+                "Symlocation": "",
+                "Bytes": 12169,
+                "Lines": 405,
+                "Code": 385,
+                "Comment": 6,
+                "Blank": 14,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmpdv0ctsok/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmpdv0ctsok/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-relax5": {
+        "S": 396,
+        "source_sha256": "0887d8ea9e0d89f5bbbf99ed842cb149e9c8bf72376e521ee6fa450c547592c2",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 9656,
+            "CodeBytes": 0,
+            "Lines": 322,
+            "Code": 308,
+            "Comment": 6,
+            "Blank": 8,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmphw_1fnyr/main.cpp",
+                "Symlocation": "",
+                "Bytes": 9656,
+                "Lines": 322,
+                "Code": 308,
+                "Comment": 6,
+                "Blank": 8,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmphw_1fnyr/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmphw_1fnyr/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      },
+      "d-window5": {
+        "S": 437,
+        "source_sha256": "dc5f4219f5d05c54ece379800f39cd9ac4aa25b69c13595042ec3a72fea3f894",
+        "counts": [
+          {
+            "Name": "C++",
+            "Bytes": 10693,
+            "CodeBytes": 0,
+            "Lines": 366,
+            "Code": 349,
+            "Comment": 8,
+            "Blank": 9,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++",
+                "PossibleLanguages": [
+                  "C++"
+                ],
+                "Filename": "main.cpp",
+                "Extension": "cpp",
+                "Location": "/tmp/tmp785gme5b/main.cpp",
+                "Symlocation": "",
+                "Bytes": 10693,
+                "Lines": 366,
+                "Code": 349,
+                "Comment": 8,
+                "Blank": 9,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "C++ Header",
+            "Bytes": 2463,
+            "CodeBytes": 0,
+            "Lines": 87,
+            "Code": 81,
+            "Comment": 1,
+            "Blank": 5,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "C++ Header",
+                "PossibleLanguages": [
+                  "C++ Header"
+                ],
+                "Filename": "common.hpp",
+                "Extension": "hpp",
+                "Location": "/tmp/tmp785gme5b/common.hpp",
+                "Symlocation": "",
+                "Bytes": 2463,
+                "Lines": 87,
+                "Code": 81,
+                "Comment": 1,
+                "Blank": 5,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          },
+          {
+            "Name": "Dockerfile",
+            "Bytes": 372,
+            "CodeBytes": 0,
+            "Lines": 8,
+            "Code": 7,
+            "Comment": 0,
+            "Blank": 1,
+            "Complexity": 0,
+            "Count": 1,
+            "WeightedComplexity": 0,
+            "Files": [
+              {
+                "Language": "Dockerfile",
+                "PossibleLanguages": [
+                  "Dockerfile"
+                ],
+                "Filename": "Dockerfile",
+                "Extension": "Dockerfile",
+                "Location": "/tmp/tmp785gme5b/Dockerfile",
+                "Symlocation": "",
+                "Bytes": 372,
+                "Lines": 8,
+                "Code": 7,
+                "Comment": 0,
+                "Blank": 1,
+                "Complexity": 0,
+                "WeightedComplexity": 0,
+                "Hash": null,
+                "Binary": false,
+                "Minified": false,
+                "Generated": false,
+                "EndPoint": 0,
+                "Uloc": 0
+              }
+            ],
+            "LineLength": null,
+            "ULOC": 0
+          }
+        ]
+      }
+    }
+  }
+}

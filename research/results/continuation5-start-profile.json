@@ -1,0 +1,22 @@
+{
+  "d": [
+    "PHASE count-edges 0.061514205\nPHASE parse-csr 0.244004266\nPHASE search 0.341114809\nPHASE cleanup 0.000796297\n",
+    "PHASE count-edges 0.048063074\nPHASE parse-csr 0.232568703\nPHASE search 0.341494103\nPHASE cleanup 0.000328288\n",
+    "PHASE count-edges 0.060506316\nPHASE parse-csr 0.272444620\nPHASE search 0.334679482\nPHASE cleanup 0.000325222\n"
+  ],
+  "c": [
+    "PHASE region-lookup 0.004927677\nPHASE boundaries 0.000121907\nPHASE parse-names 0.053145129\nPHASE cleanup 0.000385109\n",
+    "PHASE region-lookup 0.005176151\nPHASE boundaries 0.000119642\nPHASE parse-names 0.047313302\nPHASE cleanup 0.000432079\n",
+    "PHASE region-lookup 0.004531628\nPHASE boundaries 0.000133560\nPHASE parse-names 0.046373924\nPHASE cleanup 0.000369759\n"
+  ],
+  "b": [
+    "PHASE queries-sample-plan 0.047592026\nPHASE index 0.513977407\nPHASE evaluate 0.071887657\n",
+    "PHASE queries-sample-plan 0.045773519\nPHASE index 0.386037867\nPHASE evaluate 0.083152763\n",
+    "PHASE queries-sample-plan 0.042429462\nPHASE index 0.365291846\nPHASE evaluate 0.073621390\n"
+  ],
+  "a": [
+    "PHASE parse 0.029182330\nPHASE select-format-output 0.017758769\nPHASE cleanup 0.000039176\n",
+    "PHASE parse 0.021270684\nPHASE select-format-output 0.021862076\nPHASE cleanup 0.007229228\n",
+    "PHASE parse 0.019159368\nPHASE select-format-output 0.288249047\nPHASE cleanup 0.008824906\n"
+  ]
+}

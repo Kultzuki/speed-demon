@@ -1,0 +1,17 @@
+{
+  "scope": "Local candidates pending complete gates and official K; not established coefficient gains",
+  "sources": {
+    "b": {
+      "prototype": "b-csr5.cpp",
+      "sha256": "4743dcb3bd6465ee61d5fdd63220b0ac4e418808afd4656c271d3aeeccf10128"
+    },
+    "c": {
+      "prototype": "c-prefetch5.cpp",
+      "sha256": "d7b1c4be2974737677f68740f51bd28e91b0bc5d453e89471c76d93ddf253b81"
+    },
+    "d": {
+      "prototype": "d-labelescape5.cpp",
+      "sha256": "b850747c5612c8cb6aaa8feeaa55fa94d3473d5f8e2441ee44027c5eef09a194"
+    }
+  }
+}

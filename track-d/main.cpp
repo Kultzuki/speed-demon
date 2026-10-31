@@ -5,6 +5,7 @@
 #include <numeric>
 #include <thread>
 #include <mutex>
+#include <unordered_map>
 
 struct Edge { uint32_t node, weight; };
 
@@ -126,18 +127,19 @@ struct RadixHeap {
 
 
 struct SparseState {
-    struct Slot {uint64_t distance=0;uint32_t node=0,epoch=0;};
+    struct Slot {uint32_t distance=0,node=0,epoch=0;};
+    std::unordered_map<uint32_t,uint64_t> overflow;
     std::vector<Slot> slots=std::vector<Slot>(1024);
     uint32_t epoch=0;
     size_t used=0;
     void clear() {
-        used=0;
+        used=0;overflow.clear();
         if (!++epoch) {for (auto& slot:slots) slot.epoch=0;epoch=1;}
     }
     uint64_t get(uint32_t node) const {
         size_t at=(node*2654435761u)&(slots.size()-1);
         while (slots[at].epoch==epoch) {
-            if (slots[at].node==node) return slots[at].distance;
+            if (slots[at].node==node) return slots[at].distance==UINT32_MAX?overflow.at(node):slots[at].distance;
             at=(at+1)&(slots.size()-1);
         }
         return UINT64_MAX/2;
@@ -155,7 +157,8 @@ struct SparseState {
         size_t at=(node*2654435761u)&(slots.size()-1);
         while (slots[at].epoch==epoch && slots[at].node!=node) at=(at+1)&(slots.size()-1);
         if (slots[at].epoch!=epoch) ++used;
-        slots[at]={distance,node,epoch};
+        slots[at]={uint32_t(std::min<uint64_t>(distance,UINT32_MAX)),node,epoch};
+        if(distance>=UINT32_MAX) overflow[node]=distance;
     }
 };
 

@@ -183,3 +183,19 @@ Both final release/ASan gates pass 85 dataset comparisons plus the direct and
 forced-offset programs, including the long-name, hostile parallel CSV and both
 full seeds. New A/C images pass offline builds and full-hash sandbox checks.
 Reports and actual build hashes use validation/continuation4ac-*.
+
+
+## Official packed-A follow-up at 12aa1a4
+
+Run `run-a20a4558ea61`: T=0.075703s, M=13594624 bytes, S=382, D=1, K=22.098103, points=67.217749. All official gates passed.
+
+Buffered C is rejected and must be restored: K=22.098103 versus measured 7321615 K=22.257059.
+
+
+## Continuation 5 local validation
+
+See research/CONTINUATION5.md and the exact paired reports. Current production
+sources pass 89 release and 89 ASan/UBSan dataset comparisons, both full seeds,
+four direct programs and the forced uint64 B-offset full hash. Rebuilt offline
+images pass the starter sandbox and match the release binary hashes. These are
+local checks, not official coefficient gains. Official run IDs are pending.

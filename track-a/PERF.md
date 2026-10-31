@@ -152,3 +152,19 @@ offset verification. A's guard program now checks 4,375 parses, with latencies
 The new A image passes its offline build and full-hash sandbox. B/D sources
 and images are unchanged from 7321615; new builds retain their exact hashes.
 Compiler/source/binary provenance: validation/continuation4ac-*-build.json.
+
+
+## Official packed-A follow-up at 12aa1a4
+
+Run `run-08da06690eea`: T=0.042816s, M=27090944 bytes, S=290, D=1, K=32.732322, points=75.748841. All official gates passed.
+
+Packed A is retained: K=32.732322 versus measured 7321615 K=27.272851.
+
+
+## Continuation 5 local validation
+
+See research/CONTINUATION5.md and the exact paired reports. Current production
+sources pass 89 release and 89 ASan/UBSan dataset comparisons, both full seeds,
+four direct programs and the forced uint64 B-offset full hash. Rebuilt offline
+images pass the starter sandbox and match the release binary hashes. These are
+local checks, not official coefficient gains. Official run IDs are pending.

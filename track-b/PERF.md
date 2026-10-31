@@ -160,3 +160,19 @@ Both release and ASan/UBSan pass 83 dataset comparisons, four direct A/C/D bound
 Run `run-210e7863db85`: T=0.551677s, M=102199296 bytes, S=583, D=1, K=14.132306, points=57.510652. All official gates passed.
 
 Compared with the refreshed starting best K=12.982145: **retained**. This is one public-practice run; local paired gains and unchanged-code rerun variation are separate from hidden-seed/final judging results.
+
+
+## Official packed-A follow-up at 12aa1a4
+
+Run `run-dc6e65a747ff`: T=0.549548s, M=102383616 bytes, S=583, D=1, K=14.154553, points=57.544808. All official gates passed.
+
+Runtime source is unchanged from 7321615. Any change in this rerun is measurement variation, not another kernel optimization.
+
+
+## Continuation 5 local validation
+
+See research/CONTINUATION5.md and the exact paired reports. Current production
+sources pass 89 release and 89 ASan/UBSan dataset comparisons, both full seeds,
+four direct programs and the forced uint64 B-offset full hash. Rebuilt offline
+images pass the starter sandbox and match the release binary hashes. These are
+local checks, not official coefficient gains. Official run IDs are pending.

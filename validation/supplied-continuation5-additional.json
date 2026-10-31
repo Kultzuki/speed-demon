@@ -1,0 +1,41 @@
+{
+  "collision_tool_stdout": "REPRODUCED distinct valid endpoint bytes merge under the supplied dual CRC: /crc/rpbryafunzmzlnqvybmf /crc/hakugyqfbnehjdgljotv\n",
+  "checks": [
+    {
+      "label": "fifth-a",
+      "case": "continuation5-crc-collision",
+      "returncode": 0,
+      "ok": true,
+      "sha256": "f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88",
+      "expected_sha256": "f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88",
+      "stderr": ""
+    },
+    {
+      "label": "sixth-a",
+      "case": "continuation5-crc-collision",
+      "returncode": 0,
+      "ok": false,
+      "sha256": "f1324e522e8f0b2fbc6cb55078181fcf8f978539743e84332f90d4a44d1ee3b0",
+      "expected_sha256": "f31f13b261b489e1c9e4fd3cb1c9c8298486db7f2c7d3f72436e96e04c49ca88",
+      "stderr": ""
+    },
+    {
+      "label": "fifth-b",
+      "case": "continuation5-wide-domain",
+      "returncode": 1,
+      "ok": false,
+      "sha256": null,
+      "expected_sha256": "8a300ec9ee5e24b0f9855b426195081cdc6953482830bbc67ccb6d63d9db8bee",
+      "stderr": "too many documents per thread\n"
+    },
+    {
+      "label": "sixth-b",
+      "case": "continuation5-wide-domain",
+      "returncode": 0,
+      "ok": false,
+      "sha256": "394045af0cd5be0c79ba04145d1063d3cced85fcfeb4fde786a9ad95c2ff7d0e",
+      "expected_sha256": "8a300ec9ee5e24b0f9855b426195081cdc6953482830bbc67ccb6d63d9db8bee",
+      "stderr": ""
+    }
+  ]
+}

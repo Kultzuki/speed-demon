@@ -74,8 +74,16 @@ struct SharedNames {
         }
     };
     std::array<Shard,256> shards;
-    bool add(std::string_view name,uint16_t country) {
+
+    size_t prefetch(std::string_view name) {
         size_t hash=std::hash<std::string_view>()(name);
+        auto& head=shards[(hash>>32)&255].heads[hash&511];
+        __builtin_prefetch(&head,0,3);
+        if (auto* node=head.load(std::memory_order_acquire)) __builtin_prefetch(node,0,3);
+        return hash;
+    }
+    bool add(std::string_view name,uint16_t country) {return add(name,country,prefetch(name));}
+    bool add(std::string_view name,uint16_t country,size_t hash) {
         auto& shard=shards[(hash>>32)&255];
         auto& head=shard.heads[hash&511];
         auto find=[&](Node* node) {
@@ -118,12 +126,18 @@ struct Partial {
     template<class Id> void parse(const char* begin, const char* end, const std::vector<Id>& lookup, size_t count, SharedNames& names) {
         countries.resize(count);
         const char* p = begin;
-        std::string scratch;
+        struct Pending {std::string scratch;std::string_view name;uint16_t country;size_t hash;};
+        std::array<Pending,16> pending;
+        size_t serial=0;
+        auto retire=[&](Pending& old) {countries[old.country].distinct+=names.add(old.name,old.country,old.hash);};
         while (p < end) {
             if (static_cast<unsigned char>(*p) == 0xef) p += 3;
             uint64_t id = integer(p);
             ++p;
-            Field name = text_field(p, end, &scratch);
+            auto& next=pending[serial%pending.size()];
+            if (serial>=pending.size()) retire(next);
+            ++serial;
+            Field name = text_field(p, end, &next.scratch);
             ++p;
             Field note = text_field(p, end, nullptr);
             ++p;
@@ -140,7 +154,7 @@ struct Partial {
             if (negative) amount = -amount;
             uint16_t country = region < lookup.size() ? lookup[region] : 0;
             auto& group = countries[country];
-            group.distinct += names.add(name.value, country);
+            next.name=name.value;next.country=country;next.hash=names.prefetch(name.value);
             ++group.count;
             group.id_sum += id;
             group.sum += amount;
@@ -149,6 +163,7 @@ struct Partial {
             group.name_bytes += name.bytes;
             group.note_bytes += note.bytes;
         }
+        for (size_t i=serial>pending.size()?serial-pending.size():0;i<serial;++i) retire(pending[i%pending.size()]);
     }
 };
 
@@ -197,31 +212,8 @@ int main(int argc, char** argv) {
         SharedNames names;
         std::vector<Partial> parts(workers);
         std::vector<std::thread> threads;
-        int fd=open((paths.data+"/records.csv").c_str(),O_RDONLY);
-        if (fd<0) throw std::runtime_error("Cannot open record stream");
-        for (unsigned i=0;i<workers;++i) threads.emplace_back([&,i] {
-            std::vector<char> buffer(65536);
-            size_t have=0,offset=cuts[i]-records.data,stop=cuts[i+1]-records.data;
-            parts[i].countries.resize(countries.size());
-            while (offset<stop || have) {
-                if (offset<stop) {
-                    size_t want=std::min(stop-offset,buffer.size()-have);
-                    ssize_t got=pread(fd,buffer.data()+have,want,offset);
-                    if (got<=0) throw std::runtime_error("Record stream read failed");
-                    offset+=got;have+=got;
-                }
-                size_t limit=have;
-                if (offset<stop) {
-                    while (limit && !(limit<have && buffer[limit-1]=='\n' &&
-                          (unsigned(buffer[limit]-'0')<10 || static_cast<unsigned char>(buffer[limit])==0xef))) --limit;
-                    if (!limit) {buffer.resize(buffer.size()*2);continue;}
-                }
-                parts[i].parse(buffer.data(),buffer.data()+limit,lookup,countries.size(),names);
-                have-=limit;memmove(buffer.data(),buffer.data()+limit,have);
-            }
-        });
-        for (auto& thread:threads) thread.join();
-        close(fd);
+        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { parts[i].parse(cuts[i], cuts[i+1], lookup, countries.size(), names); });
+        for (auto& thread : threads) thread.join();
         for (unsigned i = 0; i < workers; ++i) {
             for (size_t j = 0; j < countries.size(); ++j) {
                 const auto& from = parts[i].countries[j]; auto& to = countries[j];

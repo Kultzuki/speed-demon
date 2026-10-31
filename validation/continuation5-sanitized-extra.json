@@ -1,0 +1,131 @@
+{
+  "provenance": {
+    "a": {
+      "source_sha256": "9e8797adfdfc9625e4ad6aa6fefde0f9460ea13c850271715f0a03316135351d",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "dad0d4494a1a9cd34997e4304e4c554665ad16e70d94f7ca2d2fe78b08df81cc",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ]
+    },
+    "b": {
+      "source_sha256": "4743dcb3bd6465ee61d5fdd63220b0ac4e418808afd4656c271d3aeeccf10128",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "6272db1fdfa30f70bcbd573d4fd39127760aa22c04d954e649ca1a472a52fd53",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-march=x86-64-v3"
+      ]
+    },
+    "c": {
+      "source_sha256": "d7b1c4be2974737677f68740f51bd28e91b0bc5d453e89471c76d93ddf253b81",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "e32d9b3989b3c5739f25ca01a837a7e2da0d9b30331d1b14ea7fef785eeb624a",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ]
+    },
+    "d": {
+      "source_sha256": "b850747c5612c8cb6aaa8feeaa55fa94d3473d5f8e2441ee44027c5eef09a194",
+      "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+      "binary_sha256": "5879110470d4671bd6e5a0d7b97b02d251dac4483ebfb744ea78c0cb9b3f207f",
+      "flags": [
+        "-std=c++20",
+        "-pthread",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ]
+    }
+  },
+  "results": [
+    {
+      "track": "b",
+      "case": "supplied-phrase-1024",
+      "sha256": "9be22678d74a3b4c6d36acd5d5b9b1df4c6dfc8ad2f4bebeb49cac95ecef36ad",
+      "local_seconds": 0.066133
+    },
+    {
+      "track": "c",
+      "case": "supplied-long-name",
+      "sha256": "d3bd6b7ba30252fc430439905ef1ae47a64810ab1b6f1afb89ff95f72a82a601",
+      "local_seconds": 0.0661
+    },
+    {
+      "track": "b",
+      "case": "refined-block-1003",
+      "sha256": "290b38280863a8aae24c5a473693db07d5a646fe6b00ac837583dededc7dee76",
+      "local_seconds": 0.06587
+    },
+    {
+      "track": "b",
+      "case": "refined-block-65536",
+      "sha256": "b295cc56998f2d72bf456e23b44290f34168db91ed82bab0454fa1ec0631e49e",
+      "local_seconds": 0.065889
+    },
+    {
+      "track": "b",
+      "case": "refined-block-65537",
+      "sha256": "1597a4b6dd6b592e6571199a71350af1feb4897f35d88b50d57ab454b681ebc7",
+      "local_seconds": 0.116284
+    },
+    {
+      "track": "b",
+      "case": "refined-block-70000",
+      "sha256": "30abeb8c82184d58781605b1e9859a39eda20d8c97bd4fc2ae6769d8b884efb7",
+      "local_seconds": 0.116009
+    },
+    {
+      "track": "a",
+      "case": "fresh-full-seed20261031",
+      "sha256": "814e48bfa78e47ac51bf62be05e27b1855269673779d5dda233bd6347f0e776c",
+      "local_seconds": 0.269194
+    },
+    {
+      "track": "b",
+      "case": "fresh-full-seed20261031",
+      "sha256": "d9aca5145790528d1dafa51998c4e6e7b106bd9c9592962caecb2600199963e3",
+      "local_seconds": 1.073899
+    },
+    {
+      "track": "c",
+      "case": "fresh-full-seed20261031",
+      "sha256": "50cf41d11da645bb40d6fc4924b2b158c0f7c1052da8661297f02c50dd7cd15e",
+      "local_seconds": 0.773468
+    },
+    {
+      "track": "d",
+      "case": "fresh-full-seed20261031",
+      "sha256": "64f1981215abee6e01332dd548fd39a3da89e9e1f99a0687d85bfe6f3eca3c58",
+      "local_seconds": 6.175148
+    },
+    {
+      "track": "a",
+      "case": "packed-latency-thresholds",
+      "sha256": "cdc291fe7bd35cb89987c5f0abf204ca4717baf40b0947b71b7fdc6f9d2331ec",
+      "local_seconds": 0.116258
+    },
+    {
+      "track": "a",
+      "case": "packed-wide-heavy",
+      "sha256": "e4f94e8bab95dddc13f7c811747dab3f68de960886eb86e529267b6deb47bb46",
+      "local_seconds": 0.116359
+    }
+  ]
+}

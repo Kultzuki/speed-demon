@@ -4,27 +4,26 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 
 ## Approach
 
-Read queries first and index only their terms with up to twelve workers. A small
-negative filter rejects only terms that cannot be in the exact dictionary;
-every possible hit still receives a complete byte comparison. Boolean postings
-start with four inline uint16 document IDs, grow into sorted lists, and promote
-to bitmaps when dense. Dense postings skip repeated writes for the same document.
-Blocks use uint32 IDs if their domain exceeds 65,536 documents. Boolean operators
-fold strictly left to right, independently over disjoint document blocks.
+Read queries first and index only their terms with up to twelve workers.
+An eight-token prefetch pipeline overlaps exact dictionary lookups. Sampled
+frequencies choose bitmap terms; the full pass deduplicates every document.
+Other postings enter bucketed packed streams, then scatter into sorted CSR
+lists while their temporary pages are released. A checked 15-bit local stream
+uses uint16 postings; larger real worker domains dispatch to a 32-bit document
+stream and postings. Corpus byte offsets use uint32 with a checked uint64
+fallback. Sample decisions affect work, never answers.
 
-Sampling chooses phrase anchors, followed by a complete exact index pass.
-Relative byte offsets use uint32 only when the whole block fits, with a checked
-uint64 fallback. Exact ASCII token comparisons around mapped anchor positions
-verify phrases without crossing TAB/LF. The corpus mapping stays alive, and no
-global token-ID array or merged postings are needed. Sampling and the negative
-filter change work only; complete term equality resolves every hash collision.
+Boolean operators fold strictly left to right, switching between lists and
+bitmaps as each operand requires. Phrase terms intersect rarest first, followed
+by uncapped exact ASCII token checks in the mapped document. Complete term
+bytes resolve every dictionary hash collision; phrase checks never use hashes.
 
 ## Build and dependencies
 
 C++20, standard library and Linux system calls only. No direct non-stdlib
 runtime dependencies: dependency_count = 0, D = 1. GCC 16 and Debian runtime
 images are pinned to the organizers' allowlisted digests. The build is offline;
-the executable is statically linked. The mmap mapping owns all referenced input
+the executable targets x86-64-v3 and is statically linked. The mmap mapping owns all referenced input
 bytes until processing ends. Exactly one output file is written to /out.
 
 ## Validation

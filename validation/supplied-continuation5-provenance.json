@@ -1,0 +1,42 @@
+{
+  "fifth-d": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\3543610f-a653-4ba5-870c-978d30c55934\\Pasted text.txt",
+    "original_sha256": "c0320577d22ab4ebb4e0d821f3b191701e979d891deb931122e821905b7ff462",
+    "adapter_sha256": "d9b629d5d64e847af5a6398806f72ef6cd4c8b9cee547f3a34f561c988ef978d"
+  },
+  "fifth-c": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\916ef1a4-a4a6-4d13-a763-80ccf556e9d7\\Pasted text.txt",
+    "original_sha256": "ed54fefda399036734c13098ad887379260d6e257a36a20ccf701975188e1e2a",
+    "adapter_sha256": "1ab0313b883dbbb3de21868071bc7ef42ac96d055d5c73cf13f49b675192ae4b"
+  },
+  "fifth-b": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\02d67f4b-96eb-4da7-91a4-7002a227365f\\Pasted text.txt",
+    "original_sha256": "d4e8733bb7b2baa44b138b5241a94854efd49bf05b914a612164e94c2875602f",
+    "adapter_sha256": "b6a84cd187be04881bacb8555724c8cdee839639fb719f773e4d59073c3904e2"
+  },
+  "fifth-a": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\393af749-cc45-4619-88b5-7977f2babdde\\Pasted text.txt",
+    "original_sha256": "dd962a4171574d4e0a9f4dbed01821e520fab825815ee75b05e7c2b5076de32a",
+    "adapter_sha256": "9cc7886133949e7063b6620b5f7fb16a7c437c1902b6c91cfa066656ff4206b0"
+  },
+  "sixth-d": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\35f01562-8642-4d6a-b5b9-1cf35c437a60\\Pasted text.txt",
+    "original_sha256": "e2796afeeabba4e05040c07790e33c07712345eda432ae6a27608ee440767b46",
+    "adapter_sha256": "3f6aa12bcdfd4d8e41cfb021b3d677ec29f764c60f255ddbf2c38ca8350d6378"
+  },
+  "sixth-c": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\dc1b6a70-1705-47d2-b5a5-2c2b69ddef5b\\Pasted text.txt",
+    "original_sha256": "0d06fa2cc63d2f6f2cf3acb41479af161fffdd1e3a6384c04fa863f1e7037d50",
+    "adapter_sha256": "5cbd0c79d36de1114b2222228c006bbeea5a4cface3e9d1a23d64b437fbaee48"
+  },
+  "sixth-b": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\b8d6a87c-1204-4240-82dd-0fdcad3d4c39\\Pasted text.txt",
+    "original_sha256": "148148a74132f996bd01c2ea9c41060d50dc538344f8d68d4bff49706852da55",
+    "adapter_sha256": "7010d3bb57fb83fe338c56a7ccaf30a15dce0c91d109e84acffbccf246c4d578"
+  },
+  "sixth-a": {
+    "attachment": "C:\\Users\\kultzuki\\.codex\\attachments\\c6ddf466-67b1-4f75-9996-d3e6799f56fd\\Pasted text.txt",
+    "original_sha256": "6e94078e218afc4528b19e2a61ca6805380255766bf65fb1cefae7781de1d366",
+    "adapter_sha256": "b9b6e2d3610044d237487334ae09e4bedffe899254060264493dab32b9c9318c"
+  }
+}
