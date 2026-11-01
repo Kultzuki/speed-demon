@@ -23,7 +23,7 @@ static inline const char* find_quote(const char* p, const char* end) {
     return (p < end) ? p : nullptr;
 }
 
-static inline size_t fast_hash(std::string_view name) {
+static inline size_t fast_hash_and_prefix(std::string_view name, uint64_t& out_prefix) {
     const char* p = name.data();
     size_t n = name.size();
     uint64_t a = 0, b = 0;
@@ -34,6 +34,7 @@ static inline size_t fast_hash(std::string_view name) {
         for (size_t i = 0; i < n; ++i) a = (a << 8) | uint8_t(p[i]);
         b = a;
     }
+    out_prefix = a;
     uint64_t h = (a ^ std::rotl(b, 29)) + (n * 0x9E3779B97F4A7C15ull);
     h ^= h >> 30; h *= 0xBF58476D1CE4E5B9ull;
     h ^= h >> 27; h *= 0x94D049BB133111EBull;
@@ -46,32 +47,30 @@ struct Field {
     size_t bytes;
 };
 
-Field text_field(const char*& p, const char* end, std::string* decoded) {
-    const char* start = p;
+static inline Field name_field(const char*& p, const char* end, std::string& decoded) {
     if (*p != '"') {
+        const char* start = p;
         while (p < end && *p != ',') ++p;
         return {std::string_view(start, p - start), size_t(p - start)};
     }
-    start = ++p;
+    const char* start = ++p;
     const char* segment = p;
     size_t escaped = 0;
     for (;;) {
         p = find_quote(p, end);
         if (!p) throw std::runtime_error("Unclosed CSV quote");
         if (p + 1 < end && p[1] == '"') {
-            if (decoded) {
-                if (!escaped) decoded->clear();
-                decoded->append(segment, p + 1);
-            }
+            if (!escaped) decoded.clear();
+            decoded.append(segment, p + 1);
             ++escaped;
             p += 2;
             segment = p;
         } else {
             size_t bytes = p - start - escaped;
             std::string_view value(start, p - start);
-            if (escaped && decoded) {
-                decoded->append(segment, p);
-                value = *decoded;
+            if (escaped) {
+                decoded.append(segment, p);
+                value = decoded;
             }
             ++p;
             return {value, bytes};
@@ -79,22 +78,51 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
     }
 }
 
-struct SharedNames {
-    struct Node {
-        Node* next;
-        uint32_t tag;
-        uint32_t length;
-        std::atomic<uint64_t> membership[4]{};
-        std::string_view name() const {
-            return {reinterpret_cast<const char*>(this) + sizeof(Node), length};
+static inline size_t note_bytes(const char*& p, const char* end) {
+    if (*p != '"') {
+        const char* start = p;
+        while (p < end && *p != ',') ++p;
+        return p - start;
+    }
+    const char* start = ++p;
+    size_t escaped = 0;
+    for (;;) {
+        p = find_quote(p, end);
+        if (!p) throw std::runtime_error("Unclosed CSV quote");
+        if (p + 1 < end && p[1] == '"') {
+            ++escaped;
+            p += 2;
+        } else {
+            size_t bytes = p - start - escaped;
+            ++p;
+            return bytes;
         }
-    };
+    }
+}
+
+constexpr size_t BUCKETS = 262144;
+constexpr size_t BUCKET_MASK = BUCKETS - 1;
+constexpr size_t NUM_SHARDS = 256;
+
+struct Node {
+    Node* next;
+    uint32_t tag;
+    uint32_t length;
+    uint64_t prefix;
+    std::atomic<uint64_t> membership[4]{};
+    std::string_view name() const {
+        return {reinterpret_cast<const char*>(this) + sizeof(Node), length};
+    }
+};
+
+struct SharedNames {
+    std::atomic<Node*> heads[BUCKETS]{};
+
     struct alignas(64) Shard {
         std::mutex mutex;
-        std::array<std::atomic<Node*>, 512> heads{};
         std::vector<std::unique_ptr<char[]>> arenas;
         size_t used = 8192;
-        Node* insert(std::string_view name, uint32_t tag, Node* next) {
+        Node* insert(std::string_view name, uint32_t tag, uint64_t prefix, Node* next) {
             size_t bytes = sizeof(Node) + name.size();
             size_t at = (used + alignof(Node) - 1) & ~(alignof(Node) - 1);
             if (arenas.empty() || at + bytes > 8192) {
@@ -102,32 +130,34 @@ struct SharedNames {
                 at = 0;
             }
             char* data = arenas.back().get() + at;
-            auto* node = new(data) Node{next, tag, (uint32_t)name.size()};
+            auto* node = new(data) Node{next, tag, (uint32_t)name.size(), prefix};
             memcpy(data + sizeof(Node), name.data(), name.size());
             used = at + bytes;
             return node;
         }
     };
-    std::array<Shard, 256> shards;
+    std::array<Shard, NUM_SHARDS> shards;
 
-    size_t prefetch(std::string_view name) {
-        size_t hash = fast_hash(name);
-        auto& head = shards[(hash >> 32) & 255].heads[hash & 511];
-        __builtin_prefetch(&head, 0, 3);
-        if (auto* node = head.load(std::memory_order_acquire)) __builtin_prefetch(node, 0, 3);
-        return hash;
+    void prefetch_bucket(size_t hash) {
+        __builtin_prefetch(&heads[hash & BUCKET_MASK], 0, 3);
     }
-    bool add(std::string_view name, uint16_t country) { return add(name, country, prefetch(name)); }
-    bool add(std::string_view name, uint16_t country, size_t hash) {
+
+    void prefetch_node(size_t hash) {
+        Node* node = heads[hash & BUCKET_MASK].load(std::memory_order_relaxed);
+        if (node) __builtin_prefetch(node, 0, 3);
+    }
+
+    bool add(std::string_view name, uint16_t country, size_t hash, uint64_t prefix) {
         uint32_t tag = (uint32_t)(hash >> 32);
         uint32_t len = (uint32_t)name.size();
-        auto& shard = shards[(hash >> 32) & 255];
-        auto& head = shard.heads[hash & 511];
+        auto& head = heads[hash & BUCKET_MASK];
 
         auto find = [&](Node* node) {
             while (node) {
-                if (node->tag == tag && node->length == len && memcmp(node->name().data(), name.data(), len) == 0)
-                    return node;
+                if (node->tag == tag && node->length == len && node->prefix == prefix) {
+                    if (len <= 8 || memcmp(node->name().data() + 8, name.data() + 8, len - 8) == 0)
+                        return node;
+                }
                 node = node->next;
             }
             return static_cast<Node*>(nullptr);
@@ -135,11 +165,12 @@ struct SharedNames {
 
         Node* node = find(head.load(std::memory_order_acquire));
         if (!node) {
+            auto& shard = shards[(hash >> 32) % NUM_SHARDS];
             std::lock_guard<std::mutex> lock(shard.mutex);
             auto first = head.load(std::memory_order_relaxed);
             node = find(first);
             if (!node) {
-                node = shard.insert(name, tag, first);
+                node = shard.insert(name, tag, prefix, first);
                 head.store(node, std::memory_order_release);
             }
         }
@@ -174,23 +205,25 @@ struct Partial {
             std::string_view name;
             uint16_t country;
             size_t hash;
+            uint64_t prefix;
         };
-        std::array<Pending, 4> pending;
+        constexpr size_t PIPE = 8;
+        std::array<Pending, PIPE> pending;
         size_t serial = 0;
         auto retire = [&](Pending& old) {
-            countries[old.country].distinct += names.add(old.name, old.country, old.hash);
+            countries[old.country].distinct += names.add(old.name, old.country, old.hash, old.prefix);
         };
         while (p < end) {
             if (static_cast<unsigned char>(*p) == 0xef) p += 3;
             uint64_t id = 0;
             while (static_cast<unsigned>(*p - '0') < 10) id = id * 10 + (*p++ - '0');
             ++p; // comma
-            auto& next = pending[serial % pending.size()];
-            if (serial >= pending.size()) retire(next);
+            auto& next = pending[serial % PIPE];
+            if (serial >= PIPE) retire(next);
             ++serial;
-            Field name = text_field(p, end, &next.scratch);
+            Field name = name_field(p, end, next.scratch);
             ++p; // comma
-            Field note = text_field(p, end, nullptr);
+            size_t nbytes = note_bytes(p, end);
             ++p; // comma
             uint32_t region = 0;
             while (static_cast<unsigned>(*p - '0') < 10) region = region * 10 + (*p++ - '0');
@@ -209,17 +242,24 @@ struct Partial {
             auto& group = countries[country];
             next.name = name.value;
             next.country = country;
-            next.hash = names.prefetch(name.value);
+            next.hash = fast_hash_and_prefix(name.value, next.prefix);
+
+            names.prefetch_bucket(next.hash);
+            if (serial >= 4) {
+                auto& mid = pending[(serial - 4) % PIPE];
+                names.prefetch_node(mid.hash);
+            }
+
             ++group.count;
             group.id_sum += id;
             group.sum += amount;
             group.minimum = std::min(group.minimum, amount);
             group.maximum = std::max(group.maximum, amount);
             group.name_bytes += name.bytes;
-            group.note_bytes += note.bytes;
+            group.note_bytes += nbytes;
         }
-        for (size_t i = serial > pending.size() ? serial - pending.size() : 0; i < serial; ++i)
-            retire(pending[i % pending.size()]);
+        for (size_t i = serial > PIPE ? serial - PIPE : 0; i < serial; ++i)
+            retire(pending[i % PIPE]);
     }
 };
 
@@ -243,7 +283,7 @@ int main(int argc, char** argv) {
         std::vector<Country> countries(1);
         countries[0].key = "_UNMATCHED";
         uint16_t country_map[17576] = {};
-        std::vector<uint8_t> lookup(1000000, 0);
+        std::vector<uint8_t> lookup(1048576, 0);
 
         const char* p = regions.data;
         while (p < regions.end() && *p++ != '\n') {}
@@ -298,4 +338,3 @@ int main(int argc, char** argv) {
         _exit(0);
     } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
 }
-
