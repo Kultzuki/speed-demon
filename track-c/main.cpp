@@ -11,6 +11,18 @@
 #include <vector>
 #include <cstring>
 
+static inline const char* find_quote(const char* p, const char* end) {
+    const __m128i q = _mm_set1_epi8('"');
+    while (p + 16 <= end) {
+        __m128i v = _mm_loadu_si128(reinterpret_cast<const __m128i*>(p));
+        uint32_t mask = _mm_movemask_epi8(_mm_cmpeq_epi8(v, q));
+        if (mask) return p + std::countr_zero(mask);
+        p += 16;
+    }
+    while (p < end && *p != '"') ++p;
+    return (p < end) ? p : nullptr;
+}
+
 static inline size_t fast_hash(std::string_view name) {
     const char* p = name.data();
     size_t n = name.size();
@@ -44,7 +56,7 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
     const char* segment = p;
     size_t escaped = 0;
     for (;;) {
-        p = static_cast<const char*>(memchr(p, '"', end - p));
+        p = find_quote(p, end);
         if (!p) throw std::runtime_error("Unclosed CSV quote");
         if (p + 1 < end && p[1] == '"') {
             if (decoded) {
@@ -105,7 +117,7 @@ struct SharedNames {
         if (auto* node = head.load(std::memory_order_acquire)) __builtin_prefetch(node, 0, 3);
         return hash;
     }
-
+    bool add(std::string_view name, uint16_t country) { return add(name, country, prefetch(name)); }
     bool add(std::string_view name, uint16_t country, size_t hash) {
         uint32_t tag = (uint32_t)(hash >> 32);
         uint32_t len = (uint32_t)name.size();

@@ -298,3 +298,11 @@ Local benchmark shows 54% reduction in wall time and CPU time cut to ~0.50s.
 - Removed unused integer helper from common.hpp, trimming line count to 409 lines.
 - Verified 100% byte-for-byte SHA-256 equivalence on full-seed1 (`d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536`) and all 53 validation test cases.
 - Local benchmark shows a consistent 17% to 26% execution speedup over baseline a822664.
+
+
+## Track C optimization: inline SSE vectorized quote scan
+
+- Replaced external glibc `memchr` in `text_field` with inline 16-byte SSE vector quote scan (`find_quote`), removing function call linkage and alignment setup overhead across ~7.4 million quote searches.
+- Retained 32-bit tag check and conditional buffer clearing.
+- Passes all 53 validation test cases and matches exact public hash `d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536`.
+- Cuts local trimmed mean from 78.8 ms to 65.1 ms (21.0% speedup).
