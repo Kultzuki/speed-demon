@@ -1,0 +1,36 @@
+{
+  "release": {
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-march=x86-64-v3",
+      "-Wno-subobject-linkage",
+      "-Wno-return-type",
+      "-DPACKED_DOC_BITS=15",
+      "-O2",
+      "-DNDEBUG"
+    ],
+    "binary_sha256": "fdc539f38cd4d50dee6de11bec63257a1de6bcd88b5115eb52f3324441d8f8ae",
+    "test_source_sha256": "d684c44ce6c86696b83199b288ffe2ea708a1781271a689145c838337a95bd2a",
+    "stdout": "PASS 4096 tokenizer alignments, real CRC collision, table growth/renumbering, posting escape boundary and full uint32 domain\n",
+    "stderr": ""
+  },
+  "sanitized": {
+    "flags": [
+      "-std=c++20",
+      "-pthread",
+      "-march=x86-64-v3",
+      "-Wno-subobject-linkage",
+      "-Wno-return-type",
+      "-DPACKED_DOC_BITS=15",
+      "-O1",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ],
+    "binary_sha256": "32d30e31c84d572ea4c308728cf2c28568a601b9680bf5b9e5faadd068582d62",
+    "test_source_sha256": "d684c44ce6c86696b83199b288ffe2ea708a1781271a689145c838337a95bd2a",
+    "stdout": "PASS 4096 tokenizer alignments, real CRC collision, table growth/renumbering, posting escape boundary and full uint32 domain\n",
+    "stderr": ""
+  }
+}

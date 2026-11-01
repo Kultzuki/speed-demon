@@ -1,0 +1,52 @@
+{
+  "submitted_commit": "c6412734cf45da31b5b841fdc5f6b8071d7f9327",
+  "run_id": "run-66176fc80d33",
+  "T_s": 0.262099,
+  "M_bytes": 62586880,
+  "S": 944,
+  "D": 1,
+  "K": 21.038763,
+  "points": 66.15101,
+  "starting_best_K": 19.373796,
+  "decision": "retain",
+  "gates": {
+    "check": true,
+    "build": true,
+    "correctness": true,
+    "timeout": true,
+    "sandbox": true
+  },
+  "latest_same_source_b": {
+    "run_id": "run-bcdf6cd41a3c",
+    "commit": "a822664e62d374b7cccad53d80834018576b26ff",
+    "pushed_at": "2026-11-01T09:03:28Z",
+    "dispatched_at": "2026-11-01T09:03:28Z",
+    "started_at": "2026-11-01T09:04:00Z",
+    "ended_at": "2026-11-01T09:04:02Z",
+    "queue_latency_s": 32.3,
+    "ok": true,
+    "stage": "scored",
+    "gates": {
+      "check": true,
+      "build": true,
+      "correctness": true,
+      "timeout": true,
+      "sandbox": true
+    },
+    "T_s": 0.257382,
+    "M_bytes": 62418944,
+    "S": 944,
+    "D": 1,
+    "K": 21.242087,
+    "points": 66.359859,
+    "static_axes": "measured",
+    "timeout_s": 169.057,
+    "build_s": 0.649,
+    "image_bytes": 119115962,
+    "failure": null,
+    "lang": [
+      "C++"
+    ]
+  },
+  "note": "A/C/D official repeats vary. A remains exact best source; C was independently changed by another chat."
+}

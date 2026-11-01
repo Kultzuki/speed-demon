@@ -75,8 +75,7 @@ struct alignas(32) Key {
     u64 w[4];
 };
 
-// Hardware CRC32C fingerprints the complete padded key; equality still
-// compares all 32 bytes, including keys with identical CRC fingerprints.
+// Hardware CRC32C fingerprints a key; complete byte equality resolves collisions.
 inline u64 hash_key(const Key& k) {
     u64 h = _mm_crc32_u64(0, k.w[0]);
     h = _mm_crc32_u64(h, k.w[1]);
@@ -295,11 +294,13 @@ template<class Doc,class Offset> struct Index {
     std::vector<Offset> text;             // per doc: offset of its text, then of its end (2 per doc)
 };
 
-// An append-only stream of (9-bit term, document) pairs. The narrow path
-// stores a 7-bit document delta beside the term in 16 bits, escaping larger
-// gaps with an absolute document word. The wide path keeps full 32-bit ids.
-// Anonymous blocks are released as they drain, returning their real pages.
+// Lossless term/document-gap words with an explicit absolute-document
+// escape. The checked wide-document path stores full 32-bit offsets.
+// Anonymous blocks return their physical pages as they drain.
+constexpr u32 BUCKET_BITS = 12;
+
 template<class Doc> class BlockList {
+    static constexpr u32 DELTA_BITS = 16 - BUCKET_BITS, DELTA_MASK = (1u << DELTA_BITS) - 1;
     using Entry = std::conditional_t<sizeof(Doc) == 2, uint16_t, u64>;
     using Packed = std::conditional_t<sizeof(Doc) == 2, u32, u64>;
 public:
@@ -308,8 +309,8 @@ public:
     void push(Packed x) {
         if constexpr (sizeof(Doc) == 2) {
             const u32 doc = x & 32767, term = x >> 15, delta = doc - last_doc_;
-            if (delta < 127) word(Entry(term << 7 | delta));
-            else { word(Entry(term << 7 | 127)); word(Entry(doc)); }
+            if (delta < DELTA_MASK) word(Entry(term << DELTA_BITS | delta));
+            else { word(Entry(term << DELTA_BITS | DELTA_MASK)); word(Entry(doc)); }
             last_doc_ = doc;
         } else word(x);
     }
@@ -324,8 +325,8 @@ public:
                         doc = x;
                         f(pending << 15 | doc);
                         pending = NONE;
-                    } else if ((x & 127) == 127) pending = x >> 7;
-                    else { doc += x & 127; f(u32(x >> 7) << 15 | doc); }
+                    } else if ((x & DELTA_MASK) == DELTA_MASK) pending = x >> DELTA_BITS;
+                    else { doc += x & DELTA_MASK; f(u32(x >> DELTA_BITS) << 15 | doc); }
                 } else f(x);
             }
             munmap(blocks_[b], BYTES);
@@ -349,12 +350,12 @@ private:
     u32 last_doc_ = 0;
 };
 
-// The scan files each posting under a bucket of 512 consecutive term ids, as
-// the term's offset in the bucket (9 bits) above the doc's offset in the
+// The scan files postings in buckets of consecutive term ids, with the
+// term offset above the document offset in the logical replay value. The
 // thread's range (15 bits). The scatter then fills the posting lists one
 // bucket at a time, so the lists' pages are touched only as the scan output
 // that fills them is freed.
-constexpr u32 BUCKET_BITS = 9;
+
 
 u32 parse_id(const uint8_t* p) {
     u32 v = 0;
@@ -483,13 +484,23 @@ template<class Doc,class Offset> Index<Doc,Offset> build_index(const File& f, Te
     // Each thread drains its own lists bucket by bucket into its own segment of
     // every term, so the threads never share a cursor. The cursors end at the
     // segment ends, which the queries use to decode the lists.
-    for (int t = 0; t < nthreads; ++t) {
-        pool.emplace_back([&, t] {
-            for (u32 b = 0; b < nbuckets; ++b)
-                seen[t][b].drain([&](u64 x) {
-                    u32 id = b << BUCKET_BITS | x >> DOC_BITS;
-                    ix.post[count[t][id]++] = x & ((u64(1) << DOC_BITS) - 1);
-                });
+    constexpr u32 HEAVY = 2;
+    const u32 split_buckets = std::min(HEAVY, nbuckets);
+    const u32 split_jobs = split_buckets * nthreads;
+    const u32 jobs = split_jobs + nbuckets - split_buckets;
+    std::atomic<u32> next_job{0};
+    auto scatter = [&](int t, u32 b) {
+        seen[t][b].drain([&](u64 x) {
+            const u32 id = b << BUCKET_BITS | x >> DOC_BITS;
+            ix.post[count[t][id]++] = x & ((u64(1) << DOC_BITS) - 1);
+        });
+    };
+    for (int worker = 0; worker < nthreads; ++worker) {
+        pool.emplace_back([&] {
+            for (u32 job; (job = next_job.fetch_add(1, std::memory_order_relaxed)) < jobs;) {
+                if (job < split_jobs) scatter(job % nthreads, job / nthreads);
+                else for (int t = 0; t < nthreads; ++t) scatter(t, job - split_jobs + split_buckets);
+            }
         });
     }
     for (auto& th : pool) th.join();

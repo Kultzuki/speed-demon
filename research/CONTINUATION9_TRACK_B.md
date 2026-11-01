@@ -106,3 +106,53 @@ Only B was rebuilt. The later isolated public five-run comparison is
 0.364772902 s, M=72,699,904 to 64,434,176 bytes, local K ratio 1.031007.
 This smaller repeat confirms why local timing variation must not be promoted
 as an assured official gain.
+
+## Second candidate: wider buckets and balanced scatter jobs
+
+Use 12 term bits and 4 delta bits per narrow stream word, with delta 15 as the
+absolute-document escape. This cuts the number of small bucket mappings. Split
+the two heaviest leading buckets into producer jobs, and assign the remaining
+buckets by term range. Each cursor and every output element still has one
+writer. The work queue balances large buckets without assigning the same
+producer/bucket stream twice. The logical 15-bit local document domain and
+checked uint32 fallback are unchanged in this candidate.
+
+`research/results/trackb9-hybrid-eighteenth.json`: local public K ratio 1.086353;
+`research/results/trackb9-hybrid-fresh.json`: local fresh K ratio 1.015223. The
+smaller second-seed gain and noisy repeats are preserved, not averaged into an
+assured improvement. The exact active follow-up passes 36 release and 36
+ASan/UBSan dataset comparisons, both full seeds, forced uint64 offsets and the
+direct collision/window/escape programs. New fixtures cover complete 65,536 and
+65,537-document local domains and thousands of selective mixed-operator folds.
+Evidence: `validation/trackb9-scatter-*`.
+
+Other isolated follow-ups include full 16-bit local domains with fewer build
+workers, independent query-worker counts, producer-only wider buckets and
+selective rare-candidate membership. These are not active in this second
+submission. Six build workers reduce local CPU seconds but do not clearly win
+AMD wall time; the scoring machine has six physical cores, so this remains an
+architecture-specific hypothesis rather than a measured official improvement.
+
+The incoming c641273 benchmark pair is frozen as
+`research/prototypes/trackb9-retained-c641273.cpp` and `build/bench7/b9-c641`.
+Never use `bench7.py --reuse` with `b9-active=track-b/main.cpp` after editing
+the active source: that harness does not check a reused binary's source hash.
+
+
+## Official first Track B gain: c641273
+
+Run `run-66176fc80d33` at `c6412734cf45da31b5b841fdc5f6b8071d7f9327`:
+all five gates pass; T=0.262099 s, M=62,586,880 bytes, S=944, D=1,
+K=21.038763, **66.151010 points**. Starting best K=19.373796 / 64.360736
+points: retain the improvement.
+
+The same commit restores A exactly to the 6b71e02 best source. Its new run is
+K=31.030844 / 74.589680 points, below that source's historical 76.408344 best;
+the byte-identical source is restored, and timing/memory variation is recorded
+without claiming a new A algorithm gain.
+
+A subsequent independent C commit, a822664, leaves B runtime files unchanged
+and records B K=21.242087 / 66.359859 points (run `run-bcdf6cd41a3c`). That is
+unchanged-source rerun variation. Snapshot and source comparison:
+`validation/leaderboard-trackb9-c641273-official.json` and
+`validation/trackb9-first-official-summary.json`. The 80-point B target remains.

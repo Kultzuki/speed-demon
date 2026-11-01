@@ -1,0 +1,257 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "b",
+  "data": "/data/b",
+  "entries": {
+    "b9-active": {
+      "source": "track-b/main.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "a39c9004e6fa205cb3b9f11c51b7dac168fce47b11a418facac003cc006a86d0",
+      "binary_sha256": "703ea3259bbb210ec266445081ad8d61153758e1c0d1ccb34b08e7f6c7106e70",
+      "S": 944,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.315781208,
+          "M_bytes": 64192512,
+          "CPU_s": 2.183757,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.359937933,
+          "M_bytes": 64651264,
+          "CPU_s": 2.456557,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.386830483,
+          "M_bytes": 64069632,
+          "CPU_s": 2.666252,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.433448541,
+          "M_bytes": 64425984,
+          "CPU_s": 3.061632,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.373384208,
+      "M_bytes": 64309248.0,
+      "CPU_s": 2.5614045,
+      "local_K_ratio": 1.0
+    },
+    "b9-owner12": {
+      "source": "research/prototypes/trackb9-owner-bucket12.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "e743e38cd7f146caef2509fe49440e14d7cb14ed6db2244bf3a495f9c547a300",
+      "binary_sha256": "6facf14f031ee9651b68fae700e9846b38556045aab01d9f89d55ab8ed613753",
+      "S": 951,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.366415246,
+          "M_bytes": 65454080,
+          "CPU_s": 2.598993,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.345249002,
+          "M_bytes": 65171456,
+          "CPU_s": 2.490965,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.336155123,
+          "M_bytes": 65781760,
+          "CPU_s": 2.366637,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.350375428,
+          "M_bytes": 65347584,
+          "CPU_s": 2.523488,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.34781221500000004,
+      "M_bytes": 65400832.0,
+      "CPU_s": 2.5072265,
+      "local_K_ratio": 1.0314835613083844
+    },
+    "b9-bucket10": {
+      "source": "research/prototypes/trackb9-bucket10.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "f3500940e5cf2fd94252bdfb1edf0ce65f5ce9bceee06ca9044d1f6ba34f2175",
+      "binary_sha256": "847ec21d6d39b3ef240808aed041d1987e252c649dbcc7df2bb66b0ca20620c0",
+      "S": 946,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.306266784,
+          "M_bytes": 64417792,
+          "CPU_s": 2.121185,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.304643507,
+          "M_bytes": 64720896,
+          "CPU_s": 2.227904,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.352486805,
+          "M_bytes": 63971328,
+          "CPU_s": 2.689626,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.370152672,
+          "M_bytes": 64589824,
+          "CPU_s": 2.750261,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.3293767945,
+      "M_bytes": 64503808.0,
+      "CPU_s": 2.458765,
+      "local_K_ratio": 1.063729534691643
+    },
+    "b9-bucket11": {
+      "source": "research/prototypes/trackb9-bucket11.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "c2259c762fa0d8a5b862be04d3b2a0de44bc94ea4da953415cab642daafcea81",
+      "binary_sha256": "1bc6e2c69a4b513e610f60408197a67401c934bdca2ba02202b9590709820469",
+      "S": 946,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.32080422,
+          "M_bytes": 64987136,
+          "CPU_s": 2.452476,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.356550723,
+          "M_bytes": 64376832,
+          "CPU_s": 2.783368,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.352419798,
+          "M_bytes": 64307200,
+          "CPU_s": 2.782366,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.297824004,
+          "M_bytes": 64622592,
+          "CPU_s": 2.233263,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.336612009,
+      "M_bytes": 64499712.0,
+      "CPU_s": 2.617421,
+      "local_K_ratio": 1.05224877743953
+    },
+    "b9-bucket12": {
+      "source": "research/prototypes/trackb9-bucket12.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "15dd75d3c0293167f9ba0d0485100da28682363df817673ae5720d34c93abf45",
+      "binary_sha256": "f0616f6fde942e9fa57b2d7fb0985399dfbc5471f6140aff00d1b62222904c42",
+      "S": 946,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.330350857,
+          "M_bytes": 67358720,
+          "CPU_s": 2.621209,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.295184981,
+          "M_bytes": 67190784,
+          "CPU_s": 2.18935,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.32241997,
+          "M_bytes": 67727360,
+          "CPU_s": 2.588557,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.37478675,
+          "M_bytes": 67141632,
+          "CPU_s": 2.918718,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.3263854135,
+      "M_bytes": 67274752.0,
+      "CPU_s": 2.604883,
+      "local_K_ratio": 1.0596415909597163
+    }
+  }
+}

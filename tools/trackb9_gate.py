@@ -30,6 +30,28 @@ def prepare():
                 queries.append(q)
     (case / 'queries.txt').write_text('\n'.join(queries) + '\n')
 
+    case = fixtures / 'trackb9-selective-folds'
+    case.mkdir(exist_ok=True)
+    with (case / 'docs.txt').open('w') as stream:
+        for i in range(4096):
+            words = ['hot']
+            if 100 <= i < 164:
+                mask = i - 100
+                words += [chr(ord('a') + bit) for bit in range(6) if mask >> bit & 1]
+                words += [f'needle{mask}', 'tail']
+            stream.write(f'{i}\t' + ' '.join(words) + '\n')
+    queries = []
+    for ops in itertools.product(['AND', 'OR', 'NOT'], repeat=4):
+        for mask in range(64):
+            q = 'BOOL hot'
+            for op, term in zip(ops, ['a', 'b', 'c', 'd']):
+                q += ' ' + op + ' ' + term
+            queries.append(q + f' AND needle{mask}')
+    for mask in range(64):
+        queries += [f'PHRASE "needle{mask} tail"', f'PHRASE "needle{mask} needle{mask}"',
+                    f'PHRASE "a b needle{mask}"', f'BOOL needle{mask} NOT hot']
+    (case / 'queries.txt').write_text('\n'.join(queries) + '\n')
+
     case = fixtures / 'trackb9-keys-windows'
     case.mkdir(exist_ok=True)
     tokens = ['a' * n for n in range(1, 33)] + [
@@ -60,6 +82,19 @@ def prepare():
         case.mkdir(exist_ok=True)
         (case / 'docs.txt').write_bytes(docs)
         (case / 'queries.txt').write_bytes(queries)
+
+    # A long final document puts the entire id domain in the first worker's
+    # byte range. Exercise exactly 65536 local ids and the next, wider domain.
+    for n in [65536, 65537]:
+        case = fixtures / f'trackb9-domain-{n}'
+        case.mkdir(exist_ok=True)
+        docs_path = case / 'docs.txt'
+        if not docs_path.exists():
+            with docs_path.open('w') as stream:
+                for i in range(n):
+                    text = 'common ' + ('boundary phrase' if i in [0, 32767, 32768, 65535, n - 1] else 'other')
+                    stream.write(f'{i}\t{text}' + ('-' * (12 * 1024 * 1024) if i == n - 1 else '') + '\n')
+        (case / 'queries.txt').write_text('BOOL boundary\nPHRASE "boundary phrase"\nBOOL common NOT other\nBOOL absent OR boundary\n')
 
 
 def main():

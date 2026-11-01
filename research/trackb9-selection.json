@@ -1,8 +1,8 @@
 {
   "scope": "Track B only; local measurements are not official scores.",
   "incoming_commit": "6b71e02218f87a492f41aad0b6ea304c0e6cb172",
-  "selected_prototype": "research/prototypes/trackb9-gapstream18.cpp",
-  "selected_sha256": "a39c9004e6fa205cb3b9f11c51b7dac168fce47b11a418facac003cc006a86d0",
+  "selected_prototype": "research/prototypes/trackb9-hybrid-owner2.cpp",
+  "selected_sha256": "8041f7d8a1dc5e8ce8d05b242347637c6833dffc563166494bb344a0e15d67ce",
   "incoming_b_source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
   "other_runtime_sha256": {
     "track-a\\.speed-demon.toml": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714",
@@ -24,7 +24,7 @@
     "research/results/trackb9-finalist-fresh.json"
   ],
   "hypothesis": "AVX2 paired token boundaries and masked keys reduce scanning work; lossless 16-bit gap streams reduce temporary memory. Preserve exact equality and both width dispatches.",
-  "official_status": "All local B release, sanitizer, direct and offline image gates pass; ready for ordinary push.",
+  "official_status": "Follow-up staged; exact local production gates and official measurement pending.",
   "user_steering": "Push validated small gains; restore Track A to its best officially measured source.",
   "track_a_restoration": {
     "best_commit": "6b71e02218f87a492f41aad0b6ea304c0e6cb172",
@@ -50,5 +50,7 @@
         "restored_worktree_sha256": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714"
       }
     }
-  }
+  },
+  "phase": "trackb9-scatter",
+  "prior_selection": ".out\\trackb9-scatter\\prior-selection.json"
 }

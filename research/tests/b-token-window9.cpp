@@ -2,6 +2,9 @@
 #include CANDIDATE_SOURCE
 #undef main
 #include <unordered_map>
+#ifndef PACKED_DOC_BITS
+#define PACKED_DOC_BITS 15
+#endif
 
 int main() {
     TermTable terms;
@@ -54,16 +57,17 @@ int main() {
     }
     BlockList<uint16_t> list;
     std::vector<u32> expected, actual;
-    for (u32 i = 0; i < BlockList<uint16_t>::BLOCK - 1; ++i) expected.push_back((i % 512) << 15);
-    expected.push_back((511u << 15) | 1000);
-    expected.push_back((3u << 15) | 1050);
-    expected.push_back((22u << 15) | 10000);
-    expected.push_back((511u << 15) | 32767);
+    constexpr u32 term_mask = (1u << BUCKET_BITS) - 1;
+    for (u32 i = 0; i < BlockList<uint16_t>::BLOCK - 1; ++i) expected.push_back((i & term_mask) << PACKED_DOC_BITS);
+    expected.push_back((term_mask << PACKED_DOC_BITS) | 1000);
+    expected.push_back((3u << PACKED_DOC_BITS) | 1050);
+    expected.push_back((22u << PACKED_DOC_BITS) | 10000);
+    expected.push_back((term_mask << PACKED_DOC_BITS) | ((1u << PACKED_DOC_BITS) - 1));
     for (u32 x : expected) list.push(x);
     list.drain([&](u32 x) { actual.push_back(x); });
     if (actual != expected) return 6;
     BlockList<uint32_t> wide;
-    const std::vector<u64> wide_values{0, (511ull << 32) | 32768, (511ull << 32) | UINT32_MAX};
+    const std::vector<u64> wide_values{0, (u64(term_mask) << 32) | 32768, (u64(term_mask) << 32) | UINT32_MAX};
     std::vector<u64> wide_actual;
     for (u64 x : wide_values) wide.push(x);
     wide.drain([&](u64 x) { wide_actual.push_back(x); });

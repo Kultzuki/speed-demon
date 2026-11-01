@@ -1,0 +1,257 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "b",
+  "data": "/data/b",
+  "entries": {
+    "b9-active": {
+      "source": "track-b/main.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "a39c9004e6fa205cb3b9f11c51b7dac168fce47b11a418facac003cc006a86d0",
+      "binary_sha256": "703ea3259bbb210ec266445081ad8d61153758e1c0d1ccb34b08e7f6c7106e70",
+      "S": 944,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.359046971,
+          "M_bytes": 64909312,
+          "CPU_s": 2.560778,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.323903935,
+          "M_bytes": 64933888,
+          "CPU_s": 2.288164,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.312107874,
+          "M_bytes": 64917504,
+          "CPU_s": 2.029323,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.324956215,
+          "M_bytes": 65056768,
+          "CPU_s": 2.256012,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.324430075,
+      "M_bytes": 64925696.0,
+      "CPU_s": 2.272088,
+      "local_K_ratio": 1.0
+    },
+    "b9-d16x6": {
+      "source": "research/prototypes/trackb9-doc16-6-bucket10.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "dd8df22c248558c6080e7e3ed4d1e055d8538203c535a4961ff168f60aa49ba1",
+      "binary_sha256": "f4534f502268faffcce0b52ef23845ca603eff0310704bee9c0695721316282c",
+      "S": 948,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.328520841,
+          "M_bytes": 62763008,
+          "CPU_s": 1.726422,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.366291233,
+          "M_bytes": 62332928,
+          "CPU_s": 1.97863,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.338143922,
+          "M_bytes": 62222336,
+          "CPU_s": 1.722794,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.398513283,
+          "M_bytes": 62025728,
+          "CPU_s": 2.105972,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.3522175775,
+      "M_bytes": 62277632.0,
+      "CPU_s": 1.8525260000000001,
+      "local_K_ratio": 0.9671559183552256
+    },
+    "b9-d16x8": {
+      "source": "research/prototypes/trackb9-doc16-8-bucket10.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "b828140f48769465189f8c5592040ee346c624666b1be2797218bf3a4d715890",
+      "binary_sha256": "4823b3f11d11a8fde13481891bb27c8bfc45686ae1871e13d5f4bf6ebc308572",
+      "S": 948,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.31088799,
+          "M_bytes": 63721472,
+          "CPU_s": 1.860904,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.330758508,
+          "M_bytes": 63336448,
+          "CPU_s": 2.033323,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.314215096,
+          "M_bytes": 62984192,
+          "CPU_s": 1.879317,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.413592262,
+          "M_bytes": 63242240,
+          "CPU_s": 2.469835,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.322486802,
+      "M_bytes": 63289344.0,
+      "CPU_s": 1.95632,
+      "local_K_ratio": 1.0075029656846342
+    },
+    "b9-d16x12": {
+      "source": "research/prototypes/trackb9-doc16-12-bucket10.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "7e247346e6bf6cbffc27971fbeca9a6fa4ce7363e308b047d7d1df6457fdb8a5",
+      "binary_sha256": "90086b833edbdfc54cfc42f8909ca192b231a3a27c1400cf7d278f600d1df40d",
+      "S": 948,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.293266125,
+          "M_bytes": 64655360,
+          "CPU_s": 2.217846,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.313374316,
+          "M_bytes": 64835584,
+          "CPU_s": 2.266183,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.322864752,
+          "M_bytes": 64487424,
+          "CPU_s": 2.401291,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.299210709,
+          "M_bytes": 64040960,
+          "CPU_s": 2.186148,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.3062925125,
+      "M_bytes": 64571392.0,
+      "CPU_s": 2.2420145,
+      "local_K_ratio": 1.029656119278704
+    },
+    "b9-d16x4": {
+      "source": "research/prototypes/trackb9-doc16-4-bucket10.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "26f3e6a3e3d1e0c0e5ad1fcf907bf52ebdba395a9c9cfbcec239915c9a13f837",
+      "binary_sha256": "91915917e46ed33438c3e494f8340737b7a2081d535abc049db9757fff3d64a2",
+      "S": 948,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.390336679,
+          "M_bytes": 62074880,
+          "CPU_s": 1.651581,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.357896212,
+          "M_bytes": 62124032,
+          "CPU_s": 1.559646,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.438783314,
+          "M_bytes": 61779968,
+          "CPU_s": 1.936854,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.485692807,
+          "M_bytes": 62394368,
+          "CPU_s": 2.091155,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.41455999649999997,
+      "M_bytes": 62099456.0,
+      "CPU_s": 1.7942175,
+      "local_K_ratio": 0.8919842164888969
+    }
+  }
+}

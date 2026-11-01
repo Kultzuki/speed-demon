@@ -280,3 +280,36 @@ growth/renumbering, cross-allocation escape decoding and uint32_max postings.
 Evidence is in `validation/trackb9-production-*`. Official run ID and retention
 decision follow after the validated image is measured. The 80-point target
 remains outstanding at this local-validation checkpoint.
+
+
+## Official first Track B gain: c641273
+
+Run `run-66176fc80d33` at `c6412734cf45da31b5b841fdc5f6b8071d7f9327`:
+all five gates pass; T=0.262099 s, M=62,586,880 bytes, S=944, D=1,
+K=21.038763, **66.151010 points**. Starting best K=19.373796 / 64.360736
+points: retain the improvement.
+
+The same commit restores A exactly to the 6b71e02 best source. Its new run is
+K=31.030844 / 74.589680 points, below that source's historical 76.408344 best;
+the byte-identical source is restored, and timing/memory variation is recorded
+without claiming a new A algorithm gain.
+
+A subsequent independent C commit, a822664, leaves B runtime files unchanged
+and records B K=21.242087 / 66.359859 points (run `run-bcdf6cd41a3c`). That is
+unchanged-source rerun variation. Snapshot and source comparison:
+`validation/leaderboard-trackb9-c641273-official.json` and
+`validation/trackb9-first-official-summary.json`. The 80-point B target remains.
+
+## Second candidate: balanced scatter and wider packed buckets
+
+Keep exact tokenization and checked document widths. Use 12-bit bucket offsets
+and 4-bit document gaps with an absolute-id escape. Split the two heaviest
+buckets into producer jobs; give the other term ranges one scatter owner each.
+
+Local public K ratio 1.086353, fresh full-seed K ratio 1.015223, S=960, D=1.
+The measured gain varies across batches; both are local evidence, not board
+scores. Reports: `research/results/trackb9-hybrid-eighteenth.json` and
+`trackb9-hybrid-fresh.json`. The exact staged source passes 36 release and 36
+ASan/UBSan dataset comparisons, both full seeds, forced uint64 offsets, actual
+wide document domains, all 4,096 direct token alignments and full collision/
+escape/growth checks. Official retention is decided after its run completes.
