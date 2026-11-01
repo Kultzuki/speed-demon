@@ -37,12 +37,6 @@ struct MappedFile {
     const char* end() const { return data + size; }
 };
 
-inline uint64_t integer(const char*& p) {
-    uint64_t value = 0;
-    while (static_cast<unsigned>(*p - '0') < 10) value = value * 10 + (*p++ - '0');
-    return value;
-}
-
 template<class T> inline void number(std::string& out, T value) {
     char buffer[32];
     auto result = std::to_chars(buffer, buffer + sizeof(buffer), value);

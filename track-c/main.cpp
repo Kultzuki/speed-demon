@@ -12,13 +12,20 @@
 #include <cstring>
 
 static inline size_t fast_hash(std::string_view name) {
-    const char* p=name.data();
-    size_t n=name.size();
-    uint64_t a=0,b=0;
-    if (n>=8) {__builtin_memcpy(&a,p,8);__builtin_memcpy(&b,p+n-8,8);}
-    else {for (size_t i=0;i<n;++i) a=a<<8|uint8_t(p[i]); b=a;}
-    uint64_t h=(a^std::rotl(b,29))+(n*0x9E3779B97F4A7C15ull);
-    h^=h>>30;h*=0xBF58476D1CE4E5B9ull;h^=h>>27;h*=0x94D049BB133111EBull;h^=h>>31;
+    const char* p = name.data();
+    size_t n = name.size();
+    uint64_t a = 0, b = 0;
+    if (n >= 8) {
+        __builtin_memcpy(&a, p, 8);
+        __builtin_memcpy(&b, p + n - 8, 8);
+    } else {
+        for (size_t i = 0; i < n; ++i) a = (a << 8) | uint8_t(p[i]);
+        b = a;
+    }
+    uint64_t h = (a ^ std::rotl(b, 29)) + (n * 0x9E3779B97F4A7C15ull);
+    h ^= h >> 30; h *= 0xBF58476D1CE4E5B9ull;
+    h ^= h >> 27; h *= 0x94D049BB133111EBull;
+    h ^= h >> 31;
     return size_t(h);
 }
 
@@ -36,19 +43,24 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
     start = ++p;
     const char* segment = p;
     size_t escaped = 0;
-    if (decoded) decoded->clear();
     for (;;) {
         p = static_cast<const char*>(memchr(p, '"', end - p));
         if (!p) throw std::runtime_error("Unclosed CSV quote");
         if (p + 1 < end && p[1] == '"') {
-            if (decoded) decoded->append(segment, p + 1);
+            if (decoded) {
+                if (!escaped) decoded->clear();
+                decoded->append(segment, p + 1);
+            }
             ++escaped;
             p += 2;
             segment = p;
         } else {
             size_t bytes = p - start - escaped;
             std::string_view value(start, p - start);
-            if (escaped && decoded) { decoded->append(segment, p); value = *decoded; }
+            if (escaped && decoded) {
+                decoded->append(segment, p);
+                value = *decoded;
+            }
             ++p;
             return {value, bytes};
         }
@@ -58,60 +70,71 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
 struct SharedNames {
     struct Node {
         Node* next;
-        size_t length;
-        std::string_view name() const {return {reinterpret_cast<const char*>(this)+sizeof(Node),length};}
+        uint32_t tag;
+        uint32_t length;
         std::atomic<uint64_t> membership[4]{};
+        std::string_view name() const {
+            return {reinterpret_cast<const char*>(this) + sizeof(Node), length};
+        }
     };
     struct alignas(64) Shard {
         std::mutex mutex;
-        std::array<std::atomic<Node*>,512> heads{};
+        std::array<std::atomic<Node*>, 512> heads{};
         std::vector<std::unique_ptr<char[]>> arenas;
-        size_t used=8192;
-        Node* insert(std::string_view name,Node* next) {
-            size_t bytes=sizeof(Node)+name.size();
-            size_t at=(used+alignof(Node)-1)&~(alignof(Node)-1);
-            if (arenas.empty() || at+bytes>8192) {
-                arenas.push_back(std::make_unique<char[]>(std::max<size_t>(8192,bytes)));
-                at=0;
+        size_t used = 8192;
+        Node* insert(std::string_view name, uint32_t tag, Node* next) {
+            size_t bytes = sizeof(Node) + name.size();
+            size_t at = (used + alignof(Node) - 1) & ~(alignof(Node) - 1);
+            if (arenas.empty() || at + bytes > 8192) {
+                arenas.push_back(std::make_unique<char[]>(std::max<size_t>(8192, bytes)));
+                at = 0;
             }
-            char* data=arenas.back().get()+at;
-            auto* node=new(data) Node{next,name.size()};
-            memcpy(data+sizeof(Node),name.data(),name.size());
-            used=at+bytes;
+            char* data = arenas.back().get() + at;
+            auto* node = new(data) Node{next, tag, (uint32_t)name.size()};
+            memcpy(data + sizeof(Node), name.data(), name.size());
+            used = at + bytes;
             return node;
         }
     };
-    std::array<Shard,256> shards;
+    std::array<Shard, 256> shards;
 
     size_t prefetch(std::string_view name) {
-        size_t hash=fast_hash(name);
-        auto& head=shards[(hash>>32)&255].heads[hash&511];
-        __builtin_prefetch(&head,0,3);
-        if (auto* node=head.load(std::memory_order_acquire)) __builtin_prefetch(node,0,3);
+        size_t hash = fast_hash(name);
+        auto& head = shards[(hash >> 32) & 255].heads[hash & 511];
+        __builtin_prefetch(&head, 0, 3);
+        if (auto* node = head.load(std::memory_order_acquire)) __builtin_prefetch(node, 0, 3);
         return hash;
     }
-    bool add(std::string_view name,uint16_t country) {return add(name,country,prefetch(name));}
-    bool add(std::string_view name,uint16_t country,size_t hash) {
-        auto& shard=shards[(hash>>32)&255];
-        auto& head=shard.heads[hash&511];
-        auto find=[&](Node* node) {
-            while (node && (node->name()!=name)) node=node->next;
-            return node;
+
+    bool add(std::string_view name, uint16_t country, size_t hash) {
+        uint32_t tag = (uint32_t)(hash >> 32);
+        uint32_t len = (uint32_t)name.size();
+        auto& shard = shards[(hash >> 32) & 255];
+        auto& head = shard.heads[hash & 511];
+
+        auto find = [&](Node* node) {
+            while (node) {
+                if (node->tag == tag && node->length == len && memcmp(node->name().data(), name.data(), len) == 0)
+                    return node;
+                node = node->next;
+            }
+            return static_cast<Node*>(nullptr);
         };
-        Node* node=find(head.load(std::memory_order_acquire));
+
+        Node* node = find(head.load(std::memory_order_acquire));
         if (!node) {
             std::lock_guard<std::mutex> lock(shard.mutex);
-            auto first=head.load(std::memory_order_relaxed);
-            node=find(first);
+            auto first = head.load(std::memory_order_relaxed);
+            node = find(first);
             if (!node) {
-                node=shard.insert(name,first);
-                head.store(node,std::memory_order_release);
+                node = shard.insert(name, tag, first);
+                head.store(node, std::memory_order_release);
             }
         }
-        uint64_t bit=uint64_t(1)<<(country%64);
-        auto& word=node->membership[country/64];
-        if (word.load(std::memory_order_relaxed)&bit) return false;
-        return !(word.fetch_or(bit,std::memory_order_relaxed)&bit);
+        uint64_t bit = uint64_t(1) << (country % 64);
+        auto& word = node->membership[country / 64];
+        if (word.load(std::memory_order_relaxed) & bit) return false;
+        return !(word.fetch_or(bit, std::memory_order_relaxed) & bit);
     }
 };
 
@@ -134,35 +157,47 @@ struct Partial {
     template<class Id> void parse(const char* begin, const char* end, const std::vector<Id>& lookup, size_t count, SharedNames& names) {
         countries.resize(count);
         const char* p = begin;
-        struct Pending {std::string scratch;std::string_view name;uint16_t country;size_t hash;};
-        std::array<Pending,4> pending;
-        size_t serial=0;
-        auto retire=[&](Pending& old) {countries[old.country].distinct+=names.add(old.name,old.country,old.hash);};
+        struct Pending {
+            std::string scratch;
+            std::string_view name;
+            uint16_t country;
+            size_t hash;
+        };
+        std::array<Pending, 4> pending;
+        size_t serial = 0;
+        auto retire = [&](Pending& old) {
+            countries[old.country].distinct += names.add(old.name, old.country, old.hash);
+        };
         while (p < end) {
             if (static_cast<unsigned char>(*p) == 0xef) p += 3;
-            uint64_t id = integer(p);
-            ++p;
-            auto& next=pending[serial%pending.size()];
-            if (serial>=pending.size()) retire(next);
+            uint64_t id = 0;
+            while (static_cast<unsigned>(*p - '0') < 10) id = id * 10 + (*p++ - '0');
+            ++p; // comma
+            auto& next = pending[serial % pending.size()];
+            if (serial >= pending.size()) retire(next);
             ++serial;
             Field name = text_field(p, end, &next.scratch);
-            ++p;
+            ++p; // comma
             Field note = text_field(p, end, nullptr);
-            ++p;
-            uint32_t region = integer(p);
-            ++p;
-            bool negative = *p == '-';
+            ++p; // comma
+            uint32_t region = 0;
+            while (static_cast<unsigned>(*p - '0') < 10) region = region * 10 + (*p++ - '0');
+            ++p; // comma
+            bool negative = (*p == '-');
             p += negative;
-            int64_t amount = integer(p) * 100;
-            ++p;
-            amount += (p[0] - '0') * 10 + p[1] - '0';
-            p += 2;
-            if (p < end && *p == '\r') ++p;
-            if (p < end && *p == '\n') ++p;
+            int64_t amount = 0;
+            while (*p != '.') amount = amount * 10 + (*p++ - '0');
+            amount = amount * 100 + (p[1] - '0') * 10 + (p[2] - '0');
+            p += 3;
+            p += (*p == '\r');
+            ++p; // newline
             if (negative) amount = -amount;
+
             uint16_t country = region < lookup.size() ? lookup[region] : 0;
             auto& group = countries[country];
-            next.name=name.value;next.country=country;next.hash=names.prefetch(name.value);
+            next.name = name.value;
+            next.country = country;
+            next.hash = names.prefetch(name.value);
             ++group.count;
             group.id_sum += id;
             group.sum += amount;
@@ -171,18 +206,19 @@ struct Partial {
             group.name_bytes += name.bytes;
             group.note_bytes += note.bytes;
         }
-        for (size_t i=serial>pending.size()?serial-pending.size():0;i<serial;++i) retire(pending[i%pending.size()]);
+        for (size_t i = serial > pending.size() ? serial - pending.size() : 0; i < serial; ++i)
+            retire(pending[i % pending.size()]);
     }
 };
 
-std::vector<const char*> boundaries(const char* begin,const char* end,unsigned workers) {
-    std::vector<const char*> result(workers+1,end);
-    result[0]=begin;
-    for (unsigned i=1;i<workers;++i) {
-        const char* p=begin+(end-begin)*i/workers;
-        while (p<end && !(p>begin && p[-1]=='\n' &&
-               ((unsigned(*p-'0')<10) || static_cast<unsigned char>(*p)==0xef))) ++p;
-        result[i]=p;
+std::vector<const char*> boundaries(const char* begin, const char* end, unsigned workers) {
+    std::vector<const char*> result(workers + 1, end);
+    result[0] = begin;
+    for (unsigned i = 1; i < workers; ++i) {
+        const char* p = begin + (end - begin) * i / workers;
+        while (p < end && !(p > begin && p[-1] == '\n' &&
+               ((unsigned(*p - '0') < 10) || static_cast<unsigned char>(*p) == 0xef))) ++p;
+        result[i] = p;
     }
     return result;
 }
@@ -191,7 +227,7 @@ int main(int argc, char** argv) {
     try {
         Paths paths(argc, argv);
         MappedFile regions(paths.data + "/regions.csv"), records(paths.data + "/records.csv");
-        
+
         std::vector<Country> countries(1);
         countries[0].key = "_UNMATCHED";
         uint16_t country_map[17576] = {};
@@ -224,8 +260,10 @@ int main(int argc, char** argv) {
         SharedNames names;
         std::vector<Partial> parts(workers);
         std::vector<std::thread> threads;
-        for (unsigned i = 0; i < workers; ++i) threads.emplace_back([&, i] { parts[i].parse(cuts[i], cuts[i+1], lookup, countries.size(), names); });
+        for (unsigned i = 0; i < workers; ++i)
+            threads.emplace_back([&, i] { parts[i].parse(cuts[i], cuts[i + 1], lookup, countries.size(), names); });
         for (auto& thread : threads) thread.join();
+
         for (unsigned i = 0; i < workers; ++i) {
             for (size_t j = 0; j < countries.size(); ++j) {
                 const auto& from = parts[i].countries[j]; auto& to = countries[j];
@@ -248,3 +286,4 @@ int main(int argc, char** argv) {
         _exit(0);
     } catch (const std::exception& e) { fprintf(stderr, "%s\n", e.what()); return 1; }
 }
+

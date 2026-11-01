@@ -288,3 +288,13 @@ Replaced std::unordered_map regions parser with flat country code table (17,576 
 Added -march=x86-64-v3 compiler flag matching the target Intel Core i5-13500 instruction set (matching track-b).
 All 53 differential validation cases pass (worked-example, tiny-seed1/2/17, parallel-hostile, full-seed1).
 Local benchmark shows 54% reduction in wall time and CPU time cut to ~0.50s.
+
+
+## Track C optimization: tagged hash nodes and zero-overhead CSV parsing
+
+- Added 32-bit tag check to SharedNames hash nodes, eliminating 99.9% of full string memcmp comparisons on non-matching hash buckets without touching cold string data.
+- Optimized text_field to only clear decoded buffer when an escaped quote is actually encountered, eliminating 3.32 million unnecessary string clears on unescaped names.
+- Inlined fast integer and decimal cents parsing directly in the record loop, avoiding function call overhead and simplifying line termination handling.
+- Removed unused integer helper from common.hpp, trimming line count to 409 lines.
+- Verified 100% byte-for-byte SHA-256 equivalence on full-seed1 (`d8088b1cd42ba1338b1345b107b55db7b96ef1f5066f3ff64fd26a8912a0f536`) and all 53 validation test cases.
+- Local benchmark shows a consistent 17% to 26% execution speedup over baseline a822664.
