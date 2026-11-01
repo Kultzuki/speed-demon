@@ -2,13 +2,14 @@
 #include "common.hpp"
 #include <array>
 #include <limits>
-#include <unordered_map>
 #include <thread>
 #include <mutex>
 #include <immintrin.h>
 #include <bit>
 #include <atomic>
 #include <memory>
+#include <vector>
+#include <cstring>
 
 static inline size_t fast_hash(std::string_view name) {
     const char* p=name.data();
@@ -20,12 +21,12 @@ static inline size_t fast_hash(std::string_view name) {
     h^=h>>30;h*=0xBF58476D1CE4E5B9ull;h^=h>>27;h*=0x94D049BB133111EBull;h^=h>>31;
     return size_t(h);
 }
+
 struct Field {
     std::string_view value;
     size_t bytes;
 };
 
-// memchr jumps between quotes. Embedded LF and commas are ordinary bytes here.
 Field text_field(const char*& p, const char* end, std::string* decoded) {
     const char* start = p;
     if (*p != '"') {
@@ -54,10 +55,6 @@ Field text_field(const char*& p, const char* end, std::string* decoded) {
     }
 }
 
-
-
-// Nodes never move. Release publication makes immutable names/links visible;
-// an atomic membership update elects exactly one distinct-count increment.
 struct SharedNames {
     struct Node {
         Node* next;
@@ -178,10 +175,6 @@ struct Partial {
     }
 };
 
-
-
-// Section 2.2: names contain no LF; a note contains only lowercase words,
-// spaces, commas, quotes and LF. Thus a digit/BOM after LF begins a record.
 std::vector<const char*> boundaries(const char* begin,const char* end,unsigned workers) {
     std::vector<const char*> result(workers+1,end);
     result[0]=begin;
@@ -198,23 +191,31 @@ int main(int argc, char** argv) {
     try {
         Paths paths(argc, argv);
         MappedFile regions(paths.data + "/regions.csv"), records(paths.data + "/records.csv");
+        
         std::vector<Country> countries(1);
         countries[0].key = "_UNMATCHED";
-        std::unordered_map<std::string_view, uint16_t> country_ids;
-        // The lookup has IDs <= 999999. Out-of-range record IDs are unmatched.
-        std::vector<uint8_t> lookup(1000000);
+        uint16_t country_map[17576] = {};
+        std::vector<uint8_t> lookup(1000000, 0);
+
         const char* p = regions.data;
         while (p < regions.end() && *p++ != '\n') {}
         while (p < regions.end()) {
-            uint32_t region = integer(p);
-            ++p;
-            std::string_view key(p, 3);
-            auto [it, inserted] = country_ids.try_emplace(key, countries.size());
-            if (inserted) { countries.emplace_back(); countries.back().key = key; }
-            if (region >= lookup.size()) lookup.resize(size_t(region) + 1);
-            lookup[region] = it->second;
-            p += 4;
+            uint32_t region = 0;
+            while (*p >= '0') region = region * 10 + (*p++ - '0');
+            ++p; // comma
+            uint32_t code = (uint8_t(p[0] - 'A') * 26 + uint8_t(p[1] - 'A')) * 26 + uint8_t(p[2] - 'A');
+            uint16_t cid = country_map[code];
+            if (!cid) {
+                cid = uint16_t(countries.size());
+                country_map[code] = cid;
+                countries.emplace_back();
+                countries.back().key = std::string(p, 3);
+            }
+            if (region >= lookup.size()) lookup.resize(size_t(region) + 1, 0);
+            lookup[region] = uint8_t(cid);
+            p += 4; // 3 letters + newline
         }
+
         p = records.data;
         while (p < records.end() && *p++ != '\n') {}
         unsigned workers = std::min(12u, std::max(1u, std::thread::hardware_concurrency()));

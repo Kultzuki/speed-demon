@@ -275,3 +275,16 @@ Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot:
 Run `run-69e0c9d51265` at `8aa8ddb8f8aeba7d5d9b2b7c32745a26e5683d6e`: T=0.061219s, M=13221888, S=401, D=1, K=24.531325. All five official gates pass. Incoming exact-head K=24.343070; historical best K=24.427280. Unchanged submitted source; this run measures rerun variation. Unchanged B/C source; timing/coefficient differences are rerun variation.
 
 Captured practice aggregate 69.811783, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-repeat.json.
+
+
+## Final restored continuation 8 at 6b71e02
+
+Run `run-9ff6910036c2`: T=0.061079s, M=13094912, S=401, D=1, K=24.606868. All five official gates pass. Exact incoming C++ source is retained; differences are rerun variation. Captured practice aggregate 69.934612, rank 28, leader 81.805732. Full record: validation/leaderboard-rust8-retained.json.
+
+
+## Track C optimization: flat regions lookup and -march=x86-64-v3
+
+Replaced std::unordered_map regions parser with flat country code table (17,576 entries), cutting regions parse time from 117.7ms to 2.3ms.
+Added -march=x86-64-v3 compiler flag matching the target Intel Core i5-13500 instruction set (matching track-b).
+All 53 differential validation cases pass (worked-example, tiny-seed1/2/17, parallel-hostile, full-seed1).
+Local benchmark shows 54% reduction in wall time and CPU time cut to ~0.50s.
