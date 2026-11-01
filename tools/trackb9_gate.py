@@ -5,6 +5,7 @@ import itertools
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import tempfile
 
@@ -102,6 +103,8 @@ def main():
     parser.add_argument('--name', required=True)
     parser.add_argument('--source', default='track-b/main.cpp')
     parser.add_argument('--sanitized', action='store_true')
+    parser.add_argument('--binary', help='Exact previously built PGO executable, verified against --training.')
+    parser.add_argument('--training', help='PGO source/common/binary provenance JSON.')
     args = parser.parse_args()
     prepare()
     name = args.name + ('-sanitized' if args.sanitized else '-release')
@@ -112,10 +115,24 @@ def main():
     flags = ['-std=c++20', '-pthread', '-march=x86-64-v3']
     flags += ['-O1', '-g', '-fsanitize=address,undefined', '-fno-omit-frame-pointer'] if args.sanitized else ['-O3', '-DNDEBUG', '-static', '-s']
     command = ['g++', *flags, '-I', str(ROOT / 'track-b'), str(source), '-o', str(binary_dir / 'track-b')]
-    subprocess.run(command, check=True)
+    training = None
+    if args.binary:
+        assert args.training and not args.sanitized
+        training = json.loads((ROOT / args.training).read_text())
+        assert training['source_sha256'] == validate.digest(source)
+        assert training['common_sha256'] == validate.digest(ROOT / 'track-b/common.hpp')
+        assert training['binary_sha256'] == validate.digest(ROOT / args.binary)
+        shutil.copy2(ROOT / args.binary, binary_dir / 'track-b')
+        (binary_dir / 'track-b').chmod(0o755)
+    else:
+        assert not args.training
+        subprocess.run(command, check=True)
     report = {'source': args.source, 'source_sha256': validate.digest(source),
               'common_sha256': validate.digest(ROOT / 'track-b/common.hpp'), 'flags': flags,
               'binary_sha256': validate.digest(binary_dir / 'track-b'), 'inputs': {}}
+    if training:
+        report['flags'] = training['flags'].split() + ['-fprofile-use=/tmp/profile', '-fprofile-correction', '-Werror=missing-profile']
+        report['profile_training'] = training
     for case in sorted((ROOT / 'data/b').iterdir()):
         if case.name == 'full-seed1' or not (case / 'docs.txt').is_file():
             continue
@@ -146,7 +163,8 @@ def main():
             out.mkdir()
             subprocess.run([str(wide), '--data', '/benchdata/b', '--out', str(out)], check=True)
             assert validate.digest(out / 'results.txt') == public['expected_output_sha256'][0]
-            report['forced_uint64_offset'] = {'binary_sha256': validate.digest(wide), 'full_public_hash': public['expected_output_sha256'][0]}
+            report['forced_uint64_offset'] = {'binary_sha256': validate.digest(wide), 'full_public_hash': public['expected_output_sha256'][0],
+                'flags': flags, 'note': 'Alternate width compiled without PGO; exact production binary is checked on all datasets above.'}
     report['results'] = validate.REPORT
     (ROOT / f'validation/{name}.json').write_text(json.dumps(report, indent=2) + '\n')
     print(f'PASS {name}: {len(validate.REPORT)} Track B comparisons, both full seeds and width provenance', flush=True)

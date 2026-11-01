@@ -31,7 +31,11 @@ bytes resolve every dictionary hash collision; phrase checks never use hashes.
 
 C++20, standard library and Linux system calls only. No direct non-stdlib
 runtime dependencies: dependency_count = 0, D = 1. GCC 16 and Debian runtime
-images are pinned to the organizers' allowlisted digests. The build is offline;
+images are pinned to the organizers' allowlisted digests. The offline build trains GCC profiles on full organizer-generated seeds
+60773 and 284911 using a byte-identical copy of the published generator. Neither
+scoring input nor answer data is present during the build. Python is used only
+in the build stage; the runtime contains the static C++ executable.
+The build is offline;
 the executable targets x86-64-v3 and is statically linked. The mmap mapping owns all referenced input
 bytes until processing ends. Exactly one output file is written to /out.
 

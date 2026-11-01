@@ -362,3 +362,25 @@ The conservative phrase-prefix filter passed both full hashes. It gained local
 K on public data (1.118287) but lost slightly on the fresh seed (0.994885), so
 it is unselected. Word comparisons plus that filter also lack a repeatable
 second-seed gain. These reports are comparative local evidence, not board scores.
+
+
+## Generator-only profile-guided build trial
+
+Keep the exact retained twelve-builder runtime source and standard-library-only
+static executable. The offline Docker build runs GCC instrumentation on full
+organizer-generator seeds 60773 and 284911, then recompiles using those profiles.
+The scoring inputs and validation seed are never build-time training inputs.
+The generator is copied byte-for-byte from the frozen official Git blob (SHA
+370ae0d056e3f6d1cf9cd1bf59f5d2ccc0ebcf5745481f904aa55f466850bcdd).
+The published rules allow this build-time training and exempt that exact file
+from source size. Python is a build-stage dependency only; runtime D remains 1.
+
+The first uncached offline image build completed in 269.032 seconds, below the
+600-second limit. Frozen executable SHA-256:
+ed29c3aef54ef37b02387f43c7a0114a66902b3e882177c78096c0d2cfd24538.
+Local public K ratio=1.034789 and independent full-seed K ratio=1.019043 including
+the Dockerfile source-size increase from S=960 to S=970. These are local tests,
+not an official gain. The exact PGO binary is separately checked against all
+36 datasets; existing ASan/UBSan/direct gates identify this unchanged source.
+Official retention remains pending. Evidence: validation/trackb9-pgo-full-* and
+validation/trackb9-pgo-production-release.json.

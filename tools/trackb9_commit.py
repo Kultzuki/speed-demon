@@ -17,12 +17,15 @@ if not args.b_only:
         expected = subprocess.check_output(['git', 'show', f'6b71e02:track-a/{name}'], cwd=ROOT).decode()
         assert (ROOT / 'track-a' / name).read_text() == expected
 paths = [ROOT / p for p in [
-    'track-b/main.cpp', 'track-b/README.md', 'track-b/PERF.md',
+    'track-b/main.cpp', 'track-b/Dockerfile', 'track-b/README.md', 'track-b/PERF.md',
     'research/CONTINUATION9_TRACK_B.md', 'research/trackb9-selection.json',
     'research/tests/b-token-window9.cpp']]
+if (ROOT / 'track-b/b_index_generator.py').exists():
+    paths.append(ROOT / 'track-b/b_index_generator.py')
 if not args.b_only:
     paths += [ROOT / 'track-a/main.cpp', ROOT / 'track-a/common.hpp']
 for folder, pattern in [('research/prototypes', 'trackb9-*.cpp'),
+    ('research/prototypes', 'trackb9-*.Dockerfile'),
     ('research/results', 'trackb9-*.json'), ('tools', 'trackb9_*.py'),
     ('validation', 'trackb9-*'), ('validation', '*trackb9*')]:
     paths.extend(p for p in (ROOT / folder).glob(pattern) if p.is_file())
