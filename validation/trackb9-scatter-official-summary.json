@@ -1,0 +1,20 @@
+{
+  "run_id": "run-50fc0d07810d",
+  "commit": "3f527c9d90b2124b78d22d982a8024cf757cb847",
+  "T_s": 0.243353,
+  "M_bytes": 65507328,
+  "S": 960,
+  "D": 1,
+  "K": 21.581336,
+  "points": 66.703917,
+  "gates": {
+    "check": true,
+    "build": true,
+    "correctness": true,
+    "timeout": true,
+    "sandbox": true
+  },
+  "previous_best_K": 21.242087,
+  "decision": "retain",
+  "goal_80_points": "outstanding"
+}

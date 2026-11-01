@@ -1,0 +1,11 @@
+{
+  "scope": "Rejected short-key research prototype, never submitted.",
+  "source": "research/prototypes/trackb9-short.cpp",
+  "source_sha256": "587929c2b3c992259f0ca939be24b6cccfd03bde9cd5525af3ab1a4ac15873a1",
+  "binary_sha256": "31bf9977e2debae9da76d14e7fe3959fe2b2d696720432394e0364176d2e5e8d",
+  "case": "trackb9-keys-windows",
+  "expected": "372a7848162724db84ef9705330c52c81434a0aacf451c74de5bc18f6783c22d",
+  "actual": "565c729da277ace6df3296f5f66b5c56c1b023845f4901c098cd9389a3a78f67",
+  "matches": false,
+  "inspection": "The unclamped BZHI count len*8 becomes 256 for a valid 32-byte token. This prototype is not eligible."
+}

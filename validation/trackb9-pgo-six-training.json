@@ -1,0 +1,18 @@
+{
+  "scope": "Isolated offline image; profiles generated only from unmodified organizer generator output.",
+  "seeds": [
+    60773,
+    284911
+  ],
+  "scale": "full",
+  "flags": "-std=c++20 -O3 -DNDEBUG -march=x86-64-v3 -pthread -static -s",
+  "source": "track-b/main.cpp",
+  "source_sha256": "3f46f14d979cbefbe87442da5834be325bb654526503d0078f0d220cb42f3a6b",
+  "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+  "generator_sha256": "370ae0d056e3f6d1cf9cd1bf59f5d2ccc0ebcf5745481f904aa55f466850bcdd",
+  "generator_from": "official Git blob HEAD:generators/b_index.py",
+  "dockerfile_sha256": "95106b0cc5c4372f9c1f0b56b40b364d46985f5b838719a7754683e857a5e184",
+  "image": "codescythe-trackb9/trackb9-pgo-six",
+  "binary_sha256": "7b887c902ae90a74317775aaa5d71d640116d7aae5b339bbfd165bcfa0d6b6c3",
+  "offline_build_seconds": 64.06200000000536
+}

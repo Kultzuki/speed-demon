@@ -156,3 +156,35 @@ and records B K=21.242087 / 66.359859 points (run `run-bcdf6cd41a3c`). That is
 unchanged-source rerun variation. Snapshot and source comparison:
 `validation/leaderboard-trackb9-c641273-official.json` and
 `validation/trackb9-first-official-summary.json`. The 80-point B target remains.
+
+
+## Official balanced-scatter result: 3f527c9
+
+Run `run-50fc0d07810d`: all five official gates pass. T=0.243353 s,
+M=65,507,328 bytes, S=960, D=1, K=21.581336, **66.703917 points**.
+The previous best was K=21.242087 / 66.359859 points: retain the small gain.
+The 80-point target remains outstanding. Exact record:
+`validation/trackb9-scatter-official-summary.json`.
+
+A remains the exact restored best source (historical 76.408344 points); its
+new repeat records 76.044238 points. C's independent a822664 source is unchanged
+by this B commit; its higher 70.367154 record is rerun variation, not a B gain.
+
+
+## Six-builder trial: full uint16 document domains
+
+The next candidate uses six index builders and twelve query workers. Its
+logical replay packet uses all sixteen local-document bits; worker domains
+larger than 65,536 documents still dispatch to the exact uint32 path. The
+12-bit term / 4-bit gap physical stream and balanced scatter remain unchanged.
+Six builders lower CPU work on local AMD tests, but wall-time gains are not
+consistent. The official CPU has six physical cores: this is an architecture
+hypothesis pending official measurement, not an assured gain.
+
+Exact source SHA-256: 3f46f14d979cbefbe87442da5834be325bb654526503d0078f0d220cb42f3a6b.
+Release and ASan/UBSan each pass all 36 comparisons, both full seeds, the
+65,536/65,537-worker-domain fixtures and forced uint64 text offsets. Both direct
+programs pass 4,096 token alignments, real CRC collision identity, dictionary
+growth, cross-block escapes and uint32_max replay. Evidence:
+validation/trackb9-sixbuilders-{release,sanitized,direct}.json.
+The promotion baseline is official K=21.581336 / 66.703917 points at 3f527c9.
