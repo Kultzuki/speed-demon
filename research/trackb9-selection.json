@@ -1,8 +1,8 @@
 {
   "scope": "Track B only; local measurements are not official scores.",
   "incoming_commit": "6b71e02218f87a492f41aad0b6ea304c0e6cb172",
-  "selected_prototype": "research/prototypes/trackb9-doc16-6-hybrid-owner2.cpp",
-  "selected_sha256": "3f46f14d979cbefbe87442da5834be325bb654526503d0078f0d220cb42f3a6b",
+  "selected_prototype": "research/prototypes/trackb9-retained-3f527c9.cpp",
+  "selected_sha256": "8041f7d8a1dc5e8ce8d05b242347637c6833dffc563166494bb344a0e15d67ce",
   "incoming_b_source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
   "other_runtime_sha256": {
     "track-a\\.speed-demon.toml": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714",
@@ -24,7 +24,7 @@
     "research/results/trackb9-finalist-fresh.json"
   ],
   "hypothesis": "AVX2 paired token boundaries and masked keys reduce scanning work; lossless 16-bit gap streams reduce temporary memory. Preserve exact equality and both width dispatches.",
-  "official_status": "36 release and 36 ASan/UBSan comparisons passed; offline image and official measurement pending.",
+  "official_status": "Retain exact twelve-builder kernel; six builders regressed official K and are restored.",
   "user_steering": "Push validated small gains; restore Track A to its best officially measured source.",
   "track_a_restoration": {
     "best_commit": "6b71e02218f87a492f41aad0b6ea304c0e6cb172",
@@ -51,17 +51,18 @@
       }
     }
   },
-  "phase": "trackb9-sixbuilders",
+  "phase": "trackb9-restored-twelve",
   "prior_selection": ".out/trackb9-sixbuilders-submit/prior-selection.json",
   "official_record": {
-    "run_id": "run-50fc0d07810d",
-    "commit": "3f527c9d90b2124b78d22d982a8024cf757cb847",
-    "T_s": 0.243353,
-    "M_bytes": 65507328,
-    "S": 960,
-    "D": 1,
-    "K": 21.581336,
-    "points": 66.703917,
+    "run_id": "run-b2dcd3843c30",
+    "commit": "9ae6c5d967a29e8373f4f1b345d958620a4e9292",
+    "pushed_at": "2026-11-01T10:23:05Z",
+    "dispatched_at": "2026-11-01T10:23:05Z",
+    "started_at": "2026-11-01T10:23:27Z",
+    "ended_at": "2026-11-01T10:23:29Z",
+    "queue_latency_s": 22.1,
+    "ok": true,
+    "stage": "scored",
     "gates": {
       "check": true,
       "build": true,
@@ -69,8 +70,19 @@
       "timeout": true,
       "sandbox": true
     },
-    "previous_best_K": 21.242087,
-    "decision": "retain",
-    "goal_80_points": "outstanding"
+    "T_s": 0.242057,
+    "M_bytes": 65196032,
+    "S": 960,
+    "D": 1,
+    "K": 21.659658,
+    "points": 66.78258,
+    "static_axes": "measured",
+    "timeout_s": 169.057,
+    "build_s": 0.546,
+    "image_bytes": 119116458,
+    "failure": null,
+    "lang": [
+      "C++"
+    ]
   }
 }

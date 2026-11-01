@@ -345,3 +345,20 @@ programs pass 4,096 token alignments, real CRC collision identity, dictionary
 growth, cross-block escapes and uint32_max replay. Evidence:
 validation/trackb9-sixbuilders-{release,sanitized,direct}.json.
 The promotion baseline is official K=21.581336 / 66.703917 points at 3f527c9.
+
+
+## Reject six builders and restore the measured twelve-builder kernel
+
+At f8b4589, run run-d0fec9934adb passes every official gate but records
+T=0.283163 s, M=62,459,904 bytes, S=962, D=1, K=20.192057 / 65.259028 points.
+Six physical cores did not make six index builders faster. Restore the exact
+3f527c9 runtime source and Dockerfile; keep the trial and all receipts in Git.
+The latest unchanged-source twelve-builder best at 9ae6c5d is K=21.659658 /
+66.782580 points, T=0.242057 s, M=65,196,032 bytes, S=960. This increment over
+66.703917 is rerun variation. A's unchanged restored source similarly records
+a new best of 76.418537 points at 9ae6c5d.
+
+The conservative phrase-prefix filter passed both full hashes. It gained local
+K on public data (1.118287) but lost slightly on the fresh seed (0.994885), so
+it is unselected. Word comparisons plus that filter also lack a repeatable
+second-seed gain. These reports are comparative local evidence, not board scores.

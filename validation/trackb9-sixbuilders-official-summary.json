@@ -1,0 +1,68 @@
+{
+  "decision": "restore exact twelve-builder source",
+  "trial": {
+    "run_id": "run-d0fec9934adb",
+    "commit": "f8b4589c1d2e0fbd84add980ecd0f6f63115a913",
+    "pushed_at": "2026-11-01T10:27:38Z",
+    "dispatched_at": "2026-11-01T10:28:56Z",
+    "started_at": "2026-11-01T10:29:55Z",
+    "ended_at": "2026-11-01T10:29:57Z",
+    "queue_latency_s": 137.3,
+    "ok": true,
+    "stage": "scored",
+    "gates": {
+      "check": true,
+      "build": true,
+      "correctness": true,
+      "timeout": true,
+      "sandbox": true
+    },
+    "T_s": 0.283163,
+    "M_bytes": 62459904,
+    "S": 962,
+    "D": 1,
+    "K": 20.192057,
+    "points": 65.259028,
+    "static_axes": "measured",
+    "timeout_s": 169.057,
+    "build_s": 21.03,
+    "image_bytes": 119121292,
+    "failure": null,
+    "lang": [
+      "C++"
+    ]
+  },
+  "retained_best": {
+    "run_id": "run-b2dcd3843c30",
+    "commit": "9ae6c5d967a29e8373f4f1b345d958620a4e9292",
+    "pushed_at": "2026-11-01T10:23:05Z",
+    "dispatched_at": "2026-11-01T10:23:05Z",
+    "started_at": "2026-11-01T10:23:27Z",
+    "ended_at": "2026-11-01T10:23:29Z",
+    "queue_latency_s": 22.1,
+    "ok": true,
+    "stage": "scored",
+    "gates": {
+      "check": true,
+      "build": true,
+      "correctness": true,
+      "timeout": true,
+      "sandbox": true
+    },
+    "T_s": 0.242057,
+    "M_bytes": 65196032,
+    "S": 960,
+    "D": 1,
+    "K": 21.659658,
+    "points": 66.78258,
+    "static_axes": "measured",
+    "timeout_s": 169.057,
+    "build_s": 0.546,
+    "image_bytes": 119116458,
+    "failure": null,
+    "lang": [
+      "C++"
+    ]
+  },
+  "note": "The best source is byte-identical to 3f527c9; the later score is unchanged-source rerun variation."
+}

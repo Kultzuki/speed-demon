@@ -308,7 +308,7 @@ public:
     ~BlockList() { for (Entry* b : blocks_) munmap(b, BYTES); }
     void push(Packed x) {
         if constexpr (sizeof(Doc) == 2) {
-            const u32 doc = x & 65535, term = x >> 16, delta = doc - last_doc_;
+            const u32 doc = x & 32767, term = x >> 15, delta = doc - last_doc_;
             if (delta < DELTA_MASK) word(Entry(term << DELTA_BITS | delta));
             else { word(Entry(term << DELTA_BITS | DELTA_MASK)); word(Entry(doc)); }
             last_doc_ = doc;
@@ -323,10 +323,10 @@ public:
                 if constexpr (sizeof(Doc) == 2) {
                     if (pending != NONE) {
                         doc = x;
-                        f(pending << 16 | doc);
+                        f(pending << 15 | doc);
                         pending = NONE;
                     } else if ((x & DELTA_MASK) == DELTA_MASK) pending = x >> DELTA_BITS;
-                    else { doc += x & DELTA_MASK; f(u32(x >> DELTA_BITS) << 16 | doc); }
+                    else { doc += x & DELTA_MASK; f(u32(x >> DELTA_BITS) << 15 | doc); }
                 } else f(x);
             }
             munmap(blocks_[b], BYTES);
@@ -352,7 +352,7 @@ private:
 
 // The scan files postings in buckets of consecutive term ids, with the
 // term offset above the document offset in the logical replay value. The
-// thread's range (16 bits). The scatter then fills the posting lists one
+// thread's range (15 bits). The scatter then fills the posting lists one
 // bucket at a time, so the lists' pages are touched only as the scan output
 // that fills them is freed.
 
@@ -364,7 +364,7 @@ u32 parse_id(const uint8_t* p) {
 }
 
 template<class Doc,class Offset> Index<Doc,Offset> build_index(const File& f, TermTable& terms, std::vector<u32>& query_terms, int nthreads) {
-    constexpr u32 DOC_BITS=sizeof(Doc)==2?16:32;
+    constexpr u32 DOC_BITS=sizeof(Doc)==2?15:32;
     Index<Doc,Offset> ix;
     const u32 nterms = terms.size();
     const uint8_t* base = f.data;
@@ -806,7 +806,7 @@ template<class Doc,class Offset> void solve(const Paths& paths) {
     // Large blocks always come from mmap and go back to the kernel when freed
     // (glibc otherwise raises this threshold after the first free and keeps them).
     mallopt(M_MMAP_THRESHOLD, 1 << 16);
-    const int nthreads = std::max(1u, std::min(6u, std::thread::hardware_concurrency()));
+    const int nthreads = std::max(1u, std::min(12u, std::thread::hardware_concurrency()));
     File qf = map_file(paths.data+"/queries.txt");
     File df = map_file(paths.data+"/docs.txt");
     if constexpr(sizeof(Offset)==4) {
@@ -824,7 +824,7 @@ template<class Doc,class Offset> void solve(const Paths& paths) {
             size_t at=df.size*t/nthreads;
             while(at && at<df.size && df.data[at-1]!='\n') ++at;
             u32 stop=at==df.size?docs:parse_id(df.data+at);
-            if(u64(stop)-first>65536) return solve<uint32_t,Offset>(paths);
+            if(u64(stop)-first>32768) return solve<uint32_t,Offset>(paths);
             first=stop;
         }
     }
@@ -841,8 +841,7 @@ template<class Doc,class Offset> void solve(const Paths& paths) {
     std::vector<uint8_t> lens(nq);
     std::atomic<size_t> next{0};
     std::vector<std::thread> pool;
-    const unsigned query_threads = std::max(1u, std::min(12u, std::thread::hardware_concurrency()));
-    for (unsigned t = 0; t < query_threads; ++t) {
+    for (int t = 0; t < nthreads; ++t) {
         pool.emplace_back([&] {
             Solver<Doc,Offset> solver(ix, terms, df);
             for (size_t i; (i = next.fetch_add(16)) < nq;)
