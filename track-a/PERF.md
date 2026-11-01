@@ -256,3 +256,33 @@ Captured practice aggregate 69.811783, rank 28; leader 81.805732. Full snapshot:
 ## Rust continuation 8 retention decision
 
 Both Rust official runs pass every gate. Best Rust K=31.161629 does not exceed the established 33.234541. The exact stronger incoming C++ kernel is restored, following the coefficient-regression rule. The requested complete Rust implementation, Cargo/Docker builds, validation, corrected source counts and both official records remain in research/rust8-validated and validation/. No reset, force-push, registration change or evidence deletion was used.
+
+
+## Continuation 9: exact rank selection, buffered rows, immediate exit
+
+Three runtime changes, all exact. Groups of 512 or more resolve the three
+nearest ranks by bucketing the observed value range first and gathering only the
+candidate bucket, instead of three separate cache-hostile partitions; groups of
+64 and under still use a local insertion sort. Each output row is built in a
+stack buffer with a local integer formatter instead of many small appends. The
+process exits immediately after the summary is closed, so teardown of the 239 MB
+mapping is not repeated.
+
+Local alternating full-public-seed runs (six each, fresh cgroup, twelve pinned
+CPUs, read-only data, monitor wrapper): checkpoint T median 85.4 ms, candidate
+66.2 ms; process CPU median 0.391 s versus 0.314 s; peak memory 28.9 MB versus
+30.0 MB. Canonical source count 310 -> 357. Local WSL2/AMD numbers with the
+dataset re-read from disk; they are not official scores and the local disk I/O
+inflates both sides.
+
+Selection logic is covered by 4,000 randomised groups (uniform, duplicate-heavy,
+narrow-range and full uint32 range) against a full sort. Every Track A fixture
+produces a byte-identical summary to the previous submission, and the public
+full seed (`495ca09682b9673e...`) and the independent full seed 20261031
+(`814e48bfa78e47ac...`) both match their expected hashes. The offline image
+build and the unprivileged read-only/no-network sandbox check pass at 119 MB.
+
+
+## Final restored continuation 8 at 6b71e02
+
+Run `run-dbf04762182f`: T=0.039617s, M=26882048, S=310, D=1, K=33.741694. All five official gates pass. Exact incoming C++ source is retained; differences are rerun variation. Captured practice aggregate 69.934612, rank 28, leader 81.805732. Full record: validation/leaderboard-rust8-retained.json.

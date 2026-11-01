@@ -15,12 +15,17 @@ one error bit in each of 72 hour buckets. The reserved latency sentinel has an
 ordered uint32 overflow stream, so every latency retains all 32 bits exactly.
 SIMD endpoint scans load only within their mapped range.
 
-Workers gather one hour at a time into reusable latency storage, release its
-parser buckets, and compute exact nearest-rank p50/p95/p99 values. Later nth
-selections exclude earlier selected positions. Each hour formats endpoints in
-byte order; the writer streams completed hours in chronological order and frees
-their buffers. Empty input produces a zero-byte summary. Duplicates, 499/500,
-uint32 extremes and all hour/month boundaries retain exact integer behavior.
+Workers gather one hour at a time into reusable latency storage and release its
+parser buckets. Exact nearest-rank p50/p95/p99 values come from one of three
+paths: groups of 64 or fewer are sorted in place, medium groups use the
+partition sequence, and groups of 512 or more first bucket the observed value
+range and then partition only the candidate bucket, which keeps the rank search
+sequential instead of three passes of scattered comparisons. Each hour formats
+endpoints in byte order into one prepared buffer; the writer streams completed
+hours in chronological order and frees their buffers, and the process exits as
+soon as the summary is closed. Empty input produces a zero-byte summary.
+Duplicates, 499/500, uint32 extremes and all hour/month boundaries retain exact
+integer behavior.
 
 ## Build and dependencies
 
