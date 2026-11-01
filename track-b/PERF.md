@@ -252,3 +252,31 @@ Captured practice aggregate 69.780860, rank 28; leader 81.805732. Full snapshot:
 Run `run-a27adb1e3656` at `8aa8ddb8f8aeba7d5d9b2b7c32745a26e5683d6e`: T=0.318701s, M=71217152, S=922, D=1, K=18.658515. All five official gates pass. Incoming exact-head K=19.243317; historical best K=19.373796. Unchanged submitted source; this run measures rerun variation. Unchanged B/C source; timing/coefficient differences are rerun variation.
 
 Captured practice aggregate 69.811783, rank 28; leader 81.805732. Full snapshot: validation/leaderboard-rust8-repeat.json.
+
+
+## Final restored continuation 8 at 6b71e02
+
+Run `run-5ddd9b5cb8dd`: T=0.306344s, M=70959104, S=922, D=1, K=19.044931. All five official gates pass. Exact incoming C++ source is retained; differences are rerun variation. Captured practice aggregate 69.934612, rank 28, leader 81.805732. Full record: validation/leaderboard-rust8-retained.json.
+
+## Continuation 9: Track B-only tokenizer and compressed temporary postings
+
+Pair all token starts/ends in each 64-byte ASCII classification window, build
+exact padded keys with masked AVX2 loads, and use CRC32C fingerprints followed
+by full equality. Compress the narrow temporary posting stream to 16-bit
+term/document-gap words with explicit absolute-id escapes. Preserve both width
+fallbacks and all Boolean/phrase semantics. Use 262,144-word lazy blocks.
+
+Five alternating runs on the independent full seed: incoming 0.406856677 s /
+73,007,104 cgroup bytes / S=922; selected 0.361628282 s / 64,532,480 bytes /
+S=944, D=1. Local K ratio 1.083355. These are local WSL2 measurements, not an
+official score. Every measured output hash matches. Exact report:
+`research/results/trackb9-finalist-fresh.json`; approach and rejected experiments:
+`research/CONTINUATION9_TRACK_B.md`.
+
+The frozen production source passes 33 release and 33 ASan/UBSan dataset
+comparisons, both full seeds, actual full-width document dispatch, forced uint64
+offsets, 4,096 direct tokenizer alignments, a real CRC collision, dictionary
+growth/renumbering, cross-allocation escape decoding and uint32_max postings.
+Evidence is in `validation/trackb9-production-*`. Official run ID and retention
+decision follow after the validated image is measured. The 80-point target
+remains outstanding at this local-validation checkpoint.

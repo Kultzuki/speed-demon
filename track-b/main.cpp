@@ -75,11 +75,13 @@ struct alignas(32) Key {
     u64 w[4];
 };
 
-// Two independent multiplies; almost every token fits in the first two words.
+// Hardware CRC32C fingerprints the complete padded key; equality still
+// compares all 32 bytes, including keys with identical CRC fingerprints.
 inline u64 hash_key(const Key& k) {
-    u64 h = (k.w[0] + k.w[2] * 0x94D049BB133111EBull) * 0x9E3779B97F4A7C15ull ^
-            (k.w[1] + k.w[3] * 0xD6E8FEB86659FD93ull) * 0xBF58476D1CE4E5B9ull;
-    return h ^ h >> 29;
+    u64 h = _mm_crc32_u64(0, k.w[0]);
+    h = _mm_crc32_u64(h, k.w[1]);
+    if (k.w[2] | k.w[3]) h = _mm_crc32_u64(_mm_crc32_u64(h, k.w[2]), k.w[3]);
+    return h * 0x9E3779B97F4A7C15ull;
 }
 
 inline bool same(const Key& a, const Key& b) {
@@ -169,7 +171,7 @@ inline u64 token_bytes(const uint8_t* p) {
 // (NONE for tokens that are not; tokens longer than 32 bytes are skipped).
 // Token bounds come from one class mask per 64-byte window (a token that runs
 // into the window's end starts the next window). The key is read from the
-// text 8 bytes at a time: token bytes are all [A-Za-z0-9], so OR-ing 0x20
+// text 32 bytes at a time: token bytes are all [A-Za-z0-9], so OR-ing 0x20
 // lowercases letters and leaves digits alone. Each key's table slot is
 // prefetched and the key looked up LAG tokens later, so the misses overlap.
 template <class F>
@@ -178,36 +180,42 @@ inline void for_each_token(const uint8_t* q, const uint8_t* e, const TermTable& 
     Key keys[LAG];
     u64 hashes[LAG];
     size_t n = 0;
-    u64 m = 0;  // token bytes of the window at q not yet consumed
-    for (bool fresh = true; q < e;) {
-        if (fresh) {
-            m = token_bytes(q);
-            if (e - q < 64) m &= (1ull << (e - q)) - 1;
-            fresh = false;
-        }
-        if (m == 0) { q += 64; fresh = true; continue; }
-        const uint8_t* s = q + __builtin_ctzll(m);
-        const u64 after = ~m & (~0ull << __builtin_ctzll(m));  // bytes past the token start that end it
-        if (after == 0 && s != q) { q = s; fresh = true; continue; }  // re-window at the token
-        const uint8_t* t = after ? q + __builtin_ctzll(after) : s + 64;
-        while (t < e && LOWER.t[*t]) ++t;  // only a token of 64 bytes or more
-        m &= after ? ~0ull << __builtin_ctzll(after) : 0;
-        if (t > q + 64) { q = t; fresh = true; }
-        const size_t len = t - s;
-        if (len > MAX_TERM) continue;
+    auto token = [&](const uint8_t* s, size_t len) {
+        if (len > MAX_TERM) return;
         Key k;
-        for (size_t i = 0; i < 4; ++i) {
-            size_t b = len > 8 * i ? std::min<size_t>(len - 8 * i, 8) : 0;
-            u64 w;
-            memcpy(&w, s + 8 * i, 8);
-            k.w[i] = (w | 0x2020202020202020ull) & (b == 8 ? ~0ull : (1ull << (8 * b)) - 1);
-        }
+        const __m256i index = _mm256_setr_epi8(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+                                                   16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+        const __m256i raw = _mm256_loadu_si256(reinterpret_cast<const __m256i*>(s));
+        const __m256i keep = _mm256_cmpgt_epi8(_mm256_set1_epi8(char(len)), index);
+        _mm256_store_si256(reinterpret_cast<__m256i*>(&k),
+            _mm256_and_si256(_mm256_or_si256(raw, _mm256_set1_epi8(0x20)), keep));
         const u64 h = hash_key(k);
         terms.prefetch(h);
         const size_t slot = n++ % LAG;
         if (n > LAG) emit(terms.find(keys[slot], hashes[slot]));
         keys[slot] = k;
         hashes[slot] = h;
+    };
+    while (q < e) {
+        u64 mask = token_bytes(q);
+        if (e - q < 64) mask &= (1ull << (e - q)) - 1;
+        u64 starts = mask & ~(mask << 1);
+        u64 ends = ~mask & (mask << 1);
+        while (ends) {
+            const size_t start = __builtin_ctzll(starts);
+            const size_t end = __builtin_ctzll(ends);
+            token(q + start, end - start);
+            starts &= starts - 1;
+            ends &= ends - 1;
+        }
+        if (starts) {
+            const uint8_t* s = q + __builtin_ctzll(starts);
+            if (s != q) { q = s; continue; }
+            // A token filling the entire window is longer than any query
+            // term. Skip the complete token, including all following windows.
+            q += 64;
+            while (q < e && LOWER.t[*q]) ++q;
+        } else q += 64;
     }
     for (size_t i = n > LAG ? n - LAG : 0; i < n; ++i) emit(terms.find(keys[i % LAG], hashes[i % LAG]));
 }
@@ -287,45 +295,58 @@ template<class Doc,class Offset> struct Index {
     std::vector<Offset> text;             // per doc: offset of its text, then of its end (2 per doc)
 };
 
-// An append-only list of 24-bit entries kept in blocks mapped straight from
-// the kernel (pages count only once written). drain() unmaps each block as soon
-// as it has been read, so the memory really goes back; malloc would keep it.
+// An append-only stream of (9-bit term, document) pairs. The narrow path
+// stores a 7-bit document delta beside the term in 16 bits, escaping larger
+// gaps with an absolute document word. The wide path keeps full 32-bit ids.
+// Anonymous blocks are released as they drain, returning their real pages.
 template<class Doc> class BlockList {
-    static constexpr size_t STRIDE=sizeof(Doc)==2?3:8;
-    using Packed=std::conditional_t<sizeof(Doc)==2,u32,u64>;
+    using Entry = std::conditional_t<sizeof(Doc) == 2, uint16_t, u64>;
+    using Packed = std::conditional_t<sizeof(Doc) == 2, u32, u64>;
 public:
-    static constexpr size_t BLOCK = 1 << 16;          // entries per block
-    static constexpr size_t BYTES = STRIDE * BLOCK + sizeof(Packed);    // a 4-byte store at the last entry spills one byte
-    ~BlockList() { for (uint8_t* b : blocks_) munmap(b, BYTES); }
-
+    static constexpr size_t BLOCK = 1 << 18, BYTES = sizeof(Entry) * BLOCK;
+    ~BlockList() { for (Entry* b : blocks_) munmap(b, BYTES); }
     void push(Packed x) {
-        if (fill_ == BLOCK) {
-            cur_ = static_cast<uint8_t*>(mmap(nullptr, BYTES, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
-            blocks_.push_back(cur_);
-            fill_ = 0;
-        }
-        memcpy(cur_ + STRIDE * fill_++, &x, sizeof(x));
+        if constexpr (sizeof(Doc) == 2) {
+            const u32 doc = x & 32767, term = x >> 15, delta = doc - last_doc_;
+            if (delta < 127) word(Entry(term << 7 | delta));
+            else { word(Entry(term << 7 | 127)); word(Entry(doc)); }
+            last_doc_ = doc;
+        } else word(x);
     }
-
-    template <class F>
-    void drain(F&& f) {
+    template<class F> void drain(F&& f) {
+        u32 doc = 0, pending = NONE;
         for (size_t b = 0; b < blocks_.size(); ++b) {
-            size_t n = b + 1 == blocks_.size() ? fill_ : BLOCK;
+            const size_t n = b + 1 == blocks_.size() ? fill_ : BLOCK;
             for (size_t i = 0; i < n; ++i) {
-                Packed x;
-                memcpy(&x, blocks_[b] + STRIDE * i, sizeof(x));
-                if constexpr(sizeof(Doc)==2) x&=0xFFFFFF;
-                f(x);
+                const Entry x = blocks_[b][i];
+                if constexpr (sizeof(Doc) == 2) {
+                    if (pending != NONE) {
+                        doc = x;
+                        f(pending << 15 | doc);
+                        pending = NONE;
+                    } else if ((x & 127) == 127) pending = x >> 7;
+                    else { doc += x & 127; f(u32(x >> 7) << 15 | doc); }
+                } else f(x);
             }
             munmap(blocks_[b], BYTES);
         }
         blocks_.clear();
     }
-
 private:
-    std::vector<uint8_t*> blocks_;
-    uint8_t* cur_ = nullptr;
+    void word(Entry x) {
+        if (fill_ == BLOCK) {
+            cur_ = static_cast<Entry*>(mmap(nullptr, BYTES, PROT_READ | PROT_WRITE,
+                MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
+            if (cur_ == MAP_FAILED) throw std::bad_alloc();
+            blocks_.push_back(cur_);
+            fill_ = 0;
+        }
+        cur_[fill_++] = x;
+    }
+    std::vector<Entry*> blocks_;
+    Entry* cur_ = nullptr;
     size_t fill_ = BLOCK;
+    u32 last_doc_ = 0;
 };
 
 // The scan files each posting under a bucket of 512 consecutive term ids, as

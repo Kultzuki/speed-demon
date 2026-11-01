@@ -3,7 +3,6 @@
 #include <array>
 #include <atomic>
 #include <bit>
-#include <cstdlib>
 #include <immintrin.h>
 #include <mutex>
 #include <numeric>
@@ -78,52 +77,6 @@ struct Partial {
     }
 };
 
-static inline char* put_u64(char* o,uint64_t v) {
-    char tmp[20];int n=0;
-    do {tmp[n++]=char('0'+v%10);v/=10;} while (v);
-    while (n) *o++=tmp[--n];
-    return o;
-}
-
-// Exact nearest-rank values for ranks r0<r1<r2 of a group of n latencies.
-// Large groups bucket the middle bits first so the ranks are resolved with
-// sequential passes instead of three cache-hostile partitions.
-static void ranks3(uint32_t* v,size_t n,const size_t* r,uint32_t* out) {
-    if (n<=64) {
-        for (size_t i=1;i<n;++i) {
-            uint32_t x=v[i];size_t j=i;
-            while (j&&v[j-1]>x) {v[j]=v[j-1];--j;}
-            v[j]=x;
-        }
-        for (int t=0;t<3;++t) out[t]=v[r[t]];
-        return;
-    }
-    if (n<512) {
-        for (int t=0;t<3;++t) {
-            size_t from=t?r[t-1]+1:0;
-            std::nth_element(v+from,v+r[t],v+n);
-            out[t]=v[r[t]];
-        }
-        return;
-    }
-    uint32_t top=0;
-    for (size_t i=0;i<n;++i) top=std::max(top,v[i]);
-    unsigned bits=32-unsigned(std::countl_zero(top));
-    unsigned shift=bits>11?bits-11:0;
-    uint32_t count[2048]={};
-    for (size_t i=0;i<n;++i) ++count[v[i]>>shift];
-    std::vector<uint32_t> cand;
-    for (int t=0;t<3;++t) {
-        uint32_t acc=0,b=0;
-        while (acc+count[b]<=r[t]) {acc+=count[b];++b;}
-        size_t need=r[t]-acc;
-        cand.clear();
-        for (size_t i=0;i<n;++i) {uint32_t x=v[i];if ((x>>shift)==b) cand.push_back(x);}
-        std::nth_element(cand.begin(),cand.begin()+need,cand.end());
-        out[t]=cand[need];
-    }
-}
-
 int main(int argc,char** argv) {
     try {
         Paths paths(argc,argv);
@@ -157,7 +110,6 @@ int main(int argc,char** argv) {
         threads.clear();
         for (unsigned worker=0;worker<workers;++worker) threads.emplace_back([&] {
             std::vector<uint32_t> counts(count),errors(count),positions(count),values;
-            char row[512];
             for (;;) {
                 unsigned hour=next.fetch_add(1,std::memory_order_relaxed);
                 if (hour>=72) break;
@@ -186,24 +138,23 @@ int main(int argc,char** argv) {
                 output.reserve(160*1024);
                 unsigned day=(hour+18)/24;
                 char stamp[32];
-                int stamp_len=snprintf(stamp,sizeof(stamp),"2026-%02u-%02uT%02u:00:00Z",day<2?10:11,day<2?30+day:day-1,(hour+18)%24);
+                snprintf(stamp,sizeof(stamp),"2026-%02u-%02uT%02u:00:00Z",day<2?10:11,day<2?30+day:day-1,(hour+18)%24);
                 for (uint32_t id:order) {
                     uint64_t n=counts[id];
                     if (!n) continue;
-                    uint32_t* begin=values.data()+positions[id]-n;
-                    size_t r[3]={(50*n+99)/100-1,(95*n+99)/100-1,(99*n+99)/100-1};
-                    uint32_t picked[3];
-                    ranks3(begin,size_t(n),r,picked);
-                    char* o=row;
-                    __builtin_memcpy(o,stamp,size_t(stamp_len));o+=stamp_len;*o++=' ';
-                    size_t len=endpoints.names[id].size();
-                    __builtin_memcpy(o,endpoints.names[id].data(),len);o+=len;
-                    for (uint64_t value:{n,uint64_t(picked[0]),uint64_t(picked[1]),uint64_t(picked[2]),
-                                         uint64_t(errors[id]),uint64_t(errors[id])*1000000/n}) {
-                        *o++=' ';o=put_u64(o,value);
+                    auto begin=values.begin()+positions[id]-n,end=begin+n;
+                    size_t r50=(50*n+99)/100-1,r95=(95*n+99)/100-1,r99=(99*n+99)/100-1;
+                    if (n<=128) std::sort(begin,end);
+                    else {
+                        std::nth_element(begin,begin+r50,end);
+                        if (r95>r50) std::nth_element(begin+r50+1,begin+r95,end);
+                        if (r99>r95) std::nth_element(begin+r95+1,begin+r99,end);
                     }
-                    *o++='\n';
-                    output.append(row,size_t(o-row));
+                    output+=stamp;output+=' ';output+=endpoints.names[id];
+                    for (uint64_t value:{n,uint64_t(begin[r50]),uint64_t(begin[r95]),uint64_t(begin[r99]),uint64_t(errors[id]),uint64_t(errors[id])*1000000/n}) {
+                        output+=' ';number(output,value);
+                    }
+                    output+='\n';
                 }
                 std::lock_guard<std::mutex> lock(output_mutex);
                 ready[hour]=true;
@@ -216,6 +167,5 @@ int main(int argc,char** argv) {
         });
         for (auto& thread:threads) thread.join();
         if (fclose(file)!=0 || !ok) throw std::runtime_error("Summary write failed");
-        _exit(0);
     } catch (const std::exception& e) {fprintf(stderr,"%s\n",e.what());return 1;}
 }

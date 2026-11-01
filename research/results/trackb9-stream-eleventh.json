@@ -1,0 +1,93 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "b",
+  "data": "/data/b",
+  "entries": {
+    "b9-base": {
+      "source": "research/prototypes/trackb9-base.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "S": 922,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.415178696,
+          "M_bytes": 73883648,
+          "CPU_s": 3.136603,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.353535384,
+          "M_bytes": 73842688,
+          "CPU_s": 2.632039,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.394265958,
+          "M_bytes": 73371648,
+          "CPU_s": 2.780117,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.394265958,
+      "M_bytes": 73842688,
+      "CPU_s": 2.780117,
+      "local_K_ratio": 1.0
+    },
+    "b9-stream": {
+      "source": "research/prototypes/trackb9-stream.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "14209fc909ce6abe4a19982fdf174744bcbb13a1f6e37216fed146ad9d59897a",
+      "binary_sha256": "b879bf3d121ec4235ced49438df24d2253cc5f485458c958895c63d87c9496c4",
+      "S": 675,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.880530849,
+          "M_bytes": 44306432,
+          "CPU_s": 9.471859,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.862439427,
+          "M_bytes": 43778048,
+          "CPU_s": 9.173435,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.763343151,
+          "M_bytes": 44584960,
+          "CPU_s": 7.981836,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.862439427,
+      "M_bytes": 44306432,
+      "CPU_s": 9.173435,
+      "local_K_ratio": 0.7847160858005676
+    }
+  }
+}

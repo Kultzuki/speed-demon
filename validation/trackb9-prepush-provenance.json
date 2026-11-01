@@ -1,0 +1,36 @@
+{
+  "source_sha256": "a39c9004e6fa205cb3b9f11c51b7dac168fce47b11a418facac003cc006a86d0",
+  "common_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+  "release": "703ea3259bbb210ec266445081ad8d61153758e1c0d1ccb34b08e7f6c7106e70",
+  "sanitized": "e8071f809c2174e5cf434733e965bbf99fdfaebdde62724cc8ab31ff2e1c9991",
+  "image": {
+    "image_id": "sha256:a4f557fcbb76a48a44c73635229cfb6ec1bef315fa1d82a7717ba1c1f191a881",
+    "size_bytes": 119115781,
+    "solution_sha256": "703ea3259bbb210ec266445081ad8d61153758e1c0d1ccb34b08e7f6c7106e70"
+  },
+  "track_a_restoration": {
+    "best_commit": "6b71e02218f87a492f41aad0b6ea304c0e6cb172",
+    "best_K": 33.741694,
+    "rejected_trial_commit": "a7136fd8da9cf8ecebba731b664fdd279bbc734a",
+    "rejected_trial_K": 32.046061,
+    "note": "The shared checkout already staged the exact best source. Preserve the trial in history and the ignored archive.",
+    "files": {
+      "main.cpp": {
+        "best_git_blob_sha256": "8c0ddd195692081b28878471b6b7c9a9aa75b9b402d3ce857ba26466758b39b0",
+        "restored_worktree_sha256": "8c0ddd195692081b28878471b6b7c9a9aa75b9b402d3ce857ba26466758b39b0"
+      },
+      "common.hpp": {
+        "best_git_blob_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0",
+        "restored_worktree_sha256": "5a4c84862b711c370e97dbbc2c19d11e5b0bdecdb0e11e1e3295d3cd9f4012f0"
+      },
+      "Dockerfile": {
+        "best_git_blob_sha256": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f",
+        "restored_worktree_sha256": "d036dacf745bc6c5cf607a590bb8633565af794530ea37716cf9a21ed353593f"
+      },
+      ".speed-demon.toml": {
+        "best_git_blob_sha256": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714",
+        "restored_worktree_sha256": "466600a2ca94815c1f14765d7fb75f3aac4d9ecf6ba3618f9432616151a7d714"
+      }
+    }
+  }
+}

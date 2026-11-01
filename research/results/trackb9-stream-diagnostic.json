@@ -1,0 +1,65 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "b",
+  "data": "/data/b",
+  "entries": {
+    "b9-base": {
+      "source": "research/prototypes/trackb9-base.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "S": 922,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.570144659,
+          "M_bytes": 73842688,
+          "CPU_s": 3.664352,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.570144659,
+      "M_bytes": 73842688,
+      "CPU_s": 3.664352,
+      "local_K_ratio": 1.0
+    },
+    "b9-streamprof": {
+      "source": "research/prototypes/trackb9-stream-profile.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "685974c1879b64e7b9d9232f9a00adba5a0c13a363972cd26ef1d7a0bf9eddc1",
+      "binary_sha256": "122b09969c07e7c6249f868b76981052588a344ac419e54fcb0ff5e57be3a7f0",
+      "S": 692,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 1.654919389,
+          "M_bytes": 44421120,
+          "CPU_s": 15.246566,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": "STREAM thread=10 nt=75747 parse=0.292561 query=0.785265 evaluations=1753865 phrase_candidates=17674\nSTREAM thread=2 nt=75747 parse=0.313584 query=0.841722 evaluations=1752382 phrase_candidates=17812\nSTREAM thread=9 nt=75747 parse=0.300732 query=0.853904 evaluations=1755816 phrase_candidates=17753\nSTREAM thread=4 nt=75747 parse=0.334225 query=0.850881 evaluations=1744603 phrase_candidates=17893\nSTREAM thread=6 nt=75747 parse=0.333605 query=0.923613 evaluations=1746398 phrase_candidates=18113\nSTREAM thread=1 nt=75747 parse=0.351942 query=0.911238 evaluations=1745815 phrase_candidates=18065\nSTREAM thread=8 nt=75747 parse=0.334939 query=0.942463 evaluations=1745061 phrase_candidates=17896\nSTREAM thread=11 nt=75747 parse=0.364468 query=0.912905 evaluations=1748125 phrase_candidates=17843\nSTREAM thread=3 nt=75747 parse=0.352688 query=0.966576 evaluations=1750083 phrase_candidates=18002\nSTREAM thread=0 nt=75747 parse=0.369896 query=0.945599 evaluations=1755176 phrase_candidates=17750\nSTREAM thread=5 nt=75747 parse=0.329039 query=1.003202 evaluations=1747262 phrase_candidates=17819\nSTREAM thread=7 nt=75747 parse=0.404519 query=1.121323 evaluations=1743235 phrase_candidates=17606\n"
+        }
+      ],
+      "T_s": 1.654919389,
+      "M_bytes": 44421120,
+      "CPU_s": 15.246566,
+      "local_K_ratio": 0.6783306340556219
+    }
+  }
+}

@@ -43,6 +43,19 @@ inline uint64_t integer(const char*& p) {
     return value;
 }
 
+template<class T> inline void number(std::string& out, T value) {
+    char buffer[32];
+    auto result = std::to_chars(buffer, buffer + sizeof(buffer), value);
+    out.append(buffer, result.ptr);
+}
+
+inline void write_output(const std::string& path, const std::string& contents) {
+    FILE* output = fopen(path.c_str(), "wb");
+    if (!output) throw std::runtime_error("Cannot write " + path);
+    bool ok = fwrite(contents.data(), 1, contents.size(), output) == contents.size();
+    if (fclose(output) != 0 || !ok) throw std::runtime_error("Output write failed");
+}
+
 struct Paths {
     std::string data = "/data", out = "/out";
     Paths(int argc, char** argv) {

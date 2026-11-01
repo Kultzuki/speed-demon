@@ -5,15 +5,20 @@ Solo entry: CodeScythe / Prashant Krishan Bharti.
 ## Approach
 
 Read queries first and index only their terms with up to twelve workers.
-An eight-token prefetch pipeline overlaps exact dictionary lookups. Sampled
+Paired token-start/end masks classify 64 input bytes at a time; a masked AVX2
+load builds each exact lowercase key. An eight-token prefetch pipeline overlaps
+CRC32C dictionary lookups, with complete byte equality resolving collisions. Sampled
 frequencies choose bitmap terms; the full pass deduplicates every document.
 Other postings enter bucketed packed streams, then scatter into sorted CSR
 lists while their temporary pages are released. A checked 15-bit local stream
 uses uint16 postings; larger real worker domains dispatch to a 32-bit document
 stream and postings. Corpus byte offsets use uint32 with a checked uint64
 fallback. Sample decisions affect work, never answers.
-The temporary streams use 65,536-entry lazy anonymous blocks, reducing mapping
-calls and page-rounding waste while still returning each consumed block.
+The narrow temporary streams put a 9-bit term offset and 7-bit document gap in
+one 16-bit word. An explicit escape carries a larger absolute document id;
+decoder state crosses block boundaries without truncation. Lazy anonymous
+blocks hold 262,144 words and return their pages as they drain. The full-width
+stream remains exact when a worker covers more than 32,768 documents.
 
 Boolean operators fold strictly left to right, switching between lists and
 bitmaps as each operand requires. Phrase terms intersect rarest first, followed
@@ -36,5 +41,6 @@ validation harness. Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
-Measure packed-stream bucket sizes, dense thresholds and batched exact phrase
-checks. Compare the full coefficient, including memory and source size.
+Profile on the scoring CPU, measure scatter workers that own complete term
+ranges, and train compiler profiles only on organizer-generator output.
+Compare the full coefficient, including memory and source size.

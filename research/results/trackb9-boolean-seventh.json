@@ -1,0 +1,136 @@
+{
+  "scope": "Local WSL2; hot Linux-local data, fresh cgroups, read-only root/data, 8g/no swap, CPUs 0-11, fork/exec/exit timer. Not an official score.",
+  "track": "b",
+  "data": "/data/b",
+  "entries": {
+    "b9-base": {
+      "source": "research/prototypes/trackb9-base.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "0fa23a72d71d69bcf8544bca7417b22b1ca4f169459e0cb4c9330a93be096847",
+      "binary_sha256": "a0a5b6c7689e1c0e6f3e9f8c7571a3e41b754ebe2f4b9cb98b06ea33cb32fb68",
+      "S": 922,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.447671697,
+          "M_bytes": 73441280,
+          "CPU_s": 3.448962,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.480018734,
+          "M_bytes": 72933376,
+          "CPU_s": 3.854339,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.503431857,
+          "M_bytes": 73506816,
+          "CPU_s": 3.895984,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.480018734,
+      "M_bytes": 73441280,
+      "CPU_s": 3.854339,
+      "local_K_ratio": 1.0
+    },
+    "b9-dnf": {
+      "source": "research/prototypes/trackb9-dnf-base.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "c20a2d62fa9daca0ff4b68fe8d2bb3e12653d0ddcbdcc924988715625a4b5b80",
+      "binary_sha256": "0d9f170496cfa4dbe8824b7b9668b8fb192a1351d08e2162ac15f81ab424dc86",
+      "S": 958,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.525401961,
+          "M_bytes": 73392128,
+          "CPU_s": 4.010192,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.599851621,
+          "M_bytes": 73535488,
+          "CPU_s": 4.42572,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.471524357,
+          "M_bytes": 73498624,
+          "CPU_s": 3.762888,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.525401961,
+      "M_bytes": 73498624,
+      "CPU_s": 4.010192,
+      "local_K_ratio": 0.9502114656394927
+    },
+    "b9-dnfvector": {
+      "source": "research/prototypes/trackb9-dnf-simdformat.cpp",
+      "flags": [
+        "-std=c++20",
+        "-O3",
+        "-DNDEBUG",
+        "-pthread",
+        "-static",
+        "-s",
+        "-march=x86-64-v3"
+      ],
+      "source_sha256": "57afd3dae89b0038ad0aaccb2ec2c786ed90e5854dad4d4228a6c2485fb73c81",
+      "binary_sha256": "91e3f63752fb6f86172a77a66ced108636806936f06b5379791ec3761a6839e2",
+      "S": 1003,
+      "D": 1,
+      "raw": [
+        {
+          "T_s": 0.510339302,
+          "M_bytes": 73576448,
+          "CPU_s": 4.285374,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.508847421,
+          "M_bytes": 72876032,
+          "CPU_s": 3.960373,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        },
+        {
+          "T_s": 0.476404021,
+          "M_bytes": 73175040,
+          "CPU_s": 3.480735,
+          "sha256": "f86973c210228141bcb6f1f1b10188ad2a9b65f71e7cd7cf4590b38de4e80927",
+          "stderr": ""
+        }
+      ],
+      "T_s": 0.508847421,
+      "M_bytes": 73175040,
+      "CPU_s": 3.960373,
+      "local_K_ratio": 0.9597657699308858
+    }
+  }
+}
