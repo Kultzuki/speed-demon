@@ -1,3 +1,7 @@
+> Historical record: research files and development tools referenced below were
+> removed during repository cleanup. Their original versions remain available in
+> Git at commit `8d9ca80`. Recorded results below have not been remeasured.
+
 # Track D: performance log
 
 ## Published reference

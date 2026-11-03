@@ -23,15 +23,9 @@ bytes until processing ends. Exactly one output file is written to /out.
 ## Validation
 
 The official full public seed-1 output hash matches locally. Worked examples,
-tiny seeds 1/2/17 and additional differential cases are exercised by the root
-validation harness. Consult PERF.md for measured evidence and board run IDs.
+tiny seeds 1/2/17 and additional differential cases were exercised by the historical validation harness
+(preserved in Git at commit `8d9ca80`). Consult PERF.md for measured evidence and board run IDs.
 
 ## With another 24 hours
 
 Measure worker count, sparse search state and graph construction separately. More workers trade lower wall time for greater memory, so compare the combined coefficient rather than time alone.
-
-
-The validated continuation-8 Rust version is preserved independently in
-../research/rust8-validated/track-d/. Both official Rust runs pass every gate,
-but neither exceeds the established best coefficient, so the stronger C++
-entry is retained. See ../research/CONTINUATION8_RUST.md for complete evidence.
